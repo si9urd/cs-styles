@@ -1,0 +1,3 @@
+@use "index" with (
+  $enable-pointer-cursor-on-controls: false
+);

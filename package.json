@@ -1,0 +1,32 @@
+{
+  "name": "cs-styles",
+  "version": "0.5.0",
+  "description": "styles",
+  "main": "css/styles.css",
+  "scripts": {
+    "build": "sass --no-source-map --style expanded --no-error-css scss/:css/"
+  },
+  "keywords": [
+    "css",
+    "css-framework",
+    "lightweight",
+    "minimalistic"
+  ],
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "author": "Oleh Obydonov",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "css-declaration-sorter": "^7.1.1",
+    "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.0",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.2.5",
+    "sass": "^1.72.0"
+  }
+}

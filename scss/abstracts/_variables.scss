@@ -1,0 +1,21 @@
+@use "sass:map";
+
+////////////////////////////////////////////////////////////////////////////////
+/// Variables
+////////////////////////////////////////////////////////////////////////////////
+
+// Prefix for CSS variables
+$prefix: "cs" !default;
+
+// Parent selector for cs-styles
+$parent-selector: "" !default;
+
+// Enable responsive typography
+// Fixed root element size (rem) if disabled
+$enable-responsive-typography: true !default;
+
+// Enable transitions
+$enable-transitions: true !default;
+
+// Enable pointer cursor on controls (buttons, links, etc.)
+$enable-pointer-cursor-on-controls: true !default;

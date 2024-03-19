@@ -1,0 +1,25 @@
+button {
+  overflow: visible;
+  margin: 0;
+  font-family: inherit;
+  text-transform: none;
+  outline: none;
+  border: none;
+}
+
+button,
+[type=submit],
+[type=reset],
+[type=button] {
+  -webkit-appearance: button;
+}
+
+button,
+[type=submit],
+[type=reset],
+[type=button],
+[type=file]::file-selector-button,
+[role=button] {
+  background-color: #6750A4;
+  color: #fff;
+}

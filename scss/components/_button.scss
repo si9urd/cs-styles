@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
+
+/// Button styles
+
+// Reboot browser button styles:
+// 1. Show the overflow in Edge
+// 2. Remove the margin on controls in Safari
+// 3. Change the font styles in all browsers
+// 4. Remove the outline on focused buttons
+// 5. Remove the border
+button {
+  overflow: visible; // 1
+  margin: 0; // 2
+  font-family: inherit; // 3
+  text-transform: none; // 3
+  outline: none; // 4
+  border: none; // 5
+}
+
+// Correct the inability to style buttons in iOS and Safari
+button,
+[type="submit"],
+[type="reset"],
+[type="button"] {
+  -webkit-appearance: button;
+}
+
+// Material design button
+
+button,
+[type="submit"],
+[type="reset"],
+[type="button"],
+[type="file"]::file-selector-button,
+[role="button"] {
+  background-color: $primary;
+  color:$on-primary;
+  @if $enable-pointer-cursor-on-controls {
+    cursor: pointer;
+  }
+}
