@@ -1,3 +1,6 @@
+@use "../grid-variables" as *;
+@use "../mixins/breakpoints" as *;
+
 // CSSGrid system
 
 @mixin make-cssgrid($columns: $grid-columns, $breakpoints: $grid-breakpoints) {

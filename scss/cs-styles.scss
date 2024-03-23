@@ -1,4 +1,5 @@
 @use "index" with (
   $enable-grid: true,
+  $enable-containers: true,
   $color-themes: primary
 );
