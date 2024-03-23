@@ -1,0 +1,44 @@
+
+@mixin light-theme($themes) {
+  @each $theme in $themes {
+    --#{$theme}: var(--#{$theme}-40);
+    --on-#{$theme}: #fff;
+    --#{$theme}-container: var(--#{$theme}-90);
+    --on-#{$theme}-container: var(--#{$theme}-10);
+    --#{$theme}-fixed: var(--#{$theme}-90);
+    --on-#{$theme}-fixed: var(--#{$theme}-90);
+    --#{$theme}-fixed-dim: var(--#{$theme}-80);
+    --on-#{$theme}-fixed-dim: var(--#{$theme}-80);
+  }
+
+  --surface-dim: var(--neutral-87);
+  --surface: var(--neutral-98);
+  --on-surface: var(--neutral-10);
+  --surface-bright: var(--neutral-99);
+
+  --container-lowest: #fff;
+  --container-low: var(--neutral-98);
+  --container: var(--neutral-95);
+}
+
+@mixin dark-theme($themes) {
+  @each $theme in $themes {
+    --#{$theme}: var(--#{$theme}-80);
+    --on-#{$theme}: var(--#{$theme}-20);
+    --#{$theme}-container: var(--#{$theme}-30);
+    --on-#{$theme}-container: var(--#{$theme}-90);
+    --#{$theme}-fixed: var(--#{$theme}-90);
+    --on-#{$theme}-fixed: var(--#{$theme}-10);
+    --#{$theme}-fixed-dim: var(--#{$theme}-80);
+    --on-#{$theme}-fixed-dim: var(--#{$theme}-30);
+  }
+
+  --surface-dim: var(--neutral-10);
+  --surface: var(--neutral-10);
+  --on-surface: var(--neutral-90);
+  --surface-bright: var(--neutral-20);
+
+  --container-lowest: var(--neutral-10);
+  --container-low: var(--neutral-10);
+  --container: var(--neutral-10);
+}

@@ -1,0 +1,25 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+:root {
+  // get themes
+  $themes: map-get($colors, themes);
+
+  // generate color css variables
+  @each $theme in $themes {
+    @include generate-color-vars($theme, map-get($colors, #{$theme}-colors), 10, 90, 10);
+    @include generate-extra-color-vars($theme, map-get($colors, #{$theme}-colors), map-get($colors, base-index));
+  }
+
+  &:not([data-theme="dark"]) {
+    $color-themes: primary secondary tertiary error;
+
+    @include light-theme($color-themes);
+  }
+
+  &[data-theme="dark"] {
+    $color-themes: primary secondary tertiary error;
+
+    @include dark-theme($color-themes);
+  }
+}
