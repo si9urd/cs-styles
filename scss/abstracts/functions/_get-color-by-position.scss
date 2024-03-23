@@ -17,8 +17,6 @@
   $prevIdx: math.floor($stop);
   $nextIdx: math.ceil($stop);
 
-  @debug $nextIdx;
-
   // get the previous and next colors from the list
   $prevColor: list.nth($colors, $prevIdx);
   $nextColor: list.nth($colors, $nextIdx);

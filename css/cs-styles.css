@@ -158,6 +158,13 @@
   --container: var(--neutral-10);
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--container-lowest);
+  color: var(--on-surface);
+}
+
 button {
   overflow: visible;
   margin: 0;

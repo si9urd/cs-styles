@@ -1,4 +1,6 @@
 @forward "abstracts/variables";
+@forward "abstracts/colors";
 
 @use "base/root";
+@use "base/base";
 @use "components/button";
