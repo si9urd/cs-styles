@@ -1,11 +1,6 @@
 @forward "abstracts/variables";
 
-@use "base/root";
-@use "base/aria";
-
-@use "layout/document";
-@use "layout/main";
-
+@use "base";
+@use "layout";
 @use "grid";
-
-@use "components/button";
+@use "components";
