@@ -1,3 +1,4 @@
 @use "index" with (
-  $enable-pointer-cursor-on-controls: true,
+  $enable-grid: true,
+  $color-themes: primary
 );

@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+}
+
+::before,
+::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+:where(:root) {
+  font: 400 16px/1.5 var(--font-family);
+
+  background-color: var(--container-lowest);
+  color: var(--on-surface);
+
+  overflow-wrap: break-word;
+  text-underline-offset: 0.1rem;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  tab-size: 4;
+}

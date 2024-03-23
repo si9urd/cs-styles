@@ -7,15 +7,12 @@
 // Prefix for CSS variables
 $prefix: "cs" !default;
 
-// Parent selector for cs-styles
-$parent-selector: "" !default;
+// Enable grid
+$enable-grid: false !default;
 
-// Enable responsive typography
-// Fixed root element size (rem) if disabled
-$enable-responsive-typography: true !default;
+// Themes
+$color-themes: primary secondary tertiary error !default;
 
-// Enable transitions
-$enable-transitions: true !default;
-
-// Enable pointer cursor on controls (buttons, links, etc.)
-$enable-pointer-cursor-on-controls: false !default;
+// Fonts family
+$font-family-base: Roboto, -apple-system-ui, system-ui, "Segoe UI",  Oxygen, Ubuntu, Cantarell, Helvetica, Arial,
+  "Helvetica Neue", sans-serif !default;

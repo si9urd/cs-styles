@@ -36,12 +36,7 @@
 @mixin generate-extra-color-vars($name, $colors, $base-index: 4) {
   $baseColor: list.nth($colors, $base-index);
 
-  //--#{$name}: #{$baseColor};
-  --#{$name}-87: #{color.mix(white, $baseColor, 88%)};
-  --#{$name}-92: #{color.mix(white, $baseColor, 91%)};
   --#{$name}-95: #{color.mix(white, $baseColor, 93.75%)};
-  --#{$name}-96: #{color.mix(white, $baseColor, 95%)};
-  --#{$name}-98: #{color.mix(white, $baseColor, 98%)};
   --#{$name}-99: #{color.mix(white, $baseColor, 99%)};
 }
 

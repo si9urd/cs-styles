@@ -31,7 +31,4 @@ button,
 [role="button"] {
   background-color: var(--primary);
   color: var(--on-primary);
-  @if $enable-pointer-cursor-on-controls {
-    cursor: pointer;
-  }
 }

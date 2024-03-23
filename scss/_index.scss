@@ -1,6 +1,11 @@
 @forward "abstracts/variables";
-@forward "abstracts/colors";
 
 @use "base/root";
-@use "base/base";
+@use "base/aria";
+
+@use "layout/document";
+@use "layout/main";
+
+@use "grid";
+
 @use "components/button";
