@@ -14,9 +14,9 @@
 
 @if $enable-grid {
   :root {
-    --rows: #{$grid-rows};
-    --columns: #{$grid-columns};
-    --gap: #{$grid-gutter-width};
+    --grid-rows: #{$grid-rows};
+    --grid-columns: #{$grid-columns};
+    --grid-gap: #{$grid-gutter-width};
   }
 
   .grid {

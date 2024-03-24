@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "../abstracts/variables" as *;
+@use "../base/elevation" as *;
 
 /// Button styles
 
@@ -29,6 +30,29 @@ button,
 [type="button"],
 [type="file"]::file-selector-button,
 [role="button"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 999px;
+
   background-color: var(--primary);
   color: var(--on-primary);
+
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+
+  &:hover {
+    background-color: var(--primary-hovered);
+    @extend %elevation-1;
+  }
+  &:active {
+    //background-color: var(--primary-hovered);
+    box-shadow: none !important;
+  }
+
+  :is(:disabled, [disabled="true"], [aria-disabled="true"]) {
+    
+  }
 }

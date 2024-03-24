@@ -25,6 +25,8 @@ $nv-60: #938F99;
     --on-#{$theme}-fixed: var(--#{$theme}-90);
     --#{$theme}-fixed-dim: var(--#{$theme}-80);
     --on-#{$theme}-fixed-dim: var(--#{$theme}-80);
+    --#{$theme}-hovered: var(--#{$theme}-50);
+    --#{$theme}-pressed: var(--#{$theme}-50);
   }
 
   --surface-dim: #{$neutral-87};
@@ -51,6 +53,8 @@ $nv-60: #938F99;
     --on-#{$theme}-fixed: var(--#{$theme}-10);
     --#{$theme}-fixed-dim: var(--#{$theme}-80);
     --on-#{$theme}-fixed-dim: var(--#{$theme}-30);
+    --#{$theme}-hovered: var(--#{$theme}-70);
+    --#{$theme}-pressed: var(--#{$theme}-70);
   }
 
   --surface-dim: #{$neutral-6};
