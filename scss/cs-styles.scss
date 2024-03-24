@@ -1,5 +1,5 @@
 @use "index" with (
-  $enable-grid: true,
+  $enable-grid: false,
   $enable-containers: true,
-  $color-themes: primary
+  $color-themes: primary secondary
 );

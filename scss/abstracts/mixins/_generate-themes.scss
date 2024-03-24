@@ -1,20 +1,3 @@
-$neutral-4: #0F0D13;
-$neutral-6: #141218;
-$neutral-10: #1D1B20;
-$neutral-12: #211F26;
-$neutral-17: #2B2930;
-$neutral-22: #36343B;
-$neutral-24: #3B383E;
-$neutral-87: #DED8E1;
-$neutral-90: #E6E0E9;
-$neutral-92: #ECE6F0;
-$neutral-94: #F3EDF7;
-$neutral-96: #F7F2FA;
-$neutral-98: #FEF7FF;
-
-$nv-50: #79747E;
-$nv-60: #938F99;
-
 @mixin light-theme($themes) {
   @each $theme in $themes {
     --#{$theme}: var(--#{$theme}-40);
@@ -25,22 +8,23 @@ $nv-60: #938F99;
     --on-#{$theme}-fixed: var(--#{$theme}-90);
     --#{$theme}-fixed-dim: var(--#{$theme}-80);
     --on-#{$theme}-fixed-dim: var(--#{$theme}-80);
-    --#{$theme}-hovered: var(--#{$theme}-50);
-    --#{$theme}-pressed: var(--#{$theme}-50);
   }
+}
 
-  --surface-dim: #{$neutral-87};
-  --surface: #{$neutral-98};
-  --surface-bright: #{$neutral-98};
-  --on-surface: #{$neutral-10};
+@mixin light-theme-surface {
+  --surface-dim: var(--neutral-87);
+  --surface: var(--neutral-98);
+  --surface-bright: var(--neutral-98);
+  --on-surface: var(--neutral-10);
 
   --container-lowest: #fff;
-  --container-low: #{$neutral-96};
-  --container: #{$neutral-94};
-  --container-high: #{$neutral-92};
-  --container-highest: #{$neutral-90};
+  --container-low: var(--neutral-96);
+  --container: var(--neutral-94);
+  --container-high: var(--neutral-92);
+  --container-highest: var(--neutral-90);
 
-  --outline: #{$nv-50};
+  --outline: var(--nv-50);
+  --mask: #fff;
 }
 
 @mixin dark-theme($themes) {
@@ -53,20 +37,21 @@ $nv-60: #938F99;
     --on-#{$theme}-fixed: var(--#{$theme}-10);
     --#{$theme}-fixed-dim: var(--#{$theme}-80);
     --on-#{$theme}-fixed-dim: var(--#{$theme}-30);
-    --#{$theme}-hovered: var(--#{$theme}-70);
-    --#{$theme}-pressed: var(--#{$theme}-70);
   }
+}
 
-  --surface-dim: #{$neutral-6};
-  --surface: #{$neutral-6};
-  --surface-bright: #{$neutral-24};
-  --on-surface: #{$neutral-90};
+@mixin dark-theme-surface {
+  --surface-dim: var(--neutral-6);
+  --surface: var(--neutral-6);
+  --surface-bright: var(--neutral-24);
+  --on-surface: var(--neutral-90);
 
-  --container-lowest: #{$neutral-4};
-  --container-low: #{$neutral-10};
-  --container: #{$neutral-12};
-  --container-high: #{$neutral-17};
-  --container-highest: #{$neutral-22};
+  --container-lowest: var(--neutral-4);
+  --container-low: var(--neutral-10);
+  --container: var(--neutral-12);
+  --container-high: var(--neutral-17);
+  --container-highest: var(--neutral-22);
 
-  --outline: #{$nv-60};
+  --outline: var(--nv-60);
+  --mask: var(--primary-20);
 }

@@ -1,29 +1,37 @@
 @use "sass:list";
-
-@use "../colors" as *;
-@use "../variables" as *;
+@use "sass:map";
 
 @use "generate-colors" as *;
 @use "generate-themes" as *;
 
-@mixin color-vars {
-
-  // generate color css variables
+/// generate color css variables by list
+@mixin color-vars-by-list($color-themes, $colors) {
   @each $theme in $color-themes {
     @include generate-color-vars($theme, map-get($colors, #{$theme}-colors), 10, 90, 10);
     @include generate-extra-color-vars($theme, map-get($colors, #{$theme}-colors), map-get($colors, base-index));
   }
+}
 
+/// generate color css variables for `light` and `dark` themes
+@mixin color-vars-themes($color-themes) {
   @if not list.index($color-themes, primary) {
     @error "primary theme required";
   }
 
   &:not([data-theme="dark"]) {
     @include light-theme($color-themes);
+    @include light-theme-surface;
   }
 
   &[data-theme="dark"] {
     @include dark-theme($color-themes);
+    @include dark-theme-surface;
   }
+}
 
+/// generate css variables by map
+@mixin vars-by-map($map, $name) {
+  @each $var-index, $var in $map {
+    --#{$name}-#{$var-index}: #{$var};
+  }
 }

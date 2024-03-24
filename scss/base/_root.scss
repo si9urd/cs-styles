@@ -1,8 +1,12 @@
-@use "../abstracts/mixins/color-vars" as *;
+@use "../abstracts/colors" as *;
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins/color-vars" as *;
 
 :root {
-  @include color-vars;
+  @include color-vars-by-list($color-themes, $colors);
+  @include vars-by-map($neutral-colors, "neutral");
+  @include vars-by-map($nv, "nv");
+  @include color-vars-themes($color-themes);
 
   --font-family: #{$font-family-base};
 }
