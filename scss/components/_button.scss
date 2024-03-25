@@ -54,6 +54,7 @@ button,
 [type="button"],
 [type="file"]::file-selector-button,
 [role="button"] {
+  overflow: hidden;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -69,6 +70,7 @@ button,
   line-height: 1.25rem;
 
   text-decoration: none;
+  transition: background 400ms;
 
   &:hover {
     @extend %elevation-1;
@@ -89,7 +91,7 @@ button,
 [type="button"],
 [role="button"] {
   @extend %button-shades;
-  @if $enable-ripple-effect {
-    @extend %ripple;
+  @if $enable-css-ripple-effect {
+    @extend %ripple-effect;
   }
 }

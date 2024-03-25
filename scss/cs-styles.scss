@@ -1,5 +1,7 @@
 @use "index" with (
   $enable-grid: false,
   $enable-containers: true,
+  $enable-js-ripple-effect: false,
+  $enable-css-ripple-effect: true,
   $color-themes: primary secondary
 );
