@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "../abstracts/variables" as *;
 @use "../base/elevation" as *;
+@use "ripple" as *;
 
 /// Button styles
 
@@ -88,4 +89,7 @@ button,
 [type="button"],
 [role="button"] {
   @extend %button-shades;
+  @if $enable-ripple-effect {
+    @extend %ripple;
+  }
 }

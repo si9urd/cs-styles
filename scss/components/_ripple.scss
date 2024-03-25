@@ -1,0 +1,14 @@
+%ripple {
+  background-position: center;
+  transition: background 0.8s;
+
+  &:hover {
+    background: var(--primary) radial-gradient(circle, transparent 1%, var(--primary) 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: var(--primary-70);
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
