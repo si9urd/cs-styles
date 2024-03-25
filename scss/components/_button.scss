@@ -6,6 +6,9 @@
 /// Button styles
 
 %button-shades {
+  overflow: hidden;
+  position: relative;
+
   &:after {
     content: "";
     position: absolute;
@@ -54,11 +57,11 @@ button,
 [type="button"],
 [type="file"]::file-selector-button,
 [role="button"] {
-  overflow: hidden;
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  max-height: 2.5rem;
   padding: 10px 24px;
   border-radius: 999px;
 
@@ -80,9 +83,6 @@ button,
     box-shadow: none !important;
   }
 
-  //:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-  //
-  //}
 }
 
 button,
@@ -91,7 +91,28 @@ button,
 [type="button"],
 [role="button"] {
   @extend %button-shades;
+
   @if $enable-css-ripple-effect {
     @extend %ripple-effect;
   }
+
+  img {
+    width: 1.25rem;
+    height: 1.25rem;
+    vertical-align: middle;
+  }
+
+
+  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
+    background: var(--neutral-80) !important;
+    color: var(--neutral-50);
+    &:hover {
+      box-shadow: none;
+      &:after {
+        display: none;
+        background-color: transparent !important;
+      }
+    }
+  }
+
 }
