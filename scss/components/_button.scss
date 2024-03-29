@@ -73,7 +73,6 @@ button,
   line-height: 1.25rem;
 
   text-decoration: none;
-  transition: background 400ms;
 
   &:hover {
     @extend %elevation-1;
@@ -82,7 +81,6 @@ button,
   &:active {
     box-shadow: none !important;
   }
-
 }
 
 button,
@@ -94,6 +92,7 @@ button,
 
   @if $enable-css-ripple-effect {
     @extend %ripple-effect;
+    transition: background 400ms;
   }
 
   img {
@@ -101,7 +100,6 @@ button,
     height: 1.25rem;
     vertical-align: middle;
   }
-
 
   &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
     background: var(--neutral-80) !important;
@@ -114,5 +112,4 @@ button,
       }
     }
   }
-
 }
