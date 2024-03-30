@@ -4,10 +4,17 @@
   "description": "styles",
   "main": "css/styles.css",
   "scripts": {
-    "build": "sass --no-source-map --style expanded --no-error-css scss/:css/ && copyfiles css/cs-styles.css examples",
+    "prebuild": "sass --no-source-map --style expanded --no-error-css scss/:css/ && copyfiles css/cs-styles.css examples",
+    "build": "run-s \"build:*\"",
+    "build:css": "sass --no-source-map --style expanded --no-error-css scss/:css/",
+    "build:autoprefix": "postcss --config css --replace css/*.css !css/*.min.css",
+    "build:minify": "cleancss -O1 --with-rebase --batch --batch-suffix .min css/*.css !css/*.min.css",
     "demo": "live-server ./examples",
-    "watch": "nodemon -q --watch scss/ --ext scss --exec run-s build",
-    "dev": "npm-run-all --parallel demo watch"
+    "watch": "nodemon -q --watch scss/ --ext scss --exec run-s prebuild",
+    "dev": "npm-run-all --parallel demo watch",
+    "lint": "run-s \"lint:*\" --silent",
+    "lint:prettier": "prettier --write --log-level silent 'scss/**/*.scss'",
+    "lint:sort-scss": "postcss --config scss ./scss/**/*.scss --replace"
   },
   "keywords": [
     "css",
@@ -28,7 +35,7 @@
     "css-declaration-sorter": "^7.1.1",
     "nodemon": "^3.1.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.2.5",
