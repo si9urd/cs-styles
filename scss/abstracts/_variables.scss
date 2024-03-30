@@ -10,6 +10,9 @@ $prefix: "cs" !default;
 // Enable grid
 $enable-grid: false !default;
 
+// design - material | plain
+$design: material !default;
+
 // Enable containers
 $enable-containers: false !default;
 
@@ -20,5 +23,3 @@ $enable-js-ripple-effect: false !default;
 // Fonts family
 $font-family-base: Roboto, -apple-system-ui, system-ui, "Segoe UI",  Oxygen, Ubuntu, Cantarell, Helvetica, Arial,
   "Helvetica Neue", sans-serif !default;
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl92YXJpYWJsZXMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiJfdmFyaWFibGVzLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAdXNlIFwic2FzczptYXBcIjtcclxuXHJcbi8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vXHJcbi8vLyBWYXJpYWJsZXNcclxuLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy9cclxuXHJcbi8vIFByZWZpeCBmb3IgQ1NTIHZhcmlhYmxlc1xyXG4kcHJlZml4OiBcImNzXCIgIWRlZmF1bHQ7XHJcblxyXG4vLyBFbmFibGUgZ3JpZFxyXG4kZW5hYmxlLWdyaWQ6IGZhbHNlICFkZWZhdWx0O1xyXG5cclxuLy8gRW5hYmxlIGNvbnRhaW5lcnNcclxuJGVuYWJsZS1jb250YWluZXJzOiBmYWxzZSAhZGVmYXVsdDtcclxuXHJcbi8vIEVuYWJsZSByaXBwbGUgZWZmZWN0XHJcbiRlbmFibGUtY3NzLXJpcHBsZS1lZmZlY3Q6IGZhbHNlICFkZWZhdWx0O1xyXG4kZW5hYmxlLWpzLXJpcHBsZS1lZmZlY3Q6IGZhbHNlICFkZWZhdWx0O1xyXG5cclxuLy8gRm9udHMgZmFtaWx5XHJcbiRmb250LWZhbWlseS1iYXNlOiBSb2JvdG8sIC1hcHBsZS1zeXN0ZW0tdWksIHN5c3RlbS11aSwgXCJTZWdvZSBVSVwiLCAgT3h5Z2VuLCBVYnVudHUsIENhbnRhcmVsbCwgSGVsdmV0aWNhLCBBcmlhbCxcclxuICBcIkhlbHZldGljYSBOZXVlXCIsIHNhbnMtc2VyaWYgIWRlZmF1bHQ7XHJcbiJdfQ== */
