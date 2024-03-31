@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 
+@use "../../variables" as *;
 @use "generate-colors" as *;
 @use "generate-themes" as *;
 
@@ -32,7 +33,7 @@
 /// generate css variables by map
 @mixin vars-by-map($map, $name) {
   @each $var-index, $var in $map {
-    --#{$name}-#{$var-index}: #{$var};
+    --#{$prefix}-#{$name}-#{$var-index}: #{$var};
   }
 }
 

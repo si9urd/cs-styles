@@ -14,19 +14,17 @@
 
 @if $enable-grid {
   :root {
-    --grid-rows: #{$grid-rows};
-    --grid-columns: #{$grid-columns};
-    --grid-gap: #{$grid-gutter-width};
+    --#{$prefix}-grid-rows: #{$grid-rows};
+    --#{$prefix}-grid-columns: #{$grid-columns};
+    --#{$prefix}-grid-gutter: #{$grid-gutter-width};
   }
 
   .grid {
     display: grid;
-    grid-template-rows: repeat(var(--rows, 1), 1fr);
-    grid-template-columns: repeat(var(--columns, #{$grid-columns}), 1fr);
-    gap: var(--gap, #{$grid-gutter-width});
+    grid-template-rows: repeat(var(--#{$prefix}-rows, 1), 1fr);
+    grid-template-columns: repeat(var(--#{$prefix}-columns, #{$grid-columns}), 1fr);
+    gap: var(--#{$prefix}-gap, #{$grid-gutter-width});
 
     @include make-cssgrid();
   }
 }
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9ncmlkLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiX2dyaWQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIFJvd1xyXG4vL1xyXG4vLyBSb3dzIGNvbnRhaW4geW91ciBjb2x1bW5zLlxyXG5cclxuLy86cm9vdCB7XHJcbi8vICBAZWFjaCAkbmFtZSwgJHZhbHVlIGluICRncmlkLWJyZWFrcG9pbnRzIHtcclxuLy8gICAgLS1icmVha3BvaW50LSN7JG5hbWV9OiAjeyR2YWx1ZX07XHJcbi8vICB9XHJcbi8vfVxyXG5cclxuQHVzZSBcIi4uLy4uL2Fic3RyYWN0cy92YXJpYWJsZXNcIiBhcyAqO1xyXG5AdXNlIFwiLi4vYWJzdHJhY3RzL2dyaWQtdmFyaWFibGVzXCIgYXMgKjtcclxuQHVzZSBcIi4uL2Fic3RyYWN0cy9taXhpbnMvZ3JpZFwiIGFzICo7XHJcblxyXG5AaWYgJGVuYWJsZS1ncmlkIHtcclxuICA6cm9vdCB7XHJcbiAgICAtLWdyaWQtcm93czogI3skZ3JpZC1yb3dzfTtcclxuICAgIC0tZ3JpZC1jb2x1bW5zOiAjeyRncmlkLWNvbHVtbnN9O1xyXG4gICAgLS1ncmlkLWdhcDogI3skZ3JpZC1ndXR0ZXItd2lkdGh9O1xyXG4gIH1cclxuXHJcbiAgLmdyaWQge1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgIGdyaWQtdGVtcGxhdGUtcm93czogcmVwZWF0KHZhcigtLXJvd3MsIDEpLCAxZnIpO1xyXG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQodmFyKC0tY29sdW1ucywgI3skZ3JpZC1jb2x1bW5zfSksIDFmcik7XHJcbiAgICBnYXA6IHZhcigtLWdhcCwgI3skZ3JpZC1ndXR0ZXItd2lkdGh9KTtcclxuXHJcbiAgICBAaW5jbHVkZSBtYWtlLWNzc2dyaWQoKTtcclxuICB9XHJcbn1cclxuIl19 */

@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 body {
   width: 100%;
   margin: 0;
@@ -9,7 +11,5 @@ main {
 }
 
 .container {
-  background-color: var(--container);
+  background-color: var(--#{$prefix}-container);
 }
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9tYWluLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiX21haW4uc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG1hcmdpbjogMDtcclxufVxyXG5cclxuLy8gUmVuZGVyIHRoZSBgbWFpbmAgZWxlbWVudCBjb25zaXN0ZW50bHkgaW4gSUVcclxubWFpbiB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbn1cclxuXHJcbi5jb250YWluZXIge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNvbnRhaW5lcik7XHJcbn1cclxuIl19 */

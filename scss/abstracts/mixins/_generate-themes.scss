@@ -1,59 +1,59 @@
+@use '../../variables' as *;
+
 @mixin light-theme($themes) {
   @each $theme in $themes {
-    --#{$theme}: var(--#{$theme}-40);
-    --on-#{$theme}: #fff;
-    --#{$theme}-container: var(--#{$theme}-90);
-    --on-#{$theme}-container: var(--#{$theme}-10);
-    --#{$theme}-fixed: var(--#{$theme}-90);
-    --on-#{$theme}-fixed: var(--#{$theme}-90);
-    --#{$theme}-fixed-dim: var(--#{$theme}-80);
-    --on-#{$theme}-fixed-dim: var(--#{$theme}-80);
+    --#{$prefix}-#{$theme}: var(--#{$prefix}-#{$theme}-40);
+    --#{$prefix}-on-#{$theme}: #fff;
+    --#{$prefix}-#{$theme}-container: var(--#{$prefix}-#{$theme}-90);
+    --#{$prefix}-on-#{$theme}-container: var(--#{$prefix}-#{$theme}-10);
+    --#{$prefix}-#{$theme}-fixed: var(--#{$prefix}-#{$theme}-90);
+    --#{$prefix}-on-#{$theme}-fixed: var(--#{$prefix}-#{$theme}-90);
+    --#{$prefix}-#{$theme}-fixed-dim: var(--#{$prefix}-#{$theme}-80);
+    --#{$prefix}-on-#{$theme}-fixed-dim: var(--#{$prefix}-#{$theme}-80);
   }
 }
 
 @mixin light-theme-surface {
-  --surface-dim: var(--neutral-87);
-  --surface: var(--neutral-98);
-  --surface-bright: var(--neutral-98);
-  --on-surface: var(--neutral-10);
+  --#{$prefix}-surface-dim: var(--#{$prefix}-neutral-87);
+  --#{$prefix}-surface: var(--#{$prefix}-neutral-98);
+  --#{$prefix}-surface-bright: var(--#{$prefix}-neutral-98);
+  --#{$prefix}-on-surface: var(--#{$prefix}-neutral-10);
 
-  --container-lowest: #fff;
-  --container-low: var(--neutral-96);
-  --container: var(--neutral-94);
-  --container-high: var(--neutral-92);
-  --container-highest: var(--neutral-90);
+  --#{$prefix}-container-lowest: #fff;
+  --#{$prefix}-container-low: var(--#{$prefix}-neutral-96);
+  --#{$prefix}-container: var(--#{$prefix}-neutral-94);
+  --#{$prefix}-container-high: var(--#{$prefix}-neutral-92);
+  --#{$prefix}-container-highest: var(--#{$prefix}-neutral-90);
 
-  --outline: var(--nv-50);
-  --mask: #fff;
+  --#{$prefix}-outline: var(--#{$prefix}-nv-50);
+  --#{$prefix}-mask: #fff;
 }
 
 @mixin dark-theme($themes) {
   @each $theme in $themes {
-    --#{$theme}: var(--#{$theme}-80);
-    --on-#{$theme}: var(--#{$theme}-20);
-    --#{$theme}-container: var(--#{$theme}-30);
-    --on-#{$theme}-container: var(--#{$theme}-90);
-    --#{$theme}-fixed: var(--#{$theme}-90);
-    --on-#{$theme}-fixed: var(--#{$theme}-10);
-    --#{$theme}-fixed-dim: var(--#{$theme}-80);
-    --on-#{$theme}-fixed-dim: var(--#{$theme}-30);
+    --#{$prefix}-#{$theme}: var(--#{$prefix}-#{$theme}-80);
+    --#{$prefix}-on-#{$theme}: var(--#{$prefix}-#{$theme}-20);
+    --#{$prefix}-#{$theme}-container: var(--#{$prefix}-#{$theme}-30);
+    --#{$prefix}-on-#{$theme}-container: var(--#{$prefix}-#{$theme}-90);
+    --#{$prefix}-#{$theme}-fixed: var(--#{$prefix}-#{$theme}-90);
+    --#{$prefix}-on-#{$theme}-fixed: var(--#{$prefix}-#{$theme}-10);
+    --#{$prefix}-#{$theme}-fixed-dim: var(--#{$prefix}-#{$theme}-80);
+    --#{$prefix}-on-#{$theme}-fixed-dim: var(--#{$prefix}-#{$theme}-30);
   }
 }
 
 @mixin dark-theme-surface {
-  --surface-dim: var(--neutral-6);
-  --surface: var(--neutral-6);
-  --surface-bright: var(--neutral-24);
-  --on-surface: var(--neutral-90);
+  --#{$prefix}-surface-dim: var(--#{$prefix}-neutral-6);
+  --#{$prefix}-surface: var(--#{$prefix}-neutral-6);
+  --#{$prefix}-surface-bright: var(--#{$prefix}-neutral-24);
+  --#{$prefix}-on-surface: var(--#{$prefix}-neutral-90);
 
-  --container-lowest: var(--neutral-4);
-  --container-low: var(--neutral-10);
-  --container: var(--neutral-12);
-  --container-high: var(--neutral-17);
-  --container-highest: var(--neutral-22);
+  --#{$prefix}-container-lowest: var(--#{$prefix}-neutral-4);
+  --#{$prefix}-container-low: var(--#{$prefix}-neutral-10);
+  --#{$prefix}-container: var(--#{$prefix}-neutral-12);
+  --#{$prefix}-container-high: var(--#{$prefix}-neutral-17);
+  --#{$prefix}-container-highest: var(--#{$prefix}-neutral-22);
 
-  --outline: var(--nv-60);
-  --mask: var(--primary-20);
+  --#{$prefix}-outline: var(--#{$prefix}-nv-60);
+  --#{$prefix}-mask: var(--#{$prefix}-primary-20);
 }
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9nZW5lcmF0ZS10aGVtZXMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiJfZ2VuZXJhdGUtdGhlbWVzLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAbWl4aW4gbGlnaHQtdGhlbWUoJHRoZW1lcykge1xyXG4gIEBlYWNoICR0aGVtZSBpbiAkdGhlbWVzIHtcclxuICAgIC0tI3skdGhlbWV9OiB2YXIoLS0jeyR0aGVtZX0tNDApO1xyXG4gICAgLS1vbi0jeyR0aGVtZX06ICNmZmY7XHJcbiAgICAtLSN7JHRoZW1lfS1jb250YWluZXI6IHZhcigtLSN7JHRoZW1lfS05MCk7XHJcbiAgICAtLW9uLSN7JHRoZW1lfS1jb250YWluZXI6IHZhcigtLSN7JHRoZW1lfS0xMCk7XHJcbiAgICAtLSN7JHRoZW1lfS1maXhlZDogdmFyKC0tI3skdGhlbWV9LTkwKTtcclxuICAgIC0tb24tI3skdGhlbWV9LWZpeGVkOiB2YXIoLS0jeyR0aGVtZX0tOTApO1xyXG4gICAgLS0jeyR0aGVtZX0tZml4ZWQtZGltOiB2YXIoLS0jeyR0aGVtZX0tODApO1xyXG4gICAgLS1vbi0jeyR0aGVtZX0tZml4ZWQtZGltOiB2YXIoLS0jeyR0aGVtZX0tODApO1xyXG4gIH1cclxufVxyXG5cclxuQG1peGluIGxpZ2h0LXRoZW1lLXN1cmZhY2Uge1xyXG4gIC0tc3VyZmFjZS1kaW06IHZhcigtLW5ldXRyYWwtODcpO1xyXG4gIC0tc3VyZmFjZTogdmFyKC0tbmV1dHJhbC05OCk7XHJcbiAgLS1zdXJmYWNlLWJyaWdodDogdmFyKC0tbmV1dHJhbC05OCk7XHJcbiAgLS1vbi1zdXJmYWNlOiB2YXIoLS1uZXV0cmFsLTEwKTtcclxuXHJcbiAgLS1jb250YWluZXItbG93ZXN0OiAjZmZmO1xyXG4gIC0tY29udGFpbmVyLWxvdzogdmFyKC0tbmV1dHJhbC05Nik7XHJcbiAgLS1jb250YWluZXI6IHZhcigtLW5ldXRyYWwtOTQpO1xyXG4gIC0tY29udGFpbmVyLWhpZ2g6IHZhcigtLW5ldXRyYWwtOTIpO1xyXG4gIC0tY29udGFpbmVyLWhpZ2hlc3Q6IHZhcigtLW5ldXRyYWwtOTApO1xyXG5cclxuICAtLW91dGxpbmU6IHZhcigtLW52LTUwKTtcclxuICAtLW1hc2s6ICNmZmY7XHJcbn1cclxuXHJcbkBtaXhpbiBkYXJrLXRoZW1lKCR0aGVtZXMpIHtcclxuICBAZWFjaCAkdGhlbWUgaW4gJHRoZW1lcyB7XHJcbiAgICAtLSN7JHRoZW1lfTogdmFyKC0tI3skdGhlbWV9LTgwKTtcclxuICAgIC0tb24tI3skdGhlbWV9OiB2YXIoLS0jeyR0aGVtZX0tMjApO1xyXG4gICAgLS0jeyR0aGVtZX0tY29udGFpbmVyOiB2YXIoLS0jeyR0aGVtZX0tMzApO1xyXG4gICAgLS1vbi0jeyR0aGVtZX0tY29udGFpbmVyOiB2YXIoLS0jeyR0aGVtZX0tOTApO1xyXG4gICAgLS0jeyR0aGVtZX0tZml4ZWQ6IHZhcigtLSN7JHRoZW1lfS05MCk7XHJcbiAgICAtLW9uLSN7JHRoZW1lfS1maXhlZDogdmFyKC0tI3skdGhlbWV9LTEwKTtcclxuICAgIC0tI3skdGhlbWV9LWZpeGVkLWRpbTogdmFyKC0tI3skdGhlbWV9LTgwKTtcclxuICAgIC0tb24tI3skdGhlbWV9LWZpeGVkLWRpbTogdmFyKC0tI3skdGhlbWV9LTMwKTtcclxuICB9XHJcbn1cclxuXHJcbkBtaXhpbiBkYXJrLXRoZW1lLXN1cmZhY2Uge1xyXG4gIC0tc3VyZmFjZS1kaW06IHZhcigtLW5ldXRyYWwtNik7XHJcbiAgLS1zdXJmYWNlOiB2YXIoLS1uZXV0cmFsLTYpO1xyXG4gIC0tc3VyZmFjZS1icmlnaHQ6IHZhcigtLW5ldXRyYWwtMjQpO1xyXG4gIC0tb24tc3VyZmFjZTogdmFyKC0tbmV1dHJhbC05MCk7XHJcblxyXG4gIC0tY29udGFpbmVyLWxvd2VzdDogdmFyKC0tbmV1dHJhbC00KTtcclxuICAtLWNvbnRhaW5lci1sb3c6IHZhcigtLW5ldXRyYWwtMTApO1xyXG4gIC0tY29udGFpbmVyOiB2YXIoLS1uZXV0cmFsLTEyKTtcclxuICAtLWNvbnRhaW5lci1oaWdoOiB2YXIoLS1uZXV0cmFsLTE3KTtcclxuICAtLWNvbnRhaW5lci1oaWdoZXN0OiB2YXIoLS1uZXV0cmFsLTIyKTtcclxuXHJcbiAgLS1vdXRsaW5lOiB2YXIoLS1udi02MCk7XHJcbiAgLS1tYXNrOiB2YXIoLS1wcmltYXJ5LTIwKTtcclxufVxyXG4iXX0= */
