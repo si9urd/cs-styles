@@ -1,5 +1,8 @@
 
-// Change the direction of text
-[dir="rtl"] {
-  direction: rtl;
+@mixin utils {
+
+  // Change the direction of text
+  [dir="rtl"] {
+    direction: rtl;
+  }
 }

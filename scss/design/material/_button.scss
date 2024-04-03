@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../../variables" as *;
-@use "../../base/elevation" as *;
+@use "elevation" as *;
 @use "ripple" as *;
 
 /// Button styles

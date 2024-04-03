@@ -10,6 +10,8 @@ function setDefaultTheme() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  setDefaultTheme()
-})
+// document.addEventListener('DOMContentLoaded', function () {
+//   setDefaultTheme()
+// })
+
+setDefaultTheme()

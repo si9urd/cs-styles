@@ -1,44 +1,13 @@
 @use "../variables" as *;
 
-// based on normalize.css & sanitize.css
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  background-repeat: no-repeat;
-}
-
-::before,
-::after {
-  text-decoration: inherit;
-  vertical-align: inherit;
-}
-
-html {
-  cursor: default; /* 1 */
-  line-height: 1.5; /* 2 */
-  -moz-tab-size: 4; /* 3 */
-  tab-size: 4; /* 3 */
-  -webkit-tap-highlight-color: transparent /* 4 */;
-  -ms-text-size-adjust: 100%; /* 5 */
-  -webkit-text-size-adjust: 100%; /* 5 */
-  word-break: break-word; /* 6 */
-}
-
-
 :where(:root) {
   font: 400 16px/1.5 var(--#{$prefix}-font-family);
 
-  background-color: var(--#{$prefix}-container-lowest);
   color: var(--#{$prefix}-on-surface);
+  background-color: var(--#{$prefix}-container-lowest);
 
   overflow-wrap: break-word;
   text-underline-offset: 0.1rem;
   text-rendering: optimizeLegibility;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-
-  tab-size: 4;
 }
