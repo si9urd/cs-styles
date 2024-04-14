@@ -169,6 +169,10 @@ template {
 
   button {
     overflow: visible; /* 1 */
+    margin: 0;
+    font-family: inherit;
+    border: none;
+    outline: none;
     text-transform: none; /* 2 */
   }
 

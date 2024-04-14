@@ -1,114 +1,12 @@
 @use "sass:map";
 @use "../../variables" as *;
-@use "../material/elevation" as *;
 
 /// Button styles
 
-%button-shades {
-  overflow: hidden;
-  position: relative;
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 999px;
-    background-color: transparent;
-  }
-
-  &:hover:after {
-    background-color: var(--#{$prefix}-mask);
-    opacity: 0.08;
-  }
-
-  &:active:after {
-    background-color: var(--#{$prefix}-mask);
-    opacity: 0.12;
-  }
-}
-
-// Reboot browser button styles:
-button {
-  overflow: visible;
-  margin: 0;
-  font-family: inherit;
-  text-transform: none;
-  outline: none;
-  border: none;
-}
-
-// Correct the inability to style buttons in iOS and Safari
-button,
-[type="submit"],
-[type="reset"],
-[type="button"] {
-  -webkit-appearance: button;
-}
-
-// Material design button
-
-button,
-[type="submit"],
-[type="reset"],
-[type="button"],
-[type="file"]::file-selector-button,
-[role="button"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  max-height: 2.5rem;
-  padding: 10px 24px;
-  border-radius: 999px;
-
-  background-color: var(--#{$prefix}-primary);
-  color: var(--#{$prefix}-on-primary);
-
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.25rem;
-
-  text-decoration: none;
-
-  &:hover {
-    @extend %elevation-1;
-  }
-
-  &:active {
-    box-shadow: none !important;
-  }
-}
-
 button,
 [type="submit"],
 [type="reset"],
 [type="button"],
 [role="button"] {
-  @extend %button-shades;
-
-  @if $enable-css-ripple-effect {
-    @extend %ripple-effect;
-    transition: background 400ms;
-  }
-
-  img {
-    width: 1.25rem;
-    height: 1.25rem;
-    vertical-align: middle;
-  }
-
-  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    background: var(--#{$prefix}-neutral-80) !important;
-    color: var(--#{$prefix}-neutral-50);
-    &:hover {
-      box-shadow: none;
-      &:after {
-        display: none;
-        background-color: transparent !important;
-      }
-    }
-  }
+  // TODO: button styles
 }

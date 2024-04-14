@@ -1,4 +1,5 @@
 @use "sass:map";
+
 @use "../../variables" as *;
 @use "elevation" as *;
 @use "ripple" as *;
@@ -29,16 +30,6 @@
     background-color: var(--#{$prefix}-mask);
     opacity: 0.12;
   }
-}
-
-// Reboot browser button styles:
-button {
-  overflow: visible;
-  margin: 0;
-  font-family: inherit;
-  text-transform: none;
-  outline: none;
-  border: none;
 }
 
 // Correct the inability to style buttons in iOS and Safari
