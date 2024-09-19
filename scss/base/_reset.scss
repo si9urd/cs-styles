@@ -21,11 +21,6 @@ html {
   word-break: break-word;
   tab-size: 4;
   cursor: default;
-
-  -moz-tab-size: 4;
-  -ms-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -43,7 +38,6 @@ template {
 [hidden] {
   display: none;
 }
-
 
 ////////////////////////////
 // Lists
@@ -90,7 +84,7 @@ template {
    */
 
   svg:not([fill]) {
-    fill: currentColor;
+    fill: currentcolor;
   }
 
   /**
@@ -258,7 +252,6 @@ template {
 }
 
 @mixin reset-browser-dependent {
-
   /**
    * 1. Correct the odd appearance in Chrome, Edge, and Safari.
    * 2. Correct the outline style in Safari.
@@ -282,7 +275,7 @@ template {
    * Correct the text style of placeholders in Chrome, Edge, and Safari.
    */
 
-  ::-webkit-input-placeholder {
+  input::placeholder {
     color: inherit;
     opacity: 0.54;
   }
@@ -351,8 +344,7 @@ template {
   summary,
   textarea,
   [tabindex] {
-    -ms-touch-action: manipulation; /* 1 */
-    touch-action: manipulation; /* 2 */
+    touch-action: manipulation; /* 1 */
   }
 }
 
@@ -361,7 +353,6 @@ template {
 //////////////////////////
 
 @mixin reset-interactive {
-
   /*
    * Add the correct styles in Edge 18-, IE, and Safari.
    */
@@ -371,16 +362,12 @@ template {
     border: solid;
     color: black;
     display: block;
-    height: -moz-fit-content;
-    height: -webkit-fit-content;
     height: fit-content;
     left: 0;
     margin: auto;
     padding: 1em;
     position: absolute;
     right: 0;
-    width: -moz-fit-content;
-    width: -webkit-fit-content;
     width: fit-content;
   }
 

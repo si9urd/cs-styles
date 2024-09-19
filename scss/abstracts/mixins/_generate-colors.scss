@@ -9,15 +9,15 @@
   $weights: range($from, $to, $step);
 
   // get the index of the last weight
-  $lastIdx: list.length($weights) - 1;
+  $last-idx: list.length($weights) - 1;
 
   // loops through the weights
-  @for $idx from 0 through $lastIdx {
+  @for $idx from 0 through $last-idx {
     // get the weight by index
     $weight: list.nth($weights, $idx + 1);
 
     // get the position of the weight on the gradient
-    $pos: math.div($idx, $lastIdx);
+    $pos: math.div($idx, $last-idx);
 
     // pick the color
     $color: #{get-color-by-position($colors, $pos)};

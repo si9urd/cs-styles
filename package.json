@@ -2,7 +2,8 @@
   "name": "cs-styles",
   "version": "0.5.0",
   "description": "styles",
-  "main": "css/styles.css",
+  "main": "css/cs-styles.css",
+  "type": "module",
   "scripts": {
     "prebuild": "sass --no-source-map --style expanded --no-error-css scss/:css/ && copyfiles css/cs-styles.css examples",
     "build": "run-s \"build:*\"",

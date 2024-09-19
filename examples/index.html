@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,29 +9,54 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/simply-beautiful@latest/dist/index.min.js"></script>
+    <script src="highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="highlight/styles/github-dark-dimmed.css">
+    <link rel="stylesheet" href="css/examples.css">
     <link rel="stylesheet" href="css/cs-styles.css">
 <!--    <script src="js/ripple.js"></script>-->
     <script src="js/theme.js"></script>
-    <style type="text/css" media="screen">
-        #editor {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-    </style>
 </head>
 <body>
     <div id="root" class="container">
-        <h1>CS Styles</h1>
-        <button onclick="toggleTheme()">Switch Theme</button>
-        <button aria-control><span>Button with cursor pointer</span></button>
-        <button aria-control disabled><i><img src="img/plus.svg" alt="" /></i><span>Button disabled</span></button>
-        <a href="#" role="button" aria-control>Button (link)</a>
+        <h1>CS-Styles</h1>
+        <div class="example-html">
+            <button onclick="toggleTheme()">Switch Theme</button>
+            <button aria-control><span>Button with cursor pointer</span></button>
+            <button aria-control disabled><i><img src="img/plus.svg" alt="" /></i><span>Button disabled</span></button>
+            <a href="#" role="button" aria-control>Button (link)</a>
+        </div>
     </div>
 
     <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const beautify = SimplyBeautiful()
+        const options = {
+          indent_size: 4,
+          space_before_conditional: true,
+          jslint_happy: true,
+          max_char: 0
+        }
+        // const beautyHtml = new HtmlBeautify()
+        //   const options = {
+        //     indent: "  ",  //indent pattern like white spaces
+        //     useSelfClosingElement: true, //true:use self-closing element when empty element.
+        //     textContentOnDifferentLine: false // false: will write all the text together with its tags and siblings. true: will make a different line for each text fragment
+        //   }
+
+
+        document.querySelectorAll('.example-html').forEach(function(element) {
+          console.log(beautify.html(element.innerHTML, options))
+          const codeElement = document.createElement('div')
+          codeElement.innerHTML = `<pre><code class="language-html">${element.innerHTML}</code></pre>`
+          element.after(codeElement)
+        })
+        document.querySelectorAll('code').forEach(function(element) {
+          element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        })
+        hljs.highlightAll()
+      })
+
       function toggleTheme() {
         const theme = document.documentElement.getAttribute('data-theme')
         document.documentElement.setAttribute('data-theme', theme === 'light' ? 'dark' : 'light')
