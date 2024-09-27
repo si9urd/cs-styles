@@ -5,14 +5,12 @@
   "main": "css/cs-styles.css",
   "type": "module",
   "scripts": {
-    "prebuild": "sass --no-source-map --style expanded --no-error-css scss/:css/ && copyfiles css/cs-styles.css examples",
     "build": "run-s \"build:*\"",
     "build:css": "sass --no-source-map --style expanded --no-error-css scss/:css/",
     "build:autoprefix": "postcss --config css --replace css/*.css !css/*.min.css",
     "build:minify": "cleancss -O1 --with-rebase --batch --batch-suffix .min css/*.css !css/*.min.css",
-    "demo": "live-server ./examples",
-    "watch": "nodemon -q --watch scss/ --ext scss --exec run-s prebuild",
-    "dev": "npm-run-all --parallel prebuild demo watch",
+    "watch": "nodemon -q --watch scss/ --ext scss --exec run-s build:css",
+    "dev": "npm-run-all -s build:css watch",
     "lint": "run-s \"lint:*\" --silent",
     "lint:prettier": "prettier --write --log-level silent 'scss/**/*.scss'",
     "lint:sort-scss": "postcss --config scss ./scss/**/*.scss --replace"
@@ -46,8 +44,5 @@
     "stylelint-config-standard": "^36.0.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-scss": "^6.2.1"
-  },
-  "dependencies": {
-    "D": "^1.0.0"
   }
 }
