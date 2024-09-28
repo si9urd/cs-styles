@@ -8,6 +8,8 @@
   @include vars-by-map($neutral-colors, "neutral");
   @include vars-by-map($nv, "nv");
   @include color-vars-themes($color-themes);
+  --#{$prefix}-shadow1: rgb(0 0 0 / 30%);
+  --#{$prefix}-shadow2: rgb(0 0 0 / 15%);
 
   --#{$prefix}-font-family: #{$font-family-base};
   --#{$prefix}-border-radius: #{$border-radius};

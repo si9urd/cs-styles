@@ -1,0 +1,41 @@
+@use "../variables" as *;
+
+%elevation-1 {
+  box-shadow: 0 1px 3px 1px var(--#{$prefix}-shadow2), 0 1px 2px 0 var(--#{$prefix}-shadow1);
+}
+
+%elevation-2 {
+  box-shadow: 0 2px 6px 2px var(--#{$prefix}-shadow2), 0 1px 2px 0 var(--#{$prefix}-shadow1);
+}
+
+%elevation-3 {
+  box-shadow: 0 1px 3px 0 var(--#{$prefix}-shadow1), 0 4px 8px 3px var(--#{$prefix}-shadow2);
+}
+
+%elevation-4 {
+  box-shadow: 0 2px 3px 0 var(--#{$prefix}-shadow1), 0 6px 10px 4px var(--#{$prefix}-shadow2);
+}
+
+%elevation-5 {
+  box-shadow: 0 4px 4px 0 var(--#{$prefix}-shadow1), 0 8px 12px 6px var(--#{$prefix}-shadow2);
+}
+
+.elevation-1 {
+  @extend %elevation-1;
+}
+
+.elevation-2 {
+  @extend %elevation-2
+}
+
+.elevation-3 {
+  @extend %elevation-3
+}
+
+.elevation-4 {
+  @extend %elevation-4
+}
+
+.elevation-5 {
+  @extend %elevation-5
+}
