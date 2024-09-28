@@ -70,6 +70,10 @@ template {
 // Media
 ///////////////////////////
 
+img {
+  vertical-align: middle;
+}
+
 @mixin reset-media {
   /**
    * Remove the border on images within links in IE 10-.

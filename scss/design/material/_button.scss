@@ -1,5 +1,4 @@
 @use "sass:map";
-
 @use "../../variables" as *;
 @use "elevation" as *;
 @use "ripple" as *;
@@ -10,7 +9,7 @@
   overflow: hidden;
   position: relative;
 
-  &:after {
+  &::after {
     content: "";
     position: absolute;
     top: 0;
@@ -21,49 +20,23 @@
     background-color: transparent;
   }
 
-  &:hover:after {
+  &:hover::after {
     background-color: var(--#{$prefix}-mask);
     opacity: 0.09;
   }
 
-  &:active:after {
+  &:active::after {
     background-color: var(--#{$prefix}-mask);
     opacity: 0.12;
   }
 }
 
-// Correct the inability to style buttons in iOS and Safari
-button,
-[type="submit"],
-[type="reset"],
-[type="button"] {
-  -webkit-appearance: button;
-}
+%button-effect {
+  @if $enable-css-ripple-effect {
+    @extend %ripple-effect;
 
-// Material design button
-
-button,
-[type="submit"],
-[type="reset"],
-[type="button"],
-[type="file"]::file-selector-button,
-[role="button"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  max-height: 2.5rem;
-  padding: 10px 24px;
-  border-radius: 999px;
-
-  background-color: var(--#{$prefix}-primary);
-  color: var(--#{$prefix}-on-primary);
-
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.25rem;
-
-  text-decoration: none;
+    transition: background 400ms;
+  }
 
   &:hover {
     @extend %elevation-1;
@@ -74,33 +47,25 @@ button,
   }
 }
 
-button,
-[type="submit"],
-[type="reset"],
-[type="button"],
-[role="button"] {
-  @extend %button-shades;
+// Material design button
 
-  @if $enable-css-ripple-effect {
-    @extend %ripple-effect;
-    transition: background 400ms;
-  }
+%button-material {
+  @extend %button-shades;
+  @extend %button-effect;
+
+  border-radius: 999px;
 
   img {
     width: 1.25rem;
     height: 1.25rem;
-    vertical-align: middle;
   }
+}
 
-  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    background: var(--#{$prefix}-neutral-80) !important;
-    color: var(--#{$prefix}-neutral-50);
-    &:hover {
-      box-shadow: none;
-      &:after {
-        display: none;
-        background-color: transparent !important;
-      }
-    }
-  }
+button,
+[type="submit"],
+[type="reset"],
+[type="button"],
+[role="button"],
+[type="file"]::file-selector-button {
+  @extend %button-material;
 }

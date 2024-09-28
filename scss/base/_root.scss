@@ -1,5 +1,6 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "../sizes" as *;
 @use "../abstracts/mixins/color-vars" as *;
 
 :root {
@@ -9,4 +10,5 @@
   @include color-vars-themes($color-themes);
 
   --#{$prefix}-font-family: #{$font-family-base};
+  --#{$prefix}-border-radius: #{$border-radius};
 }
