@@ -1,4 +1,5 @@
 // Container mixins
+@use "../../../../variables" as *;
 @use "../grid-variables" as *;
 
 @mixin make-container($gutter: $container-padding-x) {

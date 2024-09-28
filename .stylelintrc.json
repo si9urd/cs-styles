@@ -4,5 +4,5 @@
   "rules": {
     "property-no-vendor-prefix": [true, { "ignoreProperties": ["appearance"] }]
   },
-  "ignores": ["css/"]
+  "ignores": ["./css/"]
 }
