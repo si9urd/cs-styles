@@ -1,8 +1,8 @@
 @use "sass:math";
 @use "sass:list";
 @use "sass:color" as color;
-@use "../functions" as *;
-@use "../../variables" as *;
+@use "../functions/index" as *;
+@use "../../../../scss/variables" as *;
 
 @mixin color-generator($colors, $from: 10, $to: 90, $step: 10) {
   // creates a list of weights, from 10 to 90 (default)

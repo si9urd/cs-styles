@@ -1,4 +1,5 @@
 @use "index" with (
+  $enable-themes: true,
   $enable-grid: true,
   $enable-containers: true,
   $enable-js-ripple-effect: false,

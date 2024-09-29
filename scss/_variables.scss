@@ -7,11 +7,14 @@
 // Prefix for CSS variables
 $prefix: "cs" !default;
 
-// Enable grid
-$enable-grid: false !default;
+// Use material color themes variables
+$enable-themes: true !default;
 
 // design - material | plain
 $design: material !default;
+
+// Enable grid
+$enable-grid: false !default;
 
 // Enable containers
 $enable-containers: false !default;

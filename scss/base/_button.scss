@@ -11,12 +11,14 @@
   max-height: 2.5rem;
   padding: 10px 24px;
   border-radius: var(--#{$prefix}-border-radius);
+  border: 1px solid var(--#{$prefix}-primary);
   background-color: var(--#{$prefix}-primary);
   color: var(--#{$prefix}-on-primary);
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
   text-decoration: none;
+  cursor: pointer;
 
   &:active {
     background-color: var(--#{$prefix}-primary);
