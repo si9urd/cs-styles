@@ -5,6 +5,7 @@
  */
 
 import fs from 'node:fs'
+import { EOL } from "node:os"
 
 const args = process.argv.slice(2)
 const params = args.reduce((m, v) => {
@@ -33,7 +34,7 @@ function generateScss(themes) {
   result.push('\t}')
   result.push('}')
 
-  return result.join('\n')
+  return result.join(EOL)
 }
 
 function generateVars(theme) {
