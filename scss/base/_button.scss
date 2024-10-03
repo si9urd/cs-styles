@@ -1,34 +1,45 @@
 /// Buttons base styles
 
 @use "../variables" as *;
-@use "../sizes" as *;
 
 %button-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  max-height: 2.5rem;
-  padding: 10px 24px;
+  height: var(--#{$prefix}-control-height);
+  padding: .5rem 1.5rem;
+  border: 1px solid transparent;
   border-radius: var(--#{$prefix}-border-radius);
-  border: 1px solid var(--#{$prefix}-primary);
-  background-color: var(--#{$prefix}-primary);
-  color: var(--#{$prefix}-on-primary);
+  font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
   text-decoration: none;
   cursor: pointer;
+}
+
+%button-filled {
+  border: 1px solid var(--#{$prefix}-primary);
+  background-color: var(--#{$prefix}-primary);
+  color: var(--#{$prefix}-on-primary);
+
+  &:hover {
+    background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 20%);
+  }
 
   &:active {
-    background-color: var(--#{$prefix}-primary);
+    background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 50%);
   }
 }
 
-%button-base-disabled {
+%button-filled-disabled {
   &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    background: var(--#{$prefix}-neutral-80) !important;
-    color: var(--#{$prefix}-neutral-50);
+    background-color: var(--#{$prefix}-surface-dim) !important;
+    border-color: transparent !important;
+    opacity: 0.5;
+    color: var(--#{$prefix}-on-surface-variant);
+    cursor: default;
 
     &:hover {
       box-shadow: none;
@@ -40,3 +51,4 @@
     }
   }
 }
+

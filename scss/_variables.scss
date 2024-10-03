@@ -24,5 +24,10 @@ $enable-css-ripple-effect: false !default;
 $enable-js-ripple-effect: false !default;
 
 // Fonts family
-$font-family-base: Roboto, -apple-system-ui, system-ui, "Segoe UI",  Oxygen, Ubuntu, Cantarell, Helvetica, Arial,
+$font-family-base: roboto, -apple-system-ui, system-ui, "Segoe UI",  oxygen, ubuntu, cantarell, helvetica, arial,
   "Helvetica Neue", sans-serif !default;
+
+// Spec
+$control-height: 40px;
+$border-radius: 4px;
+$icon-size: 18px;

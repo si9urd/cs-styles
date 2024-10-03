@@ -1,5 +1,4 @@
 @use "../variables" as *;
-@use "../sizes" as *;
 @use "../themes-colors" as *;
 
 :root {
@@ -9,7 +8,8 @@
 
   --#{$prefix}-shadow1: rgb(0 0 0 / 30%);
   --#{$prefix}-shadow2: rgb(0 0 0 / 15%);
-
   --#{$prefix}-font-family: #{$font-family-base};
   --#{$prefix}-border-radius: #{$border-radius};
+  --#{$prefix}-control-height: #{$control-height};
+  --#{$prefix}-icon-size: #{$icon-size};
 }

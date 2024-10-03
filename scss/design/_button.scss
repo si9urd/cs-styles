@@ -19,5 +19,6 @@ button,
 [role="button"],
 [type="file"]::file-selector-button {
   @extend %button-base;
-  @extend %button-base-disabled;
+  @extend %button-filled;
+  @extend %button-filled-disabled;
 }
