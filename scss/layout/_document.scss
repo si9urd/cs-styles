@@ -12,3 +12,14 @@
     text-size-adjust: 100%;
   }
 }
+
+@mixin semantic-document {
+  #{$semantic-root} {
+    & > header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $spacer;
+    }
+  }
+}

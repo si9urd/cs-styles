@@ -22,3 +22,8 @@ button,
   @extend %button-filled;
   @extend %button-filled-disabled;
 }
+
+.btn-icon {
+  @extend %button-base;
+  @extend %button-icon;
+}

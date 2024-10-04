@@ -21,14 +21,18 @@
 
 @mixin svg-icons {
   &:not([data-theme="dark"]) {
-    @include dark-icon($light-on-surface);
-    @include light-icon($light-on-surface);
-    @include menu-icon($light-on-surface);
+    $icon-color: $light-on-surface-variant;
+
+    @include dark-icon($icon-color);
+    @include light-icon($icon-color);
+    @include menu-icon($icon-color);
   }
 
   &[data-theme="dark"] {
-    @include dark-icon($dark-on-surface);
-    @include light-icon($dark-on-surface);
-    @include menu-icon($dark-on-surface);
+    $icon-color: $dark-on-surface-variant;
+
+    @include dark-icon($icon-color);
+    @include light-icon($icon-color);
+    @include menu-icon($icon-color);
   }
 }

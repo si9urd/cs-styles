@@ -8,10 +8,9 @@
   justify-content: center;
   gap: 0.5rem;
   height: var(--#{$prefix}-control-height);
-  padding: .5rem 1.5rem;
   border: 1px solid transparent;
   border-radius: var(--#{$prefix}-border-radius);
-  font-family: inherit;
+  font-family: var(--#{$prefix}-font-family);
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
@@ -20,6 +19,7 @@
 }
 
 %button-filled {
+  padding: .5rem 1.5rem;
   border: 1px solid var(--#{$prefix}-primary);
   background-color: var(--#{$prefix}-primary);
   color: var(--#{$prefix}-on-primary);
@@ -35,7 +35,7 @@
 
 %button-filled-disabled {
   &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    background-color: var(--#{$prefix}-surface-dim) !important;
+    background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%) !important;
     border-color: transparent !important;
     opacity: 0.5;
     color: var(--#{$prefix}-on-surface-variant);
@@ -49,6 +49,23 @@
         background-color: transparent !important;
       }
     }
+  }
+}
+
+%button-icon {
+  height: 3rem;
+  width: 3rem;
+  background-color: transparent;
+  border-radius: var(--#{$prefix}-control-height);
+  background-position: center;
+  background-size: 24px;
+
+  &:hover {
+    background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
+  }
+
+  &:active {
+    background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
   }
 }
 

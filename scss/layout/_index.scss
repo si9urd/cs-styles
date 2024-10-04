@@ -5,4 +5,5 @@
 
 @if $enable-layouts {
   @include document;
+  @include semantic-document;
 }
