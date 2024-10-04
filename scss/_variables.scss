@@ -7,6 +7,12 @@
 // Prefix for CSS variables
 $prefix: "cs" !default;
 
+// Use reset
+$enable-reset: true !default;
+
+// Enable accessibility
+$enable-accessibility: true !default;
+
 // Use material color themes variables
 $enable-themes: true !default;
 
@@ -18,6 +24,9 @@ $enable-grid: false !default;
 
 // Enable containers
 $enable-containers: false !default;
+
+// Enable layout
+$enable-layouts: true !default;
 
 // Enable ripple effect
 $enable-css-ripple-effect: false !default;

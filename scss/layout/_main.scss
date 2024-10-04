@@ -1,15 +1,1 @@
 @use "../variables" as *;
-
-body {
-  width: 100%;
-  margin: 0;
-}
-
-// Render the `main` element consistently in IE
-main {
-  display: block;
-}
-
-.container {
-  background-color: var(--#{$prefix}-container);
-}

@@ -2,6 +2,8 @@
 @use "../themes-colors" as *;
 
 :root {
+  @debug "root: #{$enable-themes}";
+
   @if $enable-themes {
     @include themes-colors;
   }

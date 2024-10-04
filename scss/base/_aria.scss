@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "../variables" as *;
 
 /// Accessibility
 
@@ -39,4 +40,8 @@
   [aria-controls] {
     cursor: pointer;
   }
+}
+
+@if $enable-accessibility {
+  @include accessibility;
 }

@@ -1,8 +1,12 @@
+@use "../variables" as *;
 
 @mixin utils {
-
   // Change the direction of text
   [dir="rtl"] {
     direction: rtl;
   }
+}
+
+@if $enable-reset {
+  @include utils;
 }

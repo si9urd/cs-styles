@@ -20,22 +20,26 @@
   box-shadow: 0 4px 4px 0 var(--#{$prefix}-shadow1), 0 8px 12px 6px var(--#{$prefix}-shadow2);
 }
 
-.elevation-1 {
-  @extend %elevation-1;
+@mixin elevation {
+  .elevation-1 {
+    @extend %elevation-1;
+  }
+
+  .elevation-2 {
+    @extend %elevation-2
+  }
+
+  .elevation-3 {
+    @extend %elevation-3
+  }
+
+  .elevation-4 {
+    @extend %elevation-4
+  }
+
+  .elevation-5 {
+    @extend %elevation-5
+  }
 }
 
-.elevation-2 {
-  @extend %elevation-2
-}
-
-.elevation-3 {
-  @extend %elevation-3
-}
-
-.elevation-4 {
-  @extend %elevation-4
-}
-
-.elevation-5 {
-  @extend %elevation-5
-}
+@include elevation;

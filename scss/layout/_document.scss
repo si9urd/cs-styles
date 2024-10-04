@@ -1,13 +1,14 @@
 @use "../variables" as *;
 
-:where(:root) {
-  font: 400 16px/1.5 var(--#{$prefix}-font-family);
-
-  color: var(--#{$prefix}-on-surface);
-  background-color: var(--#{$prefix}-container-lowest);
-
-  overflow-wrap: break-word;
-  text-underline-offset: 0.1rem;
-  text-rendering: optimizeLegibility;
-  text-size-adjust: 100%;
+@mixin document {
+  :where(:root) {
+    font: 400 1rem/1.5 var(--#{$prefix}-font-family);
+    color: var(--#{$prefix}-on-surface);
+    background-color: var(--#{$prefix}-surface);
+    overflow-wrap: break-word;
+    text-underline-offset: 0.1rem;
+    text-rendering: optimizelegibility;
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+  }
 }
