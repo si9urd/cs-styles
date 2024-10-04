@@ -19,25 +19,41 @@ const prefix = params.prefix
 const camelCaseToKebabCase = (str) => str.replace(/[A-Z]+(?![a-z])|[A-Z]/g,
   ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())
 
-function generateScss(themes) {
+function generateCssVars(themes) {
+  const lightTheme = themes.schemes.light
+  const darkTheme = themes.schemes.dark
+  const r = []
+
+  for(const [key, value] of Object.entries(lightTheme)) {
+    r.push(`$light-${camelCaseToKebabCase(key)}: ${value};`)
+  }
+  for(const [key, value] of Object.entries(darkTheme)) {
+    r.push(`$dark-${camelCaseToKebabCase(key)}: ${value};`)
+  }
+
+  return r
+}
+
+function generateMixin(themes) {
   const lightTheme = themes.schemes.light
   const darkTheme = themes.schemes.dark
   const result = []
-
+  result.push(...generateCssVars(themes))
+  result.push('')
   result.push('@mixin themes-colors() {')
   result.push('\t&:not([data-theme="dark"]) {')
-  result.push(...generateVars(lightTheme))
+  result.push(...generateMixinVars(lightTheme))
   result.push('\t}')
   result.push('')
   result.push('\t&[data-theme="dark"] {')
-  result.push(...generateVars(darkTheme))
+  result.push(...generateMixinVars(darkTheme))
   result.push('\t}')
   result.push('}')
 
   return result.join(EOL)
 }
 
-function generateVars(theme) {
+function generateMixinVars(theme) {
   const r = []
   for(const [key, value] of Object.entries(theme)) {
     r.push(`\t\t--${prefix}-${camelCaseToKebabCase(key)}: ${value};`)
@@ -58,5 +74,5 @@ fs.readFile('./material-theme.json', 'utf8', (error, data) => {
     return
   }
 
-  writeFile(params.file, generateScss(JSON.parse(data)))
+  writeFile(params.file, generateMixin(JSON.parse(data)))
 })

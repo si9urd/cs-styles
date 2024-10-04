@@ -1,8 +1,8 @@
 {
   "name": "cs-styles",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "styles",
-  "main": "css/cs-styles.css",
+  "main": "css/cs-styles.min.css",
   "type": "module",
   "scripts": {
     "build": "run-s \"build:*\"",

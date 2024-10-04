@@ -1,9 +1,8 @@
 @use "../variables" as *;
 @use "../themes-colors" as *;
+@use "icons" as *;
 
 :root {
-  @debug "root: #{$enable-themes}";
-
   @if $enable-themes {
     @include themes-colors;
   }
@@ -14,4 +13,8 @@
   --#{$prefix}-border-radius: #{$border-radius};
   --#{$prefix}-control-height: #{$control-height};
   --#{$prefix}-icon-size: #{$icon-size};
+
+  @if $enable-icons {
+    @include svg-icons;
+  }
 }

@@ -7,6 +7,9 @@
 // Prefix for CSS variables
 $prefix: "cs" !default;
 
+// Semantic root element
+$semantic-root: "body";
+
 // Use reset
 $enable-reset: true !default;
 
@@ -15,6 +18,9 @@ $enable-accessibility: true !default;
 
 // Use material color themes variables
 $enable-themes: true !default;
+
+// Enable svg icons
+$enable-icons: true !default;
 
 // design - material | plain
 $design: material !default;
