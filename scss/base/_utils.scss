@@ -5,6 +5,10 @@
   [dir="rtl"] {
     direction: rtl;
   }
+
+  .text-center {
+    text-align: center;
+  }
 }
 
 @if $enable-reset {
