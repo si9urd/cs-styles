@@ -15,7 +15,6 @@
   font-weight: 500;
   line-height: 1.25rem;
   text-decoration: none;
-  cursor: pointer;
 }
 
 %button-filled {
@@ -67,5 +66,12 @@
   &:active {
     background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
   }
+}
+
+%button-text {
+  padding: .5rem 1.5rem;
+  color: var(--#{$prefix}-primary);
+  background-color: transparent;
+  cursor: pointer;
 }
 

@@ -27,3 +27,8 @@ button,
   @extend %button-base;
   @extend %button-icon;
 }
+
+.btn-text {
+  @extend %button-base;
+  @extend %button-text;
+}

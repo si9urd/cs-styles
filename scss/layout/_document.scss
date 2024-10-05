@@ -16,10 +16,44 @@
 @mixin semantic-document {
   #{$semantic-root} {
     & > header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: $spacer;
+      padding: var(--#{$prefix}-y-spacing) 0;
+      margin-bottom: var(--#{$prefix}-spacing);
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        nav {
+          display: flex;
+          align-items: center;
+
+          hr {
+            display: block;
+            border-left: 1px solid var(--#{$prefix}-outline-variant);
+            height: var(--#{$prefix}-btn-icon-size);
+            width: 1px;
+            margin: 0 var(--#{$prefix}-x-spacing);
+          }
+
+          ul {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+
+            li {
+              display: inline-block;
+              margin: 0;
+              padding: 0;
+
+              :where(a, [role="link"]) {
+                padding: 0 calc(0.5 * var(--#{$prefix}-x-spacing));
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -3,16 +3,17 @@
 @use "icons" as *;
 
 :root {
+  --#{$prefix}-font-family: #{$font-family-base};
+  --#{$prefix}-control-height: #{$control-height};
+  --#{$prefix}-border-radius: #{$border-radius};
+  --#{$prefix}-spacing: #{$spacing};
+  --#{$prefix}-x-spacing: calc(0.5 * #{$spacing});
+  --#{$prefix}-y-spacing: calc(0.5 * #{$spacing});
+  --#{$prefix}-btn-icon-size: #{$btn-icon-size};
+
   @if $enable-themes {
     @include themes-colors;
   }
-
-  --#{$prefix}-shadow1: rgb(0 0 0 / 30%);
-  --#{$prefix}-shadow2: rgb(0 0 0 / 15%);
-  --#{$prefix}-font-family: #{$font-family-base};
-  --#{$prefix}-border-radius: #{$border-radius};
-  --#{$prefix}-control-height: #{$control-height};
-  --#{$prefix}-icon-size: #{$icon-size};
 
   @if $enable-icons {
     @include svg-icons;

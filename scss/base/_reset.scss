@@ -46,6 +46,10 @@
   img {
     vertical-align: middle;
   }
+
+  pre {
+    margin: 0;
+  }
 }
 
 ////////////////////////////
@@ -93,7 +97,8 @@
    */
 
   svg:not([fill]) {
-    fill: currentcolor;
+    // fill: currentcolor;
+    fill: var(--#{$prefix}-on-surface-variant);;
   }
 
   /**
