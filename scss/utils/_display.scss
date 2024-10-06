@@ -1,0 +1,9 @@
+@use "../variables" as *;
+
+@mixin display {
+  .d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--#{$prefix}-x-spacing) var(--#{$prefix}-y-spacing);
+  }
+}

@@ -1,0 +1,7 @@
+
+@mixin rtl {
+  // Change the direction of text
+  [dir="rtl"] {
+    direction: rtl;
+  }
+}

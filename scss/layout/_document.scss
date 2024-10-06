@@ -34,6 +34,7 @@
             height: var(--#{$prefix}-btn-icon-size);
             width: 1px;
             margin: 0 var(--#{$prefix}-x-spacing);
+            opacity: .35;
           }
 
           ul {

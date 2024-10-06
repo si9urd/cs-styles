@@ -1,0 +1,10 @@
+@use "../variables" as *;
+@use "rtl" as *;
+@use "align" as *;
+@use "display" as *;
+
+@if $enable-reset {
+  @include rtl;
+  @include align;
+  @include display;
+}
