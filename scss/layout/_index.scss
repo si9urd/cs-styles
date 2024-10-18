@@ -1,9 +1,1 @@
-@use "../variables" as *;
-@use "document" as *;
-@use "main";
-@use "grid";
-
-@if $enable-layouts {
-  @include document;
-  @include semantic-document;
-}
+@use "page";

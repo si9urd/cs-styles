@@ -1,6 +1,5 @@
 @use "../variables" as *;
-@use "../themes-colors" as *;
-@use "icons" as *;
+@use "../content/icons" as *;
 
 :root {
   --#{$prefix}-font-family: #{$font-family-base};
@@ -10,12 +9,4 @@
   --#{$prefix}-x-spacing: calc(0.5 * #{$spacing});
   --#{$prefix}-y-spacing: calc(0.5 * #{$spacing});
   --#{$prefix}-btn-icon-size: #{$btn-icon-size};
-
-  @if $enable-themes {
-    @include themes-colors;
-  }
-
-  @if $enable-icons {
-    @include svg-icons;
-  }
 }

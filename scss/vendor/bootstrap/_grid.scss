@@ -1,18 +1,7 @@
-// Row
-//
-// Rows contain your columns.
+@use "abstracts/variables" as *;
+@use "abstracts/mixins/grid" as *;
 
-//:root {
-//  @each $name, $value in $grid-breakpoints {
-//    --breakpoint-#{$name}: #{$value};
-//  }
-//}
-
-@use "../../../variables" as *;
-@use "../abstracts/grid-variables" as *;
-@use "../abstracts/mixins/grid" as *;
-
-@if $enable-grid {
+@mixin make-grid {
   :root {
     --#{$prefix}-grid-rows: #{$grid-rows};
     --#{$prefix}-grid-columns: #{$grid-columns};
@@ -25,6 +14,6 @@
     grid-template-columns: repeat(var(--#{$prefix}-columns, #{$grid-columns}), 1fr);
     gap: var(--#{$prefix}-gap, #{$grid-gutter-width});
 
-    @include make-cssgrid();
+    @include make-cssgrid;
   }
 }

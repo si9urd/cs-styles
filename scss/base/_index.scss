@@ -1,8 +1,4 @@
 // base
 @use "root";
 @use "reset";
-@use "aria";
-@use "elevation";
-
-// components
-@forward "button";
+@use "document";

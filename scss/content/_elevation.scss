@@ -42,4 +42,6 @@
   }
 }
 
-@include elevation;
+@if $enable-elevation {
+  @include elevation;
+}

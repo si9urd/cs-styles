@@ -1,4 +1,5 @@
 @use "index" with (
+  $root-element: "#root",
   $enable-icons: true,
   $enable-themes: true,
   $enable-containers: true,

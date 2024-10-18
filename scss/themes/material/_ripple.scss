@@ -17,8 +17,7 @@
 }
 
 @if $enable-js-ripple-effect {
-
-  /// Ripple effect for using with JS
+  // Ripple effect for using with JS
   span.ripple {
     position: absolute;
     border-radius: 50%;

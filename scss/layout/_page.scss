@@ -1,20 +1,7 @@
 @use "../variables" as *;
 
-@mixin document {
-  :where(:root) {
-    font: 400 1rem/1.5 var(--#{$prefix}-font-family);
-    color: var(--#{$prefix}-on-surface);
-    background-color: var(--#{$prefix}-surface);
-    overflow-wrap: break-word;
-    text-underline-offset: 0.1rem;
-    text-rendering: optimizelegibility;
-    -webkit-tap-highlight-color: transparent;
-    text-size-adjust: 100%;
-  }
-}
-
-@mixin semantic-document {
-  #{$semantic-root} {
+@mixin semantic-page {
+  #{$root-element} {
     & > header {
       padding: var(--#{$prefix}-y-spacing) 0;
       margin-bottom: var(--#{$prefix}-spacing);
@@ -58,3 +45,9 @@
     }
   }
 }
+
+
+@if $enable-semantic-layouts {
+  @include semantic-page;
+}
+

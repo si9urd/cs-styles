@@ -1,0 +1,11 @@
+@use "../variables" as *;
+@use "bootstrap/grid" as *;
+@use "bootstrap/container" as *;
+
+@if $enable-containers {
+  @include make-containers;
+}
+
+@if $enable-grid {
+  @include make-grid;
+}

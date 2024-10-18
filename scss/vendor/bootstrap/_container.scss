@@ -1,13 +1,18 @@
-@use "../../../variables" as *;
-@use "../abstracts/grid-variables" as *;
-@use "../abstracts/mixins/breakpoints" as *;
-@use "../abstracts/mixins/container" as *;
+@use "abstracts/variables" as *;
+@use "abstracts/mixins/breakpoints" as *;
 
-// Container widths
-// Set the container width, and override it for fixed navbars in media queries.
-// Single container class with breakpoint max-widths
+@mixin make-container {
+  --#{$prefix}-gutter-x: --#{$prefix}-x-spacing;
+  --#{$prefix}-gutter-y: 0;
 
-@if $enable-containers {
+  width: 100%;
+  padding-right: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
+  padding-left: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin make-containers {
   .container,
     // 100% wide container at all breakpoints
   .container-fluid {

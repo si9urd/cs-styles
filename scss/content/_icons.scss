@@ -1,7 +1,7 @@
 @use "sass:string" as string;
 @use "sass:color" as color;
 @use "../variables" as *;
-@use "../themes-colors" as *;
+@use "../themes/themes_colors" as *;
 
 @function to-color($color) {
   @return string.unquote("rgb(" + color.channel($color, "red", $space: rgb) + ", " + color.channel($color, "green", $space: rgb) + ", " + color.channel($color, "blue", $space: rgb) + ")");
@@ -40,5 +40,11 @@
     @include light-icon($icon-color);
     @include menu-icon($icon-color);
     @include github-icon($icon-color);
+  }
+}
+
+@if $enable-icons {
+  :root {
+    @include svg-icons;
   }
 }

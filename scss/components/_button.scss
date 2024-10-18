@@ -14,6 +14,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
+  white-space: nowrap;
   text-decoration: none;
 }
 
@@ -75,3 +76,40 @@
   cursor: pointer;
 }
 
+
+/////////////////////////////////////////////////
+// Apply buttons styles
+/////////////////////////////////////////////////
+
+// Correct the inability to style buttons in iOS and Safari
+button,
+[type="submit"],
+[type="reset"],
+[type="button"],
+[role="button"] {
+  -webkit-appearance: button;
+}
+
+// Set base styles
+button,
+[type="submit"],
+[type="reset"],
+[type="button"],
+[role="button"],
+[type="file"]::file-selector-button {
+  @extend %button-base;
+  @extend %button-filled;
+  @extend %button-filled-disabled;
+}
+
+// Set button-icon styles
+.btn-icon {
+  @extend %button-base;
+  @extend %button-icon;
+}
+
+// Set button-text styles
+.btn-text {
+  @extend %button-base;
+  @extend %button-text;
+}

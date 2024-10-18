@@ -1,0 +1,8 @@
+@use "../variables" as *;
+@use "themes_colors" as *;
+
+:root {
+  @if $enable-themes {
+    @include themes-colors;
+  }
+}

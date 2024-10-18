@@ -8,7 +8,9 @@
 $prefix: "cs" !default;
 
 // Semantic root element
-$semantic-root: "body";
+$root-element: "body" !default;
+
+////////////////////////////////////////////////////////////////////////////////
 
 // Use reset
 $enable-reset: true !default;
@@ -22,21 +24,33 @@ $enable-themes: true !default;
 // Enable svg icons
 $enable-icons: true !default;
 
-// design - material | plain
-$design: material !default;
+// Enable elevations
+$enable-elevation: true !default;
 
 // Enable grid
-$enable-grid: false !default;
+$enable-grid: true !default;
 
 // Enable containers
-$enable-containers: false !default;
+$enable-containers: true !default;
 
 // Enable layout
 $enable-layouts: true !default;
+$enable-semantic-layouts: true !default;
 
 // Enable ripple effect
 $enable-css-ripple-effect: false !default;
 $enable-js-ripple-effect: false !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+// design - material | plain
+$design: material !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 // Fonts family
 $font-family-base: roboto, -apple-system-ui, system-ui, "Segoe UI",  oxygen, ubuntu, cantarell, helvetica, arial,
