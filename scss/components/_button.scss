@@ -3,24 +3,32 @@
 @use "../variables" as *;
 
 %button-base {
+  --btn-inner-gap: 0.5rem;
+  --btn-font-size: 0.875rem;
+  --btn-font-weight: 500;
+  --btn-line-height: 1.25rem;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--btn-inner-gap);
   height: var(--#{$prefix}-control-height);
   border: 1px solid transparent;
   border-radius: var(--#{$prefix}-border-radius);
   font-family: var(--#{$prefix}-font-family);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.25rem;
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--btn-line-height);
   white-space: nowrap;
   text-decoration: none;
 }
 
 %button-filled {
-  padding: .5rem 1.5rem;
-  border: 1px solid var(--#{$prefix}-primary);
+  --btn-padding: .5rem 1.5rem;
+  --btn-border: 1px solid var(--#{$prefix}-primary);
+
+  padding: var(--btn-padding);
+  border: var(--btn-border);
   background-color: var(--#{$prefix}-primary);
   color: var(--#{$prefix}-on-primary);
 
@@ -53,12 +61,14 @@
 }
 
 %button-icon {
-  height: 3rem;
-  width: 3rem;
+  --btn-icon-size: calc(var(--#{$prefix}-control-height) * 1.2);
+
+  height: var(--btn-icon-size);
+  width: var(--btn-icon-size);
   background-color: transparent;
   border-radius: var(--#{$prefix}-control-height);
   background-position: center;
-  background-size: 24px;
+  background-size: var(--#{$prefix}-btn-icon-size);
 
   &:hover {
     background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
@@ -70,7 +80,9 @@
 }
 
 %button-text {
-  padding: .5rem 1.5rem;
+  --btn-padding: .5rem 1.5rem;
+
+  padding: var(--btn-padding);
   color: var(--#{$prefix}-primary);
   background-color: transparent;
   cursor: pointer;
