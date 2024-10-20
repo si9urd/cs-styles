@@ -1,7 +1,7 @@
 @use "../variables" as *;
 
-@mixin semantic-page {
-  #{$root-element} {
+@mixin page-layout {
+  #{$page-root} {
     & > header {
       padding: var(--#{$prefix}-y-spacing) 0;
       margin-bottom: var(--#{$prefix}-spacing);
@@ -47,7 +47,7 @@
 }
 
 
-@if $enable-semantic-layouts {
-  @include semantic-page;
+@if $enable-page-layouts {
+  @include page-layout;
 }
 

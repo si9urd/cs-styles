@@ -1,9 +1,17 @@
 @use "index" with (
-  $root-element: "#root",
+  $page-root: "#root",
   $enable-icons: true,
   $enable-themes: true,
   $enable-containers: true,
   $enable-grid: true,
   $enable-js-ripple-effect: false,
   $enable-css-ripple-effect: true,
+  $grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1100px,
+        xxl: 1400px
+  )
 );

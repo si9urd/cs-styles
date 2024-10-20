@@ -1,19 +1,19 @@
 @use "abstracts/variables" as *;
 @use "abstracts/mixins/grid" as *;
 
-@mixin make-grid {
+@mixin make-grid($prefix: $bs-prefix, $spacing: 1rem, $grid-breakpoints: $bs-grid-breakpoints) {
   :root {
     --#{$prefix}-grid-rows: #{$grid-rows};
     --#{$prefix}-grid-columns: #{$grid-columns};
-    --#{$prefix}-grid-gutter: #{$grid-gutter-width};
+    --#{$prefix}-grid-gutter: #{$spacing};
   }
 
   .grid {
     display: grid;
     grid-template-rows: repeat(var(--#{$prefix}-rows, 1), 1fr);
     grid-template-columns: repeat(var(--#{$prefix}-columns, #{$grid-columns}), 1fr);
-    gap: var(--#{$prefix}-gap, #{$grid-gutter-width});
+    gap: var(--#{$prefix}-grid-gutter);
 
-    @include make-cssgrid;
+    @include make-cssgrid($columns: $grid-columns, $breakpoints: $grid-breakpoints);
   }
 }

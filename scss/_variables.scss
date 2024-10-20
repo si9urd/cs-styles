@@ -7,8 +7,8 @@
 // Prefix for CSS variables
 $prefix: "cs" !default;
 
-// Semantic root element
-$root-element: "body" !default;
+// Page root element
+$page-root: "body" !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -35,7 +35,7 @@ $enable-containers: true !default;
 
 // Enable layout
 $enable-layouts: true !default;
-$enable-semantic-layouts: true !default;
+$enable-page-layouts: true !default;
 
 // Enable ripple effect
 $enable-css-ripple-effect: false !default;
@@ -49,6 +49,25 @@ $design: material !default;
 ////////////////////////////////////////////////////////////////////////////////
 
 
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px
+) !default;
+
+// Grid breakpoints
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
+) !default;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -57,7 +76,7 @@ $font-family-base: roboto, -apple-system-ui, system-ui, "Segoe UI",  oxygen, ubu
   "Helvetica Neue", sans-serif !default;
 
 // Spec
-$spacing: 2rem;
+$spacing: 1rem;
 $control-height: 2.5rem;
 $border-radius: 4px;
 $btn-icon-size: 1.5rem;

@@ -13,4 +13,6 @@
   }
 }
 
-@include document;
+@if $enable-reset {
+  @include document;
+}

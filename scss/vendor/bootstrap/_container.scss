@@ -1,9 +1,8 @@
 @use "abstracts/variables" as *;
 @use "abstracts/mixins/breakpoints" as *;
 
-@mixin make-container {
-  --#{$prefix}-gutter-x: --#{$prefix}-x-spacing;
-  --#{$prefix}-gutter-y: 0;
+@mixin make-container($prefix: $bs-prefix, $spacing: 1rem) {
+  --#{$prefix}-gutter-x: $spacing;
 
   width: 100%;
   padding-right: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
@@ -12,11 +11,12 @@
   margin-left: auto;
 }
 
-@mixin make-containers {
+@mixin make-containers($prefix: $bs-prefix, $spacing: 1rem,
+  $container-max-widths: $bs-container-max-widths, $grid-breakpoints: $bs-grid-breakpoints) {
   .container,
     // 100% wide container at all breakpoints
   .container-fluid {
-    @include make-container;
+    @include make-container($prefix, $spacing);
   }
 
   // Responsive containers that are 100% wide until a breakpoint

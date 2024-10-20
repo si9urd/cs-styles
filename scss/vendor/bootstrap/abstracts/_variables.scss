@@ -1,10 +1,10 @@
 @use "functions" as *;
 
 // Prefix for CSS variables
-$prefix: "bs" !default;
+$bs-prefix: "bs" !default;
 
 // Define the maximum width of `.container` for different screen sizes.
-$container-max-widths: (
+$bs-container-max-widths: (
         sm: 540px,
         md: 720px,
         lg: 960px,
@@ -12,14 +12,14 @@ $container-max-widths: (
         xxl: 1320px
 ) !default;
 
-@include assert-ascending($container-max-widths, "$container-max-widths");
+@include assert-ascending($bs-container-max-widths, "$container-max-widths");
 
 // Grid breakpoints
 // Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
 // scss-docs-start grid-breakpoints
-$grid-breakpoints: (
+$bs-grid-breakpoints: (
         xs: 0,
         sm: 576px,
         md: 768px,
@@ -30,12 +30,11 @@ $grid-breakpoints: (
 
 // scss-docs-end grid-breakpoints
 
-@include assert-ascending($grid-breakpoints, "$grid-breakpoints");
-@include assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+@include assert-ascending($bs-grid-breakpoints, "$grid-breakpoints");
+@include assert-starts-at-zero($bs-grid-breakpoints, "$grid-breakpoints");
 
 // Grid columns
 // Set the number of columns and specify the width of the gutters.
 
 $grid-rows: 1 !default;
 $grid-columns: 12 !default;
-$grid-gutter-width: 1.5rem !default;

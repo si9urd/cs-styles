@@ -3,9 +3,10 @@
 @use "bootstrap/container" as *;
 
 @if $enable-containers {
-  @include make-containers;
+  @include make-containers($prefix: $prefix, $spacing: $spacing, $container-max-widths: $container-max-widths,
+    $grid-breakpoints: $grid-breakpoints);
 }
 
 @if $enable-grid {
-  @include make-grid;
+  @include make-grid($prefix: $prefix, $spacing: $spacing, $grid-breakpoints: $grid-breakpoints);
 }

@@ -6,7 +6,7 @@
   --#{$prefix}-control-height: #{$control-height};
   --#{$prefix}-border-radius: #{$border-radius};
   --#{$prefix}-spacing: #{$spacing};
-  --#{$prefix}-x-spacing: calc(0.5 * #{$spacing});
-  --#{$prefix}-y-spacing: calc(0.5 * #{$spacing});
+  --#{$prefix}-x-spacing: #{$spacing};
+  --#{$prefix}-y-spacing: #{$spacing};
   --#{$prefix}-btn-icon-size: #{$btn-icon-size};
 }
