@@ -17,6 +17,14 @@
   }
 }
 
+@mixin rtl {
+  // Change the direction of text
+  [dir="rtl"] {
+    direction: rtl;
+  }
+}
+
 @if $enable-reset {
   @include document;
+  @include rtl;
 }

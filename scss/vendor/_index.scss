@@ -1,6 +1,8 @@
 @use "../variables" as *;
 @use "bootstrap/grid" as *;
 @use "bootstrap/container" as *;
+@forward "bootstrap/utilities/api";
+@forward "bootstrap/abstracts/functions";
 
 @if $enable-containers {
   @include make-containers($prefix: $prefix, $spacing: $spacing, $container-max-widths: $container-max-widths,

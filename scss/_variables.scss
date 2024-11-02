@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "abstracts/functions" as *;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Variables
@@ -41,6 +42,18 @@ $enable-page-layout: true !default;
 $enable-css-ripple-effect: true !default;
 $enable-js-ripple-effect: false !default;
 
+// Enable utilities
+$enable-utilities: (
+  "align": true,
+  "borders": true,
+  "display": true,
+  "sizing": true,
+  "spacing": true,
+  "text": true,
+) !default;
+$enable-negative-margins: false !default;
+$enable-responsive-utilities: false !default;
+
 ////////////////////////////////////////////////////////////////////////////////
 
 // design - material | plain
@@ -75,13 +88,24 @@ $grid-breakpoints: (
 $font-family-base: roboto, -apple-system-ui, system-ui, "Segoe UI",  oxygen, ubuntu, cantarell, helvetica, arial,
   "Helvetica Neue", sans-serif !default;
 
+// Spacing
+$spacing: 1rem !default;
+$spacers: (
+    0: 0,
+    1: $spacing * .25,
+    2: $spacing * .5,
+    3: $spacing,
+    4: $spacing * 1.5,
+    5: $spacing * 3,
+) !default;
+$negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) !default;
+
 // Spec
-$spacing: 1rem;
-$control-height: 2.5rem;
-$border-radius: 4px;
-$btn-icon-size: 1.5rem;
-$header-height: 6.5rem;
-$sidebar-width: 20rem;
+$control-height: 2.5rem !default;
+$border-radius: 4px !default;
+$btn-icon-size: 1.5rem !default;
+$header-height: 6.5rem !default;
+$sidebar-width: 20rem !default;
 
 // Z-index
 $z-index-dropdown: 1000 !default;

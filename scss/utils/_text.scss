@@ -1,0 +1,40 @@
+@use "../vendor" as *;
+
+// make text utilities classes
+@mixin text() {
+  @include make-utilities((
+      "text-align": (
+          responsive: true,
+          property: text-align,
+          class: text,
+          values: (
+              start: left,
+              end: right,
+              center: center,
+          )
+      ),
+      "text-decoration": (
+          property: text-decoration,
+          values: none underline line-through
+      ),
+      "text-transform": (
+          property: text-transform,
+          class: text,
+          values: lowercase uppercase capitalize
+      ),
+      "white-space": (
+          property: white-space,
+          class: text,
+          values: (
+              wrap: normal,
+              nowrap: nowrap,
+          )
+      ),
+      "word-wrap": (
+          property: word-wrap word-break,
+          class: text,
+          values: (break: break-word),
+          rtl: false
+      )
+  ));
+}

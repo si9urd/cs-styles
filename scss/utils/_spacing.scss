@@ -1,0 +1,154 @@
+@use "../vendor" as *;
+@use "../variables" as *;
+
+// make spacing utilities classes
+@mixin spacing() {
+  @include make-utilities((
+      "margin": (
+          responsive: $enable-responsive-utilities,
+          property: margin,
+          class: m,
+          values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-x": (
+          responsive: $enable-responsive-utilities,
+          property: margin-right margin-left,
+          class: mx,
+          values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-y": (
+          responsive: $enable-responsive-utilities,
+          property: margin-top margin-bottom,
+          class: my,
+          values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-top": (
+          responsive: $enable-responsive-utilities,
+          property: margin-top,
+          class: mt,
+          values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-end": (
+          responsive: $enable-responsive-utilities,
+          property: margin-right,
+          class: me,
+          values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-bottom": (
+          responsive: $enable-responsive-utilities,
+          property: margin-bottom,
+          class: mb,
+          values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-start": (
+          responsive: $enable-responsive-utilities,
+          property: margin-left,
+          class: ms,
+          values: map-merge($spacers, (auto: auto))
+      ),
+    // Negative margin utilities
+      "negative-margin": (
+          responsive: $enable-responsive-utilities,
+          property: margin,
+          class: m,
+          values: $negative-spacers
+      ),
+      "negative-margin-x": (
+          responsive: $enable-responsive-utilities,
+          property: margin-right margin-left,
+          class: mx,
+          values: $negative-spacers
+      ),
+      "negative-margin-y": (
+          responsive: $enable-responsive-utilities,
+          property: margin-top margin-bottom,
+          class: my,
+          values: $negative-spacers
+      ),
+      "negative-margin-top": (
+          responsive: $enable-responsive-utilities,
+          property: margin-top,
+          class: mt,
+          values: $negative-spacers
+      ),
+      "negative-margin-end": (
+          responsive: $enable-responsive-utilities,
+          property: margin-right,
+          class: me,
+          values: $negative-spacers
+      ),
+      "negative-margin-bottom": (
+          responsive: $enable-responsive-utilities,
+          property: margin-bottom,
+          class: mb,
+          values: $negative-spacers
+      ),
+      "negative-margin-start": (
+          responsive: $enable-responsive-utilities,
+          property: margin-left,
+          class: ms,
+          values: $negative-spacers
+      ),
+    // Padding utilities
+      "padding": (
+          responsive: $enable-responsive-utilities,
+          property: padding,
+          class: p,
+          values: $spacers
+      ),
+      "padding-x": (
+          responsive: $enable-responsive-utilities,
+          property: padding-right padding-left,
+          class: px,
+          values: $spacers
+      ),
+      "padding-y": (
+          responsive: $enable-responsive-utilities,
+          property: padding-top padding-bottom,
+          class: py,
+          values: $spacers
+      ),
+      "padding-top": (
+          responsive: $enable-responsive-utilities,
+          property: padding-top,
+          class: pt,
+          values: $spacers
+      ),
+      "padding-end": (
+          responsive: $enable-responsive-utilities,
+          property: padding-right,
+          class: pe,
+          values: $spacers
+      ),
+      "padding-bottom": (
+          responsive: $enable-responsive-utilities,
+          property: padding-bottom,
+          class: pb,
+          values: $spacers
+      ),
+      "padding-start": (
+          responsive: $enable-responsive-utilities,
+          property: padding-left,
+          class: ps,
+          values: $spacers
+      ),
+    // Gap utility
+      "gap": (
+          responsive: $enable-responsive-utilities,
+          property: gap,
+          class: gap,
+          values: $spacers
+      ),
+      "row-gap": (
+          responsive: $enable-responsive-utilities,
+          property: row-gap,
+          class: row-gap,
+          values: $spacers
+      ),
+      "column-gap": (
+          responsive: $enable-responsive-utilities,
+          property: column-gap,
+          class: column-gap,
+          values: $spacers
+      )))
+}

@@ -1,9 +1,14 @@
+@use "../vendor" as *;
 @use "../variables" as *;
 
-@mixin display {
-  .d-flex {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--#{$prefix}-x-spacing) var(--#{$prefix}-y-spacing);
-  }
+// make display utilities classes
+@mixin display() {
+  @include make-utilities((
+      "display": (
+          responsive: $enable-responsive-utilities,
+          print: false,
+          property: display,
+          class: d,
+          values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex none
+      )));
 }

@@ -68,7 +68,8 @@ function writeFile(fileName, content) {
   })
 }
 
-fs.readFile('./material-theme.json', 'utf8', (error, data) => {
+// fs.readFile('./material-theme-autumn.json', 'utf8', (error, data) => {
+fs.readFile('./material-theme-heltec.json', 'utf8', (error, data) => {
   if (error) {
     console.error(error);
     return
