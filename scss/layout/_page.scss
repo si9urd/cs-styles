@@ -2,51 +2,66 @@
 
 @mixin page-layout {
   #{$page-root} {
-    & > header {
-      padding: var(--#{$prefix}-y-spacing) 0;
-      margin-bottom: var(--#{$prefix}-spacing);
+    display: flex;
+    flex-direction: column;
+    gap: var(--#{$prefix}-spacing);
+    width: 100%;
+    min-height: 100vh;
 
-      .container {
+    & > header {
+      display: flex;
+      justify-content: space-between;
+      height: var(--#{$prefix}-header-height);
+      margin-bottom: var(--#{$prefix}-spacing);
+      padding: 0;
+      align-items: center;
+      background-color: var(--cs-surface);
+
+      nav {
         display: flex;
-        justify-content: space-between;
         align-items: center;
 
-        nav {
+        hr {
+          display: block;
+          border-left: 1px solid var(--#{$prefix}-outline-variant);
+          height: var(--#{$prefix}-btn-icon-size);
+          width: 1px;
+          margin: 0 var(--#{$prefix}-x-spacing);
+          opacity: .35;
+        }
+
+        ul {
           display: flex;
           align-items: center;
+          margin: 0;
+          padding: 0;
 
-          hr {
-            display: block;
-            border-left: 1px solid var(--#{$prefix}-outline-variant);
-            height: var(--#{$prefix}-btn-icon-size);
-            width: 1px;
-            margin: 0 var(--#{$prefix}-x-spacing);
-            opacity: .35;
-          }
-
-          ul {
-            display: flex;
-            align-items: center;
+          li {
+            display: inline-block;
             margin: 0;
-            padding: 0;
-
-            li {
-              display: inline-block;
-              margin: 0;
-              padding: 0;
-
-              :where(a, [role="link"]) {
-                padding: 0 calc(0.5 * var(--#{$prefix}-x-spacing));
-              }
-            }
+            padding: 0 calc(0.5 * var(--#{$prefix}-x-spacing));
           }
         }
       }
     }
+
+    & > aside {
+      position: sticky;
+      top: 0;
+      min-height: calc(100vh - var(--#{$prefix}-header-height) - var(--#{$prefix}-spacing));
+      width: var(--#{$prefix}-sidebar-width);
+      align-self: start;
+    }
+
+    & > main {
+    }
+
+    & > footer {
+    }
   }
 }
 
-@if $enable-page-layouts {
+@if $enable-page-layout {
   @include page-layout;
 }
 

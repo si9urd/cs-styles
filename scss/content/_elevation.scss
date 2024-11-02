@@ -1,47 +1,53 @@
 @use "../variables" as *;
 
-%elevation-1 {
-  box-shadow: 0 1px 3px 1px var(--#{$prefix}-shadow2), 0 1px 2px 0 var(--#{$prefix}-shadow1);
+@function shadow-before($level, $shadow-color) {
+  // from material-web
+  $level1-y: clamp(0, $level, 1);
+  $level4-y: clamp(0, $level - 3, 1);
+  $level5-y: calc(2 * clamp(0, $level - 4, 1));
+  $y: calc(1px * ($level1-y + $level4-y + $level5-y));
+  $level1-blur: calc(2 * clamp(0, $level, 1));
+  $level3-blur: clamp(0, $level - 2, 1);
+  $level5-blur: clamp(0, $level - 4, 1);
+  $blur: calc(1px * ($level1-blur + $level3-blur + $level5-blur));
+
+  @return 0 $y $blur 0 rgba($shadow-color, 0.3);
 }
 
-%elevation-2 {
-  box-shadow: 0 2px 6px 2px var(--#{$prefix}-shadow2), 0 1px 2px 0 var(--#{$prefix}-shadow1);
+@function shadow-after($level, $shadow-color) {
+  // from material-web
+  $level1-y: clamp(0, $level, 1);
+  $level2-y: clamp(0, $level - 1, 1);
+  $level3to5-y: calc(2 * clamp(0, $level - 2, 3));
+  $y: calc(1px * ($level1-y + $level2-y + $level3to5-y));
+  $level1to2-blur: calc(3 * clamp(0, $level, 2));
+  $level3to5-blur: calc(2 * clamp(0, $level - 2, 3));
+  $blur: calc(1px * ($level1to2-blur + $level3to5-blur));
+  $level1to4-spread: clamp(0, $level, 4);
+  $level5-spread: calc(2 * clamp(0, $level - 4, 1));
+  $spread: calc(1px * ($level1to4-spread + $level5-spread));
+
+  @return 0 $y $blur $spread rgba($shadow-color, 0.15);
 }
 
-%elevation-3 {
-  box-shadow: 0 1px 3px 0 var(--#{$prefix}-shadow1), 0 4px 8px 3px var(--#{$prefix}-shadow2);
+@mixin elevation($level, $shadow-color) {
+  --#{$prefix}-elevation-#{$level}: #{shadow-before($level, $shadow-color)}, #{shadow-after($level, $shadow-color)};
 }
 
-%elevation-4 {
-  box-shadow: 0 2px 3px 0 var(--#{$prefix}-shadow1), 0 6px 10px 4px var(--#{$prefix}-shadow2);
-}
-
-%elevation-5 {
-  box-shadow: 0 4px 4px 0 var(--#{$prefix}-shadow1), 0 8px 12px 6px var(--#{$prefix}-shadow2);
-}
-
-@mixin elevation {
-  .elevation-1 {
-    @extend %elevation-1;
-  }
-
-  .elevation-2 {
-    @extend %elevation-2
-  }
-
-  .elevation-3 {
-    @extend %elevation-3
-  }
-
-  .elevation-4 {
-    @extend %elevation-4
-  }
-
-  .elevation-5 {
-    @extend %elevation-5
+@mixin make-elevation($shadow-color) {
+  @for $i from 0 through  5 {
+    @include elevation($i, $shadow-color)
   }
 }
 
 @if $enable-elevation {
-  @include elevation;
+  :root {
+    &:not([data-theme="dark"]) {
+      @include make-elevation(#000000);
+    }
+
+    &[data-theme="dark"] {
+      @include make-elevation(#FFFFFF);
+    }
+  }
 }

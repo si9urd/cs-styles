@@ -35,7 +35,7 @@ $enable-containers: true !default;
 
 // Enable layout
 $enable-layouts: true !default;
-$enable-page-layouts: true !default;
+$enable-page-layout: true !default;
 
 // Enable ripple effect
 $enable-css-ripple-effect: true !default;
@@ -80,3 +80,17 @@ $spacing: 1rem;
 $control-height: 2.5rem;
 $border-radius: 4px;
 $btn-icon-size: 1.5rem;
+$header-height: 6.5rem;
+$sidebar-width: 20rem;
+
+// Z-index
+$z-index-dropdown: 1000 !default;
+$z-index-sticky: 1020 !default;
+$z-index-fixed: 1030 !default;
+$z-index-offcanvas-backdrop: 1040 !default;
+$z-index-offcanvas: 1045 !default;
+$z-index-modal-backdrop: 1050 !default;
+$z-index-modal: 1055 !default;
+$z-index-popover: 1070 !default;
+$z-index-tooltip: 1080 !default;
+$z-index-toast: 1090 !default;

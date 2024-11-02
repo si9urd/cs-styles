@@ -2,14 +2,18 @@
 
 @mixin document {
   :where(:root) {
-    font: 400 1rem/1.5 var(--#{$prefix}-font-family);
+    color-scheme: light dark;
     color: var(--#{$prefix}-on-surface);
     background-color: var(--#{$prefix}-surface);
+    font: 400 1rem/1.5 var(--#{$prefix}-font-family);
     overflow-wrap: break-word;
+    font-synthesis: none;
     text-underline-offset: 0.1rem;
+    text-size-adjust: 100%;
     text-rendering: optimizelegibility;
     -webkit-tap-highlight-color: transparent;
-    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
