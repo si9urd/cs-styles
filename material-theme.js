@@ -27,6 +27,7 @@ function generateCssVars(themes) {
   for(const [key, value] of Object.entries(lightTheme)) {
     r.push(`$light-${camelCaseToKebabCase(key)}: ${value};`)
   }
+
   for(const [key, value] of Object.entries(darkTheme)) {
     r.push(`$dark-${camelCaseToKebabCase(key)}: ${value};`)
   }
@@ -35,8 +36,8 @@ function generateCssVars(themes) {
 }
 
 function generateMixin(themes) {
-  const lightTheme = themes.schemes.light
-  const darkTheme = themes.schemes.dark
+  const lightTheme = {...themes.schemes.light, base: '#FFF'}
+  const darkTheme = {...themes.schemes.dark, base: '#000'}
   const result = []
   result.push(...generateCssVars(themes))
   result.push('')
@@ -69,7 +70,7 @@ function writeFile(fileName, content) {
 }
 
 // fs.readFile('./material-theme-autumn.json', 'utf8', (error, data) => {
-fs.readFile('./material-theme-heltec.json', 'utf8', (error, data) => {
+fs.readFile('./material-theme-default.json', 'utf8', (error, data) => {
   if (error) {
     console.error(error);
     return

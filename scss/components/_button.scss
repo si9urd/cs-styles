@@ -1,5 +1,6 @@
 /// Buttons base styles
 @use "sass:map" as *;
+@use "sass:string" as *;
 @use "../variables" as *;
 
 %button-base {
@@ -14,6 +15,8 @@
   --btn-background-color: var(--#{$prefix}-surface-container);
   --btn-border-color: var(--#{$prefix}-surface-container);
   --btn-color: var(--#{$prefix}-on-surface-container);
+  --btn-opacity: 1;
+  --btn-elevation: none;
 
   display: inline-flex;
   align-items: center;
@@ -31,29 +34,23 @@
   text-decoration: none;
   background-color: var(--btn-background-color);
   color: var(--btn-color);
+  opacity: var(--btn-opacity);
+  box-shadow: var(--btn-elevation);
 }
 
 %button-inner-icon {
-  :is(i, img) {
+  :is(i, img, svg) {
     display: inline-flex;
     width: var(--#{$prefix}-btn-inner-icon-size);
     height: var(--#{$prefix}-btn-inner-icon-size);
     line-height: inherit;
   }
 
-  //svg {
-  //  path {
-  //    stroke: var(--btn-color);
-  //  }
-  //}
-
-  //&:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-  //  svg {
-  //    path {
-  //      stroke: var(--#{$prefix}-on-surface-variant);
-  //    }
-  //  }
-  //}
+  svg {
+    path:not([stroke]) {
+      stroke: var(--btn-color);
+    }
+  }
 }
 
 // region button-filled
@@ -71,9 +68,9 @@
 
 %button-filled-disabled {
   &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    --btn-background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%) !important;
+    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
+    --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
     --btn-border-color: var(--btn-background-color) !important;
-    --btn-color: var(--#{$prefix}-on-surface-variant);
 
     cursor: default;
   }
@@ -102,26 +99,38 @@
 // region button-elevated
 
 %button-elevated {
-  color: var(--#{$prefix}-primary);
-  background-color: var(--#{$prefix}-surface-container-low);
-  box-shadow: var(--#{$prefix}-elevation-1);
+  --btn-color: var(--#{$prefix}-primary);
+  --btn-background-color: var(--#{$prefix}-surface-container-low);
+  --btn-elevation: var(--#{$prefix}-elevation-1);
 }
 
 %button-elevated-disabled {
-  background-color: var(--#{$prefix}-on-surface);
-  opacity: .12;
+  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
+    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
+    --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
+    --btn-border-color: var(--btn-background-color);
+    --btn-elevation: none !important;
+  }
 }
 
 %button-elevated-hovered {
-
+  &:is(:hover, [data-hovered]) {
+    --btn-elevation: var(--#{$prefix}-elevation-2);
+  }
 }
 
 %button-elevated-focused {
-
+  &:is(:focus, [data-focused]) {
+    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-surface-container-low) 88%, var(--#{$prefix}-base));
+    --btn-elevation: var(--#{$prefix}-elevation-1);
+  }
 }
 
 %button-elevated-pressed {
-
+  &:is(:active, &[data-pressed]) {
+    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-surface-container-low) 88%, var(--#{$prefix}-base));
+    --btn-elevation: var(--#{$prefix}-elevation-1);
+  }
 }
 
 // endregion button-elevated
@@ -133,6 +142,8 @@
 
   height: var(--btn-icon-size);
   width: var(--btn-icon-size);
+  padding: 0;
+  color: var(--#{$prefix}-on-surface-variant);
   background-color: transparent;
   border-radius: var(--#{$prefix}-control-height);
   background-position: center;
@@ -185,6 +196,10 @@
 .btn-elevated {
   @extend %button-base;
   @extend %button-elevated;
+  @extend %button-elevated-disabled;
+  @extend %button-elevated-hovered;
+  @extend %button-elevated-focused;
+  @extend %button-elevated-pressed;
 }
 
 // Set button-icon styles

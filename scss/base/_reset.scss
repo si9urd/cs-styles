@@ -90,8 +90,7 @@
   }
 
   svg:not([fill]) {
-    // fill: currentcolor;
-    fill: var(--#{$prefix}-on-surface-variant);;
+     fill: currentcolor;
   }
 
   svg:not(:root) {
