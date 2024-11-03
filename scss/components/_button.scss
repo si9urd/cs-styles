@@ -1,64 +1,132 @@
 /// Buttons base styles
-
+@use "sass:map" as *;
 @use "../variables" as *;
 
 %button-base {
+  --btn-height: var(--#{$prefix}-control-height);
+  --btn-padding: #{map-get($spacers, 2)} #{map-get($spacers, 4)};
   --btn-inner-gap: 0.5rem;
-  --btn-font-size: 0.875rem;
   --btn-font-weight: 500;
   --btn-line-height: 1.25rem;
+  --btn-border-radius: var(--#{$prefix}-border-radius);
+  --btn-font-family: var(--#{$prefix}-font-family);
+  --btn-font-size: var(--#{$prefix}-btn-font-size);
+  --btn-background-color: var(--#{$prefix}-surface-container);
+  --btn-border-color: var(--#{$prefix}-surface-container);
+  --btn-color: var(--#{$prefix}-on-surface-container);
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--btn-inner-gap);
-  height: var(--#{$prefix}-control-height);
-  border: 1px solid transparent;
-  border-radius: var(--#{$prefix}-border-radius);
-  font-family: var(--#{$prefix}-font-family);
+  height: var(--btn-height);
+  padding: var(--btn-padding);
+  border: 1px solid var(--btn-border-color);
+  border-radius: var(--btn-border-radius);
+  font-family: var(--btn-font-family);
   font-size: var(--btn-font-size);
   font-weight: var(--btn-font-weight);
   line-height: var(--btn-line-height);
   white-space: nowrap;
   text-decoration: none;
+  background-color: var(--btn-background-color);
+  color: var(--btn-color);
 }
 
+%button-inner-icon {
+  :is(i, img) {
+    display: inline-flex;
+    width: var(--#{$prefix}-btn-inner-icon-size);
+    height: var(--#{$prefix}-btn-inner-icon-size);
+    line-height: inherit;
+  }
+
+  //svg {
+  //  path {
+  //    stroke: var(--btn-color);
+  //  }
+  //}
+
+  //&:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
+  //  svg {
+  //    path {
+  //      stroke: var(--#{$prefix}-on-surface-variant);
+  //    }
+  //  }
+  //}
+}
+
+// region button-filled
+
 %button-filled {
-  --btn-padding: .5rem 1.5rem;
-  --btn-border: 1px solid var(--#{$prefix}-primary);
+  --btn-background-color: var(--#{$prefix}-primary);
+  --btn-border-color: var(--#{$prefix}-primary);
+  --btn-color: var(--#{$prefix}-on-primary);
 
-  padding: var(--btn-padding);
-  border: var(--btn-border);
-  background-color: var(--#{$prefix}-primary);
-  color: var(--#{$prefix}-on-primary);
-
-  &:hover {
-    background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 20%);
-  }
-
-  &:active {
-    background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 50%);
-  }
+  @extend %button-filled-disabled;
+  @extend %button-filled-hovered;
+  @extend %button-filled-focused;
+  @extend %button-filled-pressed;
 }
 
 %button-filled-disabled {
   &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%) !important;
-    border-color: transparent !important;
-    opacity: 0.5;
-    color: var(--#{$prefix}-on-surface-variant);
+    --btn-background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%) !important;
+    --btn-border-color: var(--btn-background-color) !important;
+    --btn-color: var(--#{$prefix}-on-surface-variant);
+
     cursor: default;
-
-    &:hover {
-      box-shadow: none;
-
-      &::after {
-        display: none;
-        background-color: transparent !important;
-      }
-    }
   }
 }
+
+%button-filled-hovered {
+  &:is(:hover, [data-hovered]) {
+    --btn-background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 20%);
+  }
+}
+
+%button-filled-focused {
+  &:is(:focus, [data-focused]) {
+    --btn-background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 50%);
+  }
+}
+
+%button-filled-pressed {
+  &:is(:active, &[data-pressed]) {
+    --btn-background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 50%);
+  }
+}
+
+// endregion button-filled
+
+// region button-elevated
+
+%button-elevated {
+  color: var(--#{$prefix}-primary);
+  background-color: var(--#{$prefix}-surface-container-low);
+  box-shadow: var(--#{$prefix}-elevation-1);
+}
+
+%button-elevated-disabled {
+  background-color: var(--#{$prefix}-on-surface);
+  opacity: .12;
+}
+
+%button-elevated-hovered {
+
+}
+
+%button-elevated-focused {
+
+}
+
+%button-elevated-pressed {
+
+}
+
+// endregion button-elevated
+
+// region icon button
 
 %button-icon {
   --btn-icon-size: calc(var(--#{$prefix}-control-height) * 1.2);
@@ -79,39 +147,44 @@
   }
 }
 
-%button-text {
-  --btn-padding: .5rem 1.5rem;
+// endregion icon button
 
+// region text button
+
+%button-text {
   padding: var(--btn-padding);
   color: var(--#{$prefix}-primary);
   background-color: transparent;
   cursor: pointer;
 }
 
+// endregion text button
 
 /////////////////////////////////////////////////
 // Apply buttons styles
 /////////////////////////////////////////////////
 
 // Correct the inability to style buttons in iOS and Safari
-button,
-[type="submit"],
-[type="reset"],
-[type="button"],
-[role="button"] {
+:where(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
   -webkit-appearance: button;
 }
 
 // Set base styles
-button,
-[type="submit"],
-[type="reset"],
-[type="button"],
-[role="button"],
+:where(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  @extend %button-base;
+  @extend %button-filled;
+  @extend %button-inner-icon;
+}
+
 [type="file"]::file-selector-button {
   @extend %button-base;
   @extend %button-filled;
-  @extend %button-filled-disabled;
+}
+
+// Set elevated button styles
+.btn-elevated {
+  @extend %button-base;
+  @extend %button-elevated;
 }
 
 // Set button-icon styles
@@ -124,4 +197,5 @@ button,
 .btn-text {
   @extend %button-base;
   @extend %button-text;
+  @extend %button-inner-icon;
 }

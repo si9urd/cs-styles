@@ -84,26 +84,15 @@
 ///////////////////////////
 
 @mixin reset-media {
-  /**
-   * Remove the border on images within links in IE 10-.
-   */
-
   img {
     border-style: none;
+    vertical-align: middle;
   }
-
-  /**
-   * Change the fill color to match the text color in all browsers (opinionated).
-   */
 
   svg:not([fill]) {
     // fill: currentcolor;
     fill: var(--#{$prefix}-on-surface-variant);;
   }
-
-  /**
-   * Hide the overflow in IE.
-   */
 
   svg:not(:root) {
     overflow: hidden;
