@@ -3,6 +3,8 @@
 @use "sass:string" as *;
 @use "../variables" as *;
 
+// region button-base
+
 %button-base {
   --btn-height: var(--#{$prefix}-control-height);
   --btn-padding: #{map-get($spacers, 2)} #{map-get($spacers, 4)};
@@ -12,8 +14,9 @@
   --btn-border-radius: var(--#{$prefix}-border-radius);
   --btn-font-family: var(--#{$prefix}-font-family);
   --btn-font-size: var(--#{$prefix}-btn-font-size);
-  --btn-background-color: var(--#{$prefix}-surface-container);
-  --btn-border-color: var(--#{$prefix}-surface-container);
+  --btn-container-color: var(--#{$prefix}-surface-container);
+  --btn-background-color: var(--btn-container-color);
+  --btn-border-color: var(--btn-background-color);
   --btn-color: var(--#{$prefix}-on-surface-container);
   --btn-opacity: 1;
   --btn-elevation: none;
@@ -53,64 +56,48 @@
   }
 }
 
-// region button-filled
-
-%button-filled {
-  --btn-background-color: var(--#{$prefix}-primary);
-  --btn-border-color: var(--#{$prefix}-primary);
-  --btn-color: var(--#{$prefix}-on-primary);
-
-  @extend %button-filled-disabled;
-  @extend %button-filled-hovered;
-  @extend %button-filled-focused;
-  @extend %button-filled-pressed;
-}
-
-%button-filled-disabled {
+%button-disabled {
   &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
     --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
     --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
     --btn-border-color: var(--btn-background-color) !important;
+    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
 
-    cursor: default;
+    cursor: auto !important;
   }
 }
 
-%button-filled-hovered {
+%button-hovered {
   &:is(:hover, [data-hovered]) {
-    --btn-background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 20%);
+    --btn-background-color: color-mix(in lab, var(--btn-container-color) 92%, var(--#{$prefix}-base));
+    --btn-elevation: var(--#{$prefix}-elevation-1);
   }
 }
 
-%button-filled-focused {
+%button-focused {
   &:is(:focus, [data-focused]) {
-    --btn-background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 50%);
+    --btn-background-color: color-mix(in lab, var(--btn-container-color) 90%, var(--#{$prefix}-base));
   }
 }
 
-%button-filled-pressed {
+%button-pressed {
   &:is(:active, &[data-pressed]) {
-    --btn-background-color: color-mix(in lab, var(--#{$prefix}-primary) 100%, var(--#{$prefix}-on-primary) 50%);
+    --btn-background-color: color-mix(in lab, var(--btn-container-color) 80%, var(--#{$prefix}-base));
   }
 }
 
-// endregion button-filled
+// endregion button-base
 
-// region button-elevated
+
+%button-filled {
+  --btn-container-color: var(--#{$prefix}-primary);
+  --btn-color: var(--#{$prefix}-on-primary);
+}
 
 %button-elevated {
   --btn-color: var(--#{$prefix}-primary);
-  --btn-background-color: var(--#{$prefix}-surface-container-low);
+  --btn-container-color: var(--#{$prefix}-surface-container-low);
   --btn-elevation: var(--#{$prefix}-elevation-1);
-}
-
-%button-elevated-disabled {
-  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
-    --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
-    --btn-border-color: var(--btn-background-color);
-    --btn-elevation: none !important;
-  }
 }
 
 %button-elevated-hovered {
@@ -121,21 +108,26 @@
 
 %button-elevated-focused {
   &:is(:focus, [data-focused]) {
-    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-surface-container-low) 88%, var(--#{$prefix}-base));
     --btn-elevation: var(--#{$prefix}-elevation-1);
   }
 }
 
 %button-elevated-pressed {
   &:is(:active, &[data-pressed]) {
-    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-surface-container-low) 88%, var(--#{$prefix}-base));
     --btn-elevation: var(--#{$prefix}-elevation-1);
   }
 }
 
-// endregion button-elevated
+%button-tonal {
+  --btn-color: var(--#{$prefix}-on-secondary-container);
+  --btn-container-color: var(--#{$prefix}-secondary-container);
+}
 
-// region icon button
+%button-outlined {
+  --btn-color: var(--#{$prefix}-primary);
+  --btn-container-color: transparent;
+  --btn-border-color: var(--#{$prefix}-outline);
+}
 
 %button-icon {
   --btn-icon-size: calc(var(--#{$prefix}-control-height) * 1.2);
@@ -158,33 +150,51 @@
   }
 }
 
-// endregion icon button
-
-// region text button
-
 %button-text {
-  padding: var(--btn-padding);
-  color: var(--#{$prefix}-primary);
-  background-color: transparent;
+  --btn-color: var(--#{$prefix}-primary);
+  --btn-container-color: transparent;
+
   cursor: pointer;
 }
 
-// endregion text button
+%button-text-disabled {
+  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
+    --btn-background-color: transparent !important;
+  }
+}
+%button-text-hovered {
+  &:is(:hover, [data-hovered]) {
+    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
+  }
+}
+
+%button-text-focused {
+  &:is(:focus, [data-focused]) {
+    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
+  }
+}
+
+%button-text-pressed {
+  &:is(:active, &[data-pressed]) {
+    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
+  }
+}
 
 /////////////////////////////////////////////////
 // Apply buttons styles
 /////////////////////////////////////////////////
 
-// Correct the inability to style buttons in iOS and Safari
-:where(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-  -webkit-appearance: button;
-}
-
 // Set base styles
-:where(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
   @extend %button-base;
   @extend %button-filled;
   @extend %button-inner-icon;
+  @extend %button-disabled;
+  @extend %button-hovered;
+  @extend %button-focused;
+  @extend %button-pressed;
+
+  -webkit-appearance: button;
 }
 
 [type="file"]::file-selector-button {
@@ -193,24 +203,31 @@
 }
 
 // Set elevated button styles
-.btn-elevated {
-  @extend %button-base;
+:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-elevated {
   @extend %button-elevated;
-  @extend %button-elevated-disabled;
   @extend %button-elevated-hovered;
   @extend %button-elevated-focused;
   @extend %button-elevated-pressed;
+}
+
+// Set tonal button styles
+:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-tonal {
+  @extend %button-tonal;
+}
+
+// Set outlined button styles
+:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-outlined {
+  @extend %button-outlined;
+}
+
+// Set button-text styles
+:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-text {
+  @extend %button-text;
+  @extend %button-text-disabled;
 }
 
 // Set button-icon styles
 .btn-icon {
   @extend %button-base;
   @extend %button-icon;
-}
-
-// Set button-text styles
-.btn-text {
-  @extend %button-base;
-  @extend %button-text;
-  @extend %button-inner-icon;
 }
