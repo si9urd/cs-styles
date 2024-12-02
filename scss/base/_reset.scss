@@ -6,24 +6,24 @@
 ///////////////////////////////
 
 @mixin reset-base {
+  html {
+    box-sizing: border-box;
+    line-height: 1.5;
+    word-break: break-word;
+    tab-size: 4;
+    cursor: default;
+  }
+
   *,
   *::before,
   *::after {
-    box-sizing: border-box;
-    background-repeat: no-repeat;
+    box-sizing: inherit;
   }
 
   ::before,
   ::after {
     text-decoration: inherit; // 1
     vertical-align: inherit; // 2
-  }
-
-  html {
-    line-height: 1.5;
-    word-break: break-word;
-    tab-size: 4;
-    cursor: default;
   }
 
   body {
@@ -158,18 +158,16 @@
     margin: 0;
   }
 
-  /**
-   * 1. Show the overflow in IE.
-   * 2. Remove the inheritance of text transform in Edge 18-, Firefox, and IE.
-   */
-
   button {
-    overflow: visible; /* 1 */
+    overflow: visible;
     margin: 0;
-    font-family: inherit;
+    padding: 0;
     border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
     outline: none;
-    text-transform: none; /* 2 */
+    text-transform: none;
   }
 
   /**

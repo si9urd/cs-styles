@@ -63,7 +63,7 @@ $design: material !default;
 
 
 // Define the maximum width of `.container` for different screen sizes.
-$container-max-widths: (
+$container-widths: (
         sm: 540px,
         md: 720px,
         lg: 960px,

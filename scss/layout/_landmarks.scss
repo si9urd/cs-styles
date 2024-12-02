@@ -1,21 +1,44 @@
+@use "sass:map" as *;
 @use "../variables" as *;
 
 @mixin page-layout {
-  #{$page-root} {
-    display: flex;
-    flex-direction: column;
-    gap: var(--#{$prefix}-spacing);
-    width: 100%;
-    min-height: 100vh;
+  #{$page-root},
+  .page {
+    --gutter: calc(var(--#{$prefix}-spacing) * 3);
+
+    display: grid;
+    grid-template-columns:
+      [page-start col1-start]
+        minmax(var(--gutter), 1fr)
+      [breakout-start col1-end col2-start]
+        1fr
+      [content-start col2-end col3-start]
+        min(100% - (var(--gutter) * 2), 1200px)
+      [content-end col3-end col4-start]
+        1fr
+      [breakout-end col4-end col5-start]
+        minmax(var(--gutter), 1fr)
+      [page-end col5-end];
 
     & > header {
-      display: flex;
-      justify-content: space-between;
-      height: var(--#{$prefix}-header-height);
+      grid-column: page;
+      display: grid;
+      grid-template-columns: subgrid;
+      position: sticky;
+      top: 0;
+
+      & > .content {
+        grid-column: breakout;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      padding: var(--#{$prefix}-spacing) 0;
       margin-bottom: var(--#{$prefix}-spacing);
-      padding: 0;
-      align-items: center;
-      background-color: var(--cs-surface);
+      background-color: var(--#{$prefix}-surface);
+      box-shadow: var(--#{$prefix}-elevation-1);
 
       nav {
         display: flex;
@@ -37,7 +60,7 @@
           padding: 0;
 
           li {
-            display: inline-block;
+            display: inline-flex;
             margin: 0;
             padding: 0 calc(0.5 * var(--#{$prefix}-x-spacing));
           }
@@ -45,18 +68,26 @@
       }
     }
 
-    & > aside {
-      position: sticky;
-      top: 0;
-      min-height: calc(100vh - var(--#{$prefix}-header-height) - var(--#{$prefix}-spacing));
-      width: var(--#{$prefix}-sidebar-width);
-      align-self: start;
-    }
+    //& > aside {
+    //  position: sticky;
+    //  top: 0;
+    //  min-height: calc(100vh - var(--#{$prefix}-header-height) - var(--#{$prefix}-spacing));
+    //  width: var(--#{$prefix}-sidebar-width);
+    //  align-self: start;
+    //}
 
     & > main {
+      grid-column: page;
+      display: grid;
+      grid-template-columns: subgrid;
+
+      & > * {
+        grid-column: content;
+      }
     }
 
     & > footer {
+      grid-column: page;
     }
   }
 }

@@ -29,13 +29,14 @@
   padding: var(--btn-padding);
   border: 1px solid var(--btn-border-color);
   border-radius: var(--btn-border-radius);
-  font-family: var(--btn-font-family);
+  font-family: var(--btn-font-family), serif;
   font-size: var(--btn-font-size);
   font-weight: var(--btn-font-weight);
   line-height: var(--btn-line-height);
   white-space: nowrap;
   text-decoration: none;
   background-color: var(--btn-background-color);
+  background-repeat: no-repeat;
   color: var(--btn-color);
   opacity: var(--btn-opacity);
   box-shadow: var(--btn-elevation);
@@ -131,22 +132,25 @@
 
 %button-icon {
   --btn-icon-size: calc(var(--#{$prefix}-control-height) * 1.2);
+  --btn-color: var(--#{$prefix}-on-surface-variant);
+  --btn-container-color: transparent;
+  --btn-border-radius: var(--btn-icon-size);
+  --btn-elevation: none;
 
   height: var(--btn-icon-size);
   width: var(--btn-icon-size);
   padding: 0;
-  color: var(--#{$prefix}-on-surface-variant);
-  background-color: transparent;
-  border-radius: var(--#{$prefix}-control-height);
   background-position: center;
   background-size: var(--#{$prefix}-btn-icon-size);
+  cursor: pointer;
 
   &:hover {
-    background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
+    --btn-elevation: none;
+    --btn-container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
   }
 
   &:active {
-    background-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
+    --btn-container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
   }
 }
 

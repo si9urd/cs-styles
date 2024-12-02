@@ -5,7 +5,7 @@
 @forward "bootstrap/abstracts/functions";
 
 @if $enable-containers {
-  @include make-containers($prefix: $prefix, $spacing: $spacing, $container-max-widths: $container-max-widths,
+  @include make-containers($prefix: $prefix, $spacing: $spacing, $container-max-widths: $container-widths,
     $grid-breakpoints: $grid-breakpoints);
 }
 
