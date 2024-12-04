@@ -86,8 +86,8 @@ $grid-breakpoints: (
 
 // Fonts family
 $font-family-base: roboto, -apple-system-ui, system-ui, "Segoe UI",  oxygen, ubuntu, cantarell, helvetica, arial,
-  "Helvetica Neue", sans-serif !default;
-$font-family-monospace: ui-monospace, Menlo, Consolas, "Roboto Mono", "Ubuntu Monospace", "Noto Mono", "Oxygen Mono",
+  "Helvetica Neue", "Noto Sans", sans-serif !default;
+$font-family-monospace: ui-monospace, "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace", "Noto Mono", "Oxygen Mono",
   "Liberation Mono", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
 // Spacing
