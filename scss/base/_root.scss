@@ -3,6 +3,9 @@
 
 :root {
   --#{$prefix}-font-family: #{$font-family-base};
+  --#{$prefix}-font-family-mono: #{$font-family-monospace};
+  --#{$prefix}-font-size-base: #{$font-size-base};
+  --#{$prefix}-font-weight-header: #{$font-weight-header};
   --#{$prefix}-control-height: #{$control-height};
   --#{$prefix}-border-radius: #{$border-radius};
   --#{$prefix}-spacing: #{$spacing};

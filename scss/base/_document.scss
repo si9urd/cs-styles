@@ -24,7 +24,5 @@
   }
 }
 
-@if $enable-reset {
-  @include document;
-  @include rtl;
-}
+@include document;
+@include rtl;

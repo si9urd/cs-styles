@@ -22,8 +22,8 @@
 
   ::before,
   ::after {
-    text-decoration: inherit; // 1
-    vertical-align: inherit; // 2
+    text-decoration: inherit;
+    vertical-align: inherit;
   }
 
   body {
@@ -90,7 +90,7 @@
   }
 
   svg:not([fill]) {
-     fill: currentcolor;
+    fill: currentcolor;
   }
 
   svg:not(:root) {

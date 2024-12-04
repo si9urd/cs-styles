@@ -87,6 +87,8 @@ $grid-breakpoints: (
 // Fonts family
 $font-family-base: roboto, -apple-system-ui, system-ui, "Segoe UI",  oxygen, ubuntu, cantarell, helvetica, arial,
   "Helvetica Neue", sans-serif !default;
+$font-family-monospace: ui-monospace, Menlo, Consolas, "Roboto Mono", "Ubuntu Monospace", "Noto Mono", "Oxygen Mono",
+  "Liberation Mono", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
 // Spacing
 $spacing: 1rem !default;
@@ -101,6 +103,8 @@ $spacers: (
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) !default;
 
 // Spec
+$font-size-base: 1rem !default;
+$font-weight-header: 700 !default;
 $control-height: 2.5rem !default;
 $border-radius: 4px !default;
 $btn-font-size: 14px !default;

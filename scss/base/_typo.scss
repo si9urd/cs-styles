@@ -1,0 +1,47 @@
+@use "../variables" as *;
+
+@mixin typo {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--#{$prefix}-font-family);
+    font-weight: var(--#{$prefix}-weight-header);
+    margin: var(--#{$prefix}-spacing) 0;
+  }
+
+  h1 {
+    font-size: calc(var(--#{$prefix}-font-size-base) * 2.5);
+  }
+
+  h2 {
+    font-size: calc(var(--#{$prefix}-font-size-base) * 2);
+  }
+
+  h3 {
+    font-size: calc(var(--#{$prefix}-font-size-base) * 1.75);
+  }
+
+  h4 {
+    font-size: calc(var(--#{$prefix}-font-size-base) * 1.5);
+  }
+
+  h5 {
+    font-size: calc(var(--#{$prefix}-font-size-base) * 1.25);
+  }
+
+  h6 {
+    font-size: var(--#{$prefix}-font-size-base);
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--#{$prefix}-font-family-mono);
+  }
+
+  b,
+  strong {
+    font-weight: bolder; // Relative to the parent
+  }
+}
+
+@include typo;
