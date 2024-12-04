@@ -104,7 +104,7 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) 
 
 // Spec
 $font-size-base: 1rem !default;
-$font-weight-header: 700 !default;
+$font-weight-header: 500 !default;
 $control-height: 2.5rem !default;
 $border-radius: 4px !default;
 $btn-font-size: 14px !default;

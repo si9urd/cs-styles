@@ -3,7 +3,7 @@
 @mixin typo {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--#{$prefix}-font-family);
-    font-weight: var(--#{$prefix}-weight-header);
+    font-weight: var(--#{$prefix}-font-weight-header);
     margin: var(--#{$prefix}-spacing) 0;
   }
 
