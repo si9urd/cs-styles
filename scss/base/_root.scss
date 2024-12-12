@@ -5,8 +5,11 @@
   --#{$prefix}-font-family: #{$font-family-base};
   --#{$prefix}-font-family-mono: #{$font-family-monospace};
   --#{$prefix}-font-size-base: #{$font-size-base};
+  --#{$prefix}-line-height-base: #{$line-height-base};
   --#{$prefix}-font-weight-header: #{$font-weight-header};
-  --#{$prefix}-control-height: #{$control-height};
+  --#{$prefix}-btn-height: #{$btn-height};
+  --#{$prefix}-input-height: #{$input-height};
+  --#{$prefix}-input-font-size: #{$font-size-base};
   --#{$prefix}-border-radius: #{$border-radius};
   --#{$prefix}-spacing: #{$spacing};
   --#{$prefix}-x-spacing: #{$spacing};

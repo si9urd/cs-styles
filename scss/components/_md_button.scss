@@ -6,7 +6,7 @@
 // region button-base
 
 %button-base {
-  --btn-height: var(--#{$prefix}-control-height);
+  --btn-height: var(--#{$prefix}-btn-height);
   --btn-padding: #{map-get($spacers, 2)} #{map-get($spacers, 4)};
   --btn-inner-gap: 0.5rem;
   --btn-font-weight: 500;
@@ -131,7 +131,7 @@
 }
 
 %button-icon {
-  --btn-icon-size: calc(var(--#{$prefix}-control-height) * 1.2);
+  --btn-icon-size: calc(var(--#{$prefix}-btn-height) * 1.2);
   --btn-color: var(--#{$prefix}-on-surface-variant);
   --btn-container-color: transparent;
   --btn-border-radius: var(--btn-icon-size);
@@ -188,50 +188,56 @@
 // Apply buttons styles
 /////////////////////////////////////////////////
 
-// Set base styles
-:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-  @extend %button-base;
-  @extend %button-filled;
-  @extend %button-inner-icon;
-  @extend %button-disabled;
-  @extend %button-hovered;
-  @extend %button-focused;
-  @extend %button-pressed;
+@mixin md-buttons {
+  // Set base styles
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    @extend %button-base;
+    @extend %button-filled;
+    @extend %button-inner-icon;
+    @extend %button-disabled;
+    @extend %button-hovered;
+    @extend %button-focused;
+    @extend %button-pressed;
 
-  -webkit-appearance: button;
+    -webkit-appearance: button;
+  }
+
+  [type="file"]::file-selector-button {
+    @extend %button-base;
+    @extend %button-filled;
+  }
+
+  // Set elevated button styles
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-elevated {
+    @extend %button-elevated;
+    @extend %button-elevated-hovered;
+    @extend %button-elevated-focused;
+    @extend %button-elevated-pressed;
+  }
+
+  // Set tonal button styles
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-tonal {
+    @extend %button-tonal;
+  }
+
+  // Set outlined button styles
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-outlined {
+    @extend %button-outlined;
+  }
+
+  // Set button-text styles
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-text {
+    @extend %button-text;
+    @extend %button-text-disabled;
+  }
+
+  // Set button-icon styles
+  .btn-icon {
+    @extend %button-base;
+    @extend %button-icon;
+  }
 }
 
-[type="file"]::file-selector-button {
-  @extend %button-base;
-  @extend %button-filled;
-}
-
-// Set elevated button styles
-:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-elevated {
-  @extend %button-elevated;
-  @extend %button-elevated-hovered;
-  @extend %button-elevated-focused;
-  @extend %button-elevated-pressed;
-}
-
-// Set tonal button styles
-:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-tonal {
-  @extend %button-tonal;
-}
-
-// Set outlined button styles
-:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-outlined {
-  @extend %button-outlined;
-}
-
-// Set button-text styles
-:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-text {
-  @extend %button-text;
-  @extend %button-text-disabled;
-}
-
-// Set button-icon styles
-.btn-icon {
-  @extend %button-base;
-  @extend %button-icon;
+@if $enable-material-design {
+  @include md-buttons;
 }

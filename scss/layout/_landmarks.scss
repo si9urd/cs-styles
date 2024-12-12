@@ -26,6 +26,7 @@
       grid-template-columns: subgrid;
       position: sticky;
       top: 0;
+      z-index: $z-index-sticky;
 
       & > .content {
         grid-column: breakout;
@@ -67,14 +68,6 @@
         }
       }
     }
-
-    //& > aside {
-    //  position: sticky;
-    //  top: 0;
-    //  min-height: calc(100vh - var(--#{$prefix}-header-height) - var(--#{$prefix}-spacing));
-    //  width: var(--#{$prefix}-sidebar-width);
-    //  align-self: start;
-    //}
 
     & > main {
       grid-column: page;
