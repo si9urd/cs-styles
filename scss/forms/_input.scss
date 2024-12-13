@@ -102,19 +102,22 @@
   }
 }
 
-@mixin inputs {
+@mixin input {
   form {
     display: flex;
     flex-flow: column;
     gap: var(--#{$prefix}-spacing);
   }
 
-  input:not([type="checkbox"], [type="radio"]) {
-    --input-height: var(--#{$prefix}-btn-height);
+  :is(input, textarea):not([type="checkbox"], [type="radio"]) {
+    --input-height: var(--#{$prefix}-input-height);
     --input-line-height: var(--#{$prefix}-line-height-base);
     --input-border-radius: var(--#{$prefix}-border-radius);
     --input-border-color: var(--#{$prefix}-input-border-color);
     --input-font-size: var(--#{$prefix}-input-font-size);
+    --input-background: var(--#{$prefix}-surface-container);
+    --input-color: var(--#{$prefix}-on-surface);
+    --input-placeholder-color: var(--#{$prefix}-on-surface-variant);
 
     display: inline-flex;
     width: 100%;
@@ -124,23 +127,25 @@
     font-size: var(--input-font-size);
     height: var(--input-height);
     line-height: var(--input-line-height);
-    color: var(--#{$prefix}-on-surface);
-    background-color: var(--#{$prefix}-surface);
+    color: var(--input-color);
+    background-color: var(--input-background);
     outline: none !important;
+  }
+
+  :is(input, textarea)::placeholder {
+    color: var(--input-placeholder-color);
   }
 }
 
-@mixin md-inputs {
-  input:not([type="checkbox"], [type="radio"]) {
-    --input-height: var(--#{$prefix}-input-height);
+@mixin input-autofill {
+  :is(input, textarea, select):is(:autofill, :-webkit-autofill) {
+    -webkit-box-shadow: 0 0 0px 1000px var(--input-background) inset !important;
+    -webkit-text-fill-color: var(--input-color) !important;
   }
 }
 
 @if $enable-forms {
   @include reset-input;
-  @include inputs;
-
-  @if $enable-material-design {
-    @include md-inputs;
-  }
+  @include input;
+  @include input-autofill;
 }

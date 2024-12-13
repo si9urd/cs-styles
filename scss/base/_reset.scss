@@ -391,6 +391,4 @@
   @include reset-interactive;
 }
 
-@if $enable-reset {
-  @include reset;
-}
+@include reset;

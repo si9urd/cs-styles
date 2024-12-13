@@ -40,14 +40,12 @@
   }
 }
 
-@if $enable-elevation {
-  :root {
-    &:not([data-theme="dark"]) {
-      @include make-elevation(#000000);
-    }
+:root {
+  &:not([data-theme="dark"]) {
+    @include make-elevation(#000000);
+  }
 
-    &[data-theme="dark"] {
-      @include make-elevation(#FFFFFF);
-    }
+  &[data-theme="dark"] {
+    @include make-elevation(#FFFFFF);
   }
 }

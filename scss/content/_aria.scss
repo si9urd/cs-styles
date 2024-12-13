@@ -42,6 +42,4 @@
   }
 }
 
-@if $enable-accessibility {
-  @include accessibility;
-}
+@include accessibility;

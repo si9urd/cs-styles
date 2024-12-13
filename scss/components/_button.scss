@@ -238,6 +238,4 @@
   }
 }
 
-@if $enable-material-design {
-  @include md-buttons;
-}
+@include md-buttons;

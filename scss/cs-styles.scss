@@ -1,9 +1,6 @@
 @use "index" with (
   $page-root: "#root",
-  $enable-material-design: true,
   $enable-icons: true,
-  $enable-themes: true,
-  $enable-containers: true,
   $enable-grid: true,
   $grid-breakpoints: (
         xs: 0,

@@ -1,7 +1,7 @@
 @use "sass:map" as *;
 @use "../variables" as *;
 
-@mixin page-layout {
+@mixin landmarks {
   #{$page-root},
   .page {
     --gutter: calc(var(--#{$prefix}-spacing) * 3);
@@ -85,7 +85,7 @@
   }
 }
 
-@if $enable-page-layout {
-  @include page-layout;
+@if $enable-landmarks {
+  @include landmarks;
 }
 

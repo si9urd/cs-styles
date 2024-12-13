@@ -4,11 +4,8 @@
 @forward "bootstrap/utilities/api";
 @forward "bootstrap/abstracts/functions";
 
-@if $enable-containers {
+@if $enable-grid {
   @include make-containers($prefix: $prefix, $spacing: $spacing, $container-max-widths: $container-widths,
     $grid-breakpoints: $grid-breakpoints);
-}
-
-@if $enable-grid {
   @include make-grid($prefix: $prefix, $spacing: $spacing, $grid-breakpoints: $grid-breakpoints);
 }

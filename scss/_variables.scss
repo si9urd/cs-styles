@@ -13,42 +13,19 @@ $page-root: "body" !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// Use reset
-$enable-reset: true !default;
-
-// Enable material design styles
-$enable-material-design: true !default;
-
-// Enable accessibility
-$enable-accessibility: true !default;
-
-// Use material color themes variables
-$enable-themes: true !default;
-
 // Enable svg icons
 $enable-icons: true !default;
-
-// Enable elevations
-$enable-elevation: true !default;
 
 // Enable grid
 $enable-grid: true !default;
 
-// Enable containers
-$enable-containers: true !default;
-
 // Enable form`s controls
 $enable-forms: true !default;
 
-// Enable layout
-$enable-layouts: true !default;
-$enable-page-layout: true !default;
+// Enable landmarks
+$enable-landmarks: true !default;
 
-// Enable ripple effect
-$enable-css-ripple-effect: true !default;
-$enable-js-ripple-effect: false !default;
-
-// Enable utilities
+// Enable bootstrap utils
 $enable-utilities: (
   "align": true,
   "borders": true,
@@ -57,16 +34,14 @@ $enable-utilities: (
   "spacing": true,
   "text": true,
 ) !default;
+
+// Enable negative margins in bootstrap utils
 $enable-negative-margins: false !default;
+
+// Enable responsive in bootstrap utils
 $enable-responsive-utilities: false !default;
 
 ////////////////////////////////////////////////////////////////////////////////
-
-// design - material | plain
-$design: material !default;
-
-////////////////////////////////////////////////////////////////////////////////
-
 
 // Define the maximum width of `.container` for different screen sizes.
 $container-widths: (
@@ -87,7 +62,6 @@ $grid-breakpoints: (
         xxl: 1400px
 ) !default;
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
 // Fonts family
@@ -106,10 +80,12 @@ $spacers: (
     4: $spacing * 1.5,
     5: $spacing * 3,
 ) !default;
+
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) !default;
 
 // Spec
 $font-size-base: 1rem !default;
+$font-size-input: 1.25rem !default;
 $font-weight-header: 500 !default;
 $btn-height: 2.5rem !default;
 $input-height: 3.5rem !default;
