@@ -109,7 +109,7 @@
     --input-border-radius: var(--#{$prefix}-border-radius);
     --input-border-color: var(--#{$prefix}-outline-variant);
     --input-font-size: var(--#{$prefix}-font-size-input);
-    --input-background: var(--#{$prefix}-surface-container);
+    --input-background: var(--#{$prefix}-surface-container-variant);
     --input-color: var(--#{$prefix}-on-surface);
     --input-placeholder-color: var(--#{$prefix}-on-surface-variant);
     --input-box-shadow: none;
@@ -131,6 +131,15 @@
                 color var(--input-transition),
                 box-shadow var(--input-transition);
     outline: none !important;
+
+    &:disabled {
+      background-color: var(--#{$prefix}-surface-container);
+      color: var(--#{$prefix}-on-surface-variant);
+
+      &::placeholder {
+        color: var(--#{$prefix}-on-surface-variant);
+      }
+    }
 
     &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
       position: relative;
