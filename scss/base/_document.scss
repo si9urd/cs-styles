@@ -1,8 +1,7 @@
 @use "../variables" as *;
 
 @mixin document {
-  :where(:root) {
-    color-scheme: light dark;
+  :root {
     color: var(--#{$prefix}-on-surface);
     background-color: var(--#{$prefix}-surface);
     font: 400 1rem/1.5 var(--#{$prefix}-font-family);
@@ -14,6 +13,14 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    &:not([data-theme="dark"]) {
+      color-scheme: light;
+    }
+
+    &[data-theme="dark"] {
+      color-scheme: dark;
+    }
   }
 }
 

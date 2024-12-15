@@ -5,11 +5,11 @@
   --#{$prefix}-font-family: #{$font-family-base};
   --#{$prefix}-font-family-mono: #{$font-family-monospace};
   --#{$prefix}-font-size-base: #{$font-size-base};
+  --#{$prefix}-font-size-input: #{$font-size-input};
   --#{$prefix}-line-height-base: #{$line-height-base};
   --#{$prefix}-font-weight-header: #{$font-weight-header};
   --#{$prefix}-btn-height: #{$btn-height};
   --#{$prefix}-input-height: #{$input-height};
-  --#{$prefix}-input-font-size: #{$font-size-input};
   --#{$prefix}-border-radius: #{$border-radius};
   --#{$prefix}-spacing: #{$spacing};
   --#{$prefix}-x-spacing: #{$spacing};
@@ -18,5 +18,5 @@
   --#{$prefix}-btn-icon-size: #{$btn-icon-size};
   --#{$prefix}-btn-inner-icon-size: #{$btn-inner-icon-size};
   --#{$prefix}-header-height: #{$header-height};
-  --#{$prefix}-sidebar-width: #{$sidebar-width};
+  --#{$prefix}-transition: #{$transition};
 }

@@ -103,21 +103,17 @@
 }
 
 @mixin input {
-  form {
-    display: flex;
-    flex-flow: column;
-    gap: var(--#{$prefix}-spacing);
-  }
-
-  :is(input, textarea):not([type="checkbox"], [type="radio"]) {
+  :is(input, textarea, select):not([type="checkbox"], [type="radio"], [type="range"], [type="file"]) {
     --input-height: var(--#{$prefix}-input-height);
     --input-line-height: var(--#{$prefix}-line-height-base);
     --input-border-radius: var(--#{$prefix}-border-radius);
-    --input-border-color: var(--#{$prefix}-input-border-color);
-    --input-font-size: var(--#{$prefix}-input-font-size);
+    --input-border-color: var(--#{$prefix}-outline-variant);
+    --input-font-size: var(--#{$prefix}-font-size-input);
     --input-background: var(--#{$prefix}-surface-container);
     --input-color: var(--#{$prefix}-on-surface);
     --input-placeholder-color: var(--#{$prefix}-on-surface-variant);
+    --input-box-shadow: none;
+    --input-transition: var(--#{$prefix}-transition);
 
     display: inline-flex;
     width: 100%;
@@ -129,7 +125,26 @@
     line-height: var(--input-line-height);
     color: var(--input-color);
     background-color: var(--input-background);
+    box-shadow: var(--input-box-shadow);
+    transition: background-color var(--input-transition),
+                border-color var(--input-transition),
+                color var(--input-transition),
+                box-shadow var(--input-transition);
     outline: none !important;
+
+    &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
+      position: relative;
+      &::-webkit-calendar-picker-indicator {
+        position: absolute;
+        right: var(--#{$prefix}-spacing);
+        opacity: .5;
+      }
+    }
+
+    &:focus {
+      --input-box-shadow: 0 0 0 1px var(--#{$prefix}-primary) inset;
+      --input-border-color: var(--#{$prefix}-primary);
+    }
   }
 
   :is(input, textarea)::placeholder {
@@ -139,7 +154,7 @@
 
 @mixin input-autofill {
   :is(input, textarea, select):is(:autofill, :-webkit-autofill) {
-    -webkit-box-shadow: 0 0 0px 1000px var(--input-background) inset !important;
+    box-shadow: 0 0 0 1000px var(--input-background) inset !important;
     -webkit-text-fill-color: var(--input-color) !important;
   }
 }
@@ -147,5 +162,8 @@
 @if $enable-forms {
   @include reset-input;
   @include input;
-  @include input-autofill;
+
+  @if $enable-autofill-fix {
+    @include input-autofill;
+  }
 }
