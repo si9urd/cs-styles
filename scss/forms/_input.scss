@@ -164,6 +164,16 @@
   }
 }
 
+@mixin input-search {
+  input[type="search"] {
+    --input-border-radius: 999px !important;
+
+    background-image: var(--#{$prefix}-search-icon);
+    background-position: left var(--#{$prefix}-spacing) center !important;
+    padding-left: calc(var(--#{$prefix}-spacing) * 3) !important;
+  }
+}
+
 @mixin input-states {
   :is(input, textarea, select) {
     &[aria-invalid="true"] {
@@ -199,6 +209,7 @@
 @if $enable-forms {
   @include reset-input;
   @include input;
+  @include input-search;
   @include input-states;
 
   @if $enable-autofill-fix {

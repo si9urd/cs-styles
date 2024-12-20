@@ -205,6 +205,8 @@
   [type="file"]::file-selector-button {
     @extend %button-base;
     @extend %button-filled;
+
+    --btn-background-color: var(--#{$prefix}-tertiary);
   }
 
   // Set elevated button styles
