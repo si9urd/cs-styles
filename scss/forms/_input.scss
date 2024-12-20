@@ -132,7 +132,8 @@
                 box-shadow var(--input-transition);
     outline: none !important;
     background-repeat: no-repeat;
-    background-position: right var(--#{$prefix}-spacing) center;
+    background-size: $btn-icon-size;
+    background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - $btn-icon-size) / 2);
 
     &:disabled {
       background-color: var(--#{$prefix}-surface-container);
@@ -162,15 +163,25 @@
   :is(input, textarea)::placeholder {
     color: var(--input-placeholder-color);
   }
+
+  textarea {
+    --input-height: calc(var(--#{$prefix}-input-height) * 2) !important;
+
+    padding-top: var(--#{$prefix}-spacing) !important;
+  }
 }
 
-@mixin input-search {
+@mixin input-other {
   input[type="search"] {
     --input-border-radius: 999px !important;
 
     background-image: var(--#{$prefix}-search-icon);
     background-position: left var(--#{$prefix}-spacing) center !important;
     padding-left: calc(var(--#{$prefix}-spacing) * 3) !important;
+  }
+
+  input[type="color"] {
+    padding: calc(var(--#{$prefix}-spacing) / 2) var(--#{$prefix}-spacing) !important;
   }
 }
 
@@ -209,7 +220,7 @@
 @if $enable-forms {
   @include reset-input;
   @include input;
-  @include input-search;
+  @include input-other;
   @include input-states;
 
   @if $enable-autofill-fix {
