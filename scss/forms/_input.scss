@@ -131,6 +131,8 @@
                 color var(--input-transition),
                 box-shadow var(--input-transition);
     outline: none !important;
+    background-repeat: no-repeat;
+    background-position: right var(--#{$prefix}-spacing) center;
 
     &:disabled {
       background-color: var(--#{$prefix}-surface-container);
@@ -143,6 +145,7 @@
 
     &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
       position: relative;
+
       &::-webkit-calendar-picker-indicator {
         position: absolute;
         right: var(--#{$prefix}-spacing);
@@ -161,6 +164,31 @@
   }
 }
 
+@mixin input-states {
+  :is(input, textarea, select) {
+    &[aria-invalid="true"] {
+      --input-border-color: var(--#{$prefix}-error);
+
+      background-image: var(--#{$prefix}-invalid-icon);
+
+      &:focus {
+        --input-box-shadow: 0 0 0 1px var(--#{$prefix}-error) inset;
+        --input-border-color: var(--#{$prefix}-error);
+      }
+    }
+    &[aria-invalid="false"] {
+      --input-border-color: var(--#{$prefix}-success);
+
+      background-image: var(--#{$prefix}-valid-icon);
+
+      &:focus {
+        --input-box-shadow: 0 0 0 1px var(--#{$prefix}-success) inset;
+        --input-border-color: var(--#{$prefix}-success);
+      }
+    }
+  }
+}
+
 @mixin input-autofill {
   :is(input, textarea, select):is(:autofill, :-webkit-autofill) {
     box-shadow: 0 0 0 1000px var(--input-background) inset !important;
@@ -171,6 +199,7 @@
 @if $enable-forms {
   @include reset-input;
   @include input;
+  @include input-states;
 
   @if $enable-autofill-fix {
     @include input-autofill;

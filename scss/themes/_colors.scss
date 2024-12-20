@@ -1,6 +1,8 @@
 @use "../variables" as *;
 @use "themes_colors" as *;
+@use "extended_colors" as *;
 
 :root {
   @include themes-colors;
+  @include extended-colors;
 }

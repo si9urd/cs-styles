@@ -1,0 +1,18 @@
+@use "../variables" as *;
+
+$light-success: #279977;
+$dark-success: #16896a;
+$light-base: #fff;
+$dark-base: #000;
+
+@mixin extended-colors() {
+  &:not([data-theme="dark"]) {
+    --#{$prefix}-base: #{$light-base};
+    --#{$prefix}-success: #{$light-success};
+  }
+
+  &[data-theme="dark"] {
+    --#{$prefix}-base: #{$dark-base};
+    --#{$prefix}-success: #{$dark-success};
+  }
+}

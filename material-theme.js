@@ -1,7 +1,7 @@
 /**
  * Generate colors mixin using json file exported from Material Theme Build
  * @see {@link https://material-foundation.github.io/material-theme-builder/}
- * @version 0.0.5
+ * @version 0.1.0
  */
 
 import fs from 'node:fs'
@@ -14,8 +14,6 @@ const params = args.reduce((m, v) => {
   return m
 }, {})
 
-const prefix = params.prefix
-
 const camelCaseToKebabCase = (str) => str.replace(/[A-Z]+(?![a-z])|[A-Z]/g,
   ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())
 
@@ -24,40 +22,47 @@ function generateCssVars(themes) {
   const darkTheme = themes.schemes.dark
   const r = []
 
+  r.push('$theme-colors: map-merge((')
+
   for(const [key, value] of Object.entries(lightTheme)) {
-    r.push(`$light-${camelCaseToKebabCase(key)}: ${value};`)
+    r.push(`\t'light-${camelCaseToKebabCase(key)}': ${value},`)
+  }
+  for(const [key, value] of Object.entries(darkTheme)) {
+    r.push(`\t'dark-${camelCaseToKebabCase(key)}': ${value},`)
   }
 
-  for(const [key, value] of Object.entries(darkTheme)) {
-    r.push(`$dark-${camelCaseToKebabCase(key)}: ${value};`)
-  }
+  r.push('), $theme-colors);')
 
   return r
 }
 
 function generateMixin(themes) {
-  const lightTheme = {...themes.schemes.light, base: '#FFF'}
-  const darkTheme = {...themes.schemes.dark, base: '#000'}
+  const lightTheme = themes.schemes.light
+  const darkTheme = themes.schemes.dark
   const result = []
+
+  result.push('@use "../variables" as *;')
+  result.push('')
   result.push(...generateCssVars(themes))
   result.push('')
   result.push('@mixin themes-colors() {')
   result.push('\t&:not([data-theme="dark"]) {')
-  result.push(...generateMixinVars(lightTheme))
+  result.push(...generateMixinVars(lightTheme, 'light'))
   result.push('\t}')
   result.push('')
   result.push('\t&[data-theme="dark"] {')
-  result.push(...generateMixinVars(darkTheme))
+  result.push(...generateMixinVars(darkTheme, 'dark'))
   result.push('\t}')
   result.push('}')
 
   return result.join(EOL)
 }
 
-function generateMixinVars(theme) {
+function generateMixinVars(theme, themeName) {
   const r = []
   for(const [key, value] of Object.entries(theme)) {
-    r.push(`\t\t--${prefix}-${camelCaseToKebabCase(key)}: ${value};`)
+    const strKey = camelCaseToKebabCase(key)
+    r.push(`\t\t--#{$prefix}-${strKey}: #{map-get($theme-colors, ${themeName}-${strKey})};`)
   }
   return r
 }
@@ -69,12 +74,11 @@ function writeFile(fileName, content) {
   })
 }
 
-// fs.readFile('./material-theme-autumn.json', 'utf8', (error, data) => {
-fs.readFile('./material-theme-default.json', 'utf8', (error, data) => {
+fs.readFile(params.src, 'utf8', (error, data) => {
   if (error) {
     console.error(error);
     return
   }
 
-  writeFile(params.file, generateMixin(JSON.parse(data)))
+  writeFile(params.scss, generateMixin(JSON.parse(data)))
 })

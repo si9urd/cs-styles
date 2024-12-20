@@ -2,7 +2,7 @@
 @use "abstracts/mixins/breakpoints" as *;
 
 @mixin make-container($prefix: $bs-prefix, $spacing: 1rem) {
-  --#{$prefix}-gutter-x: $spacing;
+  --#{$prefix}-gutter-x: #{$spacing};
 
   width: 100%;
   padding-right: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
