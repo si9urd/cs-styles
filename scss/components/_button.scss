@@ -159,29 +159,54 @@
   --btn-container-color: transparent;
 
   cursor: pointer;
-}
 
-%button-text-disabled {
   &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
     --btn-background-color: transparent !important;
   }
-}
-%button-text-hovered {
+
   &:is(:hover, [data-hovered]) {
     --btn-elevation: var(--#{$prefix}-elevation-0) !important;
   }
-}
 
-%button-text-focused {
   &:is(:focus, [data-focused]) {
     --btn-elevation: var(--#{$prefix}-elevation-0) !important;
   }
-}
 
-%button-text-pressed {
   &:is(:active, &[data-pressed]) {
     --btn-elevation: var(--#{$prefix}-elevation-0) !important;
   }
+
+  &:is(:active, &[data-pressed]) {
+    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
+  }
+}
+
+%button-fab {
+  --btn-height: 3.5rem;
+  --btn-border-radius: 1rem;
+  --btn-background-color: var(--#{$prefix}-primary-container);
+  --btn-color: var(--#{$prefix}-on-primary-container);
+
+  &:not([disabled]) {
+    &:is(:hover, [data-hovered]) {
+      --btn-elevation: var(--#{$prefix}-elevation-4) !important;
+    }
+
+    &:is(:focus, [data-focused]) {
+      --btn-elevation: var(--#{$prefix}-elevation-3) !important;
+    }
+
+    &:is(:active, &[data-pressed]) {
+      --btn-elevation: var(--#{$prefix}-elevation-3) !important;
+    }
+
+    &:is(:active, &[data-pressed]) {
+      --btn-elevation: var(--#{$prefix}-elevation-3) !important;
+    }
+  }
+
+  min-width: var(--btn-height);
+  padding: 0;
 }
 
 /////////////////////////////////////////////////
@@ -230,7 +255,12 @@
   // Set button-text styles
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-text {
     @extend %button-text;
-    @extend %button-text-disabled;
+  }
+
+  // Set button-fab styles
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-fab {
+    @extend %button-fab;
+    @extend %button-inner-icon;
   }
 
   // Set button-icon styles
