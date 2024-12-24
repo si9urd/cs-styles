@@ -1,0 +1,41 @@
+@use "../variables" as *;
+
+@mixin link {
+  a:not([role="button"]),
+  [role="link"] {
+    --link-font-size: var(--#{$prefix}-font-size-base);
+    --link-color: var(--#{$prefix}-primary);
+    --link-background-color: transparent;
+    --link-underline-color: var(--link-color);
+
+    display: inline-flex;
+    font-size: var(--link-font-size);
+    outline: none;
+    background-color: var(--link-background-color);
+    color: var(--link-color);
+    text-decoration: underline;
+    text-decoration-color: var(--link-underline-color);
+    text-underline-offset: 0.125em;
+    transition:
+        background-color var(--#{$prefix}-transition),
+        color var(--#{$prefix}-transition),
+        text-decoration var(--#{$prefix}-transition),
+        box-shadow var(--#{$prefix}-transition);
+
+    &:is([aria-current]:not([aria-current="false"]), :hover, [data-hovered], :focus, [data-focused], :active, [data-pressed]) {
+      --link-color: color-mix(in lab, var(--#{$prefix}-primary) 90%, var(--#{$prefix}-base));
+      --link-underline-color: color-mix(in lab, var(--#{$prefix}-primary) 80%, var(--#{$prefix}-base));
+    }
+
+    &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+      --link-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
+      --link-underline-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
+
+      cursor: auto;
+    }
+
+    cursor: pointer;
+  }
+}
+
+@include link;

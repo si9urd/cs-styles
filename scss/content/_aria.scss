@@ -11,7 +11,7 @@
 
   // Change the cursor on disabled, not-editable, or otherwise inoperable elements in all browsers (opinionated)
   [aria-disabled="true"],
-  [disabled] {
+  :not([disabled="false"]):is([disabled]) {
     cursor: not-allowed;
   }
 

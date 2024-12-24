@@ -160,14 +160,14 @@
     }
   }
 
-  :is(input, textarea)::placeholder {
-    color: var(--input-placeholder-color);
-  }
-
   textarea {
     --input-height: calc(var(--#{$prefix}-input-height) * 2) !important;
 
     padding-top: var(--#{$prefix}-spacing) !important;
+  }
+
+  :is(input, textarea)::placeholder {
+    color: var(--input-placeholder-color);
   }
 }
 
@@ -197,6 +197,7 @@
         --input-border-color: var(--#{$prefix}-error);
       }
     }
+
     &[aria-invalid="false"] {
       --input-border-color: var(--#{$prefix}-success);
 

@@ -42,29 +42,28 @@
   opacity: var(--btn-opacity);
   box-shadow: var(--btn-elevation);
 
-  &:not(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background-color: var(--btn-layer-color);
-      opacity: var(--btn-layer-opacity);
-      z-index: 0;
-    }
+  &:is(:hover, [data-hovered]) {
+    --btn-background-color: color-mix(in lab, var(--btn-container-color) 92%, var(--#{$prefix}-base));
+    --btn-elevation: var(--#{$prefix}-elevation-1);
+  }
 
-    &:is(:hover, [data-hovered]) {
-      --btn-background-color: color-mix(in lab, var(--btn-container-color) 92%, var(--#{$prefix}-base));
-      --btn-elevation: var(--#{$prefix}-elevation-1);
-    }
+  &:is(:focus, [data-focused]) {
+    --btn-background-color: color-mix(in lab, var(--btn-container-color) 86%, var(--#{$prefix}-base));
+  }
 
-    &:is(:focus, [data-focused]) {
-      --btn-background-color: color-mix(in lab, var(--btn-container-color) 86%, var(--#{$prefix}-base));
-    }
+  &:is(:active, [data-pressed]) {
+    --btn-background-color: color-mix(in lab, var(--btn-container-color) 80%, var(--#{$prefix}-base));
+  }
+}
 
-    &:is(:active, &[data-pressed]) {
-      --btn-background-color: color-mix(in lab, var(--btn-container-color) 80%, var(--#{$prefix}-base));
-    }
+%button-disabled {
+  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
+    --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
+    --btn-border-color: var(--btn-background-color) !important;
+    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
+
+    cursor: auto !important;
   }
 }
 
@@ -83,19 +82,7 @@
   }
 }
 
-%button-disabled {
-  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
-    --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
-    --btn-border-color: var(--btn-background-color) !important;
-    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
-
-    cursor: auto !important;
-  }
-}
-
 // endregion button-base
-
 
 %button-filled {
   --btn-container-color: var(--#{$prefix}-primary);
@@ -107,18 +94,12 @@
   --btn-container-color: var(--#{$prefix}-surface-container-low);
   --btn-elevation: var(--#{$prefix}-elevation-1);
 
-  &:not(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    &:is(:hover, [data-hovered]) {
-      --btn-elevation: var(--#{$prefix}-elevation-2);
-    }
+  &:is(:hover, [data-hovered]) {
+    --btn-elevation: var(--#{$prefix}-elevation-2);
+  }
 
-    &:is(:focus, [data-focused]) {
-      --btn-elevation: var(--#{$prefix}-elevation-1);
-    }
-
-    &:is(:active, &[data-pressed]) {
-      --btn-elevation: var(--#{$prefix}-elevation-1);
-    }
+  &:is(:focus, [data-focused], :active, [data-pressed]) {
+    --btn-elevation: var(--#{$prefix}-elevation-1);
   }
 }
 
@@ -145,14 +126,13 @@
   padding: 0;
   background-position: center;
   background-size: var(--#{$prefix}-btn-icon-size);
-  cursor: pointer;
 
-  &:hover {
+  &:is(:hover, [data-hovered]) {
     --btn-elevation: none;
     --btn-container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
   }
 
-  &:active {
+  &:is(:active, [data-pressed]) {
     --btn-container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
   }
 }
@@ -161,25 +141,11 @@
   --btn-color: var(--#{$prefix}-primary);
   --btn-container-color: transparent;
 
-  cursor: pointer;
-
-  &:is(:disabled, [disabled="true"], [aria-disabled="true"]) {
+  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
     --btn-background-color: transparent !important;
   }
 
-  &:is(:hover, [data-hovered]) {
-    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
-  }
-
-  &:is(:focus, [data-focused]) {
-    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
-  }
-
-  &:is(:active, &[data-pressed]) {
-    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
-  }
-
-  &:is(:active, &[data-pressed]) {
+  &:is(:hover, [data-hovered], :focus, [data-focused], :active, [data-pressed]) {
     --btn-elevation: var(--#{$prefix}-elevation-0) !important;
   }
 }
@@ -189,27 +155,17 @@
   --btn-border-radius: 1rem;
   --btn-container-color: var(--#{$prefix}-primary-container);
   --btn-color: var(--#{$prefix}-on-primary-container);
+  --btn-padding: 0;
 
-  &:not(:disabled, [disabled="true"], [aria-disabled="true"]) {
-    &:is(:hover, [data-hovered]) {
-      --btn-elevation: var(--#{$prefix}-elevation-4) !important;
-    }
+  &:is(:hover, [data-hovered]) {
+    --btn-elevation: var(--#{$prefix}-elevation-4) !important;
+  }
 
-    &:is(:focus, [data-focused]) {
-      --btn-elevation: var(--#{$prefix}-elevation-3) !important;
-    }
-
-    &:is(:active, &[data-pressed]) {
-      --btn-elevation: var(--#{$prefix}-elevation-3) !important;
-    }
-
-    &:is(:active, &[data-pressed]) {
-      --btn-elevation: var(--#{$prefix}-elevation-3) !important;
-    }
+  &:is(:focus, [data-focused], :active, [data-pressed]) {
+    --btn-elevation: var(--#{$prefix}-elevation-3) !important;
   }
 
   min-width: var(--btn-height);
-  padding: 0;
 }
 
 /////////////////////////////////////////////////
@@ -217,14 +173,46 @@
 /////////////////////////////////////////////////
 
 @mixin md-buttons {
-  // Set base styles
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    // Set base styles
     @extend %button-base;
     @extend %button-filled;
     @extend %button-inner-icon;
     @extend %button-disabled;
 
     -webkit-appearance: button;
+
+    // Set elevated button styles
+    &.btn-elevated {
+      @extend %button-elevated;
+    }
+
+    // Set tonal button styles
+    &.btn-tonal {
+      @extend %button-tonal;
+    }
+
+    // Set outlined button styles
+    &.btn-outlined {
+      @extend %button-outlined;
+    }
+
+    // Set button-text styles
+    &.btn-text {
+      @extend %button-text;
+    }
+
+    // Set button-fab styles
+    &.btn-fab {
+      @extend %button-fab;
+      @extend %button-inner-icon;
+    }
+  }
+
+  // Set button-icon styles
+  .btn-icon {
+    @extend %button-base;
+    @extend %button-icon;
   }
 
   [type="file"]::file-selector-button {
@@ -232,38 +220,6 @@
     @extend %button-filled;
 
     --btn-background-color: var(--#{$prefix}-tertiary);
-  }
-
-  // Set elevated button styles
-  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-elevated {
-    @extend %button-elevated;
-  }
-
-  // Set tonal button styles
-  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-tonal {
-    @extend %button-tonal;
-  }
-
-  // Set outlined button styles
-  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-outlined {
-    @extend %button-outlined;
-  }
-
-  // Set button-text styles
-  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-text {
-    @extend %button-text;
-  }
-
-  // Set button-fab styles
-  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-fab {
-    @extend %button-fab;
-    @extend %button-inner-icon;
-  }
-
-  // Set button-icon styles
-  .btn-icon {
-    @extend %button-base;
-    @extend %button-icon;
   }
 }
 
