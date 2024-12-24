@@ -21,6 +21,7 @@
   --btn-opacity: 1;
   --btn-elevation: none;
 
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -40,6 +41,31 @@
   color: var(--btn-color);
   opacity: var(--btn-opacity);
   box-shadow: var(--btn-elevation);
+
+  &:not(:disabled, [disabled="true"], [aria-disabled="true"]) {
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: var(--btn-layer-color);
+      opacity: var(--btn-layer-opacity);
+      z-index: 0;
+    }
+
+    &:is(:hover, [data-hovered]) {
+      --btn-background-color: color-mix(in lab, var(--btn-container-color) 92%, var(--#{$prefix}-base));
+      --btn-elevation: var(--#{$prefix}-elevation-1);
+    }
+
+    &:is(:focus, [data-focused]) {
+      --btn-background-color: color-mix(in lab, var(--btn-container-color) 86%, var(--#{$prefix}-base));
+    }
+
+    &:is(:active, &[data-pressed]) {
+      --btn-background-color: color-mix(in lab, var(--btn-container-color) 80%, var(--#{$prefix}-base));
+    }
+  }
 }
 
 %button-inner-icon {
@@ -68,25 +94,6 @@
   }
 }
 
-%button-hovered {
-  &:is(:hover, [data-hovered]) {
-    --btn-background-color: color-mix(in lab, var(--btn-container-color) 92%, var(--#{$prefix}-base));
-    --btn-elevation: var(--#{$prefix}-elevation-1);
-  }
-}
-
-%button-focused {
-  &:is(:focus, [data-focused]) {
-    --btn-background-color: color-mix(in lab, var(--btn-container-color) 90%, var(--#{$prefix}-base));
-  }
-}
-
-%button-pressed {
-  &:is(:active, &[data-pressed]) {
-    --btn-background-color: color-mix(in lab, var(--btn-container-color) 80%, var(--#{$prefix}-base));
-  }
-}
-
 // endregion button-base
 
 
@@ -99,23 +106,19 @@
   --btn-color: var(--#{$prefix}-primary);
   --btn-container-color: var(--#{$prefix}-surface-container-low);
   --btn-elevation: var(--#{$prefix}-elevation-1);
-}
 
-%button-elevated-hovered {
-  &:is(:hover, [data-hovered]) {
-    --btn-elevation: var(--#{$prefix}-elevation-2);
-  }
-}
+  &:not(:disabled, [disabled="true"], [aria-disabled="true"]) {
+    &:is(:hover, [data-hovered]) {
+      --btn-elevation: var(--#{$prefix}-elevation-2);
+    }
 
-%button-elevated-focused {
-  &:is(:focus, [data-focused]) {
-    --btn-elevation: var(--#{$prefix}-elevation-1);
-  }
-}
+    &:is(:focus, [data-focused]) {
+      --btn-elevation: var(--#{$prefix}-elevation-1);
+    }
 
-%button-elevated-pressed {
-  &:is(:active, &[data-pressed]) {
-    --btn-elevation: var(--#{$prefix}-elevation-1);
+    &:is(:active, &[data-pressed]) {
+      --btn-elevation: var(--#{$prefix}-elevation-1);
+    }
   }
 }
 
@@ -184,10 +187,10 @@
 %button-fab {
   --btn-height: 3.5rem;
   --btn-border-radius: 1rem;
-  --btn-background-color: var(--#{$prefix}-primary-container);
+  --btn-container-color: var(--#{$prefix}-primary-container);
   --btn-color: var(--#{$prefix}-on-primary-container);
 
-  &:not([disabled]) {
+  &:not(:disabled, [disabled="true"], [aria-disabled="true"]) {
     &:is(:hover, [data-hovered]) {
       --btn-elevation: var(--#{$prefix}-elevation-4) !important;
     }
@@ -220,9 +223,6 @@
     @extend %button-filled;
     @extend %button-inner-icon;
     @extend %button-disabled;
-    @extend %button-hovered;
-    @extend %button-focused;
-    @extend %button-pressed;
 
     -webkit-appearance: button;
   }
@@ -237,9 +237,6 @@
   // Set elevated button styles
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-elevated {
     @extend %button-elevated;
-    @extend %button-elevated-hovered;
-    @extend %button-elevated-focused;
-    @extend %button-elevated-pressed;
   }
 
   // Set tonal button styles
