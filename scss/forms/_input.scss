@@ -103,7 +103,7 @@
 }
 
 @mixin input {
-  :is(input, textarea, select):not([type="checkbox"], [type="radio"], [type="range"], [type="file"]) {
+  :is(input, textarea, select) { //:where(:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"])) {
     --input-height: var(--#{$prefix}-input-height);
     --input-line-height: var(--#{$prefix}-line-height-base);
     --input-border-radius: var(--#{$prefix}-border-radius);

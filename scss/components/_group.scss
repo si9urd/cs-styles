@@ -1,0 +1,32 @@
+@use "../variables" as *;
+
+@mixin group {
+  :is([role="group"], [role="search"]) {
+    --group-height: var(--#{$prefix}-input-height);
+    --group-border-radius: var(--#{$prefix}-border-radius);
+
+    position: relative;
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
+    height: var(--group-height);
+    border-radius: var(--group-border-radius);
+
+    & > * {
+      height: var(--group-height);
+      border-radius: 0;
+    }
+
+    &:first-child {
+      border-top-left-radius: var(--group-border-radius);
+      border-bottom-left-radius: var(--group-border-radius);
+    }
+
+    &:last-child {
+      border-top-right-radius: var(--group-border-radius);
+      border-bottom-right-radius: var(--group-border-radius);
+    }
+  }
+}
+
+@include group;

@@ -57,7 +57,8 @@
 }
 
 %button-disabled {
-  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+  &:not([disabled="false"]),
+  &:is(:disabled, [disabled], [aria-disabled="true"]) {
     --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
     --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
     --btn-border-color: var(--btn-background-color) !important;
@@ -157,6 +158,8 @@
   --btn-color: var(--#{$prefix}-on-primary-container);
   --btn-padding: 0;
 
+  min-width: var(--btn-height);
+
   &:is(:hover, [data-hovered]) {
     --btn-elevation: var(--#{$prefix}-elevation-4) !important;
   }
@@ -164,8 +167,6 @@
   &:is(:focus, [data-focused], :active, [data-pressed]) {
     --btn-elevation: var(--#{$prefix}-elevation-3) !important;
   }
-
-  min-width: var(--btn-height);
 }
 
 /////////////////////////////////////////////////
@@ -219,7 +220,7 @@
     @extend %button-base;
     @extend %button-filled;
 
-    --btn-background-color: var(--#{$prefix}-tertiary);
+    --btn-container-color: var(--#{$prefix}-tertiary);
   }
 }
 
