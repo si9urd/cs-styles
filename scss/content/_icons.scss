@@ -36,6 +36,12 @@
   --#{$prefix}-search-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#{to-color($color)}' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
 }
 
+@mixin chevron-icon($color) {
+//  $form-select-indicator-dark:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
+
+  --#{$prefix}-chevron-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#{to-color($color)}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
 @mixin svg-icons {
   &:not([data-theme="dark"]) {
     $icon-color: map-get($theme-colors, 'light-on-surface-variant');
@@ -49,6 +55,7 @@
     @include search-icon($icon-color);
     @include valid-icon($icon-success-color);
     @include invalid-icon($icon-danger-color);
+    @include chevron-icon($icon-color);
   }
 
   &[data-theme="dark"] {
@@ -63,6 +70,7 @@
     @include search-icon($icon-color);
     @include valid-icon($icon-success-color);
     @include invalid-icon($icon-danger-color);
+    @include chevron-icon($icon-color);
   }
 }
 

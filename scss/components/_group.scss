@@ -27,6 +27,18 @@
       border-bottom-right-radius: var(--group-border-radius);
     }
   }
+
+  form[role="search"] {
+    --group-border-radius: 999px;
+
+    flex-flow: row;
+    gap:0;
+    width: 100%;
+
+    input {
+      border-radius: 0;
+    }
+  }
 }
 
 @include group;
