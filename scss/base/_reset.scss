@@ -181,15 +181,10 @@
     -webkit-appearance: button;
   }
 
-  /**
-   * 1. Change the inconsistent appearance in all browsers (opinionated).
-   * 2. Correct the padding in Firefox.
-   */
-
   fieldset {
-    // TODO: change
-    border: 1px solid #a0a0a0; /* 1 */
-    padding: 0.35em 0.75em 0.625em; /* 2 */
+    border: 1px solid transparent;
+    border-radius: var(--#{$prefix}-border-radius);
+    padding: calc(var(--#{$prefix}-spacing) * .5) 0;
   }
 
   /**
