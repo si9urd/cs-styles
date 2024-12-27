@@ -15,7 +15,8 @@
     color: var(--link-color);
     text-decoration: underline;
     text-decoration-color: var(--link-underline-color);
-    text-underline-offset: 0.125em;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 0.1em;
     transition:
         background-color var(--#{$prefix}-transition),
         color var(--#{$prefix}-transition),

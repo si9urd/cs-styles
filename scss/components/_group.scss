@@ -13,16 +13,16 @@
     border-radius: var(--group-border-radius);
 
     & > * {
-      height: var(--group-height);
-      border-radius: 0;
+      --height: var(--group-height);
+      --border-radius: 0;
     }
 
-    &:first-child {
+    :first-child {
       border-top-left-radius: var(--group-border-radius);
       border-bottom-left-radius: var(--group-border-radius);
     }
 
-    &:last-child {
+    :last-child {
       border-top-right-radius: var(--group-border-radius);
       border-bottom-right-radius: var(--group-border-radius);
     }

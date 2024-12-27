@@ -102,78 +102,85 @@
   }
 }
 
-@mixin input {
-  :is(input, textarea, select) { //:where(:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"])) {
-    --input-height: var(--#{$prefix}-input-height);
-    --input-line-height: var(--#{$prefix}-line-height-base);
-    --input-border-radius: var(--#{$prefix}-border-radius);
-    --input-border-color: var(--#{$prefix}-outline-variant);
-    --input-font-size: var(--#{$prefix}-font-size-input);
-    --input-background: var(--#{$prefix}-surface-container-variant);
-    --input-color: var(--#{$prefix}-on-surface);
-    --input-placeholder-color: var(--#{$prefix}-on-surface-variant);
-    --input-box-shadow: none;
-    --input-transition: var(--#{$prefix}-transition);
+%input {
+  --height: var(--#{$prefix}-input-height);
+  --padding: 0 var(--#{$prefix}-spacing);
+  --line-height: var(--#{$prefix}-line-height-base);
+  --border-radius: var(--#{$prefix}-border-radius);
+  --border-color: var(--#{$prefix}-outline-variant);
+  --font-size: var(--#{$prefix}-font-size-input);
+  --background: var(--#{$prefix}-surface-container-variant);
+  --color: var(--#{$prefix}-on-surface);
+  --placeholder-color: var(--#{$prefix}-on-surface-variant);
+  --box-shadow: none;
+  --transition: var(--#{$prefix}-transition);
 
-    display: inline-flex;
-    width: 100%;
-    padding: 0 var(--#{$prefix}-spacing);
-    border: 1px solid var(--input-border-color);
-    border-radius: var(--input-border-radius);
-    font-size: var(--input-font-size);
-    height: var(--input-height);
-    line-height: var(--input-line-height);
-    color: var(--input-color);
-    background-color: var(--input-background);
-    box-shadow: var(--input-box-shadow);
-    transition: background-color var(--input-transition),
-                border-color var(--input-transition),
-                color var(--input-transition),
-                box-shadow var(--input-transition);
-    outline: none !important;
-    background-repeat: no-repeat;
-    background-size: $btn-icon-size;
-    background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - $btn-icon-size) / 2);
+  display: inline-flex;
+  width: 100%;
+  padding: var(--padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size);
+  height: var(--height);
+  line-height: var(--line-height);
+  color: var(--color);
+  background-color: var(--background);
+  box-shadow: var(--box-shadow);
+  transition: background-color var(--transition),
+              border-color var(--transition),
+              color var(--transition),
+              box-shadow var(--transition);
+  outline: none !important;
+  background-repeat: no-repeat;
+  background-size: $btn-icon-size;
+  background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - $btn-icon-size) / 2);
 
-    &:disabled {
-      background-color: var(--#{$prefix}-surface-container);
-      color: var(--#{$prefix}-on-surface-variant);
+  &:disabled {
+    --background: var(--#{$prefix}-surface-container);
+    --color: var(--#{$prefix}-on-surface-variant);
 
-      &::placeholder {
-        color: var(--#{$prefix}-on-surface-variant);
-      }
-    }
-
-    &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
-      position: relative;
-
-      &::-webkit-calendar-picker-indicator {
-        position: absolute;
-        right: var(--#{$prefix}-spacing);
-        opacity: .5;
-      }
-    }
-
-    &:focus {
-      --input-box-shadow: 0 0 0 1px var(--#{$prefix}-primary) inset;
-      --input-border-color: var(--#{$prefix}-primary);
+    &::placeholder {
+      --color: var(--#{$prefix}-on-surface-variant);
     }
   }
 
+  &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
+    position: relative;
+
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: var(--#{$prefix}-spacing);
+      opacity: .5;
+    }
+  }
+
+  &:focus {
+    --box-shadow: 0 0 0 1px var(--#{$prefix}-primary) inset;
+    --border-color: var(--#{$prefix}-primary);
+  }
+}
+
+@mixin input {
+  input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"])),
+  textarea,
+  select {
+    @extend %input;
+  }
+
   textarea {
-    --input-height: calc(var(--#{$prefix}-input-height) * 2) !important;
+    --height: calc(var(--#{$prefix}-input-height) * 2) !important;
 
     padding-top: var(--#{$prefix}-spacing) !important;
   }
 
-  :is(input, textarea)::placeholder {
-    color: var(--input-placeholder-color);
+  :where(input, textarea)::placeholder {
+    color: var(--placeholder-color);
   }
 }
 
 @mixin input-other {
   input[type="search"] {
-    --input-border-radius: 999px !important;
+    --border-radius: 999px !important;
 
     background-image: var(--#{$prefix}-search-icon);
     background-position: left var(--#{$prefix}-spacing) center !important;
@@ -181,31 +188,31 @@
   }
 
   input[type="color"] {
-    padding: calc(var(--#{$prefix}-spacing) / 2) var(--#{$prefix}-spacing) !important;
+    --padding: calc(var(--#{$prefix}-spacing) / 2) var(--#{$prefix}-spacing) !important;
   }
 }
 
 @mixin input-states {
   :is(input, textarea, select) {
     &[aria-invalid="true"] {
-      --input-border-color: var(--#{$prefix}-error);
+      --border-color: var(--#{$prefix}-error);
 
       background-image: var(--#{$prefix}-invalid-icon);
 
       &:focus {
-        --input-box-shadow: 0 0 0 1px var(--#{$prefix}-error) inset;
-        --input-border-color: var(--#{$prefix}-error);
+        --box-shadow: 0 0 0 1px var(--#{$prefix}-error) inset;
+        --border-color: var(--#{$prefix}-error);
       }
     }
 
     &[aria-invalid="false"] {
-      --input-border-color: var(--#{$prefix}-success);
+      --border-color: var(--#{$prefix}-success);
 
       background-image: var(--#{$prefix}-valid-icon);
 
       &:focus {
-        --input-box-shadow: 0 0 0 1px var(--#{$prefix}-success) inset;
-        --input-border-color: var(--#{$prefix}-success);
+        --box-shadow: 0 0 0 1px var(--#{$prefix}-success) inset;
+        --border-color: var(--#{$prefix}-success);
       }
     }
   }
@@ -213,8 +220,8 @@
 
 @mixin input-autofill {
   :is(input, textarea, select):is(:autofill, :-webkit-autofill) {
-    box-shadow: 0 0 0 1000px var(--input-background) inset !important;
-    -webkit-text-fill-color: var(--input-color) !important;
+    box-shadow: 0 0 0 1000px var(--background) inset !important;
+    -webkit-text-fill-color: var(--color) !important;
   }
 }
 

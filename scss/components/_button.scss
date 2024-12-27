@@ -6,63 +6,62 @@
 // region button-base
 
 %button-base {
-  --btn-height: var(--#{$prefix}-btn-height);
-  --btn-padding: #{map-get($spacers, 2)} #{map-get($spacers, 4)};
-  --btn-inner-gap: 0.5rem;
-  --btn-font-weight: 500;
-  --btn-line-height: 1.25rem;
-  --btn-border-radius: var(--#{$prefix}-border-radius);
-  --btn-font-family: var(--#{$prefix}-font-family);
-  --btn-font-size: var(--#{$prefix}-btn-font-size);
-  --btn-container-color: var(--#{$prefix}-surface-container);
-  --btn-background-color: var(--btn-container-color);
-  --btn-border-color: var(--btn-background-color);
-  --btn-color: var(--#{$prefix}-on-surface-container);
-  --btn-opacity: 1;
-  --btn-elevation: none;
+  --height: var(--#{$prefix}-btn-height);
+  --padding: #{map-get($spacers, 2)} #{map-get($spacers, 4)};
+  --inner-gap: 0.5rem;
+  --font-weight: 500;
+  --line-height: 1.25rem;
+  --border-radius: var(--#{$prefix}-border-radius);
+  --font-family: var(--#{$prefix}-font-family);
+  --font-size: var(--#{$prefix}-btn-font-size);
+  --container-color: var(--#{$prefix}-surface-container);
+  --background-color: var(--container-color);
+  --border-color: var(--background-color);
+  --color: var(--#{$prefix}-on-surface-container);
+  --opacity: 1;
+  --elevation: none;
 
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--btn-inner-gap);
-  height: var(--btn-height);
-  padding: var(--btn-padding);
-  border: 1px solid var(--btn-border-color);
-  border-radius: var(--btn-border-radius);
-  font-family: var(--btn-font-family), serif;
-  font-size: var(--btn-font-size);
-  font-weight: var(--btn-font-weight);
-  line-height: var(--btn-line-height);
+  gap: var(--inner-gap);
+  height: var(--height);
+  padding: var(--padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family), serif;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
   white-space: nowrap;
   text-decoration: none;
-  background-color: var(--btn-background-color);
+  background-color: var(--background-color);
   background-repeat: no-repeat;
-  color: var(--btn-color);
-  opacity: var(--btn-opacity);
-  box-shadow: var(--btn-elevation);
+  color: var(--color);
+  opacity: var(--opacity);
+  box-shadow: var(--elevation);
 
   &:is(:hover, [data-hovered]) {
-    --btn-background-color: color-mix(in lab, var(--btn-container-color) 92%, var(--#{$prefix}-base));
-    --btn-elevation: var(--#{$prefix}-elevation-1);
+    --background-color: color-mix(in lab, var(--container-color) 92%, var(--#{$prefix}-base));
+    --elevation: var(--#{$prefix}-elevation-1);
   }
 
   &:is(:focus, [data-focused]) {
-    --btn-background-color: color-mix(in lab, var(--btn-container-color) 86%, var(--#{$prefix}-base));
+    --background-color: color-mix(in lab, var(--container-color) 86%, var(--#{$prefix}-base));
   }
 
   &:is(:active, [data-pressed]) {
-    --btn-background-color: color-mix(in lab, var(--btn-container-color) 80%, var(--#{$prefix}-base));
+    --background-color: color-mix(in lab, var(--container-color) 80%, var(--#{$prefix}-base));
   }
 }
 
 %button-disabled {
-  &:not([disabled="false"]),
-  &:is(:disabled, [disabled], [aria-disabled="true"]) {
-    --btn-background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
-    --btn-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
-    --btn-border-color: var(--btn-background-color) !important;
-    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
+  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+    --background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
+    --color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
+    --border-color: var(--background-color) !important;
+    --elevation: var(--#{$prefix}-elevation-0) !important;
 
     cursor: auto !important;
   }
@@ -78,7 +77,7 @@
 
   svg {
     path:not([stroke]) {
-      stroke: var(--btn-color);
+      stroke: var(--color);
     }
   }
 }
@@ -86,86 +85,92 @@
 // endregion button-base
 
 %button-filled {
-  --btn-container-color: var(--#{$prefix}-primary);
-  --btn-color: var(--#{$prefix}-on-primary);
+  --container-color: var(--#{$prefix}-primary);
+  --color: var(--#{$prefix}-on-primary);
 }
 
 %button-elevated {
-  --btn-color: var(--#{$prefix}-primary);
-  --btn-container-color: var(--#{$prefix}-surface-container-low);
-  --btn-elevation: var(--#{$prefix}-elevation-1);
+  --color: var(--#{$prefix}-primary);
+  --container-color: var(--#{$prefix}-surface-container-low);
+  --elevation: var(--#{$prefix}-elevation-1);
 
   &:is(:hover, [data-hovered]) {
-    --btn-elevation: var(--#{$prefix}-elevation-2);
+    --elevation: var(--#{$prefix}-elevation-2);
   }
 
   &:is(:focus, [data-focused], :active, [data-pressed]) {
-    --btn-elevation: var(--#{$prefix}-elevation-1);
+    --elevation: var(--#{$prefix}-elevation-1);
   }
 }
 
 %button-tonal {
-  --btn-color: var(--#{$prefix}-on-secondary-container);
-  --btn-container-color: var(--#{$prefix}-secondary-container);
+  --color: var(--#{$prefix}-on-secondary-container);
+  --container-color: var(--#{$prefix}-secondary-container);
 }
 
 %button-outlined {
-  --btn-color: var(--#{$prefix}-primary);
-  --btn-container-color: transparent;
-  --btn-border-color: var(--#{$prefix}-outline);
+  --color: var(--#{$prefix}-primary);
+  --container-color: transparent;
+  --border-color: var(--#{$prefix}-outline);
 }
 
 %button-icon {
-  --btn-icon-size: calc(var(--#{$prefix}-btn-height) * 1.2);
-  --btn-color: var(--#{$prefix}-on-surface-variant);
-  --btn-container-color: transparent;
-  --btn-border-radius: var(--btn-icon-size);
-  --btn-elevation: none;
+  --size: calc(var(--#{$prefix}-btn-height) * 1.2);
+  --color: var(--#{$prefix}-on-surface-variant);
+  --container-color: transparent;
+  --border-radius: var(--size);
+  --elevation: none;
+  --icon-size: var(--#{$prefix}-btn-icon-size);
 
-  height: var(--btn-icon-size);
-  width: var(--btn-icon-size);
+  height: var(--size);
+  width: var(--size);
   padding: 0;
   background-position: center;
   background-size: var(--#{$prefix}-btn-icon-size);
 
   &:is(:hover, [data-hovered]) {
-    --btn-elevation: none;
-    --btn-container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
+    --elevation: none;
+    --container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
   }
 
   &:is(:active, [data-pressed]) {
-    --btn-container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
+    --container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
+  }
+
+  :is(i, img, svg) {
+    width: var(--icon-size);
+    height: var(--icon-size);
   }
 }
 
 %button-text {
-  --btn-color: var(--#{$prefix}-primary);
-  --btn-container-color: transparent;
+  --color: var(--#{$prefix}-primary);
+  --container-color: transparent;
 
   &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
-    --btn-background-color: transparent !important;
+    --background-color: transparent;
   }
 
   &:is(:hover, [data-hovered], :focus, [data-focused], :active, [data-pressed]) {
-    --btn-elevation: var(--#{$prefix}-elevation-0) !important;
+    --elevation: var(--#{$prefix}-elevation-0);
   }
 }
 
 %button-fab {
-  --btn-height: 3.5rem;
-  --btn-border-radius: 1rem;
-  --btn-container-color: var(--#{$prefix}-primary-container);
-  --btn-color: var(--#{$prefix}-on-primary-container);
-  --btn-padding: 0;
+  --height: 3.5rem;
+  --border-radius: 1rem;
+  --container-color: var(--#{$prefix}-primary-container);
+  --color: var(--#{$prefix}-on-primary-container);
+  --padding: 0;
 
-  min-width: var(--btn-height);
+  min-width: var(--height);
 
   &:is(:hover, [data-hovered]) {
-    --btn-elevation: var(--#{$prefix}-elevation-4) !important;
+    --elevation: var(--#{$prefix}-elevation-4);
   }
 
   &:is(:focus, [data-focused], :active, [data-pressed]) {
-    --btn-elevation: var(--#{$prefix}-elevation-3) !important;
+    --elevation: var(--#{$prefix}-elevation-3);
   }
 }
 
@@ -208,19 +213,19 @@
       @extend %button-fab;
       @extend %button-inner-icon;
     }
-  }
 
-  // Set button-icon styles
-  .btn-icon {
-    @extend %button-base;
-    @extend %button-icon;
+    // Set button-icon styles
+    &.btn-icon {
+      @extend %button-base;
+      @extend %button-icon;
+    }
   }
 
   [type="file"]::file-selector-button {
     @extend %button-base;
     @extend %button-filled;
 
-    --btn-container-color: var(--#{$prefix}-tertiary);
+    --container-color: var(--#{$prefix}-tertiary);
   }
 }
 
