@@ -1,6 +1,6 @@
 {
   "name": "cs-styles",
-  "version": "0.7.18",
+  "version": "0.7.19",
   "description": "styles",
   "main": "css/cs-styles.min.css",
   "type": "module",
@@ -14,7 +14,7 @@
     "lint": "run-s \"lint:*\" --silent",
     "lint:prettier": "prettier --write --log-level silent 'scss/**/*.scss'",
     "lint:sort-scss": "postcss --config scss ./scss/**/*.scss --replace",
-    "theme": "node material-theme.js src=material-theme-default.json scss=scss/themes/_themes_colors.scss"
+    "theme": "node material-theme.js src=material-theme-2.json scss=scss/themes/_themes_colors.scss"
   },
   "keywords": [
     "css",

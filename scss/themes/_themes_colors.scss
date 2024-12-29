@@ -1,209 +1,208 @@
 @use "../variables" as *;
-@use "sass:map" as map;
 
-$theme-colors: map.merge((
-	'light-primary': #415F91,
-	'light-surface-tint': #415F91,
-	'light-on-primary': #FFF,
-	'light-primary-container': #D6E3FF,
-	'light-on-primary-container': #001B3E,
-	'light-secondary': #565F71,
-	'light-on-secondary': #FFF,
-	'light-secondary-container': #DAE2F9,
-	'light-on-secondary-container': #131C2B,
-	'light-tertiary': #705575,
-	'light-on-tertiary': #FFF,
-	'light-tertiary-container': #FAD8FD,
-	'light-on-tertiary-container': #28132E,
-	'light-error': #BA1A1A,
-	'light-on-error': #FFF,
-	'light-error-container': #FFDAD6,
-	'light-on-error-container': #410002,
-	'light-background': #F9F9FF,
-	'light-on-background': #191C20,
-	'light-surface': #F9F9FF,
-	'light-on-surface': #191C20,
-	'light-surface-variant': #E0E2EC,
-	'light-on-surface-variant': #44474E,
-	'light-outline': #74777F,
-	'light-outline-variant': #C4C6D0,
-	'light-shadow': #000,
-	'light-scrim': #000,
-	'light-inverse-surface': #2E3036,
-	'light-inverse-on-surface': #F0F0F7,
-	'light-inverse-primary': #AAC7FF,
-	'light-primary-fixed': #D6E3FF,
-	'light-on-primary-fixed': #001B3E,
-	'light-primary-fixed-dim': #AAC7FF,
-	'light-on-primary-fixed-variant': #284777,
-	'light-secondary-fixed': #DAE2F9,
-	'light-on-secondary-fixed': #131C2B,
-	'light-secondary-fixed-dim': #BEC6DC,
-	'light-on-secondary-fixed-variant': #3E4759,
-	'light-tertiary-fixed': #FAD8FD,
-	'light-on-tertiary-fixed': #28132E,
-	'light-tertiary-fixed-dim': #DDBCE0,
-	'light-on-tertiary-fixed-variant': #573E5C,
-	'light-surface-dim': #D9D9E0,
-	'light-surface-bright': #F9F9FF,
-	'light-surface-container-lowest': #FFF,
-	'light-surface-container-low': #F3F3FA,
-	'light-surface-container': #EDEDF4,
-	'light-surface-container-high': #E7E8EE,
-	'light-surface-container-highest': #E2E2E9,
-	'dark-primary': #AAC7FF,
-	'dark-surface-tint': #AAC7FF,
-	'dark-on-primary': #0A305F,
-	'dark-primary-container': #284777,
-	'dark-on-primary-container': #D6E3FF,
-	'dark-secondary': #BEC6DC,
-	'dark-on-secondary': #283141,
-	'dark-secondary-container': #3E4759,
-	'dark-on-secondary-container': #DAE2F9,
-	'dark-tertiary': #DDBCE0,
-	'dark-on-tertiary': #3F2844,
-	'dark-tertiary-container': #573E5C,
-	'dark-on-tertiary-container': #FAD8FD,
-	'dark-error': #FFB4AB,
-	'dark-on-error': #690005,
-	'dark-error-container': #93000A,
-	'dark-on-error-container': #FFDAD6,
-	'dark-background': #111318,
-	'dark-on-background': #E2E2E9,
-	'dark-surface': #111318,
-	'dark-on-surface': #E2E2E9,
-	'dark-surface-variant': #44474E,
-	'dark-on-surface-variant': #C4C6D0,
-	'dark-outline': #8E9099,
-	'dark-outline-variant': #44474E,
-	'dark-shadow': #000,
-	'dark-scrim': #000,
-	'dark-inverse-surface': #E2E2E9,
-	'dark-inverse-on-surface': #2E3036,
-	'dark-inverse-primary': #415F91,
-	'dark-primary-fixed': #D6E3FF,
-	'dark-on-primary-fixed': #001B3E,
-	'dark-primary-fixed-dim': #AAC7FF,
-	'dark-on-primary-fixed-variant': #284777,
-	'dark-secondary-fixed': #DAE2F9,
-	'dark-on-secondary-fixed': #131C2B,
-	'dark-secondary-fixed-dim': #BEC6DC,
-	'dark-on-secondary-fixed-variant': #3E4759,
-	'dark-tertiary-fixed': #FAD8FD,
-	'dark-on-tertiary-fixed': #28132E,
-	'dark-tertiary-fixed-dim': #DDBCE0,
-	'dark-on-tertiary-fixed-variant': #573E5C,
-	'dark-surface-dim': #111318,
-	'dark-surface-bright': #37393E,
-	'dark-surface-container-lowest': #0C0E13,
-	'dark-surface-container-low': #191C20,
-	'dark-surface-container': #1D2024,
-	'dark-surface-container-high': #282A2F,
-	'dark-surface-container-highest': #33353A,
+$theme-colors: map-merge((
+	'light-primary': #65558F,
+	'light-surface-tint': #65558F,
+	'light-on-primary': #FFFFFF,
+	'light-primary-container': #E9DDFF,
+	'light-on-primary-container': #201047,
+	'light-secondary': #65558F,
+	'light-on-secondary': #FFFFFF,
+	'light-secondary-container': #E9DDFF,
+	'light-on-secondary-container': #201047,
+	'light-tertiary': #8B4A61,
+	'light-on-tertiary': #FFFFFF,
+	'light-tertiary-container': #FFD9E3,
+	'light-on-tertiary-container': #3A071E,
+	'light-error': #904A45,
+	'light-on-error': #FFFFFF,
+	'light-error-container': #FFDAD7,
+	'light-on-error-container': #3B0908,
+	'light-background': #FDF7FF,
+	'light-on-background': #1D1B20,
+	'light-surface': #FDF7FF,
+	'light-on-surface': #1C1B20,
+	'light-surface-variant': #E6E0EC,
+	'light-on-surface-variant': #48454E,
+	'light-outline': #79757F,
+	'light-outline-variant': #C9C4D0,
+	'light-shadow': #000000,
+	'light-scrim': #000000,
+	'light-inverse-surface': #322F35,
+	'light-inverse-on-surface': #F5EFF7,
+	'light-inverse-primary': #CFBDFE,
+	'light-primary-fixed': #E9DDFF,
+	'light-on-primary-fixed': #201047,
+	'light-primary-fixed-dim': #CFBDFE,
+	'light-on-primary-fixed-variant': #4D3D75,
+	'light-secondary-fixed': #E9DDFF,
+	'light-on-secondary-fixed': #201047,
+	'light-secondary-fixed-dim': #CFBDFE,
+	'light-on-secondary-fixed-variant': #4D3D75,
+	'light-tertiary-fixed': #FFD9E3,
+	'light-on-tertiary-fixed': #3A071E,
+	'light-tertiary-fixed-dim': #FFB0C9,
+	'light-on-tertiary-fixed-variant': #6F3349,
+	'light-surface-dim': #DED8E0,
+	'light-surface-bright': #FDF7FF,
+	'light-surface-container-lowest': #FFFFFF,
+	'light-surface-container-low': #F7F2FA,
+	'light-surface-container': #F2ECF4,
+	'light-surface-container-high': #ECE6EE,
+	'light-surface-container-highest': #E6E1E9,
+	'dark-primary': #CFBDFE,
+	'dark-surface-tint': #CFBDFE,
+	'dark-on-primary': #36275D,
+	'dark-primary-container': #4D3D75,
+	'dark-on-primary-container': #E9DDFF,
+	'dark-secondary': #CFBDFE,
+	'dark-on-secondary': #36275D,
+	'dark-secondary-container': #4D3D75,
+	'dark-on-secondary-container': #E9DDFF,
+	'dark-tertiary': #FFB0C9,
+	'dark-on-tertiary': #541D33,
+	'dark-tertiary-container': #6F3349,
+	'dark-on-tertiary-container': #FFD9E3,
+	'dark-error': #FFB3AD,
+	'dark-on-error': #571E1B,
+	'dark-error-container': #73332F,
+	'dark-on-error-container': #FFDAD7,
+	'dark-background': #141218,
+	'dark-on-background': #E6E0E9,
+	'dark-surface': #141318,
+	'dark-on-surface': #E6E1E9,
+	'dark-surface-variant': #48454E,
+	'dark-on-surface-variant': #C9C4D0,
+	'dark-outline': #938F99,
+	'dark-outline-variant': #48454E,
+	'dark-shadow': #000000,
+	'dark-scrim': #000000,
+	'dark-inverse-surface': #E6E1E9,
+	'dark-inverse-on-surface': #322F35,
+	'dark-inverse-primary': #65558F,
+	'dark-primary-fixed': #E9DDFF,
+	'dark-on-primary-fixed': #201047,
+	'dark-primary-fixed-dim': #CFBDFE,
+	'dark-on-primary-fixed-variant': #4D3D75,
+	'dark-secondary-fixed': #E9DDFF,
+	'dark-on-secondary-fixed': #201047,
+	'dark-secondary-fixed-dim': #CFBDFE,
+	'dark-on-secondary-fixed-variant': #4D3D75,
+	'dark-tertiary-fixed': #FFD9E3,
+	'dark-on-tertiary-fixed': #3A071E,
+	'dark-tertiary-fixed-dim': #FFB0C9,
+	'dark-on-tertiary-fixed-variant': #6F3349,
+	'dark-surface-dim': #141318,
+	'dark-surface-bright': #3A383E,
+	'dark-surface-container-lowest': #0F0D13,
+	'dark-surface-container-low': #1C1B20,
+	'dark-surface-container': #211F24,
+	'dark-surface-container-high': #2B292F,
+	'dark-surface-container-highest': #36343A,
 ), $theme-colors);
 
 @mixin themes-colors() {
 	&:not([data-theme="dark"]) {
-		--#{$prefix}-primary: #{map.get($theme-colors, light-primary)};
-		--#{$prefix}-surface-tint: #{map.get($theme-colors, light-surface-tint)};
-		--#{$prefix}-on-primary: #{map.get($theme-colors, light-on-primary)};
-		--#{$prefix}-primary-container: #{map.get($theme-colors, light-primary-container)};
-		--#{$prefix}-on-primary-container: #{map.get($theme-colors, light-on-primary-container)};
-		--#{$prefix}-secondary: #{map.get($theme-colors, light-secondary)};
-		--#{$prefix}-on-secondary: #{map.get($theme-colors, light-on-secondary)};
-		--#{$prefix}-secondary-container: #{map.get($theme-colors, light-secondary-container)};
-		--#{$prefix}-on-secondary-container: #{map.get($theme-colors, light-on-secondary-container)};
-		--#{$prefix}-tertiary: #{map.get($theme-colors, light-tertiary)};
-		--#{$prefix}-on-tertiary: #{map.get($theme-colors, light-on-tertiary)};
-		--#{$prefix}-tertiary-container: #{map.get($theme-colors, light-tertiary-container)};
-		--#{$prefix}-on-tertiary-container: #{map.get($theme-colors, light-on-tertiary-container)};
-		--#{$prefix}-error: #{map.get($theme-colors, light-error)};
-		--#{$prefix}-on-error: #{map.get($theme-colors, light-on-error)};
-		--#{$prefix}-error-container: #{map.get($theme-colors, light-error-container)};
-		--#{$prefix}-on-error-container: #{map.get($theme-colors, light-on-error-container)};
-		--#{$prefix}-background: #{map.get($theme-colors, light-background)};
-		--#{$prefix}-on-background: #{map.get($theme-colors, light-on-background)};
-		--#{$prefix}-surface: #{map.get($theme-colors, light-surface)};
-		--#{$prefix}-on-surface: #{map.get($theme-colors, light-on-surface)};
-		--#{$prefix}-surface-variant: #{map.get($theme-colors, light-surface-variant)};
-		--#{$prefix}-on-surface-variant: #{map.get($theme-colors, light-on-surface-variant)};
-		--#{$prefix}-outline: #{map.get($theme-colors, light-outline)};
-		--#{$prefix}-outline-variant: #{map.get($theme-colors, light-outline-variant)};
-		--#{$prefix}-shadow: #{map.get($theme-colors, light-shadow)};
-		--#{$prefix}-scrim: #{map.get($theme-colors, light-scrim)};
-		--#{$prefix}-inverse-surface: #{map.get($theme-colors, light-inverse-surface)};
-		--#{$prefix}-inverse-on-surface: #{map.get($theme-colors, light-inverse-on-surface)};
-		--#{$prefix}-inverse-primary: #{map.get($theme-colors, light-inverse-primary)};
-		--#{$prefix}-primary-fixed: #{map.get($theme-colors, light-primary-fixed)};
-		--#{$prefix}-on-primary-fixed: #{map.get($theme-colors, light-on-primary-fixed)};
-		--#{$prefix}-primary-fixed-dim: #{map.get($theme-colors, light-primary-fixed-dim)};
-		--#{$prefix}-on-primary-fixed-variant: #{map.get($theme-colors, light-on-primary-fixed-variant)};
-		--#{$prefix}-secondary-fixed: #{map.get($theme-colors, light-secondary-fixed)};
-		--#{$prefix}-on-secondary-fixed: #{map.get($theme-colors, light-on-secondary-fixed)};
-		--#{$prefix}-secondary-fixed-dim: #{map.get($theme-colors, light-secondary-fixed-dim)};
-		--#{$prefix}-on-secondary-fixed-variant: #{map.get($theme-colors, light-on-secondary-fixed-variant)};
-		--#{$prefix}-tertiary-fixed: #{map.get($theme-colors, light-tertiary-fixed)};
-		--#{$prefix}-on-tertiary-fixed: #{map.get($theme-colors, light-on-tertiary-fixed)};
-		--#{$prefix}-tertiary-fixed-dim: #{map.get($theme-colors, light-tertiary-fixed-dim)};
-		--#{$prefix}-on-tertiary-fixed-variant: #{map.get($theme-colors, light-on-tertiary-fixed-variant)};
-		--#{$prefix}-surface-dim: #{map.get($theme-colors, light-surface-dim)};
-		--#{$prefix}-surface-bright: #{map.get($theme-colors, light-surface-bright)};
-		--#{$prefix}-surface-container-lowest: #{map.get($theme-colors, light-surface-container-lowest)};
-		--#{$prefix}-surface-container-low: #{map.get($theme-colors, light-surface-container-low)};
-		--#{$prefix}-surface-container: #{map.get($theme-colors, light-surface-container)};
-		--#{$prefix}-surface-container-high: #{map.get($theme-colors, light-surface-container-high)};
-		--#{$prefix}-surface-container-highest: #{map.get($theme-colors, light-surface-container-highest)};
+		--#{$prefix}-primary: #{map-get($theme-colors, light-primary)};
+		--#{$prefix}-surface-tint: #{map-get($theme-colors, light-surface-tint)};
+		--#{$prefix}-on-primary: #{map-get($theme-colors, light-on-primary)};
+		--#{$prefix}-primary-container: #{map-get($theme-colors, light-primary-container)};
+		--#{$prefix}-on-primary-container: #{map-get($theme-colors, light-on-primary-container)};
+		--#{$prefix}-secondary: #{map-get($theme-colors, light-secondary)};
+		--#{$prefix}-on-secondary: #{map-get($theme-colors, light-on-secondary)};
+		--#{$prefix}-secondary-container: #{map-get($theme-colors, light-secondary-container)};
+		--#{$prefix}-on-secondary-container: #{map-get($theme-colors, light-on-secondary-container)};
+		--#{$prefix}-tertiary: #{map-get($theme-colors, light-tertiary)};
+		--#{$prefix}-on-tertiary: #{map-get($theme-colors, light-on-tertiary)};
+		--#{$prefix}-tertiary-container: #{map-get($theme-colors, light-tertiary-container)};
+		--#{$prefix}-on-tertiary-container: #{map-get($theme-colors, light-on-tertiary-container)};
+		--#{$prefix}-error: #{map-get($theme-colors, light-error)};
+		--#{$prefix}-on-error: #{map-get($theme-colors, light-on-error)};
+		--#{$prefix}-error-container: #{map-get($theme-colors, light-error-container)};
+		--#{$prefix}-on-error-container: #{map-get($theme-colors, light-on-error-container)};
+		--#{$prefix}-background: #{map-get($theme-colors, light-background)};
+		--#{$prefix}-on-background: #{map-get($theme-colors, light-on-background)};
+		--#{$prefix}-surface: #{map-get($theme-colors, light-surface)};
+		--#{$prefix}-on-surface: #{map-get($theme-colors, light-on-surface)};
+		--#{$prefix}-surface-variant: #{map-get($theme-colors, light-surface-variant)};
+		--#{$prefix}-on-surface-variant: #{map-get($theme-colors, light-on-surface-variant)};
+		--#{$prefix}-outline: #{map-get($theme-colors, light-outline)};
+		--#{$prefix}-outline-variant: #{map-get($theme-colors, light-outline-variant)};
+		--#{$prefix}-shadow: #{map-get($theme-colors, light-shadow)};
+		--#{$prefix}-scrim: #{map-get($theme-colors, light-scrim)};
+		--#{$prefix}-inverse-surface: #{map-get($theme-colors, light-inverse-surface)};
+		--#{$prefix}-inverse-on-surface: #{map-get($theme-colors, light-inverse-on-surface)};
+		--#{$prefix}-inverse-primary: #{map-get($theme-colors, light-inverse-primary)};
+		--#{$prefix}-primary-fixed: #{map-get($theme-colors, light-primary-fixed)};
+		--#{$prefix}-on-primary-fixed: #{map-get($theme-colors, light-on-primary-fixed)};
+		--#{$prefix}-primary-fixed-dim: #{map-get($theme-colors, light-primary-fixed-dim)};
+		--#{$prefix}-on-primary-fixed-variant: #{map-get($theme-colors, light-on-primary-fixed-variant)};
+		--#{$prefix}-secondary-fixed: #{map-get($theme-colors, light-secondary-fixed)};
+		--#{$prefix}-on-secondary-fixed: #{map-get($theme-colors, light-on-secondary-fixed)};
+		--#{$prefix}-secondary-fixed-dim: #{map-get($theme-colors, light-secondary-fixed-dim)};
+		--#{$prefix}-on-secondary-fixed-variant: #{map-get($theme-colors, light-on-secondary-fixed-variant)};
+		--#{$prefix}-tertiary-fixed: #{map-get($theme-colors, light-tertiary-fixed)};
+		--#{$prefix}-on-tertiary-fixed: #{map-get($theme-colors, light-on-tertiary-fixed)};
+		--#{$prefix}-tertiary-fixed-dim: #{map-get($theme-colors, light-tertiary-fixed-dim)};
+		--#{$prefix}-on-tertiary-fixed-variant: #{map-get($theme-colors, light-on-tertiary-fixed-variant)};
+		--#{$prefix}-surface-dim: #{map-get($theme-colors, light-surface-dim)};
+		--#{$prefix}-surface-bright: #{map-get($theme-colors, light-surface-bright)};
+		--#{$prefix}-surface-container-lowest: #{map-get($theme-colors, light-surface-container-lowest)};
+		--#{$prefix}-surface-container-low: #{map-get($theme-colors, light-surface-container-low)};
+		--#{$prefix}-surface-container: #{map-get($theme-colors, light-surface-container)};
+		--#{$prefix}-surface-container-high: #{map-get($theme-colors, light-surface-container-high)};
+		--#{$prefix}-surface-container-highest: #{map-get($theme-colors, light-surface-container-highest)};
 	}
 
 	&[data-theme="dark"] {
-		--#{$prefix}-primary: #{map.get($theme-colors, dark-primary)};
-		--#{$prefix}-surface-tint: #{map.get($theme-colors, dark-surface-tint)};
-		--#{$prefix}-on-primary: #{map.get($theme-colors, dark-on-primary)};
-		--#{$prefix}-primary-container: #{map.get($theme-colors, dark-primary-container)};
-		--#{$prefix}-on-primary-container: #{map.get($theme-colors, dark-on-primary-container)};
-		--#{$prefix}-secondary: #{map.get($theme-colors, dark-secondary)};
-		--#{$prefix}-on-secondary: #{map.get($theme-colors, dark-on-secondary)};
-		--#{$prefix}-secondary-container: #{map.get($theme-colors, dark-secondary-container)};
-		--#{$prefix}-on-secondary-container: #{map.get($theme-colors, dark-on-secondary-container)};
-		--#{$prefix}-tertiary: #{map.get($theme-colors, dark-tertiary)};
-		--#{$prefix}-on-tertiary: #{map.get($theme-colors, dark-on-tertiary)};
-		--#{$prefix}-tertiary-container: #{map.get($theme-colors, dark-tertiary-container)};
-		--#{$prefix}-on-tertiary-container: #{map.get($theme-colors, dark-on-tertiary-container)};
-		--#{$prefix}-error: #{map.get($theme-colors, dark-error)};
-		--#{$prefix}-on-error: #{map.get($theme-colors, dark-on-error)};
-		--#{$prefix}-error-container: #{map.get($theme-colors, dark-error-container)};
-		--#{$prefix}-on-error-container: #{map.get($theme-colors, dark-on-error-container)};
-		--#{$prefix}-background: #{map.get($theme-colors, dark-background)};
-		--#{$prefix}-on-background: #{map.get($theme-colors, dark-on-background)};
-		--#{$prefix}-surface: #{map.get($theme-colors, dark-surface)};
-		--#{$prefix}-on-surface: #{map.get($theme-colors, dark-on-surface)};
-		--#{$prefix}-surface-variant: #{map.get($theme-colors, dark-surface-variant)};
-		--#{$prefix}-on-surface-variant: #{map.get($theme-colors, dark-on-surface-variant)};
-		--#{$prefix}-outline: #{map.get($theme-colors, dark-outline)};
-		--#{$prefix}-outline-variant: #{map.get($theme-colors, dark-outline-variant)};
-		--#{$prefix}-shadow: #{map.get($theme-colors, dark-shadow)};
-		--#{$prefix}-scrim: #{map.get($theme-colors, dark-scrim)};
-		--#{$prefix}-inverse-surface: #{map.get($theme-colors, dark-inverse-surface)};
-		--#{$prefix}-inverse-on-surface: #{map.get($theme-colors, dark-inverse-on-surface)};
-		--#{$prefix}-inverse-primary: #{map.get($theme-colors, dark-inverse-primary)};
-		--#{$prefix}-primary-fixed: #{map.get($theme-colors, dark-primary-fixed)};
-		--#{$prefix}-on-primary-fixed: #{map.get($theme-colors, dark-on-primary-fixed)};
-		--#{$prefix}-primary-fixed-dim: #{map.get($theme-colors, dark-primary-fixed-dim)};
-		--#{$prefix}-on-primary-fixed-variant: #{map.get($theme-colors, dark-on-primary-fixed-variant)};
-		--#{$prefix}-secondary-fixed: #{map.get($theme-colors, dark-secondary-fixed)};
-		--#{$prefix}-on-secondary-fixed: #{map.get($theme-colors, dark-on-secondary-fixed)};
-		--#{$prefix}-secondary-fixed-dim: #{map.get($theme-colors, dark-secondary-fixed-dim)};
-		--#{$prefix}-on-secondary-fixed-variant: #{map.get($theme-colors, dark-on-secondary-fixed-variant)};
-		--#{$prefix}-tertiary-fixed: #{map.get($theme-colors, dark-tertiary-fixed)};
-		--#{$prefix}-on-tertiary-fixed: #{map.get($theme-colors, dark-on-tertiary-fixed)};
-		--#{$prefix}-tertiary-fixed-dim: #{map.get($theme-colors, dark-tertiary-fixed-dim)};
-		--#{$prefix}-on-tertiary-fixed-variant: #{map.get($theme-colors, dark-on-tertiary-fixed-variant)};
-		--#{$prefix}-surface-dim: #{map.get($theme-colors, dark-surface-dim)};
-		--#{$prefix}-surface-bright: #{map.get($theme-colors, dark-surface-bright)};
-		--#{$prefix}-surface-container-lowest: #{map.get($theme-colors, dark-surface-container-lowest)};
-		--#{$prefix}-surface-container-low: #{map.get($theme-colors, dark-surface-container-low)};
-		--#{$prefix}-surface-container: #{map.get($theme-colors, dark-surface-container)};
-		--#{$prefix}-surface-container-high: #{map.get($theme-colors, dark-surface-container-high)};
-		--#{$prefix}-surface-container-highest: #{map.get($theme-colors, dark-surface-container-highest)};
+		--#{$prefix}-primary: #{map-get($theme-colors, dark-primary)};
+		--#{$prefix}-surface-tint: #{map-get($theme-colors, dark-surface-tint)};
+		--#{$prefix}-on-primary: #{map-get($theme-colors, dark-on-primary)};
+		--#{$prefix}-primary-container: #{map-get($theme-colors, dark-primary-container)};
+		--#{$prefix}-on-primary-container: #{map-get($theme-colors, dark-on-primary-container)};
+		--#{$prefix}-secondary: #{map-get($theme-colors, dark-secondary)};
+		--#{$prefix}-on-secondary: #{map-get($theme-colors, dark-on-secondary)};
+		--#{$prefix}-secondary-container: #{map-get($theme-colors, dark-secondary-container)};
+		--#{$prefix}-on-secondary-container: #{map-get($theme-colors, dark-on-secondary-container)};
+		--#{$prefix}-tertiary: #{map-get($theme-colors, dark-tertiary)};
+		--#{$prefix}-on-tertiary: #{map-get($theme-colors, dark-on-tertiary)};
+		--#{$prefix}-tertiary-container: #{map-get($theme-colors, dark-tertiary-container)};
+		--#{$prefix}-on-tertiary-container: #{map-get($theme-colors, dark-on-tertiary-container)};
+		--#{$prefix}-error: #{map-get($theme-colors, dark-error)};
+		--#{$prefix}-on-error: #{map-get($theme-colors, dark-on-error)};
+		--#{$prefix}-error-container: #{map-get($theme-colors, dark-error-container)};
+		--#{$prefix}-on-error-container: #{map-get($theme-colors, dark-on-error-container)};
+		--#{$prefix}-background: #{map-get($theme-colors, dark-background)};
+		--#{$prefix}-on-background: #{map-get($theme-colors, dark-on-background)};
+		--#{$prefix}-surface: #{map-get($theme-colors, dark-surface)};
+		--#{$prefix}-on-surface: #{map-get($theme-colors, dark-on-surface)};
+		--#{$prefix}-surface-variant: #{map-get($theme-colors, dark-surface-variant)};
+		--#{$prefix}-on-surface-variant: #{map-get($theme-colors, dark-on-surface-variant)};
+		--#{$prefix}-outline: #{map-get($theme-colors, dark-outline)};
+		--#{$prefix}-outline-variant: #{map-get($theme-colors, dark-outline-variant)};
+		--#{$prefix}-shadow: #{map-get($theme-colors, dark-shadow)};
+		--#{$prefix}-scrim: #{map-get($theme-colors, dark-scrim)};
+		--#{$prefix}-inverse-surface: #{map-get($theme-colors, dark-inverse-surface)};
+		--#{$prefix}-inverse-on-surface: #{map-get($theme-colors, dark-inverse-on-surface)};
+		--#{$prefix}-inverse-primary: #{map-get($theme-colors, dark-inverse-primary)};
+		--#{$prefix}-primary-fixed: #{map-get($theme-colors, dark-primary-fixed)};
+		--#{$prefix}-on-primary-fixed: #{map-get($theme-colors, dark-on-primary-fixed)};
+		--#{$prefix}-primary-fixed-dim: #{map-get($theme-colors, dark-primary-fixed-dim)};
+		--#{$prefix}-on-primary-fixed-variant: #{map-get($theme-colors, dark-on-primary-fixed-variant)};
+		--#{$prefix}-secondary-fixed: #{map-get($theme-colors, dark-secondary-fixed)};
+		--#{$prefix}-on-secondary-fixed: #{map-get($theme-colors, dark-on-secondary-fixed)};
+		--#{$prefix}-secondary-fixed-dim: #{map-get($theme-colors, dark-secondary-fixed-dim)};
+		--#{$prefix}-on-secondary-fixed-variant: #{map-get($theme-colors, dark-on-secondary-fixed-variant)};
+		--#{$prefix}-tertiary-fixed: #{map-get($theme-colors, dark-tertiary-fixed)};
+		--#{$prefix}-on-tertiary-fixed: #{map-get($theme-colors, dark-on-tertiary-fixed)};
+		--#{$prefix}-tertiary-fixed-dim: #{map-get($theme-colors, dark-tertiary-fixed-dim)};
+		--#{$prefix}-on-tertiary-fixed-variant: #{map-get($theme-colors, dark-on-tertiary-fixed-variant)};
+		--#{$prefix}-surface-dim: #{map-get($theme-colors, dark-surface-dim)};
+		--#{$prefix}-surface-bright: #{map-get($theme-colors, dark-surface-bright)};
+		--#{$prefix}-surface-container-lowest: #{map-get($theme-colors, dark-surface-container-lowest)};
+		--#{$prefix}-surface-container-low: #{map-get($theme-colors, dark-surface-container-low)};
+		--#{$prefix}-surface-container: #{map-get($theme-colors, dark-surface-container)};
+		--#{$prefix}-surface-container-high: #{map-get($theme-colors, dark-surface-container-high)};
+		--#{$prefix}-surface-container-highest: #{map-get($theme-colors, dark-surface-container-highest)};
 	}
 }
