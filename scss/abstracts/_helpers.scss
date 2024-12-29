@@ -1,0 +1,10 @@
+@use "sass:string" as string;
+@use "sass:color" as color;
+
+@function hex-to-rgb($color) {
+  @return string.unquote("rgb(" + color.channel($color, "red", $space: rgb) + ", " + color.channel($color, "green", $space: rgb) + ", " + color.channel($color, "blue", $space: rgb) + ")");
+}
+
+@function hex-to-rgba($color, $alpha: 1) {
+  @return string.unquote("rgba(" + color.channel($color, "red", $space: rgb) + ", " + color.channel($color, "green", $space: rgb) + ", " + color.channel($color, "blue", $space: rgb) + ", " + $alpha + ")");
+}

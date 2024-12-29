@@ -1,4 +1,8 @@
+@use "sass:map" as map;
+@use "sass:color" as color;
+@use "../abstracts/helpers" as *;
 @use "../variables" as *;
+@use "themes_colors" as *;
 
 $light-success: #279977;
 $dark-success: #16896a;
@@ -9,10 +13,12 @@ $dark-base: #000;
   &:not([data-theme="dark"]) {
     --#{$prefix}-base: #{$light-base};
     --#{$prefix}-success: #{$light-success};
+    --#{$prefix}-outline-disabled: #{hex-to-rgba($color: map.get($theme-colors, 'light-on-surface'), $alpha: .38)};
   }
 
   &[data-theme="dark"] {
     --#{$prefix}-base: #{$dark-base};
     --#{$prefix}-success: #{$dark-success};
+    --#{$prefix}-outline-disabled: #{hex-to-rgba($color: map.get($theme-colors, 'dark-on-surface'), $alpha: .38)};
   }
 }

@@ -1,13 +1,14 @@
 /// Buttons base styles
-@use "sass:map" as *;
+@use "sass:map" as map;
 @use "sass:string" as *;
 @use "../variables" as *;
+@use "../abstracts/mixins" as *;
 
 // region button-base
 
 %button-base {
   --height: var(--#{$prefix}-btn-height);
-  --padding: #{map-get($spacers, 2)} #{map-get($spacers, 4)};
+  --padding: #{map.get($spacers, 2)} #{map.get($spacers, 4)};
   --inner-gap: 0.5rem;
   --font-weight: 500;
   --line-height: 1.25rem;
@@ -57,7 +58,7 @@
 }
 
 %button-disabled {
-  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+  @include disabled {
     --background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
     --color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
     --border-color: var(--background-color) !important;

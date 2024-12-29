@@ -1,0 +1,10 @@
+/////////////////////
+/// Helpers
+/////////////////////
+
+@mixin disabled {
+  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+    @content;
+  }
+}
+

@@ -1,3 +1,4 @@
+@use "../abstracts/mixins" as *;
 @use "../variables" as *;
 
 @mixin radio-checkbox {
@@ -14,14 +15,15 @@
   }
 
   input[type="radio"], input[type="checkbox"] {
-    --color: var(--#{$prefix}-on-surface-variant);
     --size: 1.25rem;
+    --border-color: var(--#{$prefix}-on-surface-variant);
     --border-width: 2px;
+    --background-color: transparent;
 
     margin: 0 calc(var(--#{$prefix}-spacing) * .5) 0 0;
     width: var(--size);
     height: var(--size);
-    border: var(--border-width) solid var(--color);
+    border: var(--border-width) solid var(--border-color);
     vertical-align: text-bottom;
     cursor: pointer;
     appearance: none;
@@ -32,6 +34,11 @@
       vertical-align: text-bottom;
       cursor: default;
     }
+
+    @include disabled {
+      --border-color: var(--#{$prefix}-outline-disabled);
+      --background-color: var(--#{$prefix}-outline-disabled);
+    }
   }
 
   input[type="radio"] {
@@ -41,23 +48,29 @@
     border-radius: 50%;
 
     &:checked {
-      --color: var(--#{$prefix}-primary);
+      --border-color: var(--#{$prefix}-primary);
 
-      background-image: radial-gradient(circle, var(--color) var(--radio-point), transparent calc(var(--radio-point) + var(--radio-additional)));
+      background-image: radial-gradient(circle, var(--border-color) var(--radio-point), transparent calc(var(--radio-point) + var(--radio-additional)));
     }
   }
 
   input[type="checkbox"] {
     --size: 1.125rem;
+    --indicator-color: var(--#{$prefix}-on-primary);
+    --indicator-width: 2px;
 
     position: relative;
 
     &:checked {
-      --color: var(--#{$prefix}-primary);
-      --indicator-color: var(--#{$prefix}-on-primary);
-      --indicator-width: 2px;
+      --border-color: var(--#{$prefix}-primary);
+      --background-color: var(--#{$prefix}-primary);
 
-      background-color: var(--color);
+      background-color: var(--background-color);
+
+      @include disabled {
+        --border-color: var(--#{$prefix}-outline-disabled);
+        --background-color: var(--#{$prefix}-outline-disabled);
+      }
 
       &::after {
         content: "";
