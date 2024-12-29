@@ -124,10 +124,25 @@
   }
 }
 
+@mixin select {
+  select {
+    appearance: none;
+    background-image: var(--#{$prefix}-chevron-icon);
+
+    &[multiple] {
+      --padding: var(--#{$prefix}-spacing);
+
+      height: auto;
+      background-image: none;
+    }
+  }
+}
+
 @if $enable-forms {
   @include input;
   @include input-other;
   @include input-states;
+  @include select;
 
   @if $enable-autofill-fix {
     @include input-autofill;

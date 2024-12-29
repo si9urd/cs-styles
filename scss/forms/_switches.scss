@@ -1,0 +1,79 @@
+@use "../variables" as *;
+
+@mixin radio-checkbox {
+  label:has([type="radio"], [type="checkbox"]) {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-right: var(--#{$prefix}-spacing);
+    cursor: pointer;
+
+    input {
+      margin-right: var(--#{$prefix}-spacing);
+    }
+  }
+
+  input[type="radio"], input[type="checkbox"] {
+    --color: var(--#{$prefix}-on-surface-variant);
+    --size: 1.25rem;
+    --border-width: 2px;
+
+    margin: 0 calc(var(--#{$prefix}-spacing) * .5) 0 0;
+    width: var(--size);
+    height: var(--size);
+    border: var(--border-width) solid var(--color);
+    vertical-align: text-bottom;
+    cursor: pointer;
+    appearance: none;
+
+    & + label {
+      display: inline-flex;
+      margin-right: var(--#{$prefix}-spacing);
+      vertical-align: text-bottom;
+      cursor: default;
+    }
+  }
+
+  input[type="radio"] {
+    --radio-additional: 1px;
+    --radio-point: 30%;
+
+    border-radius: 50%;
+
+    &:checked {
+      --color: var(--#{$prefix}-primary);
+
+      background-image: radial-gradient(circle, var(--color) var(--radio-point), transparent calc(var(--radio-point) + var(--radio-additional)));
+    }
+  }
+
+  input[type="checkbox"] {
+    --size: 1.125rem;
+
+    position: relative;
+
+    &:checked {
+      --color: var(--#{$prefix}-primary);
+      --indicator-color: var(--#{$prefix}-on-primary);
+      --indicator-width: 2px;
+
+      background-color: var(--color);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: calc(var(--size) * .1);
+        left: calc(var(--size) * .35);
+        width: calc(var(--size) * .2);
+        height: calc(var(--size) * .6);
+        border: solid var(--indicator-color);
+        border-width: 0 var(--indicator-width) var(--indicator-width) 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+@if $enable-forms {
+  @include radio-checkbox;
+}

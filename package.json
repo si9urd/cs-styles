@@ -1,6 +1,6 @@
 {
   "name": "cs-styles",
-  "version": "0.7.16",
+  "version": "0.7.17",
   "description": "styles",
   "main": "css/cs-styles.min.css",
   "type": "module",
