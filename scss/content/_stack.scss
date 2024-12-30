@@ -1,0 +1,29 @@
+@use "../variables" as *;
+
+%h-stack {
+  --gap: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+  column-gap: var(--gap);
+}
+
+%v-stack {
+  --gap: 0;
+
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-self: stretch;
+  row-gap: var(--gap);
+}
+
+.v-stack {
+  @extend %v-stack;
+}
+
+.h-stack {
+  @extend %h-stack;
+}

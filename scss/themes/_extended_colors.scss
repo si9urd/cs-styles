@@ -13,14 +13,10 @@ $dark-base: #000;
   &:not([data-theme="dark"]) {
     --#{$prefix}-base: #{$light-base};
     --#{$prefix}-success: #{$light-success};
-    //--#{$prefix}-outline-disabled: #{map.get($theme-colors, 'light-outline-variant')};
-    --#{$prefix}-outline-disabled: color-mix(in lab, #{map.get($theme-colors, 'light-on-surface')} 38%, var(--#{$prefix}-base));
   }
 
   &[data-theme="dark"] {
     --#{$prefix}-base: #{$dark-base};
     --#{$prefix}-success: #{$dark-success};
-    //--#{$prefix}-outline-disabled: #{map.get($theme-colors, 'dark-outline-variant')};
-    --#{$prefix}-outline-disabled: color-mix(in lab, #{map.get($theme-colors, 'dark-on-surface')} 38%, var(--#{$prefix}-base));
   }
 }
