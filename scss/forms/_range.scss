@@ -1,0 +1,60 @@
+@use "../variables" as *;
+@use "../abstracts/mixins" as *;
+@use "sass:map" as map;
+
+@mixin range-track {
+  width: 100%;
+  height: var(--track-height);
+  border-radius: var(--track-height);
+  background-color: var(--track-color);
+}
+
+@mixin range-thumb {
+  $margin-top: calc(var(--track-height) * 0.5 - var(--thumb-height) * 0.5);
+
+  appearance: none;
+  width: var(--thumb-height);
+  height: var(--thumb-height);
+  margin-top: $margin-top;
+  border-radius: var(--thumb-height);
+  background-color: var(--thumb-color);
+  cursor: var(--cursor);
+}
+
+@mixin range {
+  input[type="range"] {
+    --track-height: .5rem;
+    --track-color: var(--#{$prefix}-secondary-container);
+    --thumb-height: 1.5rem;
+    --thumb-color: var(--#{$prefix}-primary);
+    --cursor: pointer;
+
+    appearance: none;
+    width: 100%;
+    height: var(--thumb-height);
+    background: none;
+
+    @include disabled {
+      --track-color: var(--#{$prefix}-on-surface);
+      --cursor: not-allowed;
+
+      opacity: .38;
+    }
+
+    &::-webkit-slider-runnable-track,
+    &::-moz-range-track,
+    &::-ms-track {
+      @include range-track;
+    }
+
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb,
+    &::-ms-thumb {
+      @include range-thumb;
+    }
+  }
+}
+
+@if $enable-forms {
+  @include range;
+}
