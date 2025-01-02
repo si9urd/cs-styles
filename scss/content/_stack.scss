@@ -20,10 +20,14 @@
   row-gap: var(--gap);
 }
 
-.v-stack {
-  @extend %v-stack;
+@mixin stack {
+  .v-stack {
+    @extend %v-stack;
+  }
+
+  .h-stack {
+    @extend %h-stack;
+  }
 }
 
-.h-stack {
-  @extend %h-stack;
-}
+@include stack;

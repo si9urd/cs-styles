@@ -10,7 +10,7 @@
   --height: var(--#{$prefix}-btn-height);
   --padding: #{map.get($spacers, 2)} #{map.get($spacers, 4)};
   --inner-gap: 0.5rem;
-  --font-weight: 500;
+  --font-weight: normal;
   --line-height: 1.25rem;
   --border-radius: var(--#{$prefix}-border-radius);
   --font-family: var(--#{$prefix}-font-family);
