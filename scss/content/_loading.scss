@@ -36,7 +36,6 @@
   [type="reset"],
   [role="button"] {
     &[aria-busy="true"] {
-      pointer-events: none;
       &:not(.btn-elevated, .btn-tonal, .btn-outlined, .btn-text)::before {
         filter: invert(1);
       }
