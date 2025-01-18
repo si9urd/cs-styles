@@ -1,44 +1,37 @@
 @use "sass:map" as map;
 @use "../variables" as *;
 
-@mixin landmarks {
+@mixin flex-landmarks {
   #{$page-root},
   .page {
-    --gutter: calc(var(--#{$prefix}-spacing) * 3);
+    --content-width: min(100%, 1200px);
+    --sidebar-width: 220px;
 
-    display: grid;
-    grid-template-columns:
-      [page-start col1-start]
-        minmax(var(--gutter), 1fr)
-      [breakout-start col1-end col2-start]
-        1fr
-      [content-start col2-end col3-start]
-        min(100% - (var(--gutter) * 2), 1200px)
-      [content-end col3-end col4-start]
-        1fr
-      [breakout-end col4-end col5-start]
-        minmax(var(--gutter), 1fr)
-      [page-end col5-end];
+    display: flex;
+    flex-flow: column nowrap;
 
-    & > header {
-      grid-column: page;
-      display: grid;
-      grid-template-columns: subgrid;
+    & > header,
+    & > footer {
       position: sticky;
       top: 0;
       z-index: $z-index-sticky;
 
       & > .content {
-        grid-column: breakout;
         display: flex;
         flex-flow: wrap;
         justify-content: space-between;
         align-items: center;
+        width: var(--content-width);
+        margin: 0 auto;
+
       }
 
-      padding: var(--#{$prefix}-spacing) 0;
-      margin-bottom: var(--#{$prefix}-spacing);
       background-color: var(--#{$prefix}-surface);
+      padding: var(--#{$prefix}-spacing) 0;
+    }
+
+    & > header {
+      margin-bottom: var(--#{$prefix}-spacing);
       box-shadow: var(--#{$prefix}-elevation-1);
 
       nav {
@@ -70,22 +63,139 @@
     }
 
     & > main {
+      display: flex;
+      width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 var(--#{$prefix}-spacing);
+
+      & > aside {
+        position: sticky;
+        top: var(--#{$prefix}-header-height);
+        align-self: start;
+        width: var(--sidebar-width);
+        padding: 0 var(--#{$prefix}-spacing);
+        border-radius: var(--#{$prefix}-border-radius);
+
+        @media (width <= 780px) {
+          display: none;
+        }
+
+        nav ul li {
+          padding: calc(.25 * var(--#{$prefix}-x-spacing)) 0;
+        }
+      }
+
+      & > .content {
+        width: calc(var(--content-width) - var(--sidebar-width));
+        padding: 0 var(--#{$prefix}-spacing);
+
+        @media (width <= 780px) {
+         width: var(--content-width)
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-landmarks {
+  #{$page-root},
+  .page {
+    --gutter: calc(var(--#{$prefix}-spacing) * 3);
+
+    display: grid;
+    grid-template-columns:
+      [page-start col1-start]
+        minmax(var(--gutter), 1fr)
+      [breakout-start col1-end col2-start]
+        1fr
+      [content-start col2-end col3-start]
+        min(100% - (var(--gutter) * 2), 1200px)
+      [content-end col3-end col4-start]
+        1fr
+      [breakout-end col4-end col5-start]
+        minmax(var(--gutter), 1fr)
+      [page-end col5-end];
+
+    & > header,
+    & > footer {
       grid-column: page;
       display: grid;
       grid-template-columns: subgrid;
+      position: sticky;
+      top: 0;
+      z-index: $z-index-sticky;
 
-      & > * {
-        grid-column: content;
+      & > .content {
+        grid-column: breakout;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      background-color: var(--#{$prefix}-surface);
+      padding: var(--#{$prefix}-spacing) 0;
+    }
+
+    & > header {
+      margin-bottom: var(--#{$prefix}-spacing);
+      box-shadow: var(--#{$prefix}-elevation-1);
+
+      nav {
+        display: flex;
+        align-items: center;
+
+        hr {
+          display: block;
+          border-left: 1px solid var(--#{$prefix}-outline-variant);
+          height: var(--#{$prefix}-btn-icon-size);
+          width: 1px;
+          margin: 0 var(--#{$prefix}-x-spacing);
+          opacity: .35;
+        }
+
+        ul {
+          display: flex;
+          align-items: center;
+          margin: 0;
+          padding: 0;
+
+          li {
+            display: inline-flex;
+            margin: 0;
+            padding: 0 calc(0.5 * var(--#{$prefix}-x-spacing));
+          }
+        }
       }
     }
 
-    & > footer {
-      grid-column: page;
+    & > main {
+      grid-column: breakout;
+      display: grid;
+      grid-template-columns: subgrid;
+
+
+      & > aside {
+        position: sticky;
+        top: calc(var(--#{$prefix}-header-height) + var(--#{$prefix}-spacing));
+        align-self: start;
+        width: 220px;
+        padding: var(--#{$prefix}-spacing);
+        border-radius: var(--#{$prefix}-border-radius);
+
+        @media (width <= 780px) {
+          display: none;
+        }
+      }
+
+      & > .content > * {
+        grid-column: breakout;
+      }
     }
   }
 }
 
 @if $enable-landmarks {
-  @include landmarks;
+  @include flex-landmarks;
 }
 

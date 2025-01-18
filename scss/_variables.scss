@@ -95,15 +95,15 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) 
 $font-size-base: 1rem !default;
 $font-size-input: 1rem !default;
 $font-weight-header: 500 !default;
+$btn-font-size: 1rem !default;
 $btn-height: 2.5rem !default;
+$header-height: 6.5rem !default;
 $input-height: 3rem !default;
 $line-height-base: 1.5 !default;
+$sidebar-width: 20rem !default;
 $border-radius: .25rem !default;
-$btn-font-size: 1rem !default;
 $btn-icon-size: 1.5rem !default;
 $btn-inner-icon-size: 1.125rem !default;
-$header-height: 6.5rem !default;
-$sidebar-width: 20rem !default;
 
 // Transition
 $transition: .2s easy-in-out !default;
