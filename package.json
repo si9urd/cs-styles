@@ -1,5 +1,5 @@
 {
-  "name": "cs-styles",
+  "name": "@oleh-ob/cs-styles",
   "version": "0.7.24",
   "description": "css framework for semantic HTML",
   "main": "dist/cs-styles.min.css",
@@ -15,6 +15,10 @@
     "lint:prettier": "prettier --write --log-level silent 'scss/**/*.scss'",
     "lint:sort-scss": "postcss --config scss ./scss/**/*.scss --replace",
     "theme": "node material-theme.js src=material-theme-default.json scss=scss/themes/_themes_colors.scss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/si9urd/cs-styles.git"
   },
   "keywords": [
     "css",
@@ -45,5 +49,9 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-scss": "^6.7.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/si9urd/cs-styles/issues"
+  },
+  "homepage": "https://github.com/si9urd/cs-styles#readme"
 }
