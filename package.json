@@ -1,7 +1,7 @@
 {
   "name": "cs-styles",
-  "version": "0.7.21",
-  "description": "styles",
+  "version": "0.7.22",
+  "description": "css framework for semantic HTML",
   "main": "css/cs-styles.min.css",
   "type": "module",
   "scripts": {

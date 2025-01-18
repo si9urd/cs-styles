@@ -1,5 +1,6 @@
 @use "sass:string" as string;
 @use "sass:color" as color;
+@use "sass:meta" as meta;
 
 @function hex-to-rgb($color) {
   @return string.unquote("rgb(" + color.channel($color, "red", $space: rgb) + ", " + color.channel($color, "green", $space: rgb) + ", " + color.channel($color, "blue", $space: rgb) + ")");
@@ -7,4 +8,15 @@
 
 @function hex-to-rgba($color, $alpha: 1) {
   @return string.unquote("rgba(" + color.channel($color, "red", $space: rgb) + ", " + color.channel($color, "green", $space: rgb) + ", " + color.channel($color, "blue", $space: rgb) + ", " + $alpha + ")");
+}
+
+@function encode-color($string) {
+  @if meta.type-of($string) == 'color' {
+    $hex: string.slice(color.ie-hex-str($string), 4);
+    $string: string.unquote("#{$hex}");
+  }
+
+  $string: '%23' + $string;
+
+  @return $string;
 }

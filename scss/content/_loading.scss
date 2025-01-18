@@ -1,5 +1,47 @@
-@mixin loading {
+@use "../variables" as *;
+@use "../content/icons" as *;
+@use "sass:map" as map;
 
+@mixin loading {
+  [aria-busy="true"]:not(input, select, textarea, html) {
+    white-space: nowrap;
+
+    &::before {
+      content: "";
+      display: inline-flex;
+      width: 1em;
+      height: 1em;
+      background-image: var(--#{$prefix}-ring-spinner);
+      background-size: 1em auto;
+      background-repeat: no-repeat;
+      vertical-align: -0.125em;
+    }
+
+    &:not(:empty) {
+      &::before {
+        margin-inline-end: calc(var(--#{$prefix}-spacing) * 0.5);
+      }
+    }
+
+    &:empty {
+      text-align: center;
+    }
+  }
+
+  // Buttons and links
+  a,
+  button,
+  [type="submit"],
+  [type="button"],
+  [type="reset"],
+  [role="button"] {
+    &[aria-busy="true"] {
+      pointer-events: none;
+      &:not(.btn-elevated, .btn-tonal, .btn-outlined, .btn-text)::before {
+        filter: invert(1);
+      }
+    }
+  }
 }
 
 @include loading;
