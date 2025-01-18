@@ -14,7 +14,7 @@
       background-image: var(--#{$prefix}-ring-spinner);
       background-size: 1em auto;
       background-repeat: no-repeat;
-      vertical-align: -0.125em;
+      vertical-align: -.125em;
     }
 
     &:not(:empty) {
