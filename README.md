@@ -6,4 +6,4 @@ CSS Framework for semantic HTML
 
 https://cdn.jsdelivr.net/gh/si9urd/cs-styles/dist/cs-styles.min.css
 
-npm i @oleh-ob/cs-styles -S
+npm i @oleh-ob/cs-styles
