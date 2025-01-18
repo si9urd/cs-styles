@@ -4,7 +4,9 @@
 @mixin flex-landmarks {
   #{$page-root},
   .page {
-    --content-width: min(100%, 1200px);
+    $min-width: 1020px;
+
+    --content-width: min(100vw, 1400px); // clamp(640px, 100vw, 1400px);
     --sidebar-width: 220px;
 
     display: flex;
@@ -76,7 +78,7 @@
         padding: 0 var(--#{$prefix}-spacing);
         border-radius: var(--#{$prefix}-border-radius);
 
-        @media (width <= 780px) {
+        @media (width <= $min-width) {
           display: none;
         }
 
@@ -89,7 +91,7 @@
         width: calc(var(--content-width) - var(--sidebar-width));
         padding: 0 var(--#{$prefix}-spacing);
 
-        @media (width <= 780px) {
+        @media (width <= $min-width) {
          width: var(--content-width)
         }
       }
