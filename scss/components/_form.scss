@@ -102,6 +102,15 @@
   }
 }
 
+@mixin form {
+  form {
+    display: flex;
+    flex-flow: column;
+    gap: var(--#{$prefix}-spacing);
+  }
+}
+
 @if $enable-forms {
   @include form-reset;
+  @include form;
 }
