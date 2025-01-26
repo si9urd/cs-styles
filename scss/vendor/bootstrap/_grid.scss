@@ -10,8 +10,8 @@
 
   .grid {
     display: grid;
-    grid-template-rows: repeat(var(--#{$prefix}-rows, 1), 1fr);
-    grid-template-columns: repeat(var(--#{$prefix}-columns, #{$grid-columns}), 1fr);
+    grid-template-rows: repeat(var(--#{$prefix}-grid-rows, 1), 1fr);
+    grid-template-columns: repeat(var(--#{$prefix}-grid-columns, #{$grid-columns}), 1fr);
     gap: var(--#{$prefix}-grid-gutter);
 
     @include make-cssgrid($columns: $grid-columns, $breakpoints: $grid-breakpoints);

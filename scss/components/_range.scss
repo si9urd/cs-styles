@@ -40,20 +40,20 @@
       @include range-track;
     }
 
-    &::-moz-range-track {
-      @include range-track;
-    }
-
-    &::-ms-track {
-      @include range-track;
-    }
-
     &::-webkit-slider-thumb {
       @include range-thumb;
     }
 
+    &::-moz-range-track {
+      @include range-track;
+    }
+
     &::-moz-range-thumb {
       @include range-thumb;
+    }
+
+    &::-ms-track {
+      @include range-track;
     }
 
     &::-ms-thumb {
@@ -67,17 +67,19 @@
       opacity: .38;
     }
 
-    //&::-webkit-slider-runnable-track,
-    //&::-moz-range-track,
-    //&::-ms-track {
-    //  @include range-track;
-    //}
-    //
-    //&::-webkit-slider-thumb,
-    //&::-moz-range-thumb,
-    //&::-ms-thumb {
-    //  @include range-thumb;
-    //}
+    &:active {
+      &::-webkit-slider-thumb {
+        transform: scale(1.25);
+      }
+
+      &::-moz-range-thumb {
+        transform: scale(1.25);
+      }
+
+      &::-ms-thumb {
+        transform: scale(1.25);
+      }
+    }
   }
 }
 

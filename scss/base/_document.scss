@@ -13,14 +13,6 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    &:not([data-theme="dark"]) {
-      color-scheme: light;
-    }
-
-    &[data-theme="dark"] {
-      color-scheme: dark;
-    }
   }
 }
 

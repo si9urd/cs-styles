@@ -14,12 +14,20 @@ const params = args.reduce((m, v) => {
   return m
 }, {})
 
+let lightScheme = 'light'
+let darkScheme = 'dark'
+
+if(params.contrast) { // undefined | 'high' | 'medium'
+  lightScheme = `light-${params.contrast}-contrast`
+  darkScheme = `dark-${params.contrast}-contrast`
+}
+
 const camelCaseToKebabCase = (str) => str.replace(/[A-Z]+(?![a-z])|[A-Z]/g,
   ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())
 
 function generateCssVars(themes) {
-  const lightTheme = themes.schemes.light
-  const darkTheme = themes.schemes.dark
+  const lightTheme = themes.schemes[lightScheme]
+  const darkTheme = themes.schemes[darkScheme]
   const r = []
 
   r.push('$theme-colors: map-merge((')
@@ -37,8 +45,8 @@ function generateCssVars(themes) {
 }
 
 function generateMixin(themes) {
-  const lightTheme = themes.schemes.light
-  const darkTheme = themes.schemes.dark
+  const lightTheme = themes.schemes[lightScheme]
+  const darkTheme = themes.schemes[darkScheme]
   const result = []
 
   result.push('@use "../variables" as *;')
