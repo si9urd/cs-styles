@@ -8,10 +8,10 @@
 
 %button-base {
   --height: var(--#{$prefix}-btn-height);
-  --padding: #{map.get($spacers, 2)} #{map.get($spacers, 4)};
+  --padding: 0 #{map.get($spacers, 4)};
   --inner-gap: 0.5rem;
   --font-weight: normal;
-  --line-height: 1.25rem;
+  --line-height: 1.5;
   --border-radius: var(--#{$prefix}-border-radius);
   --font-family: var(--#{$prefix}-font-family);
   --font-size: var(--#{$prefix}-btn-font-size);
@@ -42,6 +42,9 @@
   color: var(--color);
   opacity: var(--opacity);
   box-shadow: var(--elevation);
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
 
   &:is(:hover, [data-hovered]) {
     --background-color: color-mix(in lab, var(--container-color) 92%, var(--#{$prefix}-base));
@@ -74,6 +77,11 @@
     width: var(--#{$prefix}-btn-inner-icon-size);
     height: var(--#{$prefix}-btn-inner-icon-size);
     line-height: inherit;
+  }
+
+  i {
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   svg {

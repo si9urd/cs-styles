@@ -6,3 +6,13 @@
   @include themes-colors;
   @include extended-colors;
 }
+
+[data-theme-toggle] {
+  :not([data-theme="dark"]) & {
+    background-image: var(--cs-dark-icon);
+  }
+
+  [data-theme="dark"] & {
+    background-image: var(--cs-light-icon);
+  }
+}

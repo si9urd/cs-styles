@@ -1,6 +1,6 @@
 {
   "name": "@oleh-ob/cs-styles",
-  "version": "0.7.27",
+  "version": "0.7.28",
   "description": "css framework for semantic HTML",
   "main": "dist/cs-styles.min.css",
   "type": "module",

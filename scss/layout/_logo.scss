@@ -1,0 +1,13 @@
+.cs-logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 2.5rem;
+  width: auto;
+  font-size: 38px;
+  font-weight: 700;
+  color: transparent;
+  background: linear-gradient(to right, var(--cs-primary), var(--cs-secondary), var(--cs-tertiary));
+  background-clip: text;
+  cursor: pointer;
+}
