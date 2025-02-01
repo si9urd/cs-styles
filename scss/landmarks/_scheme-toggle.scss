@@ -1,0 +1,11 @@
+@use "../variables" as *;
+
+[data-theme-toggle] {
+  :not([data-theme="dark"]) & {
+    background-image: var(--#{$prefix}-dark-icon);
+  }
+
+  [data-theme="dark"] & {
+    background-image: var(--#{$prefix}-light-icon);
+  }
+}
