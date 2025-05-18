@@ -1,0 +1,56 @@
+@use "../abstracts/mixins" as *;
+@use "../variables" as *;
+
+@mixin menu {
+  .menu {
+    --menu-width: 12rem;
+    --menu-item-height: 3rem;
+    --menu-item-line-height: 20px;
+
+    display: inline-block;
+    min-width: var(--menu-width);
+    padding: .5rem 0;
+    border-radius: var(--#{$prefix}-border-radius);
+    color: var(--#{$prefix}-on-surface);
+    background-color: var(--#{$prefix}-surface-container);
+    font-size: .875rem;
+    font-weight: 500;
+    box-shadow: var(--#{$prefix}-elevation-2);
+
+    & > :not(.divider):is(li, div) {
+      height: var(--menu-item-height);
+      line-height: var(--menu-item-line-height);
+      padding: calc((var(--menu-item-height) - var(--menu-item-line-height)) / 2) .75rem;
+      cursor: pointer;
+
+      &:not(.divider, hr):is(:hover, [data-hovered]) {
+        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 8%);
+      }
+
+      @include disabled {
+        color: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
+        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 4%);
+        cursor: not-allowed;
+      }
+    }
+
+    & > :is(.divider, hr) {
+      height: 1px;
+      width: 100%;
+      margin: 7.5px 0;
+      line-height: 16px;
+      padding: 0;
+      background-color: var(--#{$prefix}-surface-variant);
+      border: none;
+    }
+  }
+
+  ul.menu {
+    list-style: none;
+    margin: 0;
+  }
+}
+
+@if $enable-forms {
+  @include menu;
+}
