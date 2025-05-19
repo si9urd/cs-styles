@@ -6,6 +6,8 @@
     --menu-width: 12rem;
     --menu-item-height: 3rem;
     --menu-item-line-height: 20px;
+    --icon-size: 1.5rem;
+    --gap: .75rem;
 
     display: inline-block;
     min-width: var(--menu-width);
@@ -18,19 +20,51 @@
     box-shadow: var(--#{$prefix}-elevation-2);
 
     & > :not(.divider):is(li, div) {
+      display: flex;
+      align-items: center;
+      gap: var(--gap);
+      width: 100%;
       height: var(--menu-item-height);
       line-height: var(--menu-item-line-height);
-      padding: calc((var(--menu-item-height) - var(--menu-item-line-height)) / 2) .75rem;
+      padding: calc((var(--menu-item-height) - var(--menu-item-line-height)) / 2) var(--gap);
       cursor: pointer;
 
       &:not(.divider, hr):is(:hover, [data-hovered]) {
         background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 8%);
       }
 
+      :is(i, img, svg) {
+        width: var(--icon-size);
+        height: var(--icon-size);
+        vertical-align: bottom;
+      }
+
+      svg {
+        fill: var(--#{$prefix}-on-surface-variant);
+      }
+
       @include disabled {
         color: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
         background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 4%);
         cursor: not-allowed;
+
+        svg {
+          fill: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
+        }
+      }
+
+      &:is(:active, [data-pressed]) {
+        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 10%) !important;
+      }
+    }
+
+    &.has-icons-indent {
+      & > :not(.divider):is(li, div) {
+        padding-left: calc(var(--icon-size) + var(--gap) * 2);
+
+        & > :is(i, img, svg):first-child {
+          margin-left: calc(-1 * (var(--icon-size) + var(--gap)));
+        }
       }
     }
 
