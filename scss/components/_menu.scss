@@ -5,7 +5,6 @@
   .menu {
     --menu-width: 12rem;
     --menu-item-height: 3rem;
-    --menu-item-line-height: 20px;
     --icon-size: 1.5rem;
     --gap: .75rem;
 
@@ -25,8 +24,7 @@
       gap: var(--gap);
       width: 100%;
       height: var(--menu-item-height);
-      line-height: var(--menu-item-line-height);
-      padding: calc((var(--menu-item-height) - var(--menu-item-line-height)) / 2) var(--gap);
+      padding: 0 var(--gap);
       cursor: pointer;
 
       &:not(.divider, hr):is(:hover, [data-hovered]) {
@@ -55,6 +53,13 @@
 
       &:is(:active, [data-pressed]) {
         background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 10%) !important;
+      }
+
+      &:is([data-expandable], .has-children)::after {
+        content: "";
+        margin: .2em 0 0 auto;
+
+        @include triangle(8px, var(--#{$prefix}-on-surface));
       }
     }
 

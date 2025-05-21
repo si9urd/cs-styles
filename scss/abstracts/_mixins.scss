@@ -8,3 +8,11 @@
   }
 }
 
+@mixin triangle($size, $color, $direction: 0deg) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: calc($size / 2) 0 calc($size / 2) calc($size * 2 / 3);
+  border-color: transparent transparent transparent $color;
+  transform: rotate($direction);
+}
