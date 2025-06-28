@@ -1,0 +1,95 @@
+@use "../abstracts/mixins" as *;
+@use "../variables" as *;
+
+@mixin menu {
+  .menu {
+    --menu-width: 12rem;
+    --menu-item-height: 3rem;
+    --icon-size: 1.5rem;
+    --gap: .75rem;
+
+    display: inline-block;
+    min-width: var(--menu-width);
+    padding: .5rem 0;
+    border-radius: var(--#{$prefix}-border-radius);
+    color: var(--#{$prefix}-on-surface);
+    background-color: var(--#{$prefix}-surface-container);
+    font-size: .875rem;
+    font-weight: 500;
+    box-shadow: var(--#{$prefix}-elevation-2);
+
+    & > :not(.divider):is(li, div) {
+      display: flex;
+      align-items: center;
+      gap: var(--gap);
+      width: 100%;
+      height: var(--menu-item-height);
+      padding: 0 var(--gap);
+      cursor: pointer;
+
+      &:not(.divider, hr):is(:hover, [data-hovered]) {
+        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 8%);
+      }
+
+      :is(i, img, svg) {
+        width: var(--icon-size);
+        height: var(--icon-size);
+        vertical-align: bottom;
+      }
+
+      svg {
+        fill: var(--#{$prefix}-on-surface-variant);
+      }
+
+      @include disabled {
+        color: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
+        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 4%);
+        cursor: not-allowed;
+
+        svg {
+          fill: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
+        }
+      }
+
+      &:is(:active, [data-pressed]) {
+        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 10%) !important;
+      }
+
+      &:is([data-expandable], .has-children)::after {
+        content: "";
+        margin: .2em 0 0 auto;
+
+        @include triangle(8px, var(--#{$prefix}-on-surface));
+      }
+    }
+
+    &.has-icons-indent {
+      & > :not(.divider):is(li, div) {
+        padding-left: calc(var(--icon-size) + var(--gap) * 2);
+
+        & > :is(i, img, svg):first-child {
+          margin-left: calc(-1 * (var(--icon-size) + var(--gap)));
+        }
+      }
+    }
+
+    & > :is(.divider, hr) {
+      height: 1px;
+      width: 100%;
+      margin: 7.5px 0;
+      line-height: 16px;
+      padding: 0;
+      background-color: var(--#{$prefix}-surface-variant);
+      border: none;
+    }
+  }
+
+  ul.menu {
+    list-style: none;
+    margin: 0;
+  }
+}
+
+@if $enable-forms {
+  @include menu;
+}
