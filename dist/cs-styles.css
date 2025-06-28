@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * CS-Styles v0.7.29 (https://github.com/si9urd/cs-styles)
+ * CS-Styles v0.7.30 (https://github.com/si9urd/cs-styles)
  * © 2024-2025 Oleh Obydenov - Licensed under MIT
  */
 .container,
@@ -2129,7 +2129,8 @@ select[multiple] {
 .menu {
   --menu-width: 12rem;
   --menu-item-height: 3rem;
-  --menu-item-line-height: 20px;
+  --icon-size: 1.5rem;
+  --gap: .75rem;
   display: inline-block;
   min-width: var(--menu-width);
   padding: 0.5rem 0;
@@ -2141,18 +2142,51 @@ select[multiple] {
   box-shadow: var(--cs-elevation-2);
 }
 .menu > :not(.divider):is(li, div) {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
   height: var(--menu-item-height);
-  line-height: var(--menu-item-line-height);
-  padding: calc((var(--menu-item-height) - var(--menu-item-line-height)) / 2) 0.75rem;
+  padding: 0 var(--gap);
   cursor: pointer;
 }
 .menu > :not(.divider):is(li, div):not(.divider, hr):is(:hover, [data-hovered]) {
   background-color: rgb(from var(--cs-on-surface) r g b/8%);
 }
+.menu > :not(.divider):is(li, div) :is(i, img, svg) {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  vertical-align: bottom;
+}
+.menu > :not(.divider):is(li, div) svg {
+  fill: var(--cs-on-surface-variant);
+}
 .menu > :not(.divider):is(li, div):not([disabled=false]):is(:disabled, [disabled], [aria-disabled=true]) {
   color: rgb(from var(--cs-on-surface) r g b/38%);
   background-color: rgb(from var(--cs-on-surface) r g b/4%);
   cursor: not-allowed;
+}
+.menu > :not(.divider):is(li, div):not([disabled=false]):is(:disabled, [disabled], [aria-disabled=true]) svg {
+  fill: rgb(from var(--cs-on-surface) r g b/38%);
+}
+.menu > :not(.divider):is(li, div):is(:active, [data-pressed]) {
+  background-color: rgb(from var(--cs-on-surface) r g b/10%) !important;
+}
+.menu > :not(.divider):is(li, div):is([data-expandable], .has-children)::after {
+  content: "";
+  margin: 0.2em 0 0 auto;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 5.3333333333px;
+  border-color: transparent transparent transparent var(--cs-on-surface);
+  transform: rotate(0deg);
+}
+.menu.has-icons-indent > :not(.divider):is(li, div) {
+  padding-left: calc(var(--icon-size) + var(--gap) * 2);
+}
+.menu.has-icons-indent > :not(.divider):is(li, div) > :is(i, img, svg):first-child {
+  margin-left: calc(-1 * (var(--icon-size) + var(--gap)));
 }
 .menu > :is(.divider, hr) {
   height: 1px;
