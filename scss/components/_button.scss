@@ -9,7 +9,7 @@
 %button-base {
   --height: var(--#{$prefix}-btn-height);
   --padding: 0 #{map.get($spacers, 4)};
-  --inner-gap: 0.5rem;
+  --inner-gap: .5rem;
   --font-weight: normal;
   --line-height: 1.5;
   --border-radius: var(--#{$prefix}-border-radius);
