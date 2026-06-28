@@ -1,7 +1,22 @@
 @use "index" with (
+  $prefix: "cs",
   $page-root: "#root",
   $enable-icons: true,
   $enable-grid: true,
+  $enable-forms: true,
+  $enable-autofill-fix: true,
+  $enable-landmarks: true,
+  $enable-negative-margins: true,
+  $enable-responsive-utilities: true,
+  $enable-one-color: true,
+  $enable-utilities: (
+    "align": true,
+    "borders": true,
+    "display": true,
+    "sizing": true,
+    "spacing": true,
+    "text": true,
+  ),
   $grid-breakpoints: (
         xs: 0,
         sm: 576px,
@@ -11,7 +26,7 @@
         xxl: 1400px
   ),
   $theme-colors: (
-    'light-primary': #415F91,
-    'dark-primary': #AAC7FF
+    // 'light-primary': #415F91,
+    // 'dark-primary': #AAC7FF
   )
 );

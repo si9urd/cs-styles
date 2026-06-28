@@ -1,0 +1,62 @@
+////////////////////////////////////////////////////////////////////////////////
+/// Design tokens
+////////////////////////////////////////////////////////////////////////////////
+
+$theme-colors: () !default;
+
+$container-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+$font-family-base: roboto, -apple-system-ui, system-ui, "Segoe UI", oxygen, ubuntu, cantarell, helvetica, arial,
+  "Helvetica Neue", "Noto Sans", sans-serif !default;
+$font-family-monospace: ui-monospace, "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace", "Noto Mono",
+  "Oxygen Mono", "Liberation Mono", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  "Noto Color Emoji" !default;
+
+$spacing: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacing * .25,
+  2: $spacing * .5,
+  3: $spacing,
+  4: $spacing * 1.5,
+  5: $spacing * 3,
+) !default;
+
+$font-size-base: 1rem !default;
+$font-size-input: 1rem !default;
+$btn-font-size: 1rem !default;
+$btn-height: 2.5rem !default;
+$input-height: 3rem !default;
+$line-height-base: 1.5 !default;
+$sidebar-width: 20rem !default;
+$border-radius: .25rem !default;
+$btn-icon-size: 1.5rem !default;
+$btn-inner-icon-size: 1.125rem !default;
+
+$transition: .2s easy-in-out !default;
+
+$z-index-dropdown: 1000 !default;
+$z-index-sticky: 1020 !default;
+$z-index-fixed: 1030 !default;
+$z-index-offcanvas-backdrop: 1040 !default;
+$z-index-offcanvas: 1045 !default;
+$z-index-modal-backdrop: 1050 !default;
+$z-index-modal: 1055 !default;
+$z-index-popover: 1070 !default;
+$z-index-tooltip: 1080 !default;
+$z-index-toast: 1090 !default;

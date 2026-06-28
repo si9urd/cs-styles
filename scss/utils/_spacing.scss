@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../vendor" as *;
 @use "../variables" as *;
 
@@ -8,43 +9,43 @@
           responsive: $enable-responsive-utilities,
           property: margin,
           class: m,
-          values: map-merge($spacers, (auto: auto))
+          values: map.merge($spacers, (auto: auto))
       ),
       "margin-x": (
           responsive: $enable-responsive-utilities,
           property: margin-right margin-left,
           class: mx,
-          values: map-merge($spacers, (auto: auto))
+          values: map.merge($spacers, (auto: auto))
       ),
       "margin-y": (
           responsive: $enable-responsive-utilities,
           property: margin-top margin-bottom,
           class: my,
-          values: map-merge($spacers, (auto: auto))
+          values: map.merge($spacers, (auto: auto))
       ),
       "margin-top": (
           responsive: $enable-responsive-utilities,
           property: margin-top,
           class: mt,
-          values: map-merge($spacers, (auto: auto))
+          values: map.merge($spacers, (auto: auto))
       ),
       "margin-end": (
           responsive: $enable-responsive-utilities,
           property: margin-right,
           class: me,
-          values: map-merge($spacers, (auto: auto))
+          values: map.merge($spacers, (auto: auto))
       ),
       "margin-bottom": (
           responsive: $enable-responsive-utilities,
           property: margin-bottom,
           class: mb,
-          values: map-merge($spacers, (auto: auto))
+          values: map.merge($spacers, (auto: auto))
       ),
       "margin-start": (
           responsive: $enable-responsive-utilities,
           property: margin-left,
           class: ms,
-          values: map-merge($spacers, (auto: auto))
+          values: map.merge($spacers, (auto: auto))
       ),
     // Negative margin utilities
       "negative-margin": (
