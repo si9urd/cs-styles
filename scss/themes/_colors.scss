@@ -1,20 +1,8 @@
 @use "sass:string";
 @use "sass:map";
 @use "../variables" as *;
-@use "themes_mui_colors" as *;
-@use "themes_one_colors" as *;
 
 @mixin themes-colors() {
-  @if $enable-one-color {
-    @debug "one color";
-    $theme-colors: map.merge($theme-one-colors, $theme-colors);
-  }
-
-  @if not $enable-one-color {
-    @debug "mui color";
-    $theme-colors: map.merge($theme-mui-colors, $theme-colors);
-  }
-  @debug $theme-colors;
   &:not([data-theme="dark"]) {
     @each $name, $value in $theme-colors {
       @if string.index($name, "light-") == 1 {
@@ -33,7 +21,5 @@
 }
 
 :root {
-  @debug $theme-one-colors;
-
   @include themes-colors;
 }

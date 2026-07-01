@@ -8,7 +8,6 @@
   $enable-landmarks: true,
   $enable-negative-margins: true,
   $enable-responsive-utilities: true,
-  $enable-one-color: true,
   $enable-utilities: (
     "align": true,
     "borders": true,
@@ -27,6 +26,6 @@
   ),
   $theme-colors: (
     // 'light-primary': #415F91,
-    // 'dark-primary': #AAC7FF
+    // 'dark-primary': green //#AAC7FF
   )
 );

@@ -2,8 +2,6 @@
 @use "sass:string";
 @use "../variables" as *;
 
-$one-color-base: #415F91 !default;
-
 @function tone($lightness) {
   @return string.unquote("oklch(from #{$one-color-base}) #{$lightness} c h)");
 }
