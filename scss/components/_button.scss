@@ -71,6 +71,7 @@
   &[aria-busy="true"] {
     cursor: progress;
     pointer-events: none;
+
     --opacity: .9;
   }
 }
@@ -170,20 +171,6 @@
   }
 }
 
-%button-size-sm {
-  --height: calc(var(--#{$prefix}-btn-height) * .84);
-  --padding: 0 #{map.get($spacers, 3)};
-  --font-size: calc(var(--#{$prefix}-btn-font-size) * .9);
-  --inner-gap: .375rem;
-}
-
-%button-size-lg {
-  --height: calc(var(--#{$prefix}-btn-height) * 1.16);
-  --padding: 0 #{map.get($spacers, 5)};
-  --font-size: calc(var(--#{$prefix}-btn-font-size) * 1.05);
-  --inner-gap: .625rem;
-}
-
 %button-text {
   --color: var(--#{$prefix}-primary);
   --container-color: transparent;
@@ -233,8 +220,6 @@
     @extend %button-inner-icon;
     @extend %button-disabled;
 
-    -webkit-appearance: button;
-
     // Set elevated button styles
     &.btn-elevated {
       @extend %button-elevated;
@@ -253,16 +238,6 @@
     // Set button-text styles
     &.btn-text {
       @extend %button-text;
-    }
-
-    // Set small button styles
-    &.btn-sm {
-      @extend %button-size-sm;
-    }
-
-    // Set large button styles
-    &.btn-lg {
-      @extend %button-size-lg;
     }
 
     // Set pill button styles

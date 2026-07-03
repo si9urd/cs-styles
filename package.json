@@ -14,7 +14,8 @@
     "lint": "run-s \"lint:*\" --silent",
     "lint:prettier": "prettier --write --log-level silent 'scss/**/*.scss'",
     "lint:sort-scss": "postcss --config scss ./scss/**/*.scss --replace",
-    "theme": "node material-theme.js src=material-theme.json scss=scss/themes/_themes_colors.scss"
+    "theme": "node m3theme-loader.js src=material-theme-dark-green.json scss=scss/themes/_themes_colors.scss",
+    "generate-theme": "node m3theme-generator.js '#096d8c'"
   },
   "repository": {
     "type": "git",
