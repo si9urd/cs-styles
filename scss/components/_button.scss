@@ -258,7 +258,8 @@
     }
   }
 
-  [type="file"]::file-selector-button {
+  //[type="file"]::file-selector-button {
+  [type="file"] {
     @extend %button-base;
     @extend %button-filled;
     @extend %button-inner-icon;

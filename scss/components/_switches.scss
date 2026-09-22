@@ -74,10 +74,10 @@
       &::after {
         content: "";
         position: absolute;
-        top: calc(var(--size) * .1);
-        left: calc(var(--size) * .35);
-        width: calc(var(--size) * .2);
-        height: calc(var(--size) * .6);
+        top: calc(var(--size) * .01);
+        left: calc(var(--size) * .25);
+        width: calc(var(--size) * .3);
+        height: calc(var(--size) * .7);
         border: solid var(--indicator-color);
         border-width: 0 var(--indicator-width) var(--indicator-width) 0;
         transform: rotate(45deg);

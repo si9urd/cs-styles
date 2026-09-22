@@ -5,9 +5,16 @@
     --fs: 2.5;
 
     font-family: var(--#{$prefix}-font-family);
-    font-weight: var(--#{$prefix}-font-weight-header);
+    font-weight: var(--#{$prefix}-font-weight-medium);
     margin: var(--#{$prefix}-spacing) 0;
     font-size: calc(var(--#{$prefix}-font-size-base) * var(--fs));
+  }
+
+  h1 {
+    --gap: var(--#{$prefix}-spacing);
+
+    font-weight: var(--#{$prefix}-font-weight-bold);
+    margin: 0 0 clamp(var(--gap), 2vw, var(--gap) * 1.5);
   }
 
   h2 {

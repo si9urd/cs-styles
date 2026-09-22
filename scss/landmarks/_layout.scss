@@ -1,5 +1,6 @@
 @use "sass:map" as map;
 @use "../variables" as *;
+@use "../content" as *;
 
 @mixin flex-landmarks {
   #{$page-root},
@@ -13,6 +14,7 @@
         z-index: $z-index-sticky;
       }
 
+      // TODO: content неудачное название, и неясное назначение. придумать новое другое название для блока контента.
       & > .content {
         display: flex;
         flex-flow: wrap;
@@ -52,6 +54,12 @@
           }
         }
       }
+    }
+
+    .content-block {
+      @extend %v-stack;
+
+      --gap: var(--#{$prefix}-y-spacing);
     }
   }
 }
