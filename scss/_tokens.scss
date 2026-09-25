@@ -21,8 +21,8 @@ $grid-breakpoints: (
   xxl: 1400px
 ) !default;
 
-$font-family-base: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif !default;
-$font-family-monospace: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace !default;
+$font-family-base: system-ui, sans-serif !default;
+$font-family-monospace: ui-monospace, monospace !default;
 
 $spacing: 1rem !default;
 $spacers: (
