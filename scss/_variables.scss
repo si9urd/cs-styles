@@ -1,6 +1,6 @@
 @use "sass:map" as map;
 @use "abstracts/functions" as *;
-@use "abstracts/tokens" as tokens;
+@use "tokens" as tokens;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Variables
@@ -67,7 +67,11 @@ $spacing: tokens.$spacing !default;
 $spacers: tokens.$spacers !default;
 
 // Negative spacers
-$negative-spacers: if(sass($enable-negative-margins): negativify-map($spacers); else: null) !default;
+$negative-spacers: null !default;
+
+@if $enable-negative-margins and not $negative-spacers {
+  $negative-spacers: negativify-map($spacers);
+}
 
 // Spec
 $font-size-base: tokens.$font-size-base !default;

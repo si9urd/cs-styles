@@ -10,18 +10,23 @@
 @if map.get($enable-utilities, align) {
   @include align;
 }
+
 @if map.get($enable-utilities, borders) {
   @include borders;
 }
+
 @if map.get($enable-utilities, display) {
   @include display;
 }
+
 @if map.get($enable-utilities, sizing) {
   @include sizing;
 }
+
 @if map.get($enable-utilities, spacing) {
   @include spacing;
 }
+
 @if map.get($enable-utilities, text) {
   @include text;
 }
