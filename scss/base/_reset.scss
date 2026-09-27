@@ -6,52 +6,64 @@
 ///////////////////////////////
 
 @mixin reset-base {
-  html {
-    box-sizing: border-box;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-    tab-size: 4;
-    cursor: default;
-  }
-
   *,
   *::before,
   *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 
-  ::before,
-  ::after {
-    text-decoration: inherit;
-    vertical-align: inherit;
+  // Remove external margins, but not for elements with their own logic (dialog, popover)
+  :where(:not(dialog, [popover])) {
+    margin: 0;
+  }
+
+  html {
+    color-scheme: light dark;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    interpolate-size: allow-keywords; /* animation height: auto, etc. */
+    hanging-punctuation: first last;
+    scrollbar-gutter: stable;
   }
 
   body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+    min-block-size: 100svh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
   }
 
-  main {
-    display: block;
+  :where(a:not([class])) {
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.15em;
   }
 
-  template {
-    display: none;
+  :where(table) {
+    border-collapse: collapse;
   }
 
-  [hidden] {
-    display: none;
+  :where(:focus-visible) {
+    outline: 2px solid currentcolor;
+    outline-offset: 2px;
   }
 
-  img {
-    vertical-align: middle;
+  :where(:target) {
+    scroll-margin-block: 5ex;
+  }
+}
+
+////////////////////////////
+// Typo
+////////////////////////////
+
+@mixin reset-typo {
+  :where(h1, h2, h3, h4, h5, h6) {
+    line-height: 1.15;
+    text-wrap: balance;
   }
 
-  pre {
-    margin: 0;
+  :where(p, li, figcaption, blockquote) {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
   }
 }
 
@@ -60,23 +72,8 @@
 ////////////////////////////
 
 @mixin reset-lists {
-  dl dl,
-  dl ol,
-  dl ul,
-  ol dl,
-  ul dl {
-    margin: 0;
-  }
-
-  ol ol,
-  ol ul,
-  ul ol,
-  ul ul {
-    margin: 0;
-  }
-
-  nav ol,
-  nav ul {
+  nav :where(ul, ol),
+  :where(ul, ol)[role="list"] {
     list-style: none;
     padding: 0;
   }
@@ -87,62 +84,17 @@
 ///////////////////////////
 
 @mixin reset-media {
-  img {
-    border-style: none;
+  :where(img, picture, audio, video, canvas, svg, iframe) {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  :where(img, video) {
+    block-size: auto;
+  }
+
+  :where(audio, canvas, iframe, img, svg, video) {
     vertical-align: middle;
-  }
-
-  svg:not([fill]) {
-    fill: currentcolor;
-  }
-
-  svg:not(:root) {
-    overflow: hidden;
-  }
-}
-
-//////////////////////////////////////
-// Embedded elements
-//////////////////////////////////////
-
-@mixin reset-embedded {
-  /*
-   * Change the alignment on media elements in all browsers (opinionated).
-   */
-
-  audio,
-  canvas,
-  iframe,
-  img,
-  svg,
-  video {
-    vertical-align: middle;
-  }
-
-  /**
-   * Add the correct display in IE 9-.
-   */
-
-  audio,
-  video {
-    display: inline-block;
-  }
-
-  /**
-   * Add the correct display in iOS 4-7.
-   */
-
-  audio:not([controls]) {
-    display: none;
-    height: 0;
-  }
-
-  /**
-   * Remove the border on iframes in all browsers (opinionated).
-   */
-
-  iframe {
-    border-style: none;
   }
 }
 
@@ -151,175 +103,22 @@
 ////////////////////////////////////////////
 
 @mixin reset-form {
-  /**
-   * Remove the margin on controls in Safari.
-   */
-
-  button,
-  input,
-  select {
-    margin: 0;
-  }
-
-  button {
-    overflow: visible;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: none;
-    color: inherit;
+  :where(input, button, textarea, select) {
     font: inherit;
-    outline: none;
-    text-transform: none;
-  }
-
-  /**
-   * Correct the inability to style buttons in iOS and Safari.
-   */
-
-  button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
-    -webkit-appearance: button;
-  }
-
-  fieldset {
-    border: 1px solid transparent;
-    border-radius: var(--#{$prefix}-border-radius);
-    padding: calc(var(--#{$prefix}-spacing) * .5) 0;
-  }
-
-  /**
-   * Show the overflow in Edge 18- and IE.
-   */
-
-  input {
-    overflow: visible;
-  }
-
-  /**
-   * 1. Correct the text wrapping in Edge 18- and IE.
-   * 2. Correct the color inheritance from `fieldset` elements in IE.
-   */
-
-  legend {
-    color: inherit; /* 2 */
-    display: table; /* 1 */
-    max-width: 100%; /* 1 */
-    white-space: normal; /* 1 */
-  }
-
-  /**
-   * 1. Add the correct display in Edge 18- and IE.
-   * 2. Add the correct vertical alignment in Chrome, Edge, and Firefox.
-   */
-
-  progress {
-    display: inline-block; /* 1 */
-    vertical-align: baseline; /* 2 */
-  }
-
-  /**
-   * Remove the inheritance of text transform in Firefox.
-   */
-
-  select {
-    text-transform: none;
-  }
-
-  /**
-   * 1. Remove the margin in Firefox and Safari.
-   * 2. Remove the default vertical scrollbar in IE.
-   * 3. Change the resize direction in all browsers (opinionated).
-   */
-
-  textarea {
-    margin: 0; /* 1 */
-    overflow: auto; /* 2 */
-    resize: vertical; /* 3 */
-  }
-
-  /**
-   * Remove the padding in IE 10-.
-   */
-
-  [type="checkbox"],
-  [type="radio"] {
-    padding: 0;
-  }
-}
-
-@mixin reset-browser-dependent {
-  /**
-   * 1. Correct the odd appearance in Chrome, Edge, and Safari.
-   * 2. Correct the outline style in Safari.
-   */
-
-  [type="search"] {
-    -webkit-appearance: textfield; /* 1 */
-    outline-offset: -2px; /* 2 */
-  }
-
-  /**
-   * Correct the cursor style of increment and decrement buttons in Safari.
-   */
-
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
-    height: auto;
-  }
-
-  /**
-   * Correct the text style of placeholders in Chrome, Edge, and Safari.
-   */
-
-  input::placeholder {
     color: inherit;
-    opacity: 0.54;
+    letter-spacing: inherit;
   }
 
-  /**
-   * Remove the inner padding in Chrome, Edge, and Safari on macOS.
-   */
-
-  ::-webkit-search-decoration {
-    -webkit-appearance: none;
+  :where(textarea) {
+    resize: vertical;
   }
 
-  /**
-   * 1. Correct the inability to style upload buttons in iOS and Safari.
-   * 2. Change font properties to `inherit` in Safari.
-   */
-
-  ::-webkit-file-upload-button {
-    -webkit-appearance: button; /* 1 */
-    font: inherit; /* 2 */
+  :where(button, [role="button"], label[for], select, summary) {
+    cursor: pointer;
   }
 
-  /**
-   * Remove the inner border and padding of focus outlines in Firefox.
-   */
-
-  ::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
-  }
-
-  /**
-   * Restore the focus outline styles unset by the previous rule in Firefox.
-   */
-
-  :-moz-focusring {
-    outline: 1px dotted ButtonText;
-  }
-
-  /**
-   * Remove the additional :invalid styles in Firefox.
-   */
-
-  :-moz-ui-invalid {
-    box-shadow: none;
+  :where(button:disabled, [aria-disabled="true"]) {
+    cursor: not-allowed;
   }
 }
 
@@ -328,50 +127,34 @@
 ////////////////////////////////////
 
 @mixin reset-tapping {
-  /*
-   * 1. Remove the tapping delay in IE 10.
-   * 2. Remove the tapping delay on clickable elements
-        in all browsers (opinionated).
-   */
-
-  a,
-  area,
-  button,
-  input,
-  label,
-  select,
-  summary,
-  textarea,
-  [tabindex] {
-    touch-action: manipulation; /* 1 */
+  :where(a, area, button, input, label, select, summary, textarea, [tabindex]) {
+    touch-action: manipulation;
   }
 }
 
-//////////////////////////
-// Interactive
-//////////////////////////
-
-@mixin reset-interactive {
-  /*
-   * Add the correct styles in Edge 18-, IE, and Safari.
-   */
-
-  dialog {
-    background-color: white;
-    border: solid;
-    color: black;
-    display: block;
-    height: fit-content;
-    left: 0;
-    margin: auto;
-    padding: 1em;
-    position: absolute;
-    right: 0;
-    width: fit-content;
+////////////////////////////////////
+// Specs
+////////////////////////////////////
+@mixin reset-specs {
+  #root {
+    isolation: isolate;
   }
 
-  dialog:not([open]) {
-    display: none;
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -381,13 +164,14 @@
 
 @mixin reset {
   @include reset-base;
+  @include reset-typo;
   @include reset-lists;
   @include reset-media;
-  @include reset-embedded;
   @include reset-form;
-  @include reset-browser-dependent;
   @include reset-tapping;
-  @include reset-interactive;
+  @include reset-specs;
 }
 
-@include reset;
+@layer reset {
+  @include reset;
+}
