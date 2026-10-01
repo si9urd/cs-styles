@@ -6,6 +6,7 @@
 ///////////////////////////////
 
 @mixin reset-base {
+  // Use border-box model for all elements and pseudo-elements
   *,
   *::before,
   *::after {
@@ -17,6 +18,7 @@
     margin: 0;
   }
 
+  // Root element defaults: adaptive color scheme, text scaling, sizing transitions, and scrollbar stability
   html {
     color-scheme: light dark;
     -webkit-text-size-adjust: none;
@@ -26,26 +28,30 @@
     scrollbar-gutter: stable;
   }
 
+  // Ensure full viewport height and crisp font rendering
   body {
     min-block-size: 100svh;
-    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
 
+  // Improve text decoration and underline offset for unstyled links
   :where(a:not([class])) {
     text-decoration-skip-ink: auto;
     text-underline-offset: 0.15em;
   }
 
+  // Collapse table borders
   :where(table) {
     border-collapse: collapse;
   }
 
+  // Accessible focus outline for keyboard navigation
   :where(:focus-visible) {
     outline: 2px solid currentcolor;
     outline-offset: 2px;
   }
 
+  // Scroll offset for targeted anchor links to prevent header overlap
   :where(:target) {
     scroll-margin-block: 5ex;
   }
@@ -56,11 +62,13 @@
 ////////////////////////////
 
 @mixin reset-typo {
+  // Balanced line-height and text wrapping for headings
   :where(h1, h2, h3, h4, h5, h6) {
     line-height: 1.15;
     text-wrap: balance;
   }
 
+  // Improved text wrapping and word breaking for body text elements
   :where(p, li, figcaption, blockquote) {
     text-wrap: pretty;
     overflow-wrap: break-word;
@@ -72,10 +80,11 @@
 ////////////////////////////
 
 @mixin reset-lists {
+  // Remove default list styling for navigation and explicit list roles
   nav :where(ul, ol),
   :where(ul, ol)[role="list"] {
-    list-style: none;
     padding: 0;
+    list-style: none;
   }
 }
 
@@ -84,17 +93,30 @@
 ///////////////////////////
 
 @mixin reset-media {
+  // Make media and embedded elements block-level and responsive
   :where(img, picture, audio, video, canvas, svg, iframe) {
     display: block;
     max-inline-size: 100%;
   }
 
+  // Preserve intrinsic aspect ratio for images and videos
   :where(img, video) {
     block-size: auto;
   }
 
+  // Align embedded media elements vertically
   :where(audio, canvas, iframe, img, svg, video) {
     vertical-align: middle;
+  }
+
+  // Inherit text color for SVG icons without an explicit fill
+  svg:not([fill]) {
+    fill: currentcolor;
+  }
+
+  // Clip overflowing SVG content
+  svg:not(:root) {
+    overflow: hidden;
   }
 }
 
@@ -103,20 +125,19 @@
 ////////////////////////////////////////////
 
 @mixin reset-form {
+  // Inherit typography styles in form controls
   :where(input, button, textarea, select) {
-    font: inherit;
     color: inherit;
+    font: inherit;
     letter-spacing: inherit;
   }
 
+  // Limit textarea resizing to vertical only
   :where(textarea) {
     resize: vertical;
   }
 
-  :where(button, [role="button"], label[for], select, summary) {
-    cursor: pointer;
-  }
-
+  // Visual feedback for disabled interactive elements
   :where(button:disabled, [aria-disabled="true"]) {
     cursor: not-allowed;
   }
@@ -127,6 +148,7 @@
 ////////////////////////////////////
 
 @mixin reset-tapping {
+  // Disable double-tap delay on interactive elements to optimize touch response
   :where(a, area, button, input, label, select, summary, textarea, [tabindex]) {
     touch-action: manipulation;
   }
@@ -136,24 +158,29 @@
 // Specs
 ////////////////////////////////////
 @mixin reset-specs {
+  // Create an isolated stacking context for the app root.
+  // This prevents internal z-index/blend effects from leaking into the page context.
+  #app,
   #root {
     isolation: isolate;
   }
 
+  // Enable smooth scrolling only when the user has not requested reduced motion.
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
     }
   }
 
+  // Respect the user's reduced motion preference by minimizing animations and transitions.
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
       animation-duration: .01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: .01ms !important;
       scroll-behavior: auto !important;
+      transition-duration: .01ms !important;
     }
   }
 }
@@ -172,6 +199,7 @@
   @include reset-specs;
 }
 
+// Apply reset styles in the cascade layer
 @layer reset {
   @include reset;
 }
