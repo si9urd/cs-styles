@@ -5,11 +5,11 @@
     --group-height: var(--#{$prefix}-input-height);
     --group-border-radius: var(--#{$prefix}-border-radius);
 
-    position: relative;
     display: inline-flex;
-    padding: 0;
-    margin: 0;
+    position: relative;
     height: var(--group-height);
+    margin: 0;
+    padding: 0;
     border-radius: var(--group-border-radius);
 
     & > * {
@@ -32,8 +32,8 @@
     --group-border-radius: 999px;
 
     flex-flow: row;
-    gap:0;
     width: 100%;
+    gap:0;
 
     input {
       border-radius: 0;

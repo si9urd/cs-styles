@@ -5,10 +5,10 @@
   --#{$prefix}-gutter-x: #{$spacing};
 
   width: 100%;
-  padding-right: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
-  padding-left: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
   margin-right: auto;
   margin-left: auto;
+  padding-right: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
+  padding-left: calc(var(--#{$prefix}-gutter-x) * .5); // stylelint-disable-line function-disallowed-list
 }
 
 @mixin make-containers($prefix: $bs-prefix, $spacing: 1rem,
@@ -26,12 +26,12 @@
     }
 
     @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
-      %responsive-container-#{$breakpoint} {
-        max-width: $container-max-width;
-      }
 
       // Extend each breakpoint which is smaller or equal to the current breakpoint
       $extend-breakpoint: true;
+      %responsive-container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
 
       @each $name, $width in $grid-breakpoints {
         @if $extend-breakpoint {

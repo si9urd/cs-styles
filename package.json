@@ -5,17 +5,15 @@
   "main": "dist/cs-styles.min.css",
   "type": "module",
   "scripts": {
-    "build": "run-s \"build:*\"",
+    "build": "npm run build:css && npm run build:prefix && npm run build:minify && npm run build:banner",
     "build:css": "sass --no-source-map --style expanded --no-error-css scss/:dist/",
-    "build:autoprefix": "postcss --replace dist/*.css !dist/*.min.css",
-    "build:minify": "cleancss -O1 --with-rebase --batch --batch-suffix .min dist/*.css !dist/*.min.css",
-    "watch": "nodemon -q --watch scss/ --ext scss --exec run-s build:css",
-    "dev": "npm-run-all -s build:css watch",
-    "lint": "run-s lint:sort-scss lint:stylelint --silent",
-    "lint:sort-scss": "postcss ./scss/**/*.scss --replace",
-    "lint:stylelint": "stylelint --fix \"scss/**/*.scss\"",
+    "build:prefix": "lightningcss --browserslist dist/cs-styles.css -o dist/cs-styles.css",
+    "build:minify": "lightningcss --browserslist --minify dist/cs-styles.css -o dist/cs-styles.min.css",
+    "build:banner": "node --input-type=commonjs -e \"const fs=require('fs'),f='dist/cs-styles.min.css';fs.writeFileSync(f,fs.readFileSync('scss/_copyright.scss')+fs.readFileSync(f))\"",
+    "dev": "npm run build:css -- --watch",
+    "lint": "postcss \"scss/**/*.scss\" --replace && stylelint --fix \"scss/**/*.scss\"",
     "theme": "node m3theme-loader.js src=material-theme-default.json scss=scss/themes/_themes_colors.scss",
-    "generate-theme": "node m3theme-generator.js '#096d8c'"
+    "generate-theme": "node m3theme-generator.js \"#096d8c\""
   },
   "repository": {
     "type": "git",
@@ -37,11 +35,8 @@
   "license": "MIT",
   "devDependencies": {
     "@material/material-color-utilities": "^0.4.0",
-    "autoprefixer": "^10.6.1",
-    "clean-css-cli": "^5.6.3",
     "css-declaration-sorter": "^7.2.0",
-    "nodemon": "^3.1.7",
-    "npm-run-all": "^4.1.5",
+    "lightningcss-cli": "^1.33.0",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "postcss-scss": "^4.0.9",

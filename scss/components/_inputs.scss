@@ -16,23 +16,23 @@
 
   display: inline-flex;
   width: 100%;
+  height: var(--height);
   padding: var(--padding);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  font-size: var(--font-size);
-  height: var(--height);
-  line-height: var(--line-height);
-  color: var(--color);
+  outline: none !important;
+  background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
+  background-size: var(--background-size);
+  background-repeat: no-repeat;
   background-color: var(--background);
   box-shadow: var(--box-shadow);
+  color: var(--color);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
   transition: background-color var(--transition),
               border-color var(--transition),
               color var(--transition),
               box-shadow var(--transition);
-  outline: none !important;
-  background-repeat: no-repeat;
-  background-size: var(--background-size);
-  background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
 
   &:disabled {
     --background: var(--#{$prefix}-surface-container);
@@ -81,9 +81,9 @@
   input[type="search"] {
     --border-radius: 999px !important;
 
+    padding-left: calc(var(--#{$prefix}-spacing) * 3) !important;
     background-image: var(--#{$prefix}-search-icon);
     background-position: left var(--#{$prefix}-spacing) center !important;
-    padding-left: calc(var(--#{$prefix}-spacing) * 3) !important;
   }
 
   input[type="color"] {
@@ -119,8 +119,8 @@
 
 @mixin input-autofill {
   :is(input, textarea, select):is(:autofill, :-webkit-autofill) {
-    box-shadow: 0 0 0 1000px var(--background) inset !important;
     -webkit-text-fill-color: var(--color) !important;
+    box-shadow: 0 0 0 1000px var(--background) inset !important;
   }
 }
 

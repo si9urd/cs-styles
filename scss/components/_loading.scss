@@ -7,13 +7,13 @@
     white-space: nowrap;
 
     &::before {
-      content: "";
       display: inline-flex;
       width: 1em;
       height: 1em;
       background-image: var(--#{$prefix}-ring-spinner);
       background-size: 1em auto;
       background-repeat: no-repeat;
+      content: "";
       vertical-align: -.125em;
     }
 

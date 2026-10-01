@@ -5,6 +5,7 @@
   --#{$prefix}-font-family-mono: #{$font-family-monospace};
   --#{$prefix}-font-size-base: #{$font-size-base};
   --#{$prefix}-font-size-input: #{$font-size-input};
+  --#{$prefix}-font-weight-normal: #{$font-weight-normal};
   --#{$prefix}-font-weight-bold: #{$font-weight-bold};
   --#{$prefix}-font-weight-medium: #{$font-weight-medium};
   --#{$prefix}-line-height-base: #{$line-height-base};
@@ -18,6 +19,11 @@
   --#{$prefix}-btn-icon-size: #{$btn-icon-size};
   --#{$prefix}-btn-inner-icon-size: #{$btn-inner-icon-size};
   --#{$prefix}-transition: #{$transition};
+  --#{$prefix}-z-index-sticky: #{$z-index-sticky};
 
-  color-scheme: light dark;
+  color-scheme: light;
+
+  &[data-theme="dark"] {
+    color-scheme: dark;
+  }
 }

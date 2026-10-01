@@ -12,19 +12,19 @@
     min-width: var(--menu-width);
     padding: .5rem 0;
     border-radius: var(--#{$prefix}-border-radius);
-    color: var(--#{$prefix}-on-surface);
     background-color: var(--#{$prefix}-surface-container);
-    font-size: .875rem;
-    font-weight: 500;
     box-shadow: var(--#{$prefix}-elevation-2);
+    color: var(--#{$prefix}-on-surface);
+    font-weight: 500;
+    font-size: .875rem;
 
     & > :not(.divider):is(li, div) {
       display: flex;
       align-items: center;
-      gap: var(--gap);
       width: 100%;
       height: var(--menu-item-height);
       padding: 0 var(--gap);
+      gap: var(--gap);
       cursor: pointer;
 
       &:not(.divider, hr):is(:hover, [data-hovered]) {
@@ -42,8 +42,8 @@
       }
 
       @include disabled {
-        color: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
         background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 4%);
+        color: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
         cursor: not-allowed;
 
         svg {
@@ -56,8 +56,8 @@
       }
 
       &:is([data-expandable], .has-children)::after {
-        content: "";
         margin: .2em 0 0 auto;
+        content: "";
 
         @include triangle(8px, var(--#{$prefix}-on-surface));
       }
@@ -74,19 +74,19 @@
     }
 
     & > :is(.divider, hr) {
-      height: 1px;
       width: 100%;
+      height: 1px;
       margin: 7.5px 0;
-      line-height: 16px;
       padding: 0;
-      background-color: var(--#{$prefix}-surface-variant);
       border: none;
+      background-color: var(--#{$prefix}-surface-variant);
+      line-height: 16px;
     }
   }
 
   ul.menu {
-    list-style: none;
     margin: 0;
+    list-style: none;
   }
 }
 

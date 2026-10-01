@@ -2,12 +2,15 @@
 
 @mixin document {
   :root {
-    color: var(--#{$prefix}-on-surface);
     background-color: var(--#{$prefix}-surface);
-    font: 400 1rem/1.5 var(--#{$prefix}-font-family);
-    overflow-wrap: break-word;
+    color: var(--#{$prefix}-on-surface);
+    font-family: var(--#{$prefix}-font-family);
+    font-size: var(--#{$prefix}-font-size-base);
+    font-weight: var(--#{$prefix}-font-weight-normal);
+    line-height: var(--#{$prefix}-line-height-base);
     font-synthesis: none;
     text-underline-offset: 0.1rem;
+    overflow-wrap: break-word;
     text-size-adjust: 100%;
     text-rendering: optimizelegibility;
     -webkit-tap-highlight-color: transparent;

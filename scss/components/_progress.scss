@@ -3,7 +3,6 @@
 @mixin progress {
   progress {
     display: inline-flex;
-    vertical-align: baseline;
     appearance: none;
     width: 100%;
     height: 0.5rem;
@@ -15,6 +14,7 @@
 
     // IE10 uses `color` to set the bar background-color
     color: var(--#{$prefix}-primary);
+    vertical-align: baseline;
 
     &::-webkit-progress-bar {
       border-radius: 5rem;

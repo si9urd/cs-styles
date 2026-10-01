@@ -1,4 +1,4 @@
-/// Reset styles (sanitize.css & normalize.css)
+/// Reset styles
 @use "../variables" as *;
 
 ///////////////////////////////
@@ -13,65 +13,30 @@
     box-sizing: border-box;
   }
 
-  // Remove external margins, but not for elements with their own logic (dialog, popover)
+  // Remove default external margins
   :where(:not(dialog, [popover])) {
     margin: 0;
   }
 
-  // Root element defaults: adaptive color scheme, text scaling, sizing transitions, and scrollbar stability
+  // Root element defaults: color scheme and text scaling
   html {
     color-scheme: light dark;
-    -webkit-text-size-adjust: none;
-    text-size-adjust: none;
-    interpolate-size: allow-keywords; /* animation height: auto, etc. */
-    hanging-punctuation: first last;
-    scrollbar-gutter: stable;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
-  // Ensure full viewport height and crisp font rendering
+  // Ensure full viewport height
   body {
     min-block-size: 100svh;
-    -webkit-font-smoothing: antialiased;
   }
 
-  // Improve text decoration and underline offset for unstyled links
-  :where(a:not([class])) {
-    text-decoration-skip-ink: auto;
-    text-underline-offset: 0.15em;
+  // Ensure hidden elements and unopened dialogs remain hidden
+  :where([hidden]) {
+    display: none !important;
   }
 
-  // Collapse table borders
-  :where(table) {
-    border-collapse: collapse;
-  }
-
-  // Accessible focus outline for keyboard navigation
-  :where(:focus-visible) {
-    outline: 2px solid currentcolor;
-    outline-offset: 2px;
-  }
-
-  // Scroll offset for targeted anchor links to prevent header overlap
-  :where(:target) {
-    scroll-margin-block: 5ex;
-  }
-}
-
-////////////////////////////
-// Typo
-////////////////////////////
-
-@mixin reset-typo {
-  // Balanced line-height and text wrapping for headings
-  :where(h1, h2, h3, h4, h5, h6) {
-    line-height: 1.15;
-    text-wrap: balance;
-  }
-
-  // Improved text wrapping and word breaking for body text elements
-  :where(p, li, figcaption, blockquote) {
-    text-wrap: pretty;
-    overflow-wrap: break-word;
+  :where(template, dialog:not([open])) {
+    display: none;
   }
 }
 
@@ -80,9 +45,10 @@
 ////////////////////////////
 
 @mixin reset-lists {
-  // Remove default list styling for navigation and explicit list roles
+  // Remove default list styling for navigation and classed lists
   nav :where(ul, ol),
-  :where(ul, ol)[role="list"] {
+  :where(ul, ol)[role="list"],
+  :where(ul, ol):where([class]) {
     padding: 0;
     list-style: none;
   }
@@ -94,7 +60,7 @@
 
 @mixin reset-media {
   // Make media and embedded elements block-level and responsive
-  :where(img, picture, audio, video, canvas, svg, iframe) {
+  :where(img, picture, video, canvas, audio) {
     display: block;
     max-inline-size: 100%;
   }
@@ -104,8 +70,10 @@
     block-size: auto;
   }
 
-  // Align embedded media elements vertically
-  :where(audio, canvas, iframe, img, svg, video) {
+  // Align SVG icons inline without breaking text flow
+  :where(svg) {
+    display: inline-block;
+    max-inline-size: 100%;
     vertical-align: middle;
   }
 
@@ -114,9 +82,11 @@
     fill: currentcolor;
   }
 
-  // Clip overflowing SVG content
-  svg:not(:root) {
-    overflow: hidden;
+  // Remove default border and make iframes responsive
+  :where(iframe) {
+    display: block;
+    max-inline-size: 100%;
+    border: 0;
   }
 }
 
@@ -130,6 +100,23 @@
     color: inherit;
     font: inherit;
     letter-spacing: inherit;
+  }
+
+  // Remove default background and border from buttons
+  :where(button, [type="button"], [type="reset"], [type="submit"]) {
+    border-style: none;
+    background-color: transparent;
+  }
+
+  // Remove inner border and padding in Firefox
+  ::-moz-focus-inner {
+    padding: 0;
+    border-style: none;
+  }
+
+  // Normalize placeholder opacity across browsers
+  :where(input, textarea)::placeholder {
+    opacity: 1;
   }
 
   // Limit textarea resizing to vertical only
@@ -148,31 +135,18 @@
 ////////////////////////////////////
 
 @mixin reset-tapping {
-  // Disable double-tap delay on interactive elements to optimize touch response
+  // Disable double-tap delay on interactive elements
   :where(a, area, button, input, label, select, summary, textarea, [tabindex]) {
     touch-action: manipulation;
   }
 }
 
 ////////////////////////////////////
-// Specs
+// Motion
 ////////////////////////////////////
-@mixin reset-specs {
-  // Create an isolated stacking context for the app root.
-  // This prevents internal z-index/blend effects from leaking into the page context.
-  #app,
-  #root {
-    isolation: isolate;
-  }
 
-  // Enable smooth scrolling only when the user has not requested reduced motion.
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
-
-  // Respect the user's reduced motion preference by minimizing animations and transitions.
+@mixin reset-motion {
+  // Respect the user's reduced motion preference
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -191,12 +165,11 @@
 
 @mixin reset {
   @include reset-base;
-  @include reset-typo;
   @include reset-lists;
   @include reset-media;
   @include reset-form;
   @include reset-tapping;
-  @include reset-specs;
+  @include reset-motion;
 }
 
 // Apply reset styles in the cascade layer

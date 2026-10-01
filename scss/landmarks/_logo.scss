@@ -2,14 +2,14 @@
 
 .cs-logo {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  height: 2.5rem;
+  justify-content: flex-start;
   width: auto;
-  font-size: 38px;
-  font-weight: 700;
-  color: transparent;
+  height: 2.5rem;
   background: linear-gradient(to right, var(--#{$prefix}-primary), var(--#{$prefix}-tertiary));
   background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  font-size: 38px;
   cursor: pointer;
 }

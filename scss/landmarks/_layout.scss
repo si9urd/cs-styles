@@ -2,10 +2,23 @@
 @use "../variables" as *;
 @use "../content" as *;
 
+@mixin react {
+  // Create an isolated stacking context for the app root.
+  // This prevents internal z-index/blend effects from leaking into the page context.
+  #app,
+  #root {
+    isolation: isolate;
+  }
+}
+
 @mixin flex-landmarks {
   #{$page-root},
   .page {
     & > header {
+      margin-bottom: var(--#{$prefix}-spacing);
+      padding: var(--#{$prefix}-spacing) 0;
+      background-color: var(--#{$prefix}-surface);
+
       h1, h2, h3, h4, h5, h6 {
         margin-block: 0;
       }
@@ -13,24 +26,20 @@
       &.sticky {
         --top: 0;
 
+        z-index: var(--#{$prefix}-z-index-sticky);
         position: sticky;
         top: var(--top);
-        z-index: $z-index-sticky;
       }
 
       // TODO: content неудачное название, и неясное назначение. придумать новое другое название для блока контента.
       & > .content {
         display: flex;
         flex-flow: wrap;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         margin: 0 auto;
         padding: 0 var(--#{$prefix}-spacing);
       }
-
-      background-color: var(--#{$prefix}-surface);
-      padding: var(--#{$prefix}-spacing) 0;
-      margin-bottom: var(--#{$prefix}-spacing);
 
       nav {
         display: flex;
@@ -38,10 +47,10 @@
 
         hr {
           display: block;
-          border-left: 1px solid var(--#{$prefix}-outline-variant);
-          height: var(--#{$prefix}-btn-icon-size);
           width: 1px;
+          height: var(--#{$prefix}-btn-icon-size);
           margin: 0 var(--#{$prefix}-x-spacing);
+          border-left: 1px solid var(--#{$prefix}-outline-variant);
           opacity: .35;
         }
 
@@ -168,6 +177,7 @@
 //}
 
 @if $enable-landmarks {
+  @include react;
   @include flex-landmarks;
 }
 

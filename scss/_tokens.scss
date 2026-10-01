@@ -36,6 +36,7 @@ $spacers: (
 
 $font-size-base: 1rem !default;
 $font-size-input: 1rem !default;
+$font-weight-normal: 400 !default;
 $font-weight-bold: 700 !default;
 $font-weight-medium: 500 !default;
 $btn-font-size: 1rem !default;
@@ -47,7 +48,7 @@ $border-radius: .25rem !default;
 $btn-icon-size: 1.5rem !default;
 $btn-inner-icon-size: 1.125rem !default;
 
-$transition: .2s easy-in-out !default;
+$transition: .2s ease-in-out !default;
 
 $z-index-dropdown: 1000 !default;
 $z-index-sticky: 1020 !default;

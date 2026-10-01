@@ -1,0 +1,12 @@
+@mixin reset-table {
+  // Collapse table borders and inherit header alignment
+  :where(table) {
+    border-collapse: collapse;
+  }
+
+  :where(th) {
+    text-align: inherit;
+  }
+}
+
+@include reset-table;
