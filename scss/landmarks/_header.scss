@@ -1,0 +1,63 @@
+@use "../variables" as *;
+
+@mixin header {
+  header:not(:has(> .content, > .container)),
+  header > .container,
+  header > .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--#{$prefix}-spacing);
+  }
+
+
+  header {
+    margin-bottom: var(--#{$prefix}-spacing);
+    padding: var(--#{$prefix}-spacing) 0;
+    background-color: var(--#{$prefix}-surface);
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-block: 0;
+    }
+
+    &.sticky {
+      --top: 0;
+
+      z-index: var(--#{$prefix}-z-index-sticky);
+      position: sticky;
+      top: var(--top);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+
+      hr {
+        display: block;
+        width: 1px;
+        height: var(--#{$prefix}-btn-icon-size);
+        margin: 0 var(--#{$prefix}-x-spacing);
+        border-left: 1px solid var(--#{$prefix}-outline-variant);
+        opacity: .35;
+      }
+
+      ul {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+
+        li {
+          display: inline-flex;
+          margin: 0;
+          padding: 0 calc(0.5 * var(--#{$prefix}-x-spacing));
+        }
+      }
+    }
+  }
+
+}
+
+@if $enable-landmarks {
+  @include header;
+}

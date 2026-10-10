@@ -159,6 +159,29 @@
   }
 }
 
+@mixin reset-typo {
+  // Prevent font size shrinkage for monospace elements
+  :where(pre, code, kbd, samp) {
+    font-size: 1em;
+  }
+
+  // Prevent subscript and superscript from affecting line height
+  :where(sub, sup) {
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  :where(sub) {
+    bottom: -0.25em;
+  }
+
+  :where(sup) {
+    top: -0.5em;
+  }
+}
+
 //////////////////////////
 /// Full reset
 /////////////////////////
@@ -170,6 +193,7 @@
   @include reset-form;
   @include reset-tapping;
   @include reset-motion;
+  @include reset-typo;
 }
 
 // Apply reset styles in the cascade layer

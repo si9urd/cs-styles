@@ -1,0 +1,14 @@
+@use "../variables" as *;
+
+@mixin react {
+  // Create an isolated stacking context for the app root.
+  // This prevents internal z-index/blend effects from leaking into the page context.
+  #app,
+  #root {
+    isolation: isolate;
+  }
+}
+
+@if $enable-landmarks {
+  @include react;
+}

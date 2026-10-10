@@ -40,6 +40,16 @@
   }
 }
 
+@mixin elevation-classes {
+  @for $i from 0 through 5 {
+    .elevation-#{$i} {
+      box-shadow: var(--#{$prefix}-elevation-#{$i});
+    }
+  }
+}
+
+@include elevation-classes;
+
 :root {
   &:not([data-theme="dark"]) {
     @include make-elevation(#000000);
