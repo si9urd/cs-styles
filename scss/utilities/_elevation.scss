@@ -1,5 +1,4 @@
 @use "../settings" as *;
-@use "../tools" as *;
 
 @mixin elevation-classes {
   @for $i from 0 through 5 {
@@ -10,13 +9,3 @@
 }
 
 @include elevation-classes;
-
-:root {
-  &:not([data-theme="dark"]) {
-    @include make-elevation(#000000);
-  }
-
-  &[data-theme="dark"] {
-    @include make-elevation(#FFFFFF);
-  }
-}

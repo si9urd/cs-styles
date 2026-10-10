@@ -1,6 +1,6 @@
 @use "sass:map" as map;
 @use "../settings" as *;
-@use "../content" as *;
+@use "stack";
 
 @mixin flex-landmarks {
   #{$page-root},

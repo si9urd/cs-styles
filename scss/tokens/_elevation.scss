@@ -1,0 +1,11 @@
+@use "../tools" as *;
+
+:root {
+  &:not([data-theme="dark"]) {
+    @include make-elevation(#000000);
+  }
+
+  &[data-theme="dark"] {
+    @include make-elevation(#FFFFFF);
+  }
+}
