@@ -11,7 +11,8 @@
     "build:minify": "lightningcss --browserslist --minify dist/cs-styles.css -o dist/cs-styles.min.css",
     "build:banner": "node --input-type=commonjs -e \"const fs=require('fs'),f='dist/cs-styles.min.css';fs.writeFileSync(f,fs.readFileSync('scss/_copyright.scss')+fs.readFileSync(f))\"",
     "dev": "npm run build:css -- --watch",
-    "lint": "postcss \"scss/**/*.scss\" --replace && stylelint --fix \"scss/**/*.scss\"",
+    "check:diff": "git diff --no-index --exit-code .baseline/cs-styles.css dist/cs-styles.css",
+    "lint":"postcss \"scss/**/*.scss\" --replace && stylelint --fix \"scss/**/*.scss\"",
     "theme": "node m3theme-loader.js src=material-theme-default.json scss=scss/themes/_themes_colors.scss",
     "generate-theme": "node m3theme-generator.js \"#096d8c\""
   },
