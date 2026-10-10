@@ -8,7 +8,7 @@ npm run build:minify     # minify dist/*.css to dist/*.min.css via clean-css
 npm run watch            # rebuild build:css on any scss/**/*.scss change (nodemon)
 npm run dev              # build:css once, then watch
 npm run lint             # prettier --write + postcss (css-declaration-sorter) over scss/**/*.scss
-npm run theme            # generate scss/themes/_themes_colors.scss from a material-theme*.json source
+npm run theme            # generate scss/settings/_themes_colors.scss from a material-theme*.json source
 npm run generate-theme   # generate a Material color theme JSON from a seed hex color
 ```
 

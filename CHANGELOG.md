@@ -16,10 +16,30 @@
 ### Added
 
 - Начато оформление журнала изменений.
+- Баннер с лицензией теперь и в `dist/cs-styles.css` (раньше только в `.min.css`).
 
 ### Changed
 
 - Зафиксировано правило ведения изменений для будущих релизов.
+- **Breaking.** Исходники `scss/` переложены по ITCSS: `settings/`, `tools/`, `tokens/`, `generic/`, `elements/`, `objects/`, `components/`, `utilities/`. Классы, `--cs-*` и `data-theme` не менялись.
+  - Ломается: прямое подключение партиалов по старым путям (`scss/base/…`, `scss/utils/…`, `scss/abstracts/…`, `scss/content/…`, `scss/landmarks/…`, `scss/themes/…`, `scss/_variables.scss`).
+  - Миграция: подключать `scss/cs-styles.scss` или `scss/index` с `with (...)` — имена настроек те же.
+- **Breaking.** Весь CSS разложен по каскадным слоям `@layer tokens, generic, elements, objects, components, utilities` (раньше в слоях были только `reset` и `bootstrap`).
+  - Ломается: CSS потребителя вне слоёв теперь перебивает любой стиль фреймворка независимо от специфичности; ссылки на слои `reset`/`bootstrap` больше не работают.
+  - Миграция: свои переопределения не требуют повышения специфичности; если нужно, чтобы фреймворк побеждал, положите свой CSS в слой, объявленный раньше: `@layer my-base, tokens, generic, …;`.
+- **Breaking.** Утилиты без `!important` — последний слой и так побеждает компоненты.
+  - Ломается: утилита больше не перебивает CSS потребителя вне слоёв (`.card { margin: 1rem }` победит `class="card m-0"`).
+  - Миграция: положить свой CSS в слой, объявленный до `utilities`, или повысить специфичность утилиты на месте.
+- Сгенерированная палитра — `scss/settings/_themes_colors.scss` (`$theme-palette`), `npm run theme` пишет туда. Переопределения через `$theme-colors` работают как раньше.
+- Снят лишний `!important` в `inputs` (`outline`, отступы `textarea`/`search`/`color`) и у disabled-ссылок.
+
+### Removed
+
+- Повторный вывод `reset-typo`, правило `[aria-control]` (несуществующий атрибут), дубль `cursor: not-allowed` в reset.
+
+### Fixed
+
+- `outline: none !important` у полей ввода больше не мешает задать свой стиль фокуса.
 
 ## [0.7.31] - 2026-06-28
 

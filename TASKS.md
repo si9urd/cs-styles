@@ -18,16 +18,10 @@
 
 ## 2. Архитектура SCSS
 
-- [ ] Формально разделить слои стилей:
-  - [ ] `abstracts`
-  - [ ] `base`
-  - [ ] `components`
-  - [ ] `content`
-  - [ ] `landmarks`
-  - [ ] `themes`
-  - [ ] `utils`
-  - [ ] `vendor`
-- [ ] Проверить, что точки входа `scss/_index.scss` и `scss/cs-styles.scss` не дублируют ответственность.
+- [x] Формально разделить слои стилей — ITCSS + `@layer`, см. `TASKS-ITCSS.md`:
+  `settings`, `tools`, `tokens`, `generic`, `elements`, `objects`, `components`, `utilities`, `vendor`.
+- [x] Проверить, что точки входа `scss/_index.scss` и `scss/cs-styles.scss` не дублируют ответственность
+  (`cs-styles.scss` — только конфигурация `with (...)`, `_index.scss` — загрузка слоёв).
 - [ ] Упростить и унифицировать именование переменных, миксинов и хелперов.
 - [ ] Отделить внутренние утилиты от публичных API.
 - [ ] Свести к минимуму прямые зависимости между компонентами.
@@ -44,10 +38,10 @@
   - [ ] тени
   - [ ] брейкпоинты
 - [ ] Проверить согласованность файлов:
-  - [ ] `scss/_variables.scss`
-  - [ ] `scss/abstracts/_functions.scss`
-  - [ ] `scss/abstracts/_mixins.scss`
-  - [ ] `scss/base/_root.scss`
+  - [ ] `scss/settings/_index.scss`
+  - [ ] `scss/tools/_functions.scss`
+  - [ ] `scss/tools/_mixins.scss`
+  - [ ] `scss/tokens/_base.scss`
 - [ ] Решить, где нужны CSS variables, а где достаточно SCSS-констант.
 - [ ] Убрать расхождения между темами и базовыми токенами.
 
@@ -59,10 +53,8 @@
   - [ ] accent/brand themes
   - [ ] system theme
 - [ ] Проверить файлы:
-  - [ ] `scss/themes/_colors.scss`
-  - [ ] `scss/themes/_extended_colors.scss`
-  - [ ] `scss/themes/_themes_mui_colors.scss`
-  - [ ] `scss/themes/_themes_one_color.scss`
+  - [ ] `scss/tokens/_colors.scss`
+  - [ ] `scss/settings/_themes_colors.scss`
 - [ ] Сделать тему переключаемой без лишнего JS там, где это возможно.
 - [ ] Зафиксировать, какие токены переопределяются темами.
 - [ ] Добавить минимальные примеры использования тем.
@@ -94,12 +86,12 @@
 
 ## 6. Content и landmarks
 
-- [ ] Уточнить назначение слоя `content`.
+- [x] Уточнить назначение слоя `content` — слой расформирован по ITCSS (`TASKS-ITCSS.md`).
 - [ ] Довести `stack`, `icons`, `elevation`, `aria` до единого стиля API.
-- [ ] Проверить и упорядочить `landmarks`:
-  - [ ] `layout`
-  - [ ] `logo`
-  - [ ] `scheme-toggle`
+- [x] Проверить и упорядочить `landmarks` — разнесены по `objects/`, `components/`, `generic/`:
+  - [x] `layout`
+  - [x] `logo`
+  - [x] `scheme-toggle`
 - [ ] Сделать примеры типовой структуры страницы.
 - [ ] Проверить, что библиотека нормально работает без JS.
 

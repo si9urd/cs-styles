@@ -14,10 +14,12 @@ A deliberate hybrid, not one canonical method:
 - **State on attributes.** `[aria-busy]`, `[aria-expanded]`, `[disabled]`, plus
   `[data-hovered]`/`[data-focused]`/`[data-pressed]` for headless UI libs.
   `:is()`/`:not()` groups variants and keeps specificity flat.
-- **ITCSS-like layering.** The order in `scss/_index.scss` *is* the specificity hierarchy:
-  `variables → themes → copyright → utils → base → components → content → landmarks`.
-  `abstracts/` emits nothing (settings/tools only). Tokens flow one way:
-  `_tokens.scss` (`!default`) → layers → consumer override in the `with (...)` block.
+- **ITCSS + cascade layers.** One directory per layer; `scss/_index.scss` loads each into
+  its `@layer` via `meta.load-css`, order declared in `_layers.scss`:
+  `tokens → generic → elements → objects → components → utilities`.
+  `settings/` and `tools/` emit nothing. Layer order beats specificity, so a later layer
+  never needs `!important` to win; consumer CSS outside layers beats the whole framework.
+  Tokens flow one way: `settings/` (`!default`) → layers → consumer override in the `with (...)` block.
 - **Variants via `%placeholder` + `@extend`** (OOCSS: structure apart from skin), not
   per-variant mixins — one selector list in the output instead of duplicated declarations.
 - **Custom properties are the component API.** Unprefixed local knobs
@@ -29,6 +31,7 @@ A deliberate hybrid, not one canonical method:
   from `material-theme*.json` — `_themes_colors.scss` is an artifact, never hand-edited.
 - **Utilities are an opt-in thin layer**, not utility-first: Bootstrap's utilities API via
   `make-utilities()`, one file per group, toggled by `$enable-utilities: ("spacing": true, …)`.
+  No `!important` (`$enable-important-utilities: false`): the utilities layer is last.
 - **Feature flags over a monolith:** `$enable-icons`, `$enable-grid`, `$enable-forms`,
   `$enable-landmarks`, `$enable-responsive-utilities`.
 - **Vendor stays isolated.** `scss/vendor/bootstrap/` (grid, rfs, utilities API) is trimmed
@@ -44,9 +47,16 @@ A deliberate hybrid, not one canonical method:
 - Partials carry a leading underscore on disk, referenced without it and without the
   extension: `@use "../variables" as *`
 - Every directory has an `_index.scss` that `@use`s its members
-- Layer bodies live in mixins (`@mixin reset-base`, `@mixin accessibility`, `@mixin spacing()`)
-  included from `_index.scss`, not loose at file root
-- Reusable blocks are `%placeholder`s pulled in with `@extend`
+- A partial emits its own CSS (usually a mixin `@include`d at the bottom, behind its `$enable-*`
+  flag); the directory's `_index.scss` only `@use`s partials. Exception: `utilities/_index.scss`
+  checks the `$enable-utilities` groups
+- New partial → the directory of its layer + that directory's `_index.scss`; never wrap a
+  partial in `@layer` yourself
+- Reusable blocks are `%placeholder`s pulled in with `@extend`. Keep the placeholder in the same
+  file or the same layer as its users, not in `tools/`: a placeholder rule is emitted where its
+  module is first loaded, so `@extend` across layers would put selectors in the wrong layer
+- `!important` only to beat the browser or a rule of the same layer (disabled states, autofill,
+  `[hidden]`), never to beat another layer
 
 ### Formatting
 
@@ -58,7 +68,7 @@ A deliberate hybrid, not one canonical method:
 
 ### Naming
 
-- Tokens are kebab-case with `!default` in `scss/_tokens.scss`: `$btn-font-size`, `$z-index-modal`
+- Tokens are kebab-case with `!default` in `scss/settings/_index.scss`: `$btn-font-size`, `$z-index-modal`
 - Runtime API is prefixed via `$prefix`: `var(--#{$prefix}-primary)`; component-local
   properties are unprefixed
 

@@ -125,11 +125,11 @@ scss/
 
 ### Этап 6. Документация и конфиги
 
-- [ ] **6.1** `docs/scss-conventions.md`: новый порядок слоёв, `settings/` вместо `_tokens.scss`, правило «плейсхолдеры — в слое потребителя, не в `tools/`», «партиал сам выводит свой CSS, `_index` папки только `@use`-ит» (заменить пункт «Layer bodies live in mixins included from `_index.scss`»).
-- [ ] **6.2** `CLAUDE.md`: сверить описание с итоговой структурой (имена файлов, флаги).
-- [ ] **6.3** `tasks.md` §2: закрыть пункты про разделение слоёв, сослаться на этот файл.
-- [ ] **6.4** `CHANGELOG.md`: запись про новую структуру; отметить breaking-изменения для тех, кто подключает партиалы напрямую (`scss/base/...`, `scss/utils/...`) и для тех, кто полагался на `@layer reset`/`bootstrap`. Поднять версию по `docs/versioning.md` (минор для 0.x).
-- [ ] **6.5** `package.json`: путь в `theme` (`scss/settings/_themes_colors.scss`); `stylelint.config.mjs` — путь в `ignoreFiles`.
+- [x] **6.1** `docs/scss-conventions.md`: новый порядок слоёв, `settings/` вместо `_tokens.scss`, правило «плейсхолдеры — в слое потребителя, не в `tools/`», «партиал сам выводит свой CSS, `_index` папки только `@use`-ит» (заменить пункт «Layer bodies live in mixins included from `_index.scss`»).
+- [x] **6.2** `CLAUDE.md`: сверить описание с итоговой структурой (имена файлов, флаги).
+- [x] **6.3** `tasks.md` §2: закрыть пункты про разделение слоёв, сослаться на этот файл.
+- [~] **6.4** `CHANGELOG.md`: запись в `Unreleased` (три breaking-изменения с миграцией). **Версию не поднимал** — это решение релиза: `docs/versioning.md` требует MAJOR для breaking, для 0.x обычно хватает минора (`0.8.0`). Заодно обновить версию в `_copyright.scss` (сейчас `v0.7.30`).
+- [x] **6.5** Пути `theme`/`ignoreFiles` обновлены ещё на этапе 2.4; также `THEME.md`, `docs/commands.md`.
 
 ---
 

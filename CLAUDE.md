@@ -10,17 +10,19 @@ CS-Styles (`@oleh-ob/cs-styles`) is a CSS framework for semantic HTML: it target
 
 Entry point is `scss/cs-styles.scss`. The structure is ITCSS: each directory under `scss/` is one layer, with an `_index.scss` that `@use`s its members. `scss/_index.scss` loads every CSS-emitting directory into its cascade layer via `meta.load-css` (order declared in `_layers.scss`: `tokens, generic, elements, objects, components, utilities`):
 
-- `settings/` — config flags and design tokens (all `!default`); no CSS output
-- `tools/` — functions, mixins, helpers; no CSS output
-- `tokens/` — `--cs-*` custom properties on `:root`: base tokens, theme palettes (`_themes_colors.scss` is generated, don't hand-edit), elevation, icons
-- `generic/` — reset
-- `elements/` — bare HTML elements and ARIA attributes: document, typography, aria
+- `settings/` — config flags and design tokens (all `!default`), plus the generated palette `_themes_colors.scss` (`$theme-palette`, don't hand-edit) merged into `$theme-colors`; no CSS output
+- `tools/` — functions, mixins, helpers, elevation/icon mixins; no CSS output
+- `tokens/` — `--cs-*` custom properties on `:root`: base tokens, theme colors, elevation, icons
+- `generic/` — reset, app-root isolation
+- `elements/` — bare HTML elements and ARIA attributes: document, typography, aria, table, hr
 - `objects/` — undecorated layout: grid, stack, layout
-- `components/` — buttons, forms, inputs, menus, logo, scheme toggle, etc.
+- `components/` — buttons, forms, inputs, menus, card, header, logo, scheme toggle, etc.
 - `utilities/` — utility classes, one file per group (no `!important`: the last layer wins)
 - `vendor/bootstrap/` — trimmed Bootstrap grid/rfs/utilities-API, kept isolated; `vendor/_index.scss` only forwards its API
 
-Don't wrap partials in `@layer` themselves: `@extend` from inside a layer leaks the selector out of it. A new partial goes into the directory of its layer and its `_index.scss`.
+Don't wrap partials in `@layer` themselves: `@extend` from inside a layer leaks the selector out of it. For the same reason keep `%placeholder`s in the layer of their users, not in `tools/`. A new partial goes into the directory of its layer and its `_index.scss`; the partial emits its own CSS, the `_index.scss` only `@use`s it.
+
+Verify refactors with `npm run build && npm run check:diff` (diff of `dist/cs-styles.css` against `.baseline/cs-styles.css`, gitignored; refresh the baseline after intended output changes).
 
 Design tokens flow one way: `settings/_index.scss` (all `!default`) → consumed by the other directories → overridable by consumers via the `with (...)` config block at `@use` time in `cs-styles.scss`. When adding a new visual value, add a token in `settings/` rather than hardcoding it in a component partial.
 

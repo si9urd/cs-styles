@@ -1,8 +1,9 @@
 # Material Design 3 — назначение цветовых ролей
 
 Тема генерируется из Material Theme JSON (`m3theme-loader.js`, `npm run theme`) в
-`scss/themes/_themes_colors.scss` как карта `$theme-colors` с ключами `light-*`/`dark-*`.
-`scss/themes/_colors.scss` разворачивает их в CSS custom properties `--cs-{role}`
+`scss/settings/_themes_colors.scss` как карта `$theme-palette` с ключами `light-*`/`dark-*`;
+`scss/settings/_index.scss` сливает её с `$theme-colors` пользователя (его ключи побеждают).
+`scss/tokens/_colors.scss` разворачивает их в CSS custom properties `--cs-{role}`
 под `:not([data-theme="dark"])` / `[data-theme="dark"]`. Сам смысл ролей ниже проект
 не переопределяет — только транспортирует палитру в CSS.
 
@@ -135,7 +136,7 @@ MD3 заменяет box-shadow-слои elevation тональным сдвиг
 
 ```bash
 npm run generate-theme   # генерирует material-theme*.json из сид-хекса
-npm run theme            # собирает scss/themes/_themes_colors.scss из JSON
+npm run theme            # собирает scss/settings/_themes_colors.scss из JSON
 ```
 
 `_themes_colors.scss` — сгенерированный файл, не редактировать вручную.
