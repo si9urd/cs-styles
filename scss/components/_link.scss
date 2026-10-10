@@ -30,8 +30,8 @@
     }
 
     &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
-      --link-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
-      --link-underline-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
+      --link-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
+      --link-underline-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
 
       cursor: auto;
     }

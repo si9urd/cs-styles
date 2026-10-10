@@ -20,7 +20,7 @@
   padding: var(--padding);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  outline: none !important;
+  outline: none;
   background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
   background-size: var(--background-size);
   background-repeat: no-repeat;
@@ -69,7 +69,7 @@
   textarea {
     --height: calc(var(--#{$prefix}-input-height) * 2) !important;
 
-    padding-top: var(--#{$prefix}-spacing) !important;
+    padding-top: var(--#{$prefix}-spacing);
   }
 
   :where(input, textarea)::placeholder {
@@ -79,15 +79,15 @@
 
 @mixin input-other {
   input[type="search"] {
-    --border-radius: 999px !important;
+    --border-radius: 999px;
 
-    padding-left: calc(var(--#{$prefix}-spacing) * 3) !important;
+    padding-left: calc(var(--#{$prefix}-spacing) * 3);
     background-image: var(--#{$prefix}-search-icon);
-    background-position: left var(--#{$prefix}-spacing) center !important;
+    background-position: left var(--#{$prefix}-spacing) center;
   }
 
   input[type="color"] {
-    --padding: calc(var(--#{$prefix}-spacing) / 2) var(--#{$prefix}-spacing) !important;
+    --padding: calc(var(--#{$prefix}-spacing) / 2) var(--#{$prefix}-spacing);
   }
 }
 

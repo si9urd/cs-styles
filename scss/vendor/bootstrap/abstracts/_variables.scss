@@ -39,5 +39,5 @@ $bs-grid-breakpoints: (
 $grid-rows: 1 !default;
 $grid-columns: 12 !default;
 
-//
-$enable-important-utilities: true !default;
+// cs-styles: utilities sit in the last cascade layer, so they win without !important
+$enable-important-utilities: false !default;

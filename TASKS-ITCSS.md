@@ -116,8 +116,12 @@ scss/
 
 ### Этап 5. Снятие `!important` (поведенческие изменения, по одному коммиту)
 
-- [ ] **5.1** `$enable-important-utilities: false` — утилиты в последнем слое и так побеждают. Проверить, что утилиты перебивают компоненты.
-- [ ] **5.2** Пересмотреть `!important` в `components/_button.scss` (disabled), `_inputs.scss`, `_link.scss`, `_menu.scss`: убрать там, где он нужен был только против порядка подключения; оставить, где он перебивает стили браузера или правила своего же слоя (autofill, `[hidden]` в reset).
+- [x] **5.1** `$enable-important-utilities: false` — в `vendor/bootstrap/abstracts/_variables.scss` (переменная вендорная, из `settings` не настраивается). Утилиты в последнем слое перебивают все слои фреймворка без `!important`; `[hidden] { display: none !important }` из reset по-прежнему сильнее `.d-*`.
+  - **Breaking:** раньше утилиты перебивали и неслоёный CSS потребителя, теперь нет (`.card { margin: 1rem }` у потребителя победит `class="card m-0"`). Если нужно старое поведение — вынести флаг в `settings` и пробросить в вендор.
+- [x] **5.2** Снято 8 из 20: `_inputs` — `outline: none` (мешал потребителю добавить свой фокус), `padding-top` у `textarea`, `--border-radius`/`padding-left`/`background-position` у `search`, `--padding` у `color` (все побеждают `%input` специфичностью и порядком); `_link` — оба в disabled (специфичность равна `:hover`, disabled ниже по файлу).
+  - Оставлены, потому что перебивают правила своего слоя или браузера: `_button` disabled (варианты кнопок), `textarea --height` (`[role="group"] > *` задаёт `--height` с большей специфичностью), `_menu` `:active` (`:hover` специфичнее: 0,4,1 против 0,3,1), autofill (стили браузера), reset (`[hidden]`, reduced motion).
+
+Итог: `!important` в `dist/cs-styles.css` 1236 → 19; без учёта флага набор деклараций совпадает с этапом 4.
 
 ### Этап 6. Документация и конфиги
 
