@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--#{$prefix}-spacing);
+    gap: calc(var(--#{$prefix}-spacing) * 2);
   }
 
 
