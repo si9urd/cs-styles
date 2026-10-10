@@ -1,5 +1,5 @@
-@use "../variables" as *;
-@use "../abstracts/mixins" as *;
+@use "../settings" as *;
+@use "../tools" as *;
 @use "sass:map" as map;
 
 @mixin range-track {

@@ -1,5 +1,5 @@
 @use "sass:map" as map;
-@use "abstracts/functions" as *;
+@use "themes_colors" as palette;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Variables
@@ -48,6 +48,17 @@ $enable-responsive-utilities: false !default;
 
 $theme-colors: () !default;
 
+// Generated palette, user overrides win
+$theme-colors: map.merge(palette.$theme-palette, $theme-colors);
+$theme-colors: map.merge($theme-colors, (
+  "light-icon-color": map.get($theme-colors, "light-on-surface"),
+  "dark-icon-color": map.get($theme-colors, "dark-on-surface"),
+  "light-icon-error": map.get($theme-colors, "light-error"),
+  "dark-icon-error": map.get($theme-colors, "dark-error"),
+  "light-icon-success": map.get($theme-colors, "light-success"),
+  "dark-icon-success": map.get($theme-colors, "dark-success"),
+));
+
 ////////////////////////////////////////////////////////////////////////////////
 
 $container-widths: (
@@ -87,10 +98,6 @@ $spacers: (
 
 // Negative spacers
 $negative-spacers: null !default;
-
-@if $enable-negative-margins and not $negative-spacers {
-  $negative-spacers: negativify-map($spacers);
-}
 
 // Spec
 $font-size-base: 1rem !default;

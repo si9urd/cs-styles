@@ -8,7 +8,7 @@ export default {
   // Вендорный слой и генерируемый файл тем живут по своим правилам
   ignoreFiles: [
     'scss/vendor/**/*.scss',
-    'scss/themes/_themes_colors.scss'
+    'scss/settings/_themes_colors.scss'
   ],
   rules: {
     // Запрещает использование @import в пользу @use и @forward

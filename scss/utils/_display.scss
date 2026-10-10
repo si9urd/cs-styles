@@ -1,5 +1,5 @@
 @use "../vendor" as *;
-@use "../variables" as *;
+@use "../settings" as *;
 
 // make display utilities classes
 @mixin display() {

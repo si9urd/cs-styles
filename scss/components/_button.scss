@@ -1,8 +1,8 @@
 /// Buttons base styles
 @use "sass:map" as map;
 @use "sass:string" as *;
-@use "../variables" as *;
-@use "../abstracts/mixins" as *;
+@use "../settings" as *;
+@use "../tools" as *;
 
 // region button-base
 

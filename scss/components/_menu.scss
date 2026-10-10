@@ -1,5 +1,5 @@
-@use "../abstracts/mixins" as *;
-@use "../variables" as *;
+@use "../tools" as *;
+@use "../settings" as *;
 
 @mixin menu {
   .menu {

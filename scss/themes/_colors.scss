@@ -1,6 +1,6 @@
 @use "sass:string";
 @use "sass:map";
-@use "../variables" as *;
+@use "../settings" as *;
 
 @mixin themes-colors() {
   &:not([data-theme="dark"]) {

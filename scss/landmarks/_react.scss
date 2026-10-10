@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use "../settings" as *;
 
 @mixin react {
   // Create an isolated stacking context for the app root.

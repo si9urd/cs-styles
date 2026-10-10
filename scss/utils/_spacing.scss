@@ -1,6 +1,13 @@
 @use "sass:map";
 @use "../vendor" as *;
-@use "../variables" as *;
+@use "../settings" as *;
+@use "../tools" as *;
+
+$_negative-spacers: $negative-spacers;
+
+@if $enable-negative-margins and not $_negative-spacers {
+  $_negative-spacers: negativify-map($spacers);
+}
 
 // make spacing utilities classes
 @mixin spacing() {
@@ -52,43 +59,43 @@
           responsive: $enable-responsive-utilities,
           property: margin,
           class: m,
-          values: $negative-spacers
+          values: $_negative-spacers
       ),
       "negative-margin-x": (
           responsive: $enable-responsive-utilities,
           property: margin-right margin-left,
           class: mx,
-          values: $negative-spacers
+          values: $_negative-spacers
       ),
       "negative-margin-y": (
           responsive: $enable-responsive-utilities,
           property: margin-top margin-bottom,
           class: my,
-          values: $negative-spacers
+          values: $_negative-spacers
       ),
       "negative-margin-top": (
           responsive: $enable-responsive-utilities,
           property: margin-top,
           class: mt,
-          values: $negative-spacers
+          values: $_negative-spacers
       ),
       "negative-margin-end": (
           responsive: $enable-responsive-utilities,
           property: margin-right,
           class: me,
-          values: $negative-spacers
+          values: $_negative-spacers
       ),
       "negative-margin-bottom": (
           responsive: $enable-responsive-utilities,
           property: margin-bottom,
           class: mb,
-          values: $negative-spacers
+          values: $_negative-spacers
       ),
       "negative-margin-start": (
           responsive: $enable-responsive-utilities,
           property: margin-left,
           class: ms,
-          values: $negative-spacers
+          values: $_negative-spacers
       ),
     // Padding utilities
       "padding": (

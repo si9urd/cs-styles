@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use "../settings" as *;
 
 @mixin group {
   :is([role="group"], [role="search"]) {

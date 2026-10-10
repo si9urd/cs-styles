@@ -60,5 +60,5 @@ const generator = new ThemeColorsGenerator({
   colors: { schemes: myTokens }
 })
 
-const fileName = 'scss/themes/_themes_colors.scss'
+const fileName = 'scss/settings/_themes_colors.scss'
 writeFile(fileName, generator.generateContent())
