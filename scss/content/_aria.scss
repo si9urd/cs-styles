@@ -4,11 +4,6 @@
 /// Accessibility
 
 @mixin accessibility {
-  // Change the cursor on control elements in all browsers (opinionated)
-  [aria-control] {
-    cursor: pointer;
-  }
-
   // Change the cursor on disabled, not-editable, or otherwise inoperable elements in all browsers (opinionated)
   [aria-disabled="true"],
   :not([disabled="false"]):is([disabled]) {

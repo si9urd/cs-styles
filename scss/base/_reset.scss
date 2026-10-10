@@ -123,11 +123,6 @@
   :where(textarea) {
     resize: vertical;
   }
-
-  // Visual feedback for disabled interactive elements
-  :where(button:disabled, [aria-disabled="true"]) {
-    cursor: not-allowed;
-  }
 }
 
 ////////////////////////////////////

@@ -99,10 +99,6 @@
     resize: vertical;
   }
 
-  :where(button:disabled, [aria-disabled="true"]) {
-    cursor: not-allowed;
-  }
-
   :where(a, area, button, input, label, select, summary, textarea, [tabindex]) {
     touch-action: manipulation;
   }
@@ -5098,25 +5094,6 @@
   direction: rtl;
 }
 
-:where(pre, code, kbd, samp) {
-  font-size: 1em;
-}
-
-:where(sub, sup) {
-  vertical-align: baseline;
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-}
-
-:where(sub) {
-  bottom: -.25em;
-}
-
-:where(sup) {
-  top: -.5em;
-}
-
 h1, h2, h3, h4, h5, h6 {
   --fs: 2.5;
   margin: var(--cs-spacing) 0;
@@ -6224,10 +6201,6 @@ input[type="range"]:active::-ms-thumb {
   border: 0;
   border-top: 1px solid;
   overflow: visible;
-}
-
-[aria-control] {
-  cursor: pointer;
 }
 
 [aria-disabled="true"] {
