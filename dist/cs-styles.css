@@ -6360,16 +6360,16 @@ input[type="range"]:active::-ms-thumb {
 }
 
 header > .container, header > .content {
-  flex-flow: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: calc(var(--cs-spacing) * 2);
   display: flex;
 }
 
 header:not(:has( > .content,  > .container)) {
-  flex-flow: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: calc(var(--cs-spacing) * 2);
   display: flex;
 }
 
