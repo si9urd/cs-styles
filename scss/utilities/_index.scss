@@ -6,6 +6,7 @@
 @use "sizing" as *;
 @use "spacing" as *;
 @use "text" as *;
+@use "elevation";
 
 @if map.get($enable-utilities, align) {
   @include align;

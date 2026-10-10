@@ -1,38 +1,29 @@
+@use "sass:meta";
+@use "copyright";
 @use "layers";
 
 @forward "settings";
 
-// ponytail: temporary, lists partials in the pre-ITCSS output order so the build diff stays empty;
-// stage 4 replaces this with meta.load-css of each layer directory.
-@use "tokens/colors";
-@use "copyright";
-@use "objects/grid";
-@use "utilities";
-@use "generic/reset";
-@use "elements/document";
-@use "elements/typography";
-@use "tokens/base";
-@use "components/button";
-@use "components/group";
-@use "components/link";
-@use "components/loading";
-@use "components/progress";
-@use "components/form";
-@use "components/inputs";
-@use "components/select";
-@use "components/menu";
-@use "components/switches";
-@use "components/range";
-@use "elements/table";
-@use "elements/hr";
-@use "elements/aria";
-@use "utilities/elevation" as utilities-elevation;
-@use "tokens/elevation";
-@use "tokens/icons";
-@use "objects/stack";
-@use "components/card";
-@use "generic/app-root";
-@use "components/header";
-@use "objects/layout";
-@use "components/logo";
-@use "components/scheme-toggle";
+@layer tokens {
+  @include meta.load-css("tokens");
+}
+
+@layer generic {
+  @include meta.load-css("generic");
+}
+
+@layer elements {
+  @include meta.load-css("elements");
+}
+
+@layer objects {
+  @include meta.load-css("objects");
+}
+
+@layer components {
+  @include meta.load-css("components");
+}
+
+@layer utilities {
+  @include meta.load-css("utilities");
+}

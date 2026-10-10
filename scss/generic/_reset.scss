@@ -191,7 +191,4 @@
   @include reset-typo;
 }
 
-// Apply reset styles in the cascade layer
-@layer reset {
-  @include reset;
-}
+@include reset;
