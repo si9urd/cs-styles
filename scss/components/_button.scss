@@ -10,7 +10,7 @@
   --height: var(--#{$prefix}-btn-height);
   --padding: 0 #{map.get($spacers, 4)};
   --inner-gap: .5rem;
-  --font-weight: var(--#{$prefix}-font-weight-normal);
+  --font-weight: var(--#{$prefix}-font-weight-medium);
   --line-height: var(--#{$prefix}-line-height-base);
   --border-radius: var(--#{$prefix}-border-radius);
   --font-family: var(--#{$prefix}-font-family);
@@ -112,34 +112,15 @@
 
 // endregion button-base
 
-%button-filled {
+%button-primary {
   --container-color: var(--#{$prefix}-primary);
   --color: var(--#{$prefix}-on-primary);
-}
-
-%button-elevated {
-  --color: var(--#{$prefix}-primary);
-  --container-color: var(--#{$prefix}-surface-container-low);
-  --elevation: var(--#{$prefix}-elevation-1);
-
-  &:is(:hover, [data-hovered]) {
-    --elevation: var(--#{$prefix}-elevation-2);
-  }
-
-  &:is(:focus, [data-focused], :active, [data-pressed]) {
-    --elevation: var(--#{$prefix}-elevation-1);
-  }
-}
-
-%button-tonal {
-  --color: var(--#{$prefix}-on-secondary-container);
-  --container-color: var(--#{$prefix}-secondary-container);
 }
 
 %button-outlined {
   --color: var(--#{$prefix}-primary);
   --container-color: transparent;
-  --border-color: var(--#{$prefix}-outline);
+  --border-color: var(--#{$prefix}-primary);
 }
 
 %button-icon {
@@ -212,31 +193,23 @@
 // Apply buttons styles
 /////////////////////////////////////////////////
 
-@mixin md-buttons {
+@mixin buttons {
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     // Set base styles
     @extend %button-base;
-    @extend %button-filled;
+    @extend %button-primary;
     @extend %button-inner-icon;
     @extend %button-disabled;
 
-    // Set elevated button styles
-    &.btn-elevated {
-      @extend %button-elevated;
-    }
-
-    // Set tonal button styles
-    &.btn-tonal {
-      @extend %button-tonal;
-    }
-
     // Set outlined button styles
-    &.btn-outlined {
+    &.btn-outlined,
+    &.btn-secondary {
       @extend %button-outlined;
     }
 
     // Set button-text styles
-    &.btn-text {
+    &.btn-text,
+    &.btn-tertiary {
       @extend %button-text;
     }
 
@@ -248,12 +221,10 @@
     // Set button-fab styles
     &.btn-fab {
       @extend %button-fab;
-      @extend %button-inner-icon;
     }
 
     // Set button-icon styles
     &.btn-icon {
-      @extend %button-base;
       @extend %button-icon;
     }
   }
@@ -261,11 +232,11 @@
   //[type="file"]::file-selector-button {
   [type="file"] {
     @extend %button-base;
-    @extend %button-filled;
+    @extend %button-primary;
     @extend %button-inner-icon;
 
     --container-color: var(--#{$prefix}-tertiary);
   }
 }
 
-@include md-buttons;
+@include buttons;

@@ -13,8 +13,8 @@
     "dev": "npm run build:css -- --watch",
     "check:diff": "git diff --no-index --exit-code .baseline/cs-styles.css dist/cs-styles.css",
     "lint":"postcss \"scss/**/*.scss\" --replace && stylelint --fix \"scss/**/*.scss\"",
-    "theme": "node m3theme-loader.js src=material-theme-default.json scss=scss/settings/_themes_colors.scss",
-    "generate-theme": "node m3theme-generator.js \"#096d8c\""
+    "theme": "node m3theme-loader.js src=material-theme-default2.json scss=scss/settings/_themes_colors.scss",
+    "generate-theme": "node m3theme-generator.js \"#6750A4\""
   },
   "repository": {
     "type": "git",
