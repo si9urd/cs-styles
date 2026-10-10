@@ -33,6 +33,7 @@ $enable-utilities: (
   "align": true,
   "borders": true,
   "display": true,
+  "elevation": true,
   "sizing": true,
   "spacing": true,
   "text": true,
@@ -110,9 +111,23 @@ $btn-height: 2.5rem !default;
 $input-height: 3rem !default;
 $line-height-base: 1.5 !default;
 $sidebar-width: 20rem !default;
+$logo-height: 2.5rem !default;
+$logo-font-size: 38px !default;
 $border-radius: .25rem !default;
+$border-radius-pill: 999px !default;
 $btn-icon-size: 1.5rem !default;
 $btn-inner-icon-size: 1.125rem !default;
+$fab-size: 3.5rem !default;
+$fab-border-radius: 1rem !default;
+$menu-width: 12rem !default;
+$menu-item-height: 3rem !default;
+$menu-icon-size: 1.5rem !default;
+$menu-gap: .75rem !default;
+$menu-padding-y: .5rem !default;
+$menu-font-size: .875rem !default;
+$menu-divider-margin-y: 7.5px !default;
+$menu-arrow-size: 8px !default;
+$progress-height: .5rem !default;
 
 // Transition
 $transition: .2s ease-in-out !default;

@@ -32,6 +32,11 @@
   - Миграция: положить свой CSS в слой, объявленный до `utilities`, или повысить специфичность утилиты на месте.
 - Сгенерированная палитра — `scss/settings/_themes_colors.scss` (`$theme-palette`), `npm run theme` пишет туда. Переопределения через `$theme-colors` работают как раньше.
 - Снят лишний `!important` в `inputs` (`outline`, отступы `textarea`/`search`/`color`) и у disabled-ссылок.
+- Нулевая специфичность у корня приложения: `:where(#app, #root)` (изоляция) и `:where(<$page-root>, .page) .content-block` (раньше ID в селекторе). Своё правило для `.content-block` теперь перебивает фреймворк без `#root`.
+- `.elevation-*` включаются флагом `"elevation"` в `$enable-utilities` (по умолчанию `true`). Если передаёте свою карту `$enable-utilities` целиком, добавьте в неё `"elevation": true`, иначе классы пропадут.
+- Класс логотипа учитывает `$prefix` (`.#{$prefix}-logo`, при `cs` — прежний `.cs-logo`). Новые настройки: `$logo-height`, `$logo-font-size`, `$border-radius-pill`.
+- Размеры меню, FAB и `progress` вынесены в настройки: `$menu-width`, `$menu-item-height`, `$menu-icon-size`, `$menu-gap`, `$menu-padding-y`, `$menu-font-size`, `$menu-divider-margin-y`, `$menu-arrow-size`, `$fab-size`, `$fab-border-radius`, `$progress-height`. Значения по умолчанию прежние; у `progress` радиус теперь `$border-radius-pill` (визуально то же). Жирность меню и логотипа берётся из `--cs-font-weight-medium`/`--cs-font-weight-bold`. Убран неработающий `line-height` у разделителя меню.
+- `color-scheme` перенесён из слоя `tokens` в `elements` (`:root`), поведение то же.
 
 ### Removed
 

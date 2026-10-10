@@ -186,12 +186,12 @@
 }
 
 %button-pill {
-  --border-radius: 999px;
+  --border-radius: #{$border-radius-pill};
 }
 
 %button-fab {
-  --height: 3.5rem;
-  --border-radius: 1rem;
+  --height: #{$fab-size};
+  --border-radius: #{$fab-border-radius};
   --container-color: var(--#{$prefix}-primary-container);
   --color: var(--#{$prefix}-on-primary-container);
   --padding: 0;

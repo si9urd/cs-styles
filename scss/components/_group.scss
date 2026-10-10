@@ -29,7 +29,7 @@
   }
 
   form[role="search"] {
-    --group-border-radius: 999px;
+    --group-border-radius: #{$border-radius-pill};
 
     flex-flow: row;
     width: 100%;

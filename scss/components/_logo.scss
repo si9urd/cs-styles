@@ -1,16 +1,16 @@
 @use "../settings" as *;
 
-.cs-logo {
+.#{$prefix}-logo {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   width: auto;
-  height: 2.5rem;
+  height: $logo-height;
   background: linear-gradient(to right, var(--#{$prefix}-primary), var(--#{$prefix}-tertiary));
   background-clip: text;
   color: transparent;
-  font-weight: 700;
-  font-size: 38px;
+  font-weight: var(--#{$prefix}-font-weight-bold);
+  font-size: $logo-font-size;
   cursor: pointer;
 
   & > a {

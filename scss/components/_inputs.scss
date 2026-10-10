@@ -79,7 +79,7 @@
 
 @mixin input-other {
   input[type="search"] {
-    --border-radius: 999px;
+    --border-radius: #{$border-radius-pill};
 
     padding-left: calc(var(--#{$prefix}-spacing) * 3);
     background-image: var(--#{$prefix}-search-icon);

@@ -20,10 +20,4 @@
   --#{$prefix}-btn-inner-icon-size: #{$btn-inner-icon-size};
   --#{$prefix}-transition: #{$transition};
   --#{$prefix}-z-index-sticky: #{$z-index-sticky};
-
-  color-scheme: light;
-
-  &[data-theme="dark"] {
-    color-scheme: dark;
-  }
 }

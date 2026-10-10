@@ -3,20 +3,20 @@
 
 @mixin menu {
   .menu {
-    --menu-width: 12rem;
-    --menu-item-height: 3rem;
-    --icon-size: 1.5rem;
-    --gap: .75rem;
+    --menu-width: #{$menu-width};
+    --menu-item-height: #{$menu-item-height};
+    --icon-size: #{$menu-icon-size};
+    --gap: #{$menu-gap};
 
     display: inline-block;
     min-width: var(--menu-width);
-    padding: .5rem 0;
+    padding: $menu-padding-y 0;
     border-radius: var(--#{$prefix}-border-radius);
     background-color: var(--#{$prefix}-surface-container);
     box-shadow: var(--#{$prefix}-elevation-2);
     color: var(--#{$prefix}-on-surface);
-    font-weight: 500;
-    font-size: .875rem;
+    font-weight: var(--#{$prefix}-font-weight-medium);
+    font-size: $menu-font-size;
 
     & > :not(.divider):is(li, div) {
       display: flex;
@@ -59,7 +59,7 @@
         margin: .2em 0 0 auto;
         content: "";
 
-        @include triangle(8px, var(--#{$prefix}-on-surface));
+        @include triangle($menu-arrow-size, var(--#{$prefix}-on-surface));
       }
     }
 
@@ -76,11 +76,10 @@
     & > :is(.divider, hr) {
       width: 100%;
       height: 1px;
-      margin: 7.5px 0;
+      margin: $menu-divider-margin-y 0;
       padding: 0;
       border: none;
       background-color: var(--#{$prefix}-surface-variant);
-      line-height: 16px;
     }
   }
 

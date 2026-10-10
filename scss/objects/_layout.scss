@@ -3,8 +3,7 @@
 @use "stack";
 
 @mixin flex-landmarks {
-  #{$page-root},
-  .page {
+  :where(#{$page-root}, .page) {
     .content-block {
       @extend %v-stack;
 

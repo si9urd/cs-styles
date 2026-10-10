@@ -23,15 +23,6 @@
     --cs-btn-inner-icon-size: 1.125rem;
     --cs-transition: .2s ease-in-out;
     --cs-z-index-sticky: 1020;
-    --lightningcss-light: initial;
-    --lightningcss-dark: ;
-    color-scheme: light;
-  }
-
-  :root[data-theme="dark"] {
-    --lightningcss-light: ;
-    --lightningcss-dark: initial;
-    color-scheme: dark;
   }
 
   :root:not([data-theme="dark"]) {
@@ -326,7 +317,7 @@
     top: -.5em;
   }
 
-  #app, #root {
+  :where(#app, #root) {
     isolation: isolate;
   }
 }
@@ -349,6 +340,15 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --lightningcss-light: initial;
+    --lightningcss-dark: ;
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    --lightningcss-light: ;
+    --lightningcss-dark: initial;
+    color-scheme: dark;
   }
 
   [dir="rtl"] {
@@ -1071,7 +1071,7 @@
     display: flex;
   }
 
-  #root .content-block, .page .content-block, .v-stack {
+  .v-stack {
     --gap: 0;
     row-gap: var(--gap);
     flex-direction: column;
@@ -1080,7 +1080,16 @@
     display: flex;
   }
 
-  #root .content-block, .page .content-block {
+  :where(#root, .page) .content-block {
+    --gap: 0;
+    row-gap: var(--gap);
+    flex-direction: column;
+    flex: auto;
+    align-self: stretch;
+    display: flex;
+  }
+
+  :where(#root, .page) .content-block {
     --gap: var(--cs-y-spacing);
   }
 }
@@ -1546,14 +1555,14 @@
     color: var(--cs-primary);
     vertical-align: baseline;
     border: 0;
-    border-radius: 5rem;
+    border-radius: 999px;
     display: inline-flex;
     overflow: hidden;
   }
 
   progress::-webkit-progress-bar {
     background: none;
-    border-radius: 5rem;
+    border-radius: 999px;
   }
 
   progress[value]::-webkit-progress-value {
@@ -1794,9 +1803,9 @@
     background-color: var(--cs-surface-container);
     box-shadow: var(--cs-elevation-2);
     color: var(--cs-on-surface);
+    font-weight: var(--cs-font-weight-medium);
     padding: .5rem 0;
     font-size: .875rem;
-    font-weight: 500;
     display: inline-block;
   }
 
@@ -1864,7 +1873,6 @@
     height: 1px;
     margin: 7.5px 0;
     padding: 0;
-    line-height: 16px;
   }
 
   ul.menu {
@@ -2173,15 +2181,15 @@
   .cs-logo {
     background: linear-gradient(to right, var(--cs-primary), var(--cs-tertiary));
     color: #0000;
+    width: auto;
+    height: 2.5rem;
+    font-weight: var(--cs-font-weight-bold);
     cursor: pointer;
     -webkit-background-clip: text;
     background-clip: text;
     justify-content: flex-start;
     align-items: center;
-    width: auto;
-    height: 2.5rem;
     font-size: 38px;
-    font-weight: 700;
     display: flex;
   }
 
