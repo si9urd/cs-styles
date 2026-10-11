@@ -1102,9 +1102,10 @@
 }
 
 @layer components {
-  [type="file"] {
+  [type="file"]::file-selector-button {
     --height: var(--cs-btn-height);
-    --padding: 0 1rem;
+    --padding-start: 1.5rem;
+    --padding-end: 1.5rem;
     --inner-gap: .5rem;
     --font-weight: var(--cs-font-weight-medium);
     --line-height: var(--cs-line-height-base);
@@ -1112,15 +1113,16 @@
     --font-family: var(--cs-font-family);
     --font-size: var(--cs-btn-font-size);
     --container-color: var(--cs-surface-container);
-    --background-color: var(--container-color);
+    --state-layer: 0%;
+    --background-color: color-mix(in srgb, var(--container-color), var(--color) var(--state-layer));
     --border-color: var(--background-color);
     --color: var(--cs-on-surface-container);
     --opacity: 1;
     --elevation: var(--cs-elevation-0);
-    --focus-ring: 0 0 0 0 transparent;
-    --disabled-opacity: .38;
+    --disabled-container: color-mix(in srgb, var(--cs-on-surface) 12%, transparent);
     height: var(--height);
-    padding: var(--padding);
+    padding-block: 0;
+    padding-inline: var(--padding-start) var(--padding-end);
     justify-content: center;
     align-items: center;
     gap: var(--inner-gap);
@@ -1128,7 +1130,8 @@
     border-radius: var(--border-radius);
     background-repeat: no-repeat;
     background-color: var(--background-color);
-    box-shadow: var(--elevation), var(--focus-ring);
+    outline-offset: 1px;
+    box-shadow: var(--elevation);
     color: var(--color);
     font-weight: var(--font-weight);
     font-size: var(--font-size);
@@ -1142,7 +1145,8 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    transition: background-color var(--cs-transition), border-color var(--cs-transition), box-shadow var(--cs-transition), color var(--cs-transition), opacity var(--cs-transition);
+    transition: background-color var(--cs-transition), border-color var(--cs-transition), box-shadow var(--cs-transition), color var(--cs-transition), outline-color var(--cs-transition), opacity var(--cs-transition);
+    outline: 0 solid #0000;
     text-decoration: none;
     display: inline-flex;
     position: relative;
@@ -1150,7 +1154,8 @@
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --height: var(--cs-btn-height);
-    --padding: 0 1rem;
+    --padding-start: 1.5rem;
+    --padding-end: 1.5rem;
     --inner-gap: .5rem;
     --font-weight: var(--cs-font-weight-medium);
     --line-height: var(--cs-line-height-base);
@@ -1158,15 +1163,16 @@
     --font-family: var(--cs-font-family);
     --font-size: var(--cs-btn-font-size);
     --container-color: var(--cs-surface-container);
-    --background-color: var(--container-color);
+    --state-layer: 0%;
+    --background-color: color-mix(in srgb, var(--container-color), var(--color) var(--state-layer));
     --border-color: var(--background-color);
     --color: var(--cs-on-surface-container);
     --opacity: 1;
     --elevation: var(--cs-elevation-0);
-    --focus-ring: 0 0 0 0 transparent;
-    --disabled-opacity: .38;
+    --disabled-container: color-mix(in srgb, var(--cs-on-surface) 12%, transparent);
     height: var(--height);
-    padding: var(--padding);
+    padding-block: 0;
+    padding-inline: var(--padding-start) var(--padding-end);
     justify-content: center;
     align-items: center;
     gap: var(--inner-gap);
@@ -1174,7 +1180,8 @@
     border-radius: var(--border-radius);
     background-repeat: no-repeat;
     background-color: var(--background-color);
-    box-shadow: var(--elevation), var(--focus-ring);
+    outline-offset: 1px;
+    box-shadow: var(--elevation);
     color: var(--color);
     font-weight: var(--font-weight);
     font-size: var(--font-size);
@@ -1188,23 +1195,14 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    transition: background-color var(--cs-transition), border-color var(--cs-transition), box-shadow var(--cs-transition), color var(--cs-transition), opacity var(--cs-transition);
+    transition: background-color var(--cs-transition), border-color var(--cs-transition), box-shadow var(--cs-transition), color var(--cs-transition), outline-color var(--cs-transition), opacity var(--cs-transition);
+    outline: 0 solid #0000;
     text-decoration: none;
     display: inline-flex;
     position: relative;
   }
 
   @media (pointer: coarse) {
-    [type="file"]:after {
-      content: "";
-      width: max(100%, 3rem);
-      height: max(100%, 3rem);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      translate: -50% -50%;
-    }
-
     :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):after {
       content: "";
       width: max(100%, 3rem);
@@ -1216,33 +1214,45 @@
     }
   }
 
-  [type="file"]:is(:hover, [data-hovered]):not(:is(:disabled, [disabled], [aria-disabled="true"])) {
-    --background-color: color-mix(in lab, var(--container-color) 92%, var(--cs-base));
+  [type="file"]:where(:has( > :is(i, img, svg):first-child))::file-selector-button {
+    --padding-start: 1rem;
+  }
+
+  :where(:has( > :is(i, img, svg):first-child)):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    --padding-start: 1rem;
+  }
+
+  [type="file"]:is(:hover, [data-hovered]):not(:is(:disabled, [disabled], [aria-disabled="true"]))::file-selector-button {
+    --state-layer: 14%;
     --elevation: var(--cs-elevation-1);
   }
 
   :is(:hover, [data-hovered]):not(:is(:disabled, [disabled], [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --background-color: color-mix(in lab, var(--container-color) 92%, var(--cs-base));
+    --state-layer: 14%;
     --elevation: var(--cs-elevation-1);
   }
 
-  [type="file"]:is(:focus-visible, [data-focused]) {
-    --focus-ring: 0 0 0 .1875rem rgb(from var(--cs-primary) r g b / 24%);
+  [type="file"]:is(:focus-visible, [data-focused])::file-selector-button {
+    --state-layer: 14%;
+    outline: 2px solid var(--cs-primary);
   }
 
   :is(:focus-visible, [data-focused]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --focus-ring: 0 0 0 .1875rem rgb(from var(--cs-primary) r g b / 24%);
+    --state-layer: 14%;
+    outline: 2px solid var(--cs-primary);
   }
 
-  [type="file"]:is(:active, [data-pressed]):not(:is(:disabled, [disabled], [aria-disabled="true"])) {
-    --background-color: color-mix(in lab, var(--container-color) 80%, var(--cs-base));
+  [type="file"]:is(:active, [data-pressed]):not(:is(:disabled, [disabled], [aria-disabled="true"]))::file-selector-button {
+    --state-layer: 20%;
+    --elevation: var(--cs-elevation-0);
   }
 
   :is(:active, [data-pressed]):not(:is(:disabled, [disabled], [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --background-color: color-mix(in lab, var(--container-color) 80%, var(--cs-base));
+    --state-layer: 20%;
+    --elevation: var(--cs-elevation-0);
   }
 
-  [aria-busy="true"][type="file"] {
+  [aria-busy="true"][type="file"]::file-selector-button {
     cursor: progress;
     pointer-events: none;
     --opacity: .9;
@@ -1254,22 +1264,22 @@
     --opacity: .9;
   }
 
-  :not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --background-color: color-mix(in srgb, var(--cs-on-surface) 12%, transparent) !important;
-    --color: color-mix(in srgb, var(--cs-on-surface) 38%, transparent) !important;
-    --border-color: var(--background-color) !important;
-    --elevation: var(--cs-elevation-0) !important;
-    --focus-ring: none !important;
-    --opacity: var(--disabled-opacity) !important;
-    cursor: not-allowed !important;
-    pointer-events: none !important;
+  [type="file"]:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"])::file-selector-button {
+    --state-layer: 0%;
+    --background-color: var(--disabled-container);
+    --border-color: var(--background-color);
+    --color: color-mix(in srgb, var(--cs-on-surface) 38%, transparent);
+    --elevation: var(--cs-elevation-0);
+    cursor: not-allowed;
   }
 
-  [type="file"] :is(i, img, svg) {
-    width: var(--cs-btn-inner-icon-size);
-    height: var(--cs-btn-inner-icon-size);
-    line-height: inherit;
-    display: inline-flex;
+  :not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    --state-layer: 0%;
+    --background-color: var(--disabled-container);
+    --border-color: var(--background-color);
+    --color: color-mix(in srgb, var(--cs-on-surface) 38%, transparent);
+    --elevation: var(--cs-elevation-0);
+    cursor: not-allowed;
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) :is(i, img, svg) {
@@ -1279,25 +1289,16 @@
     display: inline-flex;
   }
 
-  [type="file"] i {
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) i {
     background-position: center;
     background-repeat: no-repeat;
-  }
-
-  [type="file"] svg path:not([stroke]) {
-    stroke: var(--color);
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) svg path:not([stroke]) {
     stroke: var(--color);
   }
 
-  [type="file"] {
+  [type="file"]::file-selector-button {
     --container-color: var(--cs-primary);
     --color: var(--cs-on-primary);
   }
@@ -1311,12 +1312,22 @@
     --color: var(--cs-primary);
     --container-color: transparent;
     --border-color: var(--cs-primary);
+    --disabled-container: transparent;
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-secondary {
     --color: var(--cs-primary);
     --container-color: transparent;
     --border-color: var(--cs-primary);
+    --disabled-container: transparent;
+  }
+
+  .btn-outlined:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    --border-color: color-mix(in srgb, var(--cs-on-surface) 12%, transparent);
+  }
+
+  .btn-secondary:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    --border-color: color-mix(in srgb, var(--cs-on-surface) 12%, transparent);
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-icon {
@@ -1326,6 +1337,7 @@
     --border-radius: var(--size);
     --elevation: var(--cs-elevation-0);
     --icon-size: var(--cs-btn-icon-size);
+    --disabled-container: transparent;
     width: var(--size);
     height: var(--size);
     background-position: center;
@@ -1334,12 +1346,7 @@
   }
 
   .btn-icon:is(:hover, [data-hovered]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --elevation: none;
-    --container-color: rgb(from var(--cs-on-surface-variant) r g b / 10%);
-  }
-
-  .btn-icon:is(:active, [data-pressed]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --container-color: rgb(from var(--cs-on-surface-variant) r g b / 20%);
+    --elevation: var(--cs-elevation-0);
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-icon :is(i, img, svg) {
@@ -1351,27 +1358,33 @@
     --color: var(--cs-primary);
     --container-color: transparent;
     --elevation: var(--cs-elevation-0);
+    --disabled-container: transparent;
+    --padding-start: .75rem;
+    --padding-end: .75rem;
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-tertiary {
     --color: var(--cs-primary);
     --container-color: transparent;
     --elevation: var(--cs-elevation-0);
+    --disabled-container: transparent;
+    --padding-start: .75rem;
+    --padding-end: .75rem;
   }
 
-  .btn-text:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --background-color: transparent;
+  .btn-text:where(:has( > :is(i, img, svg):first-child)):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    --padding-start: .5rem;
   }
 
-  .btn-tertiary:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
-    --background-color: transparent;
+  .btn-tertiary:where(:has( > :is(i, img, svg):first-child)):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+    --padding-start: .5rem;
   }
 
-  .btn-text:is(:hover, [data-hovered], :focus, [data-focused], :active, [data-pressed]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  .btn-text:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [data-pressed]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --elevation: var(--cs-elevation-0);
   }
 
-  .btn-tertiary:is(:hover, [data-hovered], :focus, [data-focused], :active, [data-pressed]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  .btn-tertiary:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [data-pressed]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --elevation: var(--cs-elevation-0);
   }
 
@@ -1384,20 +1397,43 @@
     --border-radius: 1rem;
     --container-color: var(--cs-primary-container);
     --color: var(--cs-on-primary-container);
-    --padding: 0;
+    --padding-start: 0;
+    --padding-end: 0;
     --elevation: var(--cs-elevation-0);
     min-width: var(--height);
   }
 
-  .btn-fab:is(:hover, [data-hovered]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  .btn-fab:is(:hover, [data-hovered]):not(:is(:disabled, [disabled], [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --elevation: var(--cs-elevation-4);
   }
 
-  .btn-fab:is(:focus, [data-focused], :active, [data-pressed]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  .btn-fab:is(:focus-visible, [data-focused], :active, [data-pressed]):not(:is(:disabled, [disabled], [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --elevation: var(--cs-elevation-3);
   }
 
-  [type="file"] {
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):not([data-theme-toggle]):not([aria-busy="true"]):before {
+    content: "";
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, currentColor 10%, #0000 10.01%) center / 1000% 1000% no-repeat;
+    position: absolute;
+    inset: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):not([data-theme-toggle]):not([aria-busy="true"]):before {
+      transition: background-size .6s, opacity .9s;
+    }
+  }
+
+  :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):not([data-theme-toggle]):active:not(:is(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"])):before {
+    opacity: .24;
+    background-size: 0 0;
+    transition: none;
+  }
+
+  [type="file"]::file-selector-button {
     --container-color: var(--cs-tertiary);
   }
 

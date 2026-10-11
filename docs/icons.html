@@ -24,7 +24,7 @@
     const names = [...root].filter((p) => p.startsWith("--cs-icon-") && root.getPropertyValue(p).trim().startsWith("url("));
 
     document.getElementById("icons").innerHTML = names.sort().map((p) =>
-      `<li><i style="--icon: var(${p}); color: orange"></i><code>${p}</code></li>`).join("");
+      `<li><i style="--icon: var(${p}); color: red"></i><code>${p}</code></li>`).join("");
 
     document.getElementById("theme").onclick = () => {
       const html = document.documentElement;

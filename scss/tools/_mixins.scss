@@ -20,6 +20,30 @@
   }
 }
 
+/// Press ripple, pure CSS: grows from the center (pointer position needs JS).
+/// The element must be positioned; uses ::before, skipped while aria-busy (spinner).
+@mixin ripple($color: currentColor, $opacity: .24, $duration: .6s) {
+  &:not([aria-busy="true"])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle, #{$color} 10%, transparent 10.01%) center / 1000% 1000% no-repeat;
+    opacity: 0;
+    pointer-events: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-size $duration, opacity $duration * 1.5;
+    }
+  }
+
+  &:active:not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"])::before {
+    background-size: 0 0;
+    opacity: $opacity;
+    transition: none;
+  }
+}
+
 @mixin disabled {
   &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
     @content;

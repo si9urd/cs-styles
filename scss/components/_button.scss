@@ -7,7 +7,8 @@
 
 %button-base {
   --height: var(--#{$prefix}-btn-height);
-  --padding: 0 #{map.get($spacers, 3)};
+  --padding-start: #{map.get($spacers, 4)};
+  --padding-end: #{map.get($spacers, 4)};
   --inner-gap: .5rem;
   --font-weight: var(--#{$prefix}-font-weight-medium);
   --line-height: var(--#{$prefix}-line-height-base);
@@ -15,26 +16,29 @@
   --font-family: var(--#{$prefix}-font-family);
   --font-size: var(--#{$prefix}-btn-font-size);
   --container-color: var(--#{$prefix}-surface-container);
-  --background-color: var(--container-color);
+  --state-layer: 0%;
+  --background-color: color-mix(in srgb, var(--container-color), var(--color) var(--state-layer));
   --border-color: var(--background-color);
   --color: var(--#{$prefix}-on-surface-container);
   --opacity: 1;
   --elevation: var(--#{$prefix}-elevation-0);
-  --focus-ring: 0 0 0 0 transparent;
-  --disabled-opacity: .38;
+  --disabled-container: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent);
 
   display: inline-flex;
   position: relative;
   align-items: center;
   justify-content: center;
   height: var(--height);
-  padding: var(--padding);
+  padding-block: 0;
+  padding-inline: var(--padding-start) var(--padding-end);
   gap: var(--inner-gap);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   background-repeat: no-repeat;
   background-color: var(--background-color);
-  box-shadow: var(--elevation), var(--focus-ring);
+  outline: 0 solid transparent;
+  outline-offset: 1px;
+  box-shadow: var(--elevation);
   color: var(--color);
   font-weight: var(--font-weight);
   font-size: var(--font-size);
@@ -52,21 +56,31 @@
     border-color var(--#{$prefix}-transition),
     box-shadow var(--#{$prefix}-transition),
     color var(--#{$prefix}-transition),
+    outline-color var(--#{$prefix}-transition),
     opacity var(--#{$prefix}-transition);
 
   @include touch-target;
 
+  // Leading icon: smaller start padding; :where keeps variants (text, fab) in charge
+  &:where(:has(> :is(i, img, svg):first-child)) {
+    --padding-start: #{map.get($spacers, 3)};
+  }
+
+  // State layer: --color over the container (M3 uses 8/10%, too faint on filled buttons)
   &:is(:hover, [data-hovered]):not(:disabled, [disabled], [aria-disabled="true"]) {
-    --background-color: color-mix(in lab, var(--container-color) 92%, var(--#{$prefix}-base));
+    --state-layer: 14%;
     --elevation: var(--#{$prefix}-elevation-1);
   }
 
   &:is(:focus-visible, [data-focused]) {
-    --focus-ring: 0 0 0 .1875rem rgb(from var(--#{$prefix}-primary) r g b / 24%);
+    --state-layer: 14%;
+
+    outline: 2px solid var(--#{$prefix}-primary);
   }
 
   &:is(:active, [data-pressed]):not(:disabled, [disabled], [aria-disabled="true"]) {
-    --background-color: color-mix(in lab, var(--container-color) 80%, var(--#{$prefix}-base));
+    --state-layer: 20%;
+    --elevation: var(--#{$prefix}-elevation-0);
   }
 
   &[aria-busy="true"] {
@@ -79,15 +93,13 @@
 
 %button-disabled {
   @include disabled {
-    --background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent) !important;
-    --color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent) !important;
-    --border-color: var(--background-color) !important;
-    --elevation: var(--#{$prefix}-elevation-0) !important;
-    --focus-ring: none !important;
-    --opacity: var(--disabled-opacity) !important;
+    --state-layer: 0%;
+    --background-color: var(--disabled-container);
+    --border-color: var(--background-color);
+    --color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
+    --elevation: var(--#{$prefix}-elevation-0);
 
-    cursor: not-allowed !important;
-    pointer-events: none !important;
+    cursor: not-allowed;
   }
 }
 
@@ -122,6 +134,11 @@
   --color: var(--#{$prefix}-primary);
   --container-color: transparent;
   --border-color: var(--#{$prefix}-primary);
+  --disabled-container: transparent;
+
+  @include disabled {
+    --border-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent);
+  }
 }
 
 %button-icon {
@@ -131,6 +148,7 @@
   --border-radius: var(--size);
   --elevation: var(--#{$prefix}-elevation-0);
   --icon-size: var(--#{$prefix}-btn-icon-size);
+  --disabled-container: transparent;
 
   width: var(--size);
   height: var(--size);
@@ -139,12 +157,7 @@
   background-size: var(--#{$prefix}-btn-icon-size);
 
   &:is(:hover, [data-hovered]) {
-    --elevation: none;
-    --container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 10%);
-  }
-
-  &:is(:active, [data-pressed]) {
-    --container-color: rgb(from var(--#{$prefix}-on-surface-variant) r g b / 20%);
+    --elevation: var(--#{$prefix}-elevation-0);
   }
 
   :is(i, img, svg) {
@@ -157,12 +170,15 @@
   --color: var(--#{$prefix}-primary);
   --container-color: transparent;
   --elevation: var(--#{$prefix}-elevation-0);
+  --disabled-container: transparent;
+  --padding-start: #{$spacing * .75};
+  --padding-end: #{$spacing * .75};
 
-  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
-    --background-color: transparent;
+  &:where(:has(> :is(i, img, svg):first-child)) {
+    --padding-start: #{map.get($spacers, 2)};
   }
 
-  &:is(:hover, [data-hovered], :focus, [data-focused], :active, [data-pressed]) {
+  &:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [data-pressed]) {
     --elevation: var(--#{$prefix}-elevation-0);
   }
 }
@@ -176,16 +192,17 @@
   --border-radius: #{$fab-border-radius};
   --container-color: var(--#{$prefix}-primary-container);
   --color: var(--#{$prefix}-on-primary-container);
-  --padding: 0;
+  --padding-start: 0;
+  --padding-end: 0;
   --elevation: var(--#{$prefix}-elevation-0);
 
   min-width: var(--height);
 
-  &:is(:hover, [data-hovered]) {
+  &:is(:hover, [data-hovered]):not(:disabled, [disabled], [aria-disabled="true"]) {
     --elevation: var(--#{$prefix}-elevation-4);
   }
 
-  &:is(:focus, [data-focused], :active, [data-pressed]) {
+  &:is(:focus-visible, [data-focused], :active, [data-pressed]):not(:disabled, [disabled], [aria-disabled="true"]) {
     --elevation: var(--#{$prefix}-elevation-3);
   }
 }
@@ -201,6 +218,11 @@
     @extend %button-primary;
     @extend %button-inner-icon;
     @extend %button-disabled;
+
+    // ::before is the icon there
+    &:not([data-theme-toggle]) {
+      @include ripple;
+    }
 
     // Set outlined button styles
     &.btn-outlined,
@@ -230,11 +252,10 @@
     }
   }
 
-  //[type="file"]::file-selector-button {
-  [type="file"] {
+  [type="file"]::file-selector-button {
     @extend %button-base;
     @extend %button-primary;
-    @extend %button-inner-icon;
+    @extend %button-disabled;
 
     --container-color: var(--#{$prefix}-tertiary);
   }
