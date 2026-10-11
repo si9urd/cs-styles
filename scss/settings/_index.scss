@@ -20,7 +20,7 @@ $page-root: "body" !default;
 $enable-icons: true !default;
 
 // SVG icons: name => markup painted with `currentColor`.
-// User entries add or replace built-ins, `null` removes one.
+// User entries add or replace built-ins, `false` (or `null`) removes one.
 $icons: () !default;
 $icons: map.merge(builtin.$icon-set, $icons);
 

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS-Styles icons</title>
+  <link rel="stylesheet" href="../dist/cs-styles.css">
+  <style>
+    #icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); gap: 1rem; padding: 0; list-style: none; }
+    #icons li { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 1rem; border: 1px solid currentcolor; border-radius: .5rem; }
+    #icons i { width: 2rem; height: 2rem; background-color: currentcolor; mask: var(--icon) center / contain no-repeat; }
+    #icons code { font-size: .75rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Icons</h1>
+    <p><button type="button" id="theme">Toggle theme</button></p>
+    <ul id="icons"></ul>
+  </main>
+  <script>
+    // Every --cs-icon-* custom property holding an SVG url, read from the built CSS
+    const root = getComputedStyle(document.documentElement);
+    const names = [...root].filter((p) => p.startsWith("--cs-icon-") && root.getPropertyValue(p).trim().startsWith("url("));
+
+    document.getElementById("icons").innerHTML = names.sort().map((p) =>
+      `<li><i style="--icon: var(${p}); color: orange"></i><code>${p}</code></li>`).join("");
+
+    document.getElementById("theme").onclick = () => {
+      const html = document.documentElement;
+      html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+    };
+  </script>
+</body>
+</html>
