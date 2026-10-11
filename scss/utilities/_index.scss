@@ -5,6 +5,7 @@
 @use "borders" as *;
 @use "sizing" as *;
 @use "spacing" as *;
+@use "gap" as *;
 @use "text" as *;
 @use "elevation" as *;
 
@@ -30,6 +31,10 @@
 
 @if map.get($enable-utilities, spacing) {
   @include spacing;
+}
+
+@if map.get($enable-utilities, gap) {
+  @include gap;
 }
 
 @if map.get($enable-utilities, text) {

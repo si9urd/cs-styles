@@ -1,0 +1,10 @@
+@use "../settings" as *;
+
+// make gap utilities classes
+@mixin gap() {
+  @each $key, $value in $spacers {
+    .gap-#{$key} {
+      --gap: #{$value};
+    }
+  }
+}

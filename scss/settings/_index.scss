@@ -38,13 +38,14 @@ $enable-landmarks: true !default;
 
 // Enable bootstrap utils
 $enable-utilities: (
-  "align": true,
-  "borders": true,
-  "display": true,
+  "align": false,
+  "borders": false,
+  "display": false,
   "elevation": true,
-  "sizing": true,
-  "spacing": true,
-  "text": true,
+  "sizing": false,
+  "spacing": false,
+  "text": false,
+  "gap": true
 ) !default;
 
 // Enable negative margins in bootstrap utils

@@ -7,7 +7,7 @@
     .content-block {
       @extend %v-stack;
 
-      --gap: var(--#{$prefix}-y-spacing);
+      --gap: var(--#{$prefix}-spacing);
     }
   }
 }

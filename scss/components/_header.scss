@@ -33,7 +33,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: start;
-        gap: calc(var(--#{$prefix}-x-spacing));
+        gap: var(--#{$prefix}-spacing);
         text-decoration: none;
       }
     }
@@ -46,7 +46,7 @@
         display: block;
         width: 1px;
         height: var(--#{$prefix}-btn-icon-size);
-        margin: 0 var(--#{$prefix}-x-spacing);
+        margin: 0 var(--#{$prefix}-spacing);
         border-left: 1px solid var(--#{$prefix}-outline-variant);
         opacity: .35;
       }
@@ -60,7 +60,7 @@
         li {
           display: inline-flex;
           margin: 0;
-          padding: 0 calc(0.5 * var(--#{$prefix}-x-spacing));
+          padding: 0 calc(0.5 * var(--#{$prefix}-spacing));
         }
       }
     }

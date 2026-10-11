@@ -9,13 +9,14 @@
   $enable-negative-margins: true,
   $enable-responsive-utilities: true,
   $enable-utilities: (
-    "align": true,
-    "borders": true,
-    "display": true,
-    "elevation": true,
-    "sizing": true,
-    "spacing": true,
-    "text": true,
+    "align": false,
+    "borders": false,
+    "display": false,
+    "elevation": false,
+    "sizing": false,
+    "spacing": false,
+    "text": false,
+    "gap": true
   ),
   $grid-breakpoints: (
         xs: 0,
