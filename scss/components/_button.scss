@@ -1,6 +1,5 @@
 /// Buttons base styles
 @use "sass:map" as map;
-@use "sass:string" as *;
 @use "../settings" as *;
 @use "../tools" as *;
 
@@ -54,6 +53,8 @@
     box-shadow var(--#{$prefix}-transition),
     color var(--#{$prefix}-transition),
     opacity var(--#{$prefix}-transition);
+
+  @include touch-target;
 
   &:is(:hover, [data-hovered]):not(:disabled, [disabled], [aria-disabled="true"]) {
     --background-color: color-mix(in lab, var(--container-color) 92%, var(--#{$prefix}-base));

@@ -2,7 +2,7 @@
 
 @mixin card {
   .card {
-    --card-gap: #{$spacing};
+    --card-gap: var(--#{$prefix}-spacing);
     --border-radius: var(--#{$prefix}-border-radius);
 
     overflow: hidden;

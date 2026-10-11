@@ -1,6 +1,24 @@
+@use "../settings" as *;
+
 /////////////////////
 /// Helpers
 /////////////////////
+
+/// Invisible hit area of at least $size around the element, coarse pointers only.
+/// The element must be positioned; uses ::after.
+@mixin touch-target($size: $touch-target-size) {
+  @media (pointer: coarse) {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: max(100%, #{$size});
+      height: max(100%, #{$size});
+      translate: -50% -50%;
+    }
+  }
+}
 
 @mixin disabled {
   &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {

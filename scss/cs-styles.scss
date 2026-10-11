@@ -26,7 +26,25 @@
         xxl: 1400px
   ),
   $theme-colors: (
-    // 'light-primary': #415F91,
-    // 'dark-primary': green //#AAC7FF
+    'light-primary': #4C63D9, // Brand, HSB 230 65 85
+    'light-surface-tint': #4C63D9,
+    'light-on-background': #1A203D, // Text strong, HSB 230 57 24
+    'light-on-surface': #1A203D,
+    'light-on-surface-variant': #595F7A, // Text weak, HSB 230 27 48
+    'light-outline': #8086A6, // Stroke strong, HSB 230 23 65
+    'light-outline-variant': #E4E6F0, // Stroke weak, HSB 230 5 94
+    'light-surface-container': #F5F6FA, // Fill, HSB 230 2 98
+    'light-background': #FFFFFF, // Background, HSB 0 0 100
+    'light-surface': #FFFFFF,
+    'dark-primary': #97A8FC, // Brand, HSB 230 40 99
+    'dark-surface-tint': #97A8FC,
+    'dark-on-background': #FFFFFF, // Text strong, HSB 230 0 100
+    'dark-on-surface': #FFFFFF,
+    'dark-on-surface-variant': #CED0D9, // Text weak, HSB 230 5 85
+    'dark-outline': #9598A6, // Stroke strong, HSB 230 10 65
+    'dark-outline-variant': #363840, // Stroke weak, HSB 230 15 25
+    'dark-surface-container': #1F2026, // Fill, HSB 230 20 15
+    'dark-background': #12131A, // Background, HSB 230 30 10
+    'dark-surface': #12131A,
   )
 );

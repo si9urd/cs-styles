@@ -27,6 +27,17 @@
       top: var(--top);
     }
 
+    .brand {
+      &:not(a),
+      & > a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: start;
+        gap: calc(var(--#{$prefix}-x-spacing));
+        text-decoration: none;
+      }
+    }
+
     nav {
       display: flex;
       align-items: center;
