@@ -1,8 +1,39 @@
+@use "sass:map" as map;
 @use "../settings" as *;
 @use "../tools" as *;
 
+// Form controls can't host a mask, they keep colored background images
+$input-icons: (
+  "search": "icon-color",
+  "chevron": "icon-color",
+  "valid": "icon-success",
+  "invalid": "icon-error",
+);
+
+@mixin input-icons($theme) {
+  @each $name, $color in $input-icons {
+    $svg: map.get($icons, $name);
+
+    @if $svg {
+      --#{$prefix}-input-icon-#{$name}: #{svg-url($svg, map.get($theme-colors, "#{$theme}-#{$color}"))};
+    }
+  }
+}
+
 @if $enable-icons {
   :root {
-    @include svg-icons;
+    @each $name, $svg in $icons {
+      @if $svg {
+        --#{$prefix}-icon-#{$name}: #{svg-url($svg)};
+      }
+    }
+
+    &:not([data-theme="dark"]) {
+      @include input-icons("light");
+    }
+
+    &[data-theme="dark"] {
+      @include input-icons("dark");
+    }
   }
 }

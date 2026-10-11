@@ -82,7 +82,7 @@
     --border-radius: #{$border-radius-pill};
 
     padding-left: calc(var(--#{$prefix}-spacing) * 3);
-    background-image: var(--#{$prefix}-search-icon);
+    background-image: var(--#{$prefix}-input-icon-search);
     background-position: left var(--#{$prefix}-spacing) center;
   }
 
@@ -96,7 +96,7 @@
     &[aria-invalid="true"] {
       --border-color: var(--#{$prefix}-error);
 
-      background-image: var(--#{$prefix}-invalid-icon);
+      background-image: var(--#{$prefix}-input-icon-invalid);
 
       &:focus {
         --box-shadow: 0 0 0 1px var(--#{$prefix}-error) inset;
@@ -107,7 +107,7 @@
     &[aria-invalid="false"] {
       --border-color: var(--#{$prefix}-success);
 
-      background-image: var(--#{$prefix}-valid-icon);
+      background-image: var(--#{$prefix}-input-icon-valid);
 
       &:focus {
         --box-shadow: 0 0 0 1px var(--#{$prefix}-success) inset;

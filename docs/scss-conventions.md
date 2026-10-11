@@ -9,7 +9,7 @@ A deliberate hybrid, not one canonical method:
 
 - **Semantic-first / classless.** Style elements and ARIA attributes, not classes:
   `:is(button, [type="submit"], [role="button"])`, `[aria-disabled="true"]`.
-  A class appears only where semantics can't reach it (`.btn-tonal`, `.h-stack`, utilities).
+  A class appears only where semantics can't reach it (`.btn-outlined`, `.h-stack`, utilities).
   No BEM — no `block__element--modifier`; nesting follows the real DOM (`header > .content`).
 - **State on attributes.** `[aria-busy]`, `[aria-expanded]`, `[disabled]`, plus
   `[data-hovered]`/`[data-focused]`/`[data-pressed]` for headless UI libs.
@@ -27,7 +27,7 @@ A deliberate hybrid, not one canonical method:
   prefixed `--cs-*` is the public surface. Theming is `data-theme="dark"` + `color-scheme`.
 - **Material Design 3 is the design language.** Color roles (`surface-container`,
   `on-surface-container`, `outline-variant`), elevation 0–5, button types
-  (filled / elevated / tonal / outlined / text / FAB / icon). Palettes are *generated*
+  (filled / outlined / text / FAB / icon). Palettes are *generated*
   from `material-theme*.json` — `_themes_colors.scss` is an artifact, never hand-edited.
 - **Utilities are an opt-in thin layer**, not utility-first: Bootstrap's utilities API via
   `make-utilities()`, one file per group, toggled by `$enable-utilities: ("spacing": true, …)`.

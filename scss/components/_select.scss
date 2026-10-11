@@ -3,7 +3,7 @@
 @mixin select {
   select {
     appearance: none;
-    background-image: var(--#{$prefix}-chevron-icon);
+    background-image: var(--#{$prefix}-input-icon-chevron);
 
     &[multiple] {
       --padding: var(--#{$prefix}-spacing);

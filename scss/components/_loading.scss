@@ -1,18 +1,14 @@
 @use "../settings" as *;
-@use "sass:map" as map;
+@use "../tools" as *;
 
 @mixin loading {
   [aria-busy="true"]:not(input, select, textarea, html) {
     white-space: nowrap;
 
     &::before {
+      @include icon-mask(var(--#{$prefix}-icon-ring-spinner));
+
       display: inline-flex;
-      width: 1em;
-      height: 1em;
-      background-image: var(--#{$prefix}-ring-spinner);
-      background-size: 1em auto;
-      background-repeat: no-repeat;
-      content: "";
       vertical-align: -.125em;
     }
 
@@ -24,20 +20,6 @@
 
     &:empty {
       text-align: center;
-    }
-  }
-
-  // Buttons and links
-  a,
-  button,
-  [type="submit"],
-  [type="button"],
-  [type="reset"],
-  [role="button"] {
-    &[aria-busy="true"] {
-      &:not(.btn-elevated, .btn-tonal, .btn-outlined, .btn-text)::before {
-        filter: invert(1);
-      }
     }
   }
 }

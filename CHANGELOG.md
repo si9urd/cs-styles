@@ -37,9 +37,13 @@
 - Класс логотипа учитывает `$prefix` (`.#{$prefix}-logo`, при `cs` — прежний `.cs-logo`). Новые настройки: `$logo-height`, `$logo-font-size`, `$border-radius-pill`.
 - Размеры меню, FAB и `progress` вынесены в настройки: `$menu-width`, `$menu-item-height`, `$menu-icon-size`, `$menu-gap`, `$menu-padding-y`, `$menu-font-size`, `$menu-divider-margin-y`, `$menu-arrow-size`, `$fab-size`, `$fab-border-radius`, `$progress-height`. Значения по умолчанию прежние; у `progress` радиус теперь `$border-radius-pill` (визуально то же). Жирность меню и логотипа берётся из `--cs-font-weight-medium`/`--cs-font-weight-bold`. Убран неработающий `line-height` у разделителя меню.
 - `color-scheme` перенесён из слоя `tokens` в `elements` (`:root`), поведение то же.
+- **Breaking.** SVG-иконки собраны в карту `$icons` (`name: "<svg …>"`, цвет `currentColor`) и выводятся один раз, без цвета и без копий под тему: `--cs-icon-<name>` (`dark`, `light`, `menu`, `github`, `search`, `valid`, `invalid`, `chevron`, `ring-spinner`, `dots-spinner`). Иконка красится маской: `mask: var(--cs-icon-menu) center / contain no-repeat; background-color: currentColor`. Переключатель темы и спиннер `aria-busy` перешли на маску и берут цвет текста (убран хак `filter: invert()` у спиннера на кнопках). Полям ввода маска недоступна, у них цветные токены по теме: `--cs-input-icon-search|chevron|valid|invalid`.
+  - Ломается: `--cs-dark-icon`, `--cs-light-icon`, `--cs-menu-icon`, `--cs-github-icon`, `--cs-search-icon`, `--cs-valid-icon`, `--cs-invalid-icon`, `--cs-chevron-icon`, `--cs-ring-spinner`, `--cs-dots-spinner` удалены; mixin'ы `*-icon`, `btn-spinner-background`, `svg-icons` из `tools/` удалены. Иконка переключателя темы теперь в `[data-theme-toggle]::before`, а не в `background-image` самого элемента.
+  - Миграция: `background-image: var(--cs-menu-icon)` → маска с `var(--cs-icon-menu)` (готовый mixin `icon-mask($icon, $size)` в `tools/`); свои иконки — `$icons: ("logo": "<svg …>")` в `with (...)`, `null` убирает встроенную.
 
 ### Removed
 
+- **Breaking.** Варианты кнопок `.btn-elevated` и `.btn-tonal`. Миграция: `.btn-outlined`, `.btn-text` или кнопка без класса.
 - Повторный вывод `reset-typo`, правило `[aria-control]` (несуществующий атрибут), дубль `cursor: not-allowed` в reset.
 
 ### Fixed

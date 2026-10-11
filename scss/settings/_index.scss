@@ -1,5 +1,8 @@
 @use "sass:map" as map;
+@use "sass:meta" as meta;
 @use "themes_colors" as palette;
+@use "palettes";
+@use "icons" as builtin;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Variables
@@ -15,6 +18,11 @@ $page-root: "body" !default;
 
 // Enable svg icons
 $enable-icons: true !default;
+
+// SVG icons: name => markup painted with `currentColor`.
+// User entries add or replace built-ins, `null` removes one.
+$icons: () !default;
+$icons: map.merge(builtin.$icon-set, $icons);
 
 // Enable grid
 $enable-grid: true !default;
@@ -47,10 +55,20 @@ $enable-responsive-utilities: false !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// Color set on top of the generated palette:
+// a name from `_palettes.scss` ("indigo", "violet") or a map of its shape
+$palette: null !default;
 $theme-colors: () !default;
 
-// Generated palette, user overrides win
-$theme-colors: map.merge(palette.$theme-palette, $theme-colors);
+@if meta.type-of($palette) == "string" {
+  @if not map.has-key(meta.module-variables("palettes"), $palette) {
+    @error "Unknown $palette `#{$palette}`, expected one of: #{map.keys(meta.module-variables("palettes"))}";
+  }
+  $palette: map.get(meta.module-variables("palettes"), $palette);
+}
+
+// Generated palette < $palette < user overrides
+$theme-colors: map.merge(map.merge(palette.$theme-palette, $palette or ()), $theme-colors);
 $theme-colors: map.merge($theme-colors, (
   "light-icon-color": map.get($theme-colors, "light-on-surface"),
   "dark-icon-color": map.get($theme-colors, "dark-on-surface"),

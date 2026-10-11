@@ -1,11 +1,10 @@
 @use "../settings" as *;
+@use "../tools" as *;
 
-[data-theme-toggle] {
-  :not([data-theme="dark"]) & {
-    background-image: var(--#{$prefix}-dark-icon);
-  }
+[data-theme-toggle]::before {
+  @include icon-mask(var(--#{$prefix}-icon-dark), var(--icon-size, var(--#{$prefix}-btn-icon-size)));
 
   [data-theme="dark"] & {
-    background-image: var(--#{$prefix}-light-icon);
+    mask-image: var(--#{$prefix}-icon-light);
   }
 }
