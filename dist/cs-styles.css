@@ -1331,10 +1331,9 @@
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]).btn-icon {
-    --size: calc(var(--cs-btn-height) * 1.2);
+    --size: calc(var(--cs-btn-height));
     --color: var(--cs-on-surface-variant);
     --container-color: transparent;
-    --border-radius: var(--size);
     --elevation: var(--cs-elevation-0);
     --icon-size: var(--cs-btn-icon-size);
     --disabled-container: transparent;
@@ -2158,10 +2157,11 @@
 
   header nav hr {
     width: 1px;
-    height: var(--cs-btn-icon-size);
+    height: calc(var(--cs-btn-icon-size) * .8);
     margin: 0 var(--cs-spacing);
-    border-left: 1px solid var(--cs-outline-variant);
-    opacity: .35;
+    border: none;
+    border-left: 1px solid var(--cs-outline);
+    opacity: .7;
     display: block;
   }
 

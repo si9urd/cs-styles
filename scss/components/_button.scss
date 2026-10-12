@@ -142,10 +142,9 @@
 }
 
 %button-icon {
-  --size: calc(var(--#{$prefix}-btn-height) * 1.2);
+  --size: calc(var(--#{$prefix}-btn-height));
   --color: var(--#{$prefix}-on-surface-variant);
   --container-color: transparent;
-  --border-radius: var(--size);
   --elevation: var(--#{$prefix}-elevation-0);
   --icon-size: var(--#{$prefix}-btn-icon-size);
   --disabled-container: transparent;
