@@ -1,6 +1,6 @@
 /*!
- * CS-Styles v0.7.30 (https://github.com/si9urd/cs-styles)
- * © 2025-2026 Oleh Obydenov - Licensed under MIT
+ * CS-Styles v1.0.1 (https://github.com/si9urd/cs-styles)
+ * © 2025-2026 Oleh Obydonov - Licensed under MIT
  */
 @layer tokens {
   :root {
@@ -24,8 +24,8 @@
   }
 
   :root:not([data-theme="dark"]) {
-    --cs-primary: #4c63d9;
-    --cs-surface-tint: #4c63d9;
+    --cs-primary: #1fab89;
+    --cs-surface-tint: #1fab89;
     --cs-on-primary: #fff;
     --cs-primary-container: #d6e3ff;
     --cs-on-primary-container: #001b3e;
@@ -42,13 +42,13 @@
     --cs-error-container: #ffdad6;
     --cs-on-error-container: #410002;
     --cs-background: #fff;
-    --cs-on-background: #1a203d;
+    --cs-on-background: #223832;
     --cs-surface: #fff;
-    --cs-on-surface: #1a203d;
+    --cs-on-surface: #223832;
     --cs-surface-variant: #e0e2ec;
-    --cs-on-surface-variant: #595f7a;
-    --cs-outline: #8086a6;
-    --cs-outline-variant: #e4e6f0;
+    --cs-on-surface-variant: #5b756f;
+    --cs-outline: #86a39c;
+    --cs-outline-variant: #e4f0ed;
     --cs-shadow: #000;
     --cs-scrim: #000;
     --cs-inverse-surface: #2e3036;
@@ -70,19 +70,19 @@
     --cs-surface-bright: #f9f9ff;
     --cs-surface-container-lowest: #fff;
     --cs-surface-container-low: #f3f3fa;
-    --cs-surface-container: #f5f6fa;
+    --cs-surface-container: #f5faf9;
     --cs-surface-container-high: #e7e8ee;
     --cs-surface-container-highest: #e2e2e9;
     --cs-success: #279977;
     --cs-base: #fff;
-    --cs-icon-color: #1a203d;
+    --cs-icon-color: #223832;
     --cs-icon-error: #ba1a1a;
     --cs-icon-success: #279977;
   }
 
   :root[data-theme="dark"] {
-    --cs-primary: #97a8fc;
-    --cs-surface-tint: #97a8fc;
+    --cs-primary: #81d6c1;
+    --cs-surface-tint: #81d6c1;
     --cs-on-primary: #0a305f;
     --cs-primary-container: #284777;
     --cs-on-primary-container: #d6e3ff;
@@ -98,14 +98,14 @@
     --cs-on-error: #690005;
     --cs-error-container: #93000a;
     --cs-on-error-container: #ffdad6;
-    --cs-background: #12131a;
+    --cs-background: #121a18;
     --cs-on-background: #fff;
-    --cs-surface: #12131a;
+    --cs-surface: #121a18;
     --cs-on-surface: #fff;
     --cs-surface-variant: #44474e;
-    --cs-on-surface-variant: #ced0d9;
-    --cs-outline: #9598a6;
-    --cs-outline-variant: #363840;
+    --cs-on-surface-variant: #ced9d6;
+    --cs-outline: #95a6a2;
+    --cs-outline-variant: #36403d;
     --cs-shadow: #000;
     --cs-scrim: #000;
     --cs-inverse-surface: #e2e2e9;
@@ -127,7 +127,7 @@
     --cs-surface-bright: #37393e;
     --cs-surface-container-lowest: #0c0e13;
     --cs-surface-container-low: #191c20;
-    --cs-surface-container: #1f2026;
+    --cs-surface-container: #1f2624;
     --cs-surface-container-high: #282a2f;
     --cs-surface-container-highest: #33353a;
     --cs-success: #16896a;
@@ -177,8 +177,8 @@
   }
 
   :root:not([data-theme="dark"]) {
-    --cs-input-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(26, 32, 61)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
-    --cs-input-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(26, 32, 61)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    --cs-input-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(34, 56, 50)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+    --cs-input-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(34, 56, 50)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     --cs-input-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(39, 153, 119)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
     --cs-input-icon-invalid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(186, 26, 26)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
   }
@@ -1087,7 +1087,7 @@
     display: flex;
   }
 
-  :where(#root, .page) .content-block {
+  :where(#app, .page) .content-block {
     --gap: 0;
     row-gap: var(--gap);
     flex-direction: column;
@@ -1096,7 +1096,7 @@
     display: flex;
   }
 
-  :where(#root, .page) .content-block {
+  :where(#app, .page) .content-block {
     --gap: var(--cs-spacing);
   }
 }

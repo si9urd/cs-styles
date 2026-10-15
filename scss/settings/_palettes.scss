@@ -103,3 +103,29 @@ $teal: (
   'dark-background': #12191A, // Background, HSB 182 30 10
   'dark-surface': #12191A,
 );
+
+// мятный, оттенок 165
+$mint: (
+  // light
+  'light-primary': #1FAB89, // Brand, HSB 165 82 67
+  'light-surface-tint': #1FAB89,
+  'light-on-background': #223832, // Text strong, HSB 165 40 22
+  'light-on-surface': #223832,
+  'light-on-surface-variant': #5B756F, // Text weak, HSB 165 22 46
+  'light-outline': #86A39C, // Stroke strong, HSB 165 18 64
+  'light-outline-variant': #E4F0ED, // Stroke weak, HSB 165 5 94
+  'light-surface-container': #F5FAF9, // Fill, HSB 165 2 98
+  'light-background': #FFFFFF, // Background, HSB 0 0 100
+  'light-surface': #FFFFFF,
+  // dark
+  'dark-primary': #81D6C1, // Brand, HSB 165 40 84
+  'dark-surface-tint': #81D6C1,
+  'dark-on-background': #FFFFFF, // Text strong, HSB 165 0 100
+  'dark-on-surface': #FFFFFF,
+  'dark-on-surface-variant': #CED9D6, // Text weak, HSB 165 5 85
+  'dark-outline': #95A6A2, // Stroke strong, HSB 165 10 65
+  'dark-outline-variant': #36403D, // Stroke weak, HSB 165 15 25
+  'dark-surface-container': #1F2624, // Fill, HSB 165 20 15
+  'dark-background': #121A18, // Background, HSB 165 30 10
+  'dark-surface': #121A18,
+);
