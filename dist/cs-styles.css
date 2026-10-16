@@ -24,8 +24,8 @@
   }
 
   :root:not([data-theme="dark"]) {
-    --cs-primary: #1fab89;
-    --cs-surface-tint: #1fab89;
+    --cs-primary: #0f9977;
+    --cs-surface-tint: #0f9977;
     --cs-on-primary: #fff;
     --cs-primary-container: #d6e3ff;
     --cs-on-primary-container: #001b3e;
@@ -81,8 +81,8 @@
   }
 
   :root[data-theme="dark"] {
-    --cs-primary: #81d6c1;
-    --cs-surface-tint: #81d6c1;
+    --cs-primary: #70e0c4;
+    --cs-surface-tint: #70e0c4;
     --cs-on-primary: #0a305f;
     --cs-primary-container: #284777;
     --cs-on-primary-container: #d6e3ff;
