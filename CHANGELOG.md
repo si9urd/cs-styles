@@ -21,6 +21,8 @@
 ### Changed
 
 - Зафиксировано правило ведения изменений для будущих релизов.
+- Размер шрифта ссылки по умолчанию наследуется (`--link-font-size: inherit`), раньше был `--cs-font-size-base`: ссылка в заголовке или в мелком тексте больше не сжимается/раздувается до базового размера. Прежнее поведение: `--link-font-size: var(--cs-font-size-base)`.
+- Из reset убрано глобальное подавление `animation`/`transition` при `prefers-reduced-motion: reduce` (`* { … !important }`). Компоненты фреймворка гасят своё движение сами; анимации проекта-потребителя больше не обрезаются, и `!important` из слоя `generic` не мешает их переопределять. Если глушилка нужна, добавьте её в свой CSS.
 - **Breaking.** Исходники `scss/` переложены по ITCSS: `settings/`, `tools/`, `tokens/`, `generic/`, `elements/`, `objects/`, `components/`, `utilities/`. Классы, `--cs-*` и `data-theme` не менялись.
   - Ломается: прямое подключение партиалов по старым путям (`scss/base/…`, `scss/utils/…`, `scss/abstracts/…`, `scss/content/…`, `scss/landmarks/…`, `scss/themes/…`, `scss/_variables.scss`).
   - Миграция: подключать `scss/cs-styles.scss` или `scss/index` с `with (...)` — имена настроек те же.
@@ -36,6 +38,9 @@
 - `.elevation-*` включаются флагом `"elevation"` в `$enable-utilities` (по умолчанию `true`). Если передаёте свою карту `$enable-utilities` целиком, добавьте в неё `"elevation": true`, иначе классы пропадут.
 - Класс логотипа учитывает `$prefix` (`.#{$prefix}-logo`, при `cs` — прежний `.cs-logo`). Новые настройки: `$logo-height`, `$logo-font-size`, `$border-radius-pill`.
 - Размеры меню, FAB и `progress` вынесены в настройки: `$menu-width`, `$menu-item-height`, `$menu-icon-size`, `$menu-gap`, `$menu-padding-y`, `$menu-font-size`, `$menu-divider-margin-y`, `$menu-arrow-size`, `$fab-size`, `$fab-border-radius`, `$progress-height`. Значения по умолчанию прежние; у `progress` радиус теперь `$border-radius-pill` (визуально то же). Жирность меню и логотипа берётся из `--cs-font-weight-medium`/`--cs-font-weight-bold`. Убран неработающий `line-height` у разделителя меню.
+- **Breaking.** Модификаторы меню переведены на ARIA, у меню свой флаг `$enable-menu` (по умолчанию `true`; раньше меню включалось `$enable-forms`).
+  - Ломается: `.divider`, `.has-children`, `[data-expandable]` и `.has-icons-indent` больше не работают.
+  - Миграция: разделитель — `<hr>` или `role="separator"`; пункт с подменю — `aria-haspopup="menu"`; отступ под иконки ставится сам, если хотя бы один пункт начинается с иконки (`:has()`), класс удалить. Если отключали `$enable-forms`, а меню нужно — оно теперь остаётся; если не нужно — `$enable-menu: false`.
 - `color-scheme` перенесён из слоя `tokens` в `elements` (`:root`), поведение то же.
 - **Breaking.** SVG-иконки собраны в карту `$icons` (`name: "<svg …>"`, цвет `currentColor`) и выводятся один раз, без цвета и без копий под тему: `--cs-icon-<name>` (`dark`, `light`, `menu`, `github`, `search`, `valid`, `invalid`, `chevron`, `ring-spinner`, `dots-spinner`). Иконка красится маской: `mask: var(--cs-icon-menu) center / contain no-repeat; background-color: currentColor`. Переключатель темы и спиннер `aria-busy` перешли на маску и берут цвет текста (убран хак `filter: invert()` у спиннера на кнопках). Полям ввода маска недоступна, у них цветные токены по теме: `--cs-input-icon-search|chevron|valid|invalid`.
   - Ломается: `--cs-dark-icon`, `--cs-light-icon`, `--cs-menu-icon`, `--cs-github-icon`, `--cs-search-icon`, `--cs-valid-icon`, `--cs-invalid-icon`, `--cs-chevron-icon`, `--cs-ring-spinner`, `--cs-dots-spinner` удалены; mixin'ы `*-icon`, `btn-spinner-background`, `svg-icons` из `tools/` удалены. Иконка переключателя темы теперь в `[data-theme-toggle]::before`, а не в `background-image` самого элемента.

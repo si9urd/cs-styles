@@ -7,6 +7,7 @@
 | Роль | HSB | Цвет | Ключи M3 | Контраст с Fill |
 |---|---|---|---|---|
 | Brand | 230 65 85 | ![#4C63D9](https://img.shields.io/badge/-%234C63D9-4C63D9.svg?style=flat-square) | `light-primary`, `light-surface-tint` | ≥ 4.5:1 |
+| Text on Brand | 0 0 100 | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF.svg?style=flat-square) | `light-on-primary` | ≥ 4.5:1 с Brand, в т.ч. hover/press |
 | Text strong | 230 57 24 | ![#1A203D](https://img.shields.io/badge/-%231A203D-1A203D.svg?style=flat-square) | `light-on-background`, `light-on-surface` | ≥ 4.5:1 |
 | Text weak | 230 27 48 | ![#595F7A](https://img.shields.io/badge/-%23595F7A-595F7A.svg?style=flat-square) | `light-on-surface-variant` | ≥ 4.5:1 |
 | Stroke strong | 230 23 65 | ![#8086A6](https://img.shields.io/badge/-%238086A6-8086A6.svg?style=flat-square) | `light-outline` | ≥ 3:1 |
@@ -19,6 +20,7 @@
 | Роль | HSB | Цвет | Ключи M3 | Контраст с Fill |
 |---|---|---|---|---|
 | Brand | 230 40 99 | ![#97A8FC](https://img.shields.io/badge/-%2397A8FC-97A8FC.svg?style=flat-square) | `dark-primary`, `dark-surface-tint` | ≥ 4.5:1 |
+| Text on Brand | 230 60 25 | ![#1A2040](https://img.shields.io/badge/-%231A2040-1A2040.svg?style=flat-square) | `dark-on-primary` | ≥ 4.5:1 с Brand, в т.ч. hover/press |
 | Text strong | 230 0 100 | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF.svg?style=flat-square) | `dark-on-background`, `dark-on-surface` | ≥ 4.5:1 |
 | Text weak | 230 5 85 | ![#CED0D9](https://img.shields.io/badge/-%23CED0D9-CED0D9.svg?style=flat-square) | `dark-on-surface-variant` | ≥ 4.5:1 |
 | Stroke strong | 230 10 65 | ![#9598A6](https://img.shields.io/badge/-%239598A6-9598A6.svg?style=flat-square) | `dark-outline` | ≥ 3:1 |

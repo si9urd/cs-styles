@@ -11,9 +11,6 @@
     border: 0;
     border-radius: $border-radius-pill;
     background-color: var(--#{$prefix}-secondary-container);
-
-    // IE10 uses `color` to set the bar background-color
-    color: var(--#{$prefix}-primary);
     vertical-align: baseline;
 
     &::-webkit-progress-bar {
@@ -29,25 +26,30 @@
       background-color: var(--#{$prefix}-primary);
     }
 
-    // Indeterminate state
+    // Indeterminate fill is drawn on the track, Gecko's own bar stays hidden
+    &:indeterminate::-moz-progress-bar {
+      background-color: transparent;
+    }
+
     @media (prefers-reduced-motion: no-preference) {
+      // Ease the fill to each new value (WebKit/Blink; Gecko can't transition its bar)
+      &::-webkit-progress-value {
+        transition: width $transition;
+      }
+
+      // Indeterminate: a half-width segment sweeps the track, accelerating in and braking out
       &:indeterminate {
-        background: var(--#{$prefix}-primary)
-        linear-gradient(
-                to right,
-                var(--#{$prefix}-primary) 30%,
-                var(--#{$prefix}-secondary-container) 30%
-        )
-        top left / 150% 150% no-repeat;
-        animation: progress-indeterminate 1s linear infinite;
+        background-image: linear-gradient(var(--#{$prefix}-primary) 0 0);
+        background-size: 50% 100%;
+        background-repeat: no-repeat;
+        animation: progress-indeterminate 1.5s cubic-bezier(.65, 0, .35, 1) infinite;
+      }
+    }
 
-        &[value]::-webkit-progress-value {
-          background-color: transparent;
-        }
-
-        &::-moz-progress-bar {
-          background-color: transparent;
-        }
+    // Without motion: static stripes, so "working" doesn't read as 0%
+    @media (prefers-reduced-motion: reduce) {
+      &:indeterminate {
+        background-image: repeating-linear-gradient(-45deg, var(--#{$prefix}-primary) 0 .5rem, transparent 0 1rem);
       }
     }
   }
@@ -61,12 +63,13 @@
   }
 
   @keyframes progress-indeterminate {
-    0% {
-      background-position: 200% 0;
+    // At 50% size, -100%/200% park the segment just outside either end
+    from {
+      background-position: -100% 0;
     }
 
-    100% {
-      background-position: -200% 0;
+    to {
+      background-position: 200% 0;
     }
   }
 }

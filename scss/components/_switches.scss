@@ -9,7 +9,7 @@
     cursor: pointer;
 
     input {
-      margin-right: var(--#{$prefix}-spacing);
+      margin-inline-end: var(--#{$prefix}-spacing);
     }
   }
 
@@ -20,21 +20,30 @@
     --background-color: transparent;
 
     appearance: none;
+    position: relative;
     width: var(--size);
     height: var(--size);
-    margin: 0 calc(var(--#{$prefix}-spacing) * .5) 0 0;
+    margin: 0;
+    margin-inline-end: calc(var(--#{$prefix}-spacing) * .5);
     border: var(--border-width) solid var(--border-color);
     vertical-align: middle;
     cursor: pointer;
 
     & + label {
       display: inline-flex;
-      margin-right: var(--#{$prefix}-spacing);
+      margin-inline-end: var(--#{$prefix}-spacing);
       cursor: default;
 
       &:last-child {
-        margin-right: 0;
+        margin-inline-end: 0;
       }
+    }
+
+    // ::after is the 3rem hit area on touch; the checkmark draws on ::before
+    @include touch-target;
+
+    &:is(:focus-visible, [data-focused]) {
+      @include focus-ring;
     }
 
     @include disabled {
@@ -63,15 +72,14 @@
     --indicator-color: var(--#{$prefix}-on-primary);
     --indicator-width: 2px;
 
-    position: relative;
-
     &:checked {
       --border-color: var(--#{$prefix}-primary);
       --background-color: var(--#{$prefix}-primary);
 
       background-color: var(--background-color);
 
-      &::after {
+      // Switch draws its thumb on ::before instead
+      &:not([role="switch"])::before {
         position: absolute;
         top: calc(var(--size) * .01);
         left: calc(var(--size) * .25);
@@ -81,6 +89,15 @@
         border: solid var(--indicator-color);
         border-width: 0 var(--indicator-width) var(--indicator-width) 0;
         content: "";
+      }
+    }
+
+    // Forced colors drop author backgrounds: repaint the checked fill in system colors
+    @media (forced-colors: active) {
+      &:checked {
+        --indicator-color: HighlightText;
+
+        background-color: Highlight;
       }
     }
   }
@@ -97,16 +114,12 @@
     border-radius: var(--size);
     background-color: var(--background-color);
 
-    &::after {
-      content: none;
-    }
-
     &::before {
       display: block;
       position: initial;
       aspect-ratio: 1;
       height: 100%;
-      margin-left: 0;
+      margin-inline-start: 0;
       transform: none;
       border-radius: 50%;
       background-color: var(--indicator-color);
@@ -119,7 +132,16 @@
       --indicator-color: var(--#{$prefix}-on-primary);
 
       &::before {
-        margin-left: auto;
+        margin-inline-start: auto;
+      }
+    }
+
+    @media (forced-colors: active) {
+      --indicator-color: CanvasText;
+
+      &:checked {
+        --background-color: Highlight;
+        --indicator-color: HighlightText;
       }
     }
   }

@@ -1,4 +1,5 @@
 @use "../settings" as *;
+@use "../tools" as *;
 
 .#{$prefix}-logo {
   display: flex;
@@ -11,9 +12,20 @@
   color: transparent;
   font-weight: var(--#{$prefix}-font-weight-bold);
   font-size: $logo-font-size;
-  cursor: pointer;
 
   & > a {
     all: unset;
+    cursor: pointer;
+
+    // all: unset drops the link's own ring
+    &:is(:focus-visible, [data-focused]) {
+      @include focus-ring;
+    }
+  }
+
+  // Forced colors drop background images: transparent text over a clipped gradient would vanish
+  @media (forced-colors: active) {
+    background: none;
+    color: CanvasText;
   }
 }

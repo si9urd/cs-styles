@@ -30,6 +30,9 @@ $enable-grid: true !default;
 // Enable form`s controls
 $enable-forms: true !default;
 
+// Enable menu
+$enable-menu: true !default;
+
 // Enable fix input autofill
 $enable-autofill-fix: false !default;
 
@@ -132,7 +135,7 @@ $input-height: 3rem !default;
 $line-height-base: 1.5 !default;
 $sidebar-width: 20rem !default;
 $logo-height: 2.5rem !default;
-$logo-font-size: 38px !default;
+$logo-font-size: 2.375rem !default;
 $border-radius: .5rem !default;
 $border-radius-pill: 999px !default;
 $btn-icon-size: 1.5rem !default;

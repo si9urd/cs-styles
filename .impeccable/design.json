@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T00:00:00Z",
+  "title": "Design System: CS-Styles",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Brand Accent", "canonical": "--cs-primary (mint preset, HSB 165 90 60)", "tonalRamp": ["oklch(25% 0.06 168)", "oklch(35% 0.08 168)", "oklch(45% 0.10 168)", "oklch(58% 0.12 168)", "oklch(68% 0.12 168)", "oklch(78% 0.10 168)", "oklch(87% 0.07 168)", "oklch(95% 0.03 168)"] },
+      "on-primary": { "role": "primary", "displayName": "On Brand" },
+      "on-surface": { "role": "neutral", "displayName": "Ink Strong", "tonalRamp": ["oklch(15% 0.02 168)", "oklch(25% 0.025 168)", "oklch(35% 0.03 168)", "oklch(45% 0.03 168)", "oklch(55% 0.025 168)", "oklch(68% 0.02 168)", "oklch(82% 0.012 168)", "oklch(95% 0.005 168)"] },
+      "on-surface-variant": { "role": "neutral", "displayName": "Ink Weak" },
+      "outline": { "role": "neutral", "displayName": "Stroke Strong" },
+      "outline-variant": { "role": "neutral", "displayName": "Stroke Weak" },
+      "surface-container": { "role": "neutral", "displayName": "Tinted Fill" },
+      "surface": { "role": "neutral", "displayName": "Paper" },
+      "error": { "role": "status", "displayName": "Error" },
+      "success": { "role": "status", "displayName": "Success" },
+      "dark-primary": { "role": "primary", "displayName": "Brand Accent (dark)" },
+      "dark-on-surface": { "role": "neutral", "displayName": "Ink Strong (dark)" },
+      "dark-on-surface-variant": { "role": "neutral", "displayName": "Ink Weak (dark)" },
+      "dark-outline": { "role": "neutral", "displayName": "Stroke Strong (dark)" },
+      "dark-outline-variant": { "role": "neutral", "displayName": "Stroke Weak (dark)" },
+      "dark-surface-container": { "role": "neutral", "displayName": "Tinted Fill (dark)" },
+      "dark-surface": { "role": "neutral", "displayName": "Paper (dark)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "h1 only." },
+      "headline": { "displayName": "Headline", "purpose": "h2–h4 (2 / 1.75 / 1.5rem)." },
+      "title": { "displayName": "Title", "purpose": "h5–h6 (1.25 / 1rem)." },
+      "body": { "displayName": "Body", "purpose": "Running text, text-wrap: pretty." },
+      "label": { "displayName": "Label", "purpose": "Button text." },
+      "label-small": { "displayName": "Label Small", "purpose": "Menu items." },
+      "mono": { "displayName": "Mono", "purpose": "code, kbd, samp, pre." }
+    },
+    "shadows": [
+      { "name": "elevation-0", "value": "var(--cs-elevation-0)", "purpose": "Rest state of every in-flow element." },
+      { "name": "elevation-1", "value": "var(--cs-elevation-1)", "purpose": "Button hover lift." },
+      { "name": "elevation-2", "value": "var(--cs-elevation-2)", "purpose": "Menus and other floating layers." },
+      { "name": "elevation-3", "value": "var(--cs-elevation-3)", "purpose": "FAB focus/press." },
+      { "name": "elevation-4", "value": "var(--cs-elevation-4)", "purpose": "FAB hover." }
+    ],
+    "motion": [
+      { "name": "transition", "value": ".2s ease-in-out", "purpose": "All color, border, shadow, outline and opacity state changes (--cs-transition)." },
+      { "name": "ripple", "value": "background-size .6s, opacity .9s", "purpose": "Centered CSS press ripple; only under prefers-reduced-motion: no-preference." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "576px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "992px" },
+      { "name": "xl", "value": "1100px" },
+      { "name": "xxl", "value": "1400px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Default for any <button>; no class needed.",
+      "html": "<button class=\"ds-btn\">Save changes</button>",
+      "css": ".ds-btn { --c: var(--cs-primary, #0F9977); --ink: var(--cs-on-primary, #FFFFFF); --sl: 0%; display: inline-flex; align-items: center; justify-content: center; height: 2.5rem; padding: 0 1.5rem; gap: .5rem; border: 1px solid transparent; border-radius: .5rem; background: color-mix(in srgb, var(--c), var(--ink) var(--sl)); color: var(--ink); font: 500 1rem/1.5 system-ui, sans-serif; cursor: pointer; outline: 0 solid transparent; outline-offset: 1px; box-shadow: var(--cs-elevation-0, none); transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out, outline-color .2s ease-in-out; } .ds-btn:hover { --sl: 14%; box-shadow: var(--cs-elevation-1, 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15)); } .ds-btn:focus-visible { --sl: 14%; outline: 2px solid var(--cs-primary, #0F9977); } .ds-btn:active { --sl: 20%; box-shadow: none; }"
+    },
+    {
+      "name": "Outlined Button",
+      "kind": "button",
+      "refersTo": "button-outlined",
+      "description": ".btn-outlined / .btn-secondary: secondary action.",
+      "html": "<button class=\"ds-btn-outlined\">Cancel</button>",
+      "css": ".ds-btn-outlined { --c: var(--cs-primary, #0F9977); --sl: 0%; display: inline-flex; align-items: center; height: 2.5rem; padding: 0 1.5rem; border: 1px solid var(--c); border-radius: .5rem; background: color-mix(in srgb, transparent, var(--c) var(--sl)); color: var(--c); font: 500 1rem/1.5 system-ui, sans-serif; cursor: pointer; outline-offset: 1px; transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out; } .ds-btn-outlined:hover { --sl: 14%; box-shadow: var(--cs-elevation-1, 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15)); } .ds-btn-outlined:focus-visible { --sl: 14%; outline: 2px solid var(--c); } .ds-btn-outlined:active { --sl: 20%; box-shadow: none; }"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": ".btn-text / .btn-tertiary: low-emphasis action, never elevated.",
+      "html": "<button class=\"ds-btn-text\">Learn more</button>",
+      "css": ".ds-btn-text { --c: var(--cs-primary, #0F9977); --sl: 0%; display: inline-flex; align-items: center; height: 2.5rem; padding: 0 .75rem; border: 1px solid transparent; border-radius: .5rem; background: color-mix(in srgb, transparent, var(--c) var(--sl)); color: var(--c); font: 500 1rem/1.5 system-ui, sans-serif; cursor: pointer; outline-offset: 1px; transition: background-color .2s ease-in-out; } .ds-btn-text:hover { --sl: 14%; } .ds-btn-text:focus-visible { --sl: 14%; outline: 2px solid var(--c); } .ds-btn-text:active { --sl: 20%; }"
+    },
+    {
+      "name": "Disabled Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": ":disabled / aria-disabled=\"true\": 12% ink container, 38% ink label.",
+      "html": "<button class=\"ds-btn-disabled\" disabled>Unavailable</button>",
+      "css": ".ds-btn-disabled { display: inline-flex; align-items: center; height: 2.5rem; padding: 0 1.5rem; border: 1px solid transparent; border-radius: .5rem; background: color-mix(in srgb, var(--cs-on-surface, #223832) 12%, transparent); color: color-mix(in srgb, var(--cs-on-surface, #223832) 38%, transparent); font: 500 1rem/1.5 system-ui, sans-serif; cursor: not-allowed; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Any text-like input, select, or textarea; aria-invalid drives validation.",
+      "html": "<input class=\"ds-input\" placeholder=\"Email\"> <input class=\"ds-input\" value=\"not-an-email\" aria-invalid=\"true\">",
+      "css": ".ds-input { box-sizing: border-box; width: 16rem; height: 3rem; padding: 0 1rem; border: 1px solid var(--cs-outline-variant, #E4F0ED); border-radius: .5rem; outline: none; background: var(--cs-surface-container-lowest, #FFFFFF); color: var(--cs-on-surface, #223832); font: 1rem/1.5 system-ui, sans-serif; transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out; } .ds-input::placeholder { color: var(--cs-on-surface-variant, #5B756F); } .ds-input:focus { border-color: var(--cs-primary, #0F9977); box-shadow: 0 0 0 1px var(--cs-primary, #0F9977) inset; } .ds-input[aria-invalid=\"true\"] { border-color: var(--cs-error, #BA1A1A); } .ds-input[aria-invalid=\"true\"]:focus { box-shadow: 0 0 0 1px var(--cs-error, #BA1A1A) inset; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "header",
+      "description": "header > nav row with a vertical hr divider.",
+      "html": "<header class=\"ds-header\"><strong>CS-Styles</strong><nav class=\"ds-nav\"><a href=\"#\">Docs</a><a href=\"#\">Themes</a><hr><a href=\"#\">GitHub</a></nav></header>",
+      "css": ".ds-header { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1rem; background: var(--cs-surface, #FFFFFF); color: var(--cs-on-surface, #223832); font: 500 1rem/1.5 system-ui, sans-serif; } .ds-nav { display: flex; align-items: center; } .ds-nav a { padding: 0 .5rem; color: var(--cs-primary, #0F9977); text-decoration: none; } .ds-nav a:hover { text-decoration: underline; } .ds-nav a:focus-visible { outline: 2px solid var(--cs-primary, #0F9977); outline-offset: 2px; border-radius: .25rem; } .ds-nav hr { width: 1px; height: 1.2rem; margin: 0 1rem; border: none; border-left: 1px solid var(--cs-outline, #86A39C); opacity: .7; }"
+    },
+    {
+      "name": "Menu",
+      "kind": "custom",
+      "refersTo": "menu",
+      "description": ".menu: floating panel at elevation 2 with 3rem rows.",
+      "html": "<ul class=\"ds-menu\"><li>Rename</li><li>Duplicate</li><li aria-disabled=\"true\">Move</li></ul>",
+      "css": ".ds-menu { display: inline-block; min-width: 12rem; margin: 0; padding: .5rem 0; list-style: none; border-radius: .5rem; background: var(--cs-surface-container, #F5FAF9); box-shadow: var(--cs-elevation-2, 0 1px 2px rgba(0,0,0,.3), 0 2px 6px 2px rgba(0,0,0,.15)); color: var(--cs-on-surface, #223832); font: 500 .875rem/1.5 system-ui, sans-serif; } .ds-menu li { display: flex; align-items: center; height: 3rem; padding: 0 .75rem; cursor: pointer; } .ds-menu li:hover { background: color-mix(in srgb, var(--cs-on-surface, #223832) 8%, transparent); } .ds-menu li:active { background: color-mix(in srgb, var(--cs-on-surface, #223832) 10%, transparent); } .ds-menu li[aria-disabled=\"true\"] { background: color-mix(in srgb, var(--cs-on-surface, #223832) 4%, transparent); color: color-mix(in srgb, var(--cs-on-surface, #223832) 38%, transparent); cursor: not-allowed; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Markup Made Visible",
+    "overview": "An element looks like what it is and the state it is in. A <button> is a filled primary button with no class; aria-invalid=\"true\" turns a field's stroke red and adds an icon; aria-busy=\"true\" turns a control into a spinner; aria-disabled and :disabled fade it to the shared 38% disabled ink. The visual system is the rendering of HTML semantics and ARIA state, and it should never show a state the accessibility tree doesn't have.\n\nThe mood is calm, precise, utilitarian. Surfaces are white or near-white, tinted toward the single brand hue. Ink is that same hue at low saturation, and one saturated accent marks what can be acted on. Expression goes into state feedback: a state layer mixed into the container, a centered CSS ripple on press, a 2px primary focus ring, a shadow that appears on hover. Density is app-like: 2.5rem buttons, 3rem fields and menu rows, a 1rem spacing unit.\n\nThe palette is a role scheme, not a color. Presets (mint, indigo, violet, navy, teal in settings/_palettes.scss) and M3 Theme Builder JSON all fill the same roles. The hex values in this file are the current default build (mint, hue 165) and serve as examples of each role.",
+    "keyCharacteristics": [
+      "Semantics and ARIA select the styles; classes only for variants semantics can't express (.btn-outlined, .btn-text, .btn-pill, .btn-fab, .btn-icon, .menu, .card).",
+      "One hue per theme: neutrals, ink, and strokes are all tinted with the brand hue.",
+      "Flat at rest; shadow is a response to state or marks a floating layer.",
+      "State is shown by mixing color (color-mix state layer), not by swapping to new colors.",
+      "Runtime theming through --cs-* and data-theme=\"dark\"; no JavaScript anywhere."
+    ],
+    "rules": [
+      { "name": "The One Hue Rule", "body": "A theme is one hue. Every neutral, ink, and stroke is that hue at a fixed saturation/brightness step; a new preset changes the hue and keeps the steps.", "section": "colors" },
+      { "name": "The Roles-Only Rule", "body": "Components reference --cs-* roles only. A hex literal in a component partial is a bug; a new visual value becomes a token in settings/ first.", "section": "colors" },
+      { "name": "The Contrast Floor Rule", "body": "Ink roles hold ≥ 4.5:1 against Fill, Brand and Stroke Strong hold ≥ 3:1. Stroke Weak is decorative and never carries a state alone.", "section": "colors" },
+      { "name": "The Medium Weight Rule", "body": "Interactive text and headings sit at 500; 700 is reserved for h1 and b/strong (which use bolder, relative to the parent).", "section": "typography" },
+      { "name": "The Multiplier Rule", "body": "Heading sizes are --fs × --cs-font-size-base. Change the base, not individual sizes.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Nothing in the document flow carries a shadow at rest. A shadow means \"you're touching this\" or \"this is above the page\".", "section": "elevation" }
+    ],
+    "dos": [
+      "Do style from the element and its ARIA state: [aria-invalid], [aria-busy], [aria-disabled], :disabled, :focus-visible, plus data-hovered / data-focused / data-pressed for scripted states.",
+      "Do express interaction states through the state layer (color-mix of ink into container at 14% / 20%) and the shared 12% / 38% disabled mixes.",
+      "Do reference color only through --cs-* roles; add new values as !default tokens in settings/.",
+      "Do keep everything flat at rest; use --cs-elevation-* only for hover, focus, press, or floating layers.",
+      "Do keep focus visible: a 2px primary outline on buttons, a primary stroke plus inset ring on fields.",
+      "Do gate motion behind prefers-reduced-motion: no-preference."
+    ],
+    "donts": [
+      "Don't hardcode hex or rgb in components; the only literal colors live in palettes and the generated theme.",
+      "Don't add state modifier classes (.is-active, .disabled, .error); if HTML or ARIA can express the state, style that.",
+      "Don't introduce a second accent hue within a theme.",
+      "Don't let Stroke Weak (outline-variant) be the only signal of a state.",
+      "Don't add a second font family; hierarchy is size and weight."
+    ]
+  }
+}

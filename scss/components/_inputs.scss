@@ -5,7 +5,7 @@
   --padding: 0 var(--#{$prefix}-spacing);
   --line-height: var(--#{$prefix}-line-height-base);
   --border-radius: var(--#{$prefix}-border-radius);
-  --border-color: var(--#{$prefix}-outline-variant);
+  --border-color: var(--#{$prefix}-outline);
   --font-size: var(--#{$prefix}-font-size-input);
   --background: var(--#{$prefix}-surface-container-lowest);
   --background-size: var(--#{$prefix}-btn-inner-icon-size);
@@ -20,13 +20,14 @@
   padding: var(--padding);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  outline: none;
+  outline: 0 solid transparent;
   background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
   background-size: var(--background-size);
   background-repeat: no-repeat;
   background-color: var(--background);
   box-shadow: var(--box-shadow);
   color: var(--color);
+  caret-color: var(--#{$prefix}-primary);
   font-size: var(--font-size);
   line-height: var(--line-height);
   transition: background-color var(--transition),
@@ -34,13 +35,14 @@
               color var(--transition),
               box-shadow var(--transition);
 
+  // No logical keywords for background-position: mirror the state icon by hand
+  [dir="rtl"] & {
+    background-position: left var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
+  }
+
   &:disabled {
     --background: var(--#{$prefix}-surface-container);
     --color: var(--#{$prefix}-on-surface-variant);
-
-    &::placeholder {
-      --color: var(--#{$prefix}-on-surface-variant);
-    }
   }
 
   &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
@@ -48,7 +50,7 @@
 
     &::-webkit-calendar-picker-indicator {
       position: absolute;
-      right: var(--#{$prefix}-spacing);
+      inset-inline-end: var(--#{$prefix}-spacing);
       opacity: .5;
     }
   }
@@ -56,11 +58,15 @@
   &:focus {
     --box-shadow: 0 0 0 1px var(--#{$prefix}-primary) inset;
     --border-color: var(--#{$prefix}-primary);
+
+    // Invisible normally; forced colors remove the box-shadow ring and repaint this instead
+    outline: 2px solid transparent;
+    outline-offset: -2px;
   }
 }
 
 @mixin input {
-  input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"])),
+  input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"])),
   textarea,
   select {
     @extend %input;
@@ -81,9 +87,13 @@
   input[type="search"] {
     --border-radius: #{$border-radius-pill};
 
-    padding-left: calc(var(--#{$prefix}-spacing) * 3);
+    padding-inline-start: calc(var(--#{$prefix}-spacing) * 3);
     background-image: var(--#{$prefix}-input-icon-search);
     background-position: left var(--#{$prefix}-spacing) center;
+
+    [dir="rtl"] & {
+      background-position: right var(--#{$prefix}-spacing) center;
+    }
   }
 
   input[type="color"] {
@@ -96,8 +106,6 @@
     &[aria-invalid="true"] {
       --border-color: var(--#{$prefix}-error);
 
-      background-image: var(--#{$prefix}-input-icon-invalid);
-
       &:focus {
         --box-shadow: 0 0 0 1px var(--#{$prefix}-error) inset;
         --border-color: var(--#{$prefix}-error);
@@ -107,12 +115,26 @@
     &[aria-invalid="false"] {
       --border-color: var(--#{$prefix}-success);
 
-      background-image: var(--#{$prefix}-input-icon-valid);
-
       &:focus {
         --box-shadow: 0 0 0 1px var(--#{$prefix}-success) inset;
         --border-color: var(--#{$prefix}-success);
       }
+    }
+  }
+
+  // State icon at inline-end, text fields only: reserve room so text doesn't run under it;
+  // select keeps its chevron there, checkbox/radio/range draw their own control
+  :is(input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"])), textarea) {
+    &:is([aria-invalid="true"], [aria-invalid="false"]) {
+      padding-inline-end: calc(var(--#{$prefix}-spacing) * 2 + var(--background-size));
+    }
+
+    &[aria-invalid="true"] {
+      background-image: var(--#{$prefix}-input-icon-invalid);
+    }
+
+    &[aria-invalid="false"] {
+      background-image: var(--#{$prefix}-input-icon-valid);
     }
   }
 }

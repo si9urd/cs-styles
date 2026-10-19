@@ -136,24 +136,6 @@
   }
 }
 
-////////////////////////////////////
-// Motion
-////////////////////////////////////
-
-@mixin reset-motion {
-  // Respect the user's reduced motion preference
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: .01ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-      transition-duration: .01ms !important;
-    }
-  }
-}
-
 @mixin reset-typo {
   // Prevent font size shrinkage for monospace elements
   :where(pre, code, kbd, samp) {
@@ -187,7 +169,6 @@
   @include reset-media;
   @include reset-form;
   @include reset-tapping;
-  @include reset-motion;
   @include reset-typo;
 }
 

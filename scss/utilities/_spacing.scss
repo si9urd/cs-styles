@@ -20,7 +20,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "margin-x": (
           responsive: $enable-responsive-utilities,
-          property: margin-right margin-left,
+          property: margin-inline,
           class: mx,
           values: map.merge($spacers, (auto: auto))
       ),
@@ -38,7 +38,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "margin-end": (
           responsive: $enable-responsive-utilities,
-          property: margin-right,
+          property: margin-inline-end,
           class: me,
           values: map.merge($spacers, (auto: auto))
       ),
@@ -50,7 +50,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "margin-start": (
           responsive: $enable-responsive-utilities,
-          property: margin-left,
+          property: margin-inline-start,
           class: ms,
           values: map.merge($spacers, (auto: auto))
       ),
@@ -63,7 +63,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "negative-margin-x": (
           responsive: $enable-responsive-utilities,
-          property: margin-right margin-left,
+          property: margin-inline,
           class: mx,
           values: $_negative-spacers
       ),
@@ -81,7 +81,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "negative-margin-end": (
           responsive: $enable-responsive-utilities,
-          property: margin-right,
+          property: margin-inline-end,
           class: me,
           values: $_negative-spacers
       ),
@@ -93,7 +93,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "negative-margin-start": (
           responsive: $enable-responsive-utilities,
-          property: margin-left,
+          property: margin-inline-start,
           class: ms,
           values: $_negative-spacers
       ),
@@ -106,7 +106,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "padding-x": (
           responsive: $enable-responsive-utilities,
-          property: padding-right padding-left,
+          property: padding-inline,
           class: px,
           values: $spacers
       ),
@@ -124,7 +124,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "padding-end": (
           responsive: $enable-responsive-utilities,
-          property: padding-right,
+          property: padding-inline-end,
           class: pe,
           values: $spacers
       ),
@@ -136,7 +136,7 @@ $_negative-spacers: $negative-spacers;
       ),
       "padding-start": (
           responsive: $enable-responsive-utilities,
-          property: padding-left,
+          property: padding-inline-start,
           class: ps,
           values: $spacers
       ),

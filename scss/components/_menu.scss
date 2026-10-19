@@ -18,17 +18,18 @@
     font-weight: var(--#{$prefix}-font-weight-medium);
     font-size: $menu-font-size;
 
-    & > :not(.divider):is(li, div) {
+    & > :is(li, div):not([role="separator"]) {
       display: flex;
       align-items: center;
       width: 100%;
-      height: var(--menu-item-height);
+      // min-height: long or translated labels wrap instead of spilling out of the row
+      min-height: var(--menu-item-height);
       padding: 0 var(--gap);
       gap: var(--gap);
       cursor: pointer;
 
-      &:not(.divider, hr):is(:hover, [data-hovered]) {
-        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 8%);
+      &:is(:hover, [data-hovered]) {
+        background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 8%, transparent);
       }
 
       :is(i, img, svg) {
@@ -41,39 +42,57 @@
         fill: var(--#{$prefix}-on-surface-variant);
       }
 
-      @include disabled {
-        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 4%);
-        color: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
-        cursor: not-allowed;
+      // Selected/checked/current item: brand tint on the row, ink stays on-surface for contrast.
+      // An image layer, so hover/press background-color still stacks under it
+      &:is([aria-selected="true"], [aria-checked="true"], [aria-current]:not([aria-current="false"])) {
+        background-image: linear-gradient(color-mix(in srgb, var(--#{$prefix}-primary) 12%, transparent) 0 0);
 
         svg {
-          fill: rgb(from var(--#{$prefix}-on-surface) r g b / 38%);
+          fill: var(--#{$prefix}-primary);
         }
       }
 
+      // Same specificity as hover, so source order decides: pressed, then disabled on top
       &:is(:active, [data-pressed]) {
-        background-color: rgb(from var(--#{$prefix}-on-surface) r g b / 10%) !important;
+        background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 10%, transparent);
       }
 
-      &:is([data-expandable], .has-children)::after {
-        margin: .2em 0 0 auto;
+      @include disabled {
+        background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 4%, transparent);
+        color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
+        cursor: not-allowed;
+
+        svg {
+          fill: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
+        }
+      }
+
+      // Submenu trigger: aria-haspopup="menu" (or "true")
+      &[aria-haspopup]:not([aria-haspopup="false"])::after {
+        margin: .2em 0 0;
+        margin-inline-start: auto;
         content: "";
 
         @include triangle($menu-arrow-size, var(--#{$prefix}-on-surface));
       }
+
+      [dir="rtl"] &[aria-haspopup]:not([aria-haspopup="false"])::after {
+        scale: -1 1;
+      }
     }
 
-    &.has-icons-indent {
-      & > :not(.divider):is(li, div) {
-        padding-left: calc(var(--icon-size) + var(--gap) * 2);
+    // Any item leads with an icon: labels line up in one column; with icons on every row it's a no-op
+    &:has(> :is(li, div) > :is(i, img, svg):first-child) {
+      & > :is(li, div):not([role="separator"]) {
+        padding-inline-start: calc(var(--icon-size) + var(--gap) * 2);
 
         & > :is(i, img, svg):first-child {
-          margin-left: calc(-1 * (var(--icon-size) + var(--gap)));
+          margin-inline-start: calc(-1 * (var(--icon-size) + var(--gap)));
         }
       }
     }
 
-    & > :is(.divider, hr) {
+    & > :is(hr, [role="separator"]) {
       width: 100%;
       height: 1px;
       margin: $menu-divider-margin-y 0;
@@ -89,6 +108,6 @@
   }
 }
 
-@if $enable-forms {
+@if $enable-menu {
   @include menu;
 }

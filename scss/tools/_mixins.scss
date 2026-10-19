@@ -5,17 +5,17 @@
 /////////////////////
 
 /// Invisible hit area of at least $size around the element, coarse pointers only.
-/// The element must be positioned; uses ::after.
+/// The element must be positioned; uses ::after (::before is for visuals: ripple, spinner, icons).
 @mixin touch-target($size: $touch-target-size) {
   @media (pointer: coarse) {
     &::after {
-      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
       width: max(100%, #{$size});
       height: max(100%, #{$size});
       translate: -50% -50%;
+      content: "";
     }
   }
 }
@@ -24,11 +24,11 @@
 /// The element must be positioned; uses ::before, skipped while aria-busy (spinner).
 @mixin ripple($color: currentColor, $opacity: .24, $duration: .6s) {
   &:not([aria-busy="true"])::before {
-    content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     background: radial-gradient(circle, #{$color} 10%, transparent 10.01%) center / 1000% 1000% no-repeat;
+    content: "";
     opacity: 0;
     pointer-events: none;
 
@@ -44,8 +44,35 @@
   }
 }
 
+/// Hover state. Real :hover only on hover-capable pointers, so a tap doesn't leave it stuck;
+/// [data-hovered] (headless UI libs) applies everywhere. $not excludes states, e.g. disabled.
+@mixin hover($not: null) {
+  $exclude: "";
+
+  @if $not {
+    $exclude: ":not(#{$not})";
+  }
+
+  @media (hover: hover) {
+    &:hover#{$exclude} {
+      @content;
+    }
+  }
+
+  &[data-hovered]#{$exclude} {
+    @content;
+  }
+}
+
+/// Keyboard focus indicator; forced-colors mode repaints the outline in a system color.
+@mixin focus-ring($offset: 2px) {
+  outline: 2px solid var(--#{$prefix}-primary);
+  outline-offset: $offset;
+}
+
+/// `disabled="false"` is ignored only where it isn't native: `disabled` is boolean on form controls.
 @mixin disabled {
-  &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+  &:is(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"]) {
     @content;
   }
 }

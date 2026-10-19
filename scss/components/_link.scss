@@ -1,35 +1,52 @@
 @use "../settings" as *;
+@use "../tools" as *;
+
+/// Current, hovered, focused, or pressed link: a shade toward --cs-base
+@mixin link-active {
+  --link-color: color-mix(in lab, var(--#{$prefix}-primary) 90%, var(--#{$prefix}-base));
+  --link-underline-color: color-mix(in lab, var(--#{$prefix}-primary) 80%, var(--#{$prefix}-base));
+}
 
 @mixin link {
   a:not([role="button"]),
   [role="link"] {
-    --link-font-size: var(--#{$prefix}-font-size-base);
+    --link-font-size: inherit;
     --link-color: var(--#{$prefix}-primary);
     --link-background-color: transparent;
     --link-underline-color: var(--link-color);
 
-    display: inline-flex;
-    outline: none;
     background-color: var(--link-background-color);
     color: var(--link-color);
     font-size: var(--link-font-size);
     text-decoration: underline;
     text-decoration-color: var(--link-underline-color);
-    text-decoration-thickness: 0.1em;
-    text-underline-offset: 0.15em;
+    text-decoration-thickness: .1em;
+    text-underline-offset: .15em;
     cursor: pointer;
     transition:
-        background-color var(--#{$prefix}-transition),
-        color var(--#{$prefix}-transition),
-        text-decoration var(--#{$prefix}-transition),
-        box-shadow var(--#{$prefix}-transition);
+      background-color var(--#{$prefix}-transition),
+      color var(--#{$prefix}-transition),
+      text-decoration-color var(--#{$prefix}-transition),
+      box-shadow var(--#{$prefix}-transition);
 
-    &:is([aria-current]:not([aria-current="false"]), :hover, [data-hovered], :focus, [data-focused], :active, [data-pressed]) {
-      --link-color: color-mix(in lab, var(--#{$prefix}-primary) 90%, var(--#{$prefix}-base));
-      --link-underline-color: color-mix(in lab, var(--#{$prefix}-primary) 80%, var(--#{$prefix}-base));
+    &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], :active, [data-pressed]) {
+      @include link-active;
     }
 
-    &:not([disabled="false"]):is(:disabled, [disabled], [aria-disabled="true"]) {
+    @include hover {
+      @include link-active;
+    }
+
+    // Plain inline so long links wrap with the prose; flex only to line up an icon
+    &:has(> :is(i, img, svg)) {
+      display: inline-flex;
+    }
+
+    &:is(:focus-visible, [data-focused]) {
+      @include focus-ring;
+    }
+
+    @include disabled {
       --link-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
       --link-underline-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
 

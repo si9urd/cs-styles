@@ -4,10 +4,10 @@
   :root {
     background-color: var(--#{$prefix}-surface);
     color: var(--#{$prefix}-on-surface);
-    font-family: var(--#{$prefix}-font-family);
-    font-size: var(--#{$prefix}-font-size-base);
     font-weight: var(--#{$prefix}-font-weight-normal);
+    font-size: var(--#{$prefix}-font-size-base);
     line-height: var(--#{$prefix}-line-height-base);
+    font-family: var(--#{$prefix}-font-family);
     font-synthesis: none;
     text-underline-offset: 0.1rem;
     overflow-wrap: break-word;
@@ -16,11 +16,19 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    // Native controls the framework doesn't redraw (date pickers, meter, consumer inputs) take the brand hue
+    accent-color: var(--#{$prefix}-primary);
     color-scheme: light;
 
     &[data-theme="dark"] {
       color-scheme: dark;
     }
+  }
+
+  // Container pair, not raw primary: holds AA for selected text in both themes
+  ::selection {
+    background-color: var(--#{$prefix}-primary-container);
+    color: var(--#{$prefix}-on-primary-container);
   }
 }
 

@@ -5,6 +5,7 @@
   header > .container,
   header > .content {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: calc(var(--#{$prefix}-spacing) * 2);
@@ -48,20 +49,23 @@
         height: calc(var(--#{$prefix}-btn-icon-size) * 0.8);
         margin: 0 var(--#{$prefix}-spacing);
         border: none;
-        border-left: 1px solid var(--#{$prefix}-outline);
+        border-inline-start: 1px solid var(--#{$prefix}-outline);
         opacity: .7;
       }
 
       ul {
         display: flex;
+        column-gap: var(--#{$prefix}-spacing);
+        flex-wrap: wrap;
         align-items: center;
         margin: 0;
         padding: 0;
 
+        // Gap, not item padding: wrapped rows stay flush with the header edge
         li {
           display: inline-flex;
           margin: 0;
-          padding: 0 calc(0.5 * var(--#{$prefix}-spacing));
+          padding: 0;
         }
       }
     }

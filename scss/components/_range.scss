@@ -52,12 +52,23 @@
       @include range-thumb;
     }
 
-    &::-ms-track {
-      @include range-track;
+    // The thumb is the visible control, so it carries the ring
+    &:is(:focus-visible, [data-focused]) {
+      outline: 0 solid transparent;
+
+      &::-webkit-slider-thumb {
+        @include focus-ring;
+      }
+
+      &::-moz-range-thumb {
+        @include focus-ring;
+      }
     }
 
-    &::-ms-thumb {
-      @include range-thumb;
+    // Forced colors drop author backgrounds: track and thumb would vanish
+    @media (forced-colors: active) {
+      --track-color: GrayText;
+      --thumb-color: CanvasText;
     }
 
     @include disabled {
@@ -73,10 +84,6 @@
       }
 
       &::-moz-range-thumb {
-        transform: scale(1.25);
-      }
-
-      &::-ms-thumb {
         transform: scale(1.25);
       }
     }

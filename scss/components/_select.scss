@@ -5,6 +5,11 @@
     appearance: none;
     background-image: var(--#{$prefix}-input-icon-chevron);
 
+    // Reserve room for the chevron so long options don't run under it
+    &:not([multiple]) {
+      padding-inline-end: calc(var(--#{$prefix}-spacing) * 2 + var(--background-size));
+    }
+
     &[multiple] {
       --padding: var(--#{$prefix}-spacing);
 

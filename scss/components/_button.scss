@@ -17,9 +17,10 @@
   --font-size: var(--#{$prefix}-btn-font-size);
   --container-color: var(--#{$prefix}-surface-container);
   --state-layer: 0%;
-  --background-color: color-mix(in srgb, var(--container-color), var(--color) var(--state-layer));
+  --state-color: var(--color);
+  --background-color: color-mix(in srgb, var(--container-color), var(--state-color) var(--state-layer));
   --border-color: var(--background-color);
-  --color: var(--#{$prefix}-on-surface-container);
+  --color: var(--#{$prefix}-on-surface);
   --opacity: 1;
   --elevation: var(--#{$prefix}-elevation-0);
   --disabled-container: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent);
@@ -28,16 +29,17 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  height: var(--height);
-  padding-block: 0;
+  max-width: 100%;
+  min-height: var(--height);
   padding-inline: var(--padding-start) var(--padding-end);
+  padding-block: .25rem;
   gap: var(--inner-gap);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  background-repeat: no-repeat;
-  background-color: var(--background-color);
   outline: 0 solid transparent;
   outline-offset: 1px;
+  background-repeat: no-repeat;
+  background-color: var(--background-color);
   box-shadow: var(--elevation);
   color: var(--color);
   font-weight: var(--font-weight);
@@ -46,8 +48,10 @@
   font-family: var(--font-family), sans-serif;
   text-align: center;
   text-decoration: none;
+  text-wrap: balance;
   vertical-align: middle;
-  white-space: nowrap;
+  // Lets an unbroken label (URL, long compound word) shrink to max-width instead of overflowing
+  overflow-wrap: anywhere;
   opacity: var(--opacity);
   touch-action: manipulation;
   user-select: none;
@@ -66,8 +70,8 @@
     --padding-start: #{map.get($spacers, 3)};
   }
 
-  // State layer: --color over the container (M3 uses 8/10%, too faint on filled buttons)
-  &:is(:hover, [data-hovered]):not(:disabled, [disabled], [aria-disabled="true"]) {
+  // State layer: --state-color over the container (M3 uses 8/10%, too faint on filled buttons)
+  @include hover(":disabled, [disabled], [aria-disabled=\"true\"]") {
     --state-layer: 14%;
     --elevation: var(--#{$prefix}-elevation-1);
   }
@@ -83,8 +87,8 @@
     --elevation: var(--#{$prefix}-elevation-0);
   }
 
+  // Blocks pointer only: Enter/Space still fire, pair with disabled or aria-disabled to block submit
   &[aria-busy="true"] {
-    cursor: progress;
     pointer-events: none;
 
     --opacity: .9;
@@ -100,6 +104,12 @@
     --elevation: var(--#{$prefix}-elevation-0);
 
     cursor: not-allowed;
+
+    // Forced colors flatten the 38% ink back to ButtonText; GrayText is the system's disabled color
+    @media (forced-colors: active) {
+      --border-color: GrayText;
+      --color: GrayText;
+    }
   }
 }
 
@@ -116,22 +126,25 @@
     background-repeat: no-repeat;
   }
 
+  // Icons paint with the label color; fill attributes on paths still win
   svg {
-    path:not([stroke]) {
-      stroke: var(--color);
-    }
+    fill: currentcolor;
   }
 }
 
 // endregion button-base
 
+// Filled: mixing the label color would wash the container toward it and drop contrast;
+// on-primary-container moves it away instead (darker in light, lighter in dark)
 %button-primary {
   --container-color: var(--#{$prefix}-primary);
   --color: var(--#{$prefix}-on-primary);
+  --state-color: var(--#{$prefix}-on-primary-container);
 }
 
 %button-outlined {
   --color: var(--#{$prefix}-primary);
+  --state-color: var(--color);
   --container-color: transparent;
   --border-color: var(--#{$prefix}-primary);
   --disabled-container: transparent;
@@ -144,6 +157,7 @@
 %button-icon {
   --size: calc(var(--#{$prefix}-btn-height));
   --color: var(--#{$prefix}-on-surface-variant);
+  --state-color: var(--color);
   --container-color: transparent;
   --elevation: var(--#{$prefix}-elevation-0);
   --icon-size: var(--#{$prefix}-btn-icon-size);
@@ -167,6 +181,7 @@
 
 %button-text {
   --color: var(--#{$prefix}-primary);
+  --state-color: var(--color);
   --container-color: transparent;
   --elevation: var(--#{$prefix}-elevation-0);
   --disabled-container: transparent;
@@ -191,13 +206,14 @@
   --border-radius: #{$fab-border-radius};
   --container-color: var(--#{$prefix}-primary-container);
   --color: var(--#{$prefix}-on-primary-container);
+  --state-color: var(--color);
   --padding-start: 0;
   --padding-end: 0;
   --elevation: var(--#{$prefix}-elevation-0);
 
   min-width: var(--height);
 
-  &:is(:hover, [data-hovered]):not(:disabled, [disabled], [aria-disabled="true"]) {
+  @include hover(":disabled, [disabled], [aria-disabled=\"true\"]") {
     --elevation: var(--#{$prefix}-elevation-4);
   }
 
@@ -257,6 +273,7 @@
     @extend %button-disabled;
 
     --container-color: var(--#{$prefix}-tertiary);
+    --state-color: var(--#{$prefix}-on-tertiary-container);
   }
 }
 

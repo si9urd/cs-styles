@@ -3,8 +3,6 @@
 
 @mixin loading {
   [aria-busy="true"]:not(input, select, textarea, html) {
-    white-space: nowrap;
-
     &::before {
       @include icon-mask(var(--#{$prefix}-icon-ring-spinner));
 
