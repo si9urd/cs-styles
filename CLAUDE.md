@@ -35,6 +35,7 @@ Classless first: style through elements, ARIA roles/attributes and structural se
 State goes on ARIA attributes, not `data-*`: prefer an `aria-*` whenever the role supports it (`[aria-pressed="true"]` for toggle buttons, `aria-checked`/`aria-selected` for menu items). `data-*` only where ARIA has no equivalent: `data-hovered`/`data-focused` for headless UI libs, `data-theme`, `data-theme-toggle`, `data-btn` (button variants).
 
 Theming: `--cs-*` CSS custom properties are the public runtime API for colors/tokens; `data-theme="dark"` is the public switch mechanism. Theme color palettes are generated from Material Design 3 theme JSON files (`material-theme*.json`) via `m3theme-loader.js` (`npm run theme`) and `m3theme-generator.js` (`npm run generate-theme`) — regenerate through those scripts, don't hand-edit `_themes_colors.scss`.
+Only palette roles listed in `$roles` (`tokens/_colors.scss`) are emitted: using a new role in a component means adding it there. Built-in icons (`settings/_icons.scss`) hold only the ones the library uses; the rest live in the opt-in `settings/_icons-extra.scss`.
 
 ## Conventions (enforced by stylelint.config.mjs)
 

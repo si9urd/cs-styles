@@ -27,7 +27,7 @@ A deliberate hybrid, not one canonical method:
   (`--height`, `--container-color`, `--elevation`) declared once and re-pointed by state;
   prefixed `--cs-*` is the public surface. Theming is `data-theme="dark"` + `color-scheme`.
 - **Material Design 3 is the design language.** Color roles (`surface-container`,
-  `on-surface-container`, `outline-variant`), elevation 0–5, button types
+  `on-surface-container`, `outline-variant`), elevation 0–4, button types
   (filled / outlined / text / FAB / icon). Palettes are *generated*
   from `material-theme*.json` — `_themes_colors.scss` is an artifact, never hand-edited.
 - **State layers are tokens.** Hover/press/selected/disabled shares live in `settings/`

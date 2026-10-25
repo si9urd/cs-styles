@@ -5,10 +5,10 @@
 // Form controls can't host a mask, they keep colored background images: the color is baked per theme
 // at build time, so runtime overrides of --cs-error / --cs-on-surface don't reach them (see README)
 $input-icons: (
-  "search": "icon-color",
-  "chevron": "icon-color",
-  "valid": "icon-success",
-  "invalid": "icon-error",
+  "search": "on-surface",
+  "chevron": "on-surface",
+  "valid": "success",
+  "invalid": "error",
 );
 
 @mixin input-icons($theme) {
@@ -23,8 +23,9 @@ $input-icons: (
 
 @if $enable-icons {
   :root {
+    // Field icons only ship as their colored --cs-input-icon-* variant
     @each $name, $svg in $icons {
-      @if $svg {
+      @if $svg and not map.has-key($input-icons, $name) {
         --#{$prefix}-icon-#{$name}: #{svg-url($svg)};
       }
     }

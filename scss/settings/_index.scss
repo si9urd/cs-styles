@@ -77,14 +77,6 @@ $theme-colors: () !default;
 
 // Generated palette < $palette < user overrides
 $theme-colors: map.merge(map.merge(palette.$theme-palette, $palette or ()), $theme-colors);
-$theme-colors: map.merge($theme-colors, (
-  "light-icon-color": map.get($theme-colors, "light-on-surface"),
-  "dark-icon-color": map.get($theme-colors, "dark-on-surface"),
-  "light-icon-error": map.get($theme-colors, "light-error"),
-  "dark-icon-error": map.get($theme-colors, "dark-error"),
-  "light-icon-success": map.get($theme-colors, "light-success"),
-  "dark-icon-success": map.get($theme-colors, "dark-success"),
-));
 // Range and progress track. A solid ≥ 3:1 track would merge with the primary fill (outline vs primary ≈ 1.4:1),
 // so the fill stays light (≥ 3:1 to primary) and a 1px stroke (≥ 3:1 to every surface) draws its edge.
 // Light uses on-surface-variant: outline sits at ~3:1 on white and drops under it on surface-container.
@@ -205,6 +197,7 @@ $menu-font-size: .875rem !default;
 $menu-divider-margin-y: 7.5px !default;
 $menu-arrow-size: 8px !default;
 
+// TODO: возможно стоит удалить эти переменные, они слишком зависимы от конкретного дизайна
 // Logo
 $logo-height: 2.5rem !default;
 $logo-font-size: 2.375rem !default;

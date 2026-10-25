@@ -24,11 +24,8 @@
     text-decoration-thickness: .1em;
     text-underline-offset: .15em;
     cursor: pointer;
-    transition:
-      background-color var(--#{$prefix}-transition),
-      color var(--#{$prefix}-transition),
-      text-decoration-color var(--#{$prefix}-transition),
-      box-shadow var(--#{$prefix}-transition);
+    transition: var(--#{$prefix}-transition);
+    transition-property: background-color, color, text-decoration-color, box-shadow;
 
     &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], :active) {
       @include link-active;

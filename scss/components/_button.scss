@@ -54,13 +54,9 @@
   overflow-wrap: anywhere;
   opacity: var(--opacity);
   touch-action: manipulation;
+  transition: var(--#{$prefix}-transition);
+  transition-property: background-color, border-color, box-shadow, color, outline-color, opacity;
   user-select: none;
-  transition: background-color var(--#{$prefix}-transition),
-    border-color var(--#{$prefix}-transition),
-    box-shadow var(--#{$prefix}-transition),
-    color var(--#{$prefix}-transition),
-    outline-color var(--#{$prefix}-transition),
-    opacity var(--#{$prefix}-transition);
 
   @include touch-target;
 
@@ -248,37 +244,36 @@
       }
     }
 
-    // Set outlined button styles
-    &[data-btn~="outlined"],
-    &[data-btn~="secondary"] {
-      @extend %button-ghost;
-      @extend %button-outlined;
-    }
-
-    // Set button-text styles
-    &[data-btn~="text"],
-    &[data-btn~="tertiary"] {
-      @extend %button-ghost;
-      @extend %button-text;
-    }
-
-    // Set pill button styles
-    &[data-btn~="pill"] {
-      @extend %button-pill;
-    }
-
-    // Set button-fab styles
-    &[data-btn~="fab"] {
-      @extend %button-fab;
-    }
-
-    // Set button-icon styles. Auto: a labelled button whose only children are icons.
+    // Auto icon button: a labelled button whose only children are icons.
     // :has() can't see text nodes, so the accessible name stands in for "no visible text".
     // :where keeps base specificity: any explicit data-btn variant wins
-    &[data-btn~="icon"],
     &:where([aria-label], [aria-labelledby]):where(:empty, :has(> :is(#{$icon-elements})):not(:has(> :not(#{$icon-elements})))):where(:not([data-btn], [data-theme-toggle])) {
       @extend %button-icon;
     }
+  }
+
+  // Variants: data-btn is only set on buttons, so no element list; same specificity as the base,
+  // later in source, so a variant wins over the base at rest and its own state rules win over base states
+  [data-btn~="outlined"] {
+    @extend %button-ghost;
+    @extend %button-outlined;
+  }
+
+  [data-btn~="text"] {
+    @extend %button-ghost;
+    @extend %button-text;
+  }
+
+  [data-btn~="pill"] {
+    @extend %button-pill;
+  }
+
+  [data-btn~="fab"] {
+    @extend %button-fab;
+  }
+
+  [data-btn~="icon"] {
+    @extend %button-icon;
   }
 
   [type="file"]::file-selector-button {

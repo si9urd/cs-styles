@@ -26,6 +26,10 @@
 
 ### Changed
 
+- Варианты кнопок (`[data-btn~="outlined|text|pill|fab|icon"]`) объявлены без списка элементов: специфичность (0,1,0) вместо (0,2,0). Внутри `[role="group"]` высота и скругление группы теперь побеждают и у `pill` и `fab`.
+- Классы CSS-сетки `.g-col-*`, `.g-start-*` больше не требуют предка `.grid` и работают в любом grid-контейнере.
+- Разметка встроенных SVG ужата (без `width`/`height`, лишних подпутей и `fill` у масок): data URI в `--cs-icon-*` и `--cs-input-icon-*` изменились, вид прежний.
+
 - FAB (`.btn-fab`) в покое на `--cs-elevation-3`, а не на `elevation-0`: бледный `primary-container` сливался с фоном.
 - Доли слоёв состояний вынесены в настройки `$state-hover`, `$state-press`, `$state-hover-soft`, `$state-press-soft`, `$state-selected`, `$state-disabled-container` и `$state-disabled-content`. Значения прежние, кроме нажатия в `.menu`: 12% вместо 10%, как у soft-кнопок.
 - У `textarea` убран `!important` в `--height`: высоту снова можно переопределить.
@@ -77,6 +81,10 @@
 - **Breaking.** Токены `--cs-btn-height`, `--cs-btn-font-size`, `--cs-btn-inner-icon-size` и `--cs-font-size-input` убраны из `:root`: это значения отдельных компонентов. Миграция: настройки `$btn-height`, `$btn-font-size`, `$btn-inner-icon-size` (по умолчанию `$btn-icon-size * .75`), `$font-size-input` в `with (...)` или локальные `--height`/`--font-size`/`--background-size` на кнопке и поле.
 - **Breaking.** Атрибут `[data-pressed]`. У кнопок нажатое состояние теперь даёт `[aria-pressed="true"]` (кнопка-переключатель во включённом положении). У ссылок и пунктов `.menu` замены нет: `aria-pressed` для этих ролей не предусмотрен, остаётся `:active`, а выбранный пункт меню по-прежнему отмечается `aria-checked`/`aria-selected`.
 - Повторный вывод `reset-typo`, правило `[aria-control]` (несуществующий атрибут), дубль `cursor: not-allowed` в reset.
+- **Breaking.** Роли палитры M3, которые библиотека не читает, больше не выводятся в CSS: `--cs-secondary*`, `--cs-on-tertiary*`, `--cs-tertiary-container`, `--cs-on-error`, `--cs-error-container`, `--cs-on-error-container`, `--cs-background`, `--cs-on-background`, `--cs-outline-variant`, `--cs-shadow`, `--cs-scrim`, `--cs-surface-tint`, `--cs-inverse-*`, `--cs-*-fixed*`, `--cs-surface-dim`, `--cs-surface-container-low`, `--cs-surface-container-high`, `--cs-base`, а также служебные `--cs-icon-color`, `--cs-icon-error`, `--cs-icon-success`. Свои ключи в `$theme-colors` (не из палитры) по-прежнему выводятся. Миграция: нужную роль задать своим ключом, например `"light-brand": …`, или объявить переменную в своём CSS.
+- **Breaking.** Синонимы вариантов кнопок `data-btn="secondary"` и `data-btn="tertiary"`. Миграция: `outlined` и `text`.
+- **Breaking.** `--cs-elevation-5` и утилита `.elevation-5`: библиотека использует уровни 0–4.
+- **Breaking.** Иконки `menu`, `add`, `minus`, `close`, `view-cards`, `view-cards-detailed`, `view-rows`, `edit`, `trash`, `github`, `dots-spinner` убраны из встроенного набора и не попадают в CSS. Маски `--cs-icon-search|valid|invalid|chevron` тоже: эти иконки выводятся только цветными `--cs-input-icon-*`. Миграция: `@use "settings/icons-extra"` и `$icons: icons-extra.$icon-set` (или нужные ключи) в `with (...)`.
 
 ### Fixed
 

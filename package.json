@@ -9,7 +9,7 @@
     "build:css": "sass --no-source-map --style expanded --no-error-css scss/:dist/",
     "build:prefix": "lightningcss --browserslist dist/cs-styles.css -o dist/cs-styles.css",
     "build:minify": "lightningcss --browserslist --minify dist/cs-styles.css -o dist/cs-styles.min.css",
-    "build:banner": "node --input-type=commonjs -e \"const fs=require('fs'),b=fs.readFileSync('scss/_copyright.scss');for(const f of ['dist/cs-styles.css','dist/cs-styles.min.css'])fs.writeFileSync(f,b+fs.readFileSync(f))\"",
+    "build:banner": "node --input-type=commonjs -e \"const fs=require('fs'),b=fs.readFileSync('scss/_copyright.scss');for(const f of ['dist/cs-styles.css','dist/cs-styles.min.css'])fs.writeFileSync(f,b+fs.readFileSync(f,'utf8').replace(/\\s*--lightningcss-(light|dark):[^;}]*;?/g,''))\"",
     "dev": "npm run build:css -- --watch",
     "check:diff": "git diff --no-index --exit-code .baseline/cs-styles.css dist/cs-styles.css",
     "lint":"postcss \"scss/**/*.scss\" --replace && stylelint --fix \"scss/**/*.scss\"",

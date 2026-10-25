@@ -63,7 +63,7 @@
       "name": "Outlined Button",
       "kind": "button",
       "refersTo": "button-outlined",
-      "description": ".btn-outlined / .btn-secondary: secondary action.",
+      "description": ".btn-outlined: secondary action.",
       "html": "<button class=\"ds-btn-outlined\">Cancel</button>",
       "css": ".ds-btn-outlined { --c: var(--cs-primary, #0F9977); --sl: 0%; display: inline-flex; align-items: center; height: 2.5rem; padding: 0 1.5rem; border: 1px solid var(--c); border-radius: .5rem; background: color-mix(in srgb, transparent, var(--c) var(--sl)); color: var(--c); font: 500 1rem/1.5 system-ui, sans-serif; cursor: pointer; outline-offset: 1px; transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out; } .ds-btn-outlined:hover { --sl: 14%; box-shadow: var(--cs-elevation-1, 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15)); } .ds-btn-outlined:focus-visible { --sl: 14%; outline: 2px solid var(--c); } .ds-btn-outlined:active { --sl: 20%; box-shadow: none; }"
     },
@@ -71,7 +71,7 @@
       "name": "Text Button",
       "kind": "button",
       "refersTo": "button-text",
-      "description": ".btn-text / .btn-tertiary: low-emphasis action, never elevated.",
+      "description": ".btn-text: low-emphasis action, never elevated.",
       "html": "<button class=\"ds-btn-text\">Learn more</button>",
       "css": ".ds-btn-text { --c: var(--cs-primary, #0F9977); --sl: 0%; display: inline-flex; align-items: center; height: 2.5rem; padding: 0 .75rem; border: 1px solid transparent; border-radius: .5rem; background: color-mix(in srgb, transparent, var(--c) var(--sl)); color: var(--c); font: 500 1rem/1.5 system-ui, sans-serif; cursor: pointer; outline-offset: 1px; transition: background-color .2s ease-in-out; } .ds-btn-text:hover { --sl: 14%; } .ds-btn-text:focus-visible { --sl: 14%; outline: 2px solid var(--c); } .ds-btn-text:active { --sl: 20%; }"
     },

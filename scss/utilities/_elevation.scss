@@ -1,7 +1,7 @@
 @use "../settings" as *;
 
 @mixin elevation-classes {
-  @for $i from 0 through 5 {
+  @for $i from 0 through 4 {
     .elevation-#{$i} {
       box-shadow: var(--#{$prefix}-elevation-#{$i});
     }

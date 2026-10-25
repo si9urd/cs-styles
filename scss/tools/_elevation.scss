@@ -35,7 +35,7 @@
 }
 
 @mixin make-elevation($shadow-color) {
-  @for $i from 0 through  5 {
+  @for $i from 0 through 4 {
     @include elevation($i, $shadow-color)
   }
 }

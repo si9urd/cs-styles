@@ -20,7 +20,6 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   --color: var(--#{$prefix}-on-surface);
   --placeholder-color: var(--#{$prefix}-on-surface-variant);
   --box-shadow: none;
-  --transition: var(--#{$prefix}-transition);
 
   display: inline-flex;
   width: 100%;
@@ -38,10 +37,8 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   caret-color: var(--#{$prefix}-primary);
   font-size: var(--font-size);
   line-height: var(--line-height);
-  transition: background-color var(--transition),
-              border-color var(--transition),
-              color var(--transition),
-              box-shadow var(--transition);
+  transition: var(--#{$prefix}-transition);
+  transition-property: background-color, border-color, color, box-shadow;
 
   // No logical keywords for background-position: mirror the state icon by hand
   [dir="rtl"] & {
