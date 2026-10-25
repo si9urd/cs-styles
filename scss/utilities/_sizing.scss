@@ -2,17 +2,13 @@
 
 // make sizing utilities classes
 @mixin sizing() {
+  $percents: (25: 25%, 50: 50%, 75: 75%, 100: 100%, auto: auto);
+
   @include make-utilities((
       "width": (
           property: width,
           class: w,
-          values: (
-              25: 25%,
-              50: 50%,
-              75: 75%,
-              100: 100%,
-              auto: auto
-          )
+          values: $percents
       ),
       "max-width": (
           property: max-width,
@@ -32,13 +28,7 @@
       "height": (
           property: height,
           class: h,
-          values: (
-              25: 25%,
-              50: 50%,
-              75: 75%,
-              100: 100%,
-              auto: auto
-          )
+          values: $percents
       ),
       "max-height": (
           property: max-height,

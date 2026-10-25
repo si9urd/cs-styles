@@ -1,5 +1,4 @@
 @use "sass:string" as string;
-@use "helpers" as *;
 
 @function str-replace($string, $search, $replace) {
   $index: string.index($string, $search);
@@ -14,7 +13,7 @@
 // SVG markup to a data URI; `$color` replaces `currentColor`
 @function svg-url($svg, $color: null) {
   @if $color {
-    $svg: str-replace($svg, "currentColor", hex-to-rgb($color));
+    $svg: str-replace($svg, "currentColor", "#{$color}");
   }
 
   // `%` first, the others introduce it
@@ -32,4 +31,9 @@
   background-color: currentcolor;
   content: "";
   mask: $icon center / contain no-repeat;
+
+  // Forced colors repaint backgrounds to Canvas and the icon vanishes; keep currentcolor (already a system color)
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+  }
 }

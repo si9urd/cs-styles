@@ -7,9 +7,7 @@
   justify-content: flex-start;
   width: auto;
   height: $logo-height;
-  background: linear-gradient(to right, var(--#{$prefix}-primary), var(--#{$prefix}-tertiary));
-  background-clip: text;
-  color: transparent;
+  color: var(--#{$prefix}-primary);
   font-weight: var(--#{$prefix}-font-weight-bold);
   font-size: $logo-font-size;
 
@@ -18,14 +16,8 @@
     cursor: pointer;
 
     // all: unset drops the link's own ring
-    &:is(:focus-visible, [data-focused]) {
+    @include focus-visible {
       @include focus-ring;
     }
-  }
-
-  // Forced colors drop background images: transparent text over a clipped gradient would vanish
-  @media (forced-colors: active) {
-    background: none;
-    color: CanvasText;
   }
 }

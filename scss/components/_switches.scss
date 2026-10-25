@@ -14,9 +14,9 @@
   }
 
   input[type="radio"], input[type="checkbox"] {
-    --size: 1.25rem;
+    --size: #{$radio-size};
     --border-color: var(--#{$prefix}-on-surface-variant);
-    --border-width: 2px;
+    --border-width: #{$control-border-width};
     --background-color: transparent;
 
     appearance: none;
@@ -42,7 +42,7 @@
     // ::after is the 3rem hit area on touch; the checkmark draws on ::before
     @include touch-target;
 
-    &:is(:focus-visible, [data-focused]) {
+    @include focus-visible {
       @include focus-ring;
     }
 
@@ -50,7 +50,7 @@
       --border-color: var(--#{$prefix}-on-surface);
       --background-color: var(--#{$prefix}-on-surface);
 
-      opacity: .38;
+      opacity: #{$state-disabled-content};
     }
   }
 
@@ -68,9 +68,9 @@
   }
 
   input[type="checkbox"] {
-    --size: 1.125rem;
+    --size: #{$checkbox-size};
     --indicator-color: var(--#{$prefix}-on-primary);
-    --indicator-width: 2px;
+    --indicator-width: #{$control-border-width};
 
     &:checked {
       --border-color: var(--#{$prefix}-primary);
@@ -103,24 +103,22 @@
   }
 
   input[type="checkbox"][role="switch"] {
-    --size: 2rem;
+    --size: #{$switch-size};
     --background-color: var(--#{$prefix}-surface-container-highest);
-    --indicator-color: var(--#{$prefix}-outline);
+    // Thumb position is the state: Ink Weak holds 3:1 on the track, outline drops below it in light
+    --indicator-color: var(--#{$prefix}-on-surface-variant);
     --border-color: var(--#{$prefix}-outline);
 
     display: inline-flex;
     width: calc(var(--size) * 1.8);
-    border: 2px solid var(--border-color);
+    border: $control-border-width solid var(--border-color);
     border-radius: var(--size);
     background-color: var(--background-color);
 
     &::before {
       display: block;
-      position: initial;
       aspect-ratio: 1;
       height: 100%;
-      margin-inline-start: 0;
-      transform: none;
       border-radius: 50%;
       background-color: var(--indicator-color);
       content: "";

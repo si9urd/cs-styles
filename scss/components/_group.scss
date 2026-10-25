@@ -1,13 +1,19 @@
 @use "../settings" as *;
 
 @mixin group {
-  :is([role="group"], [role="search"]) {
+  // Only a group of controls joins into one bar; checkbox groups, tree and menu groups keep their layout.
+  // :where keeps the specificity of a bare [role="group"]
+  :is([role="group"]:where(:has(> :is(button, select, [role="button"], input:not([type="checkbox"], [type="radio"])))), [role="search"]) {
     --group-height: var(--#{$prefix}-input-height);
     --group-border-radius: var(--#{$prefix}-border-radius);
 
     display: inline-flex;
     position: relative;
-    height: var(--group-height);
+    // Narrow screens: whole controls move to the next row instead of overflowing or crushing their labels
+    flex-wrap: wrap;
+    max-width: 100%;
+    // min-height: a wrapped or zoomed label grows the row instead of clipping
+    min-height: var(--group-height);
     margin: 0;
     padding: 0;
     border-radius: var(--group-border-radius);
@@ -15,6 +21,16 @@
     & > * {
       --height: var(--group-height);
       --border-radius: 0;
+
+      // Break labels between words: `anywhere` (buttons) lets a label shrink to one letter per line before the row wraps
+      overflow-wrap: break-word;
+    }
+
+    // Fields share the row and give way first; without a basis width: 100% takes the row, or collapses to 0
+    & > :is(input, select) {
+      flex: 1 1 $group-field-basis;
+      width: auto;
+      min-width: 0;
     }
 
     // Children only: a bare :first-child would round nested icons and labels too

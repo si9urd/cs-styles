@@ -45,11 +45,11 @@
 
       hr {
         display: block;
-        width: 1px;
+        width: $border-width;
         height: calc(var(--#{$prefix}-btn-icon-size) * 0.8);
         margin: 0 var(--#{$prefix}-spacing);
         border: none;
-        border-inline-start: 1px solid var(--#{$prefix}-outline);
+        border-inline-start: $border-width solid var(--#{$prefix}-outline);
         opacity: .7;
       }
 

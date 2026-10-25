@@ -1,4 +1,8 @@
 @use "../settings" as *;
+@use "../tools" as *;
+
+// Inputs drawn as their own control, not as a text field
+$_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"]';
 
 %input {
   --height: var(--#{$prefix}-input-height);
@@ -6,9 +10,13 @@
   --line-height: var(--#{$prefix}-line-height-base);
   --border-radius: var(--#{$prefix}-border-radius);
   --border-color: var(--#{$prefix}-outline);
-  --font-size: var(--#{$prefix}-font-size-input);
+  // Focus ring and border; validation states swap it
+  --accent: var(--#{$prefix}-primary);
+  --font-size: #{$font-size-input};
   --background: var(--#{$prefix}-surface-container-lowest);
-  --background-size: var(--#{$prefix}-btn-inner-icon-size);
+  --background-size: #{$btn-inner-icon-size};
+  // Inline-end padding that keeps text clear of a state icon or the select chevron
+  --icon-room: calc(var(--#{$prefix}-spacing) * 2 + var(--background-size));
   --color: var(--#{$prefix}-on-surface);
   --placeholder-color: var(--#{$prefix}-on-surface-variant);
   --box-shadow: none;
@@ -18,7 +26,7 @@
   width: 100%;
   height: var(--height);
   padding: var(--padding);
-  border: 1px solid var(--border-color);
+  border: $border-width solid var(--border-color);
   border-radius: var(--border-radius);
   outline: 0 solid transparent;
   background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
@@ -37,12 +45,16 @@
 
   // No logical keywords for background-position: mirror the state icon by hand
   [dir="rtl"] & {
-    background-position: left var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
+    background-position-x: var(--#{$prefix}-spacing);
   }
 
-  &:disabled {
+  // aria-disabled only looks disabled: the field stays editable, pair with readonly to block input
+  @include disabled {
     --background: var(--#{$prefix}-surface-container);
     --color: var(--#{$prefix}-on-surface-variant);
+
+    // Native :disabled already turns GrayText here, aria-disabled doesn't
+    @include forced-disabled;
   }
 
   &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
@@ -56,24 +68,24 @@
   }
 
   &:focus {
-    --box-shadow: 0 0 0 1px var(--#{$prefix}-primary) inset;
-    --border-color: var(--#{$prefix}-primary);
+    --box-shadow: 0 0 0 #{$border-width} var(--accent) inset;
+    --border-color: var(--accent);
 
     // Invisible normally; forced colors remove the box-shadow ring and repaint this instead
-    outline: 2px solid transparent;
-    outline-offset: -2px;
+    outline: $focus-ring-width solid transparent;
+    outline-offset: -$focus-ring-width;
   }
 }
 
 @mixin input {
-  input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"])),
+  input:not(:where(#{$_controls})),
   textarea,
   select {
     @extend %input;
   }
 
   textarea {
-    --height: calc(var(--#{$prefix}-input-height) * 2) !important;
+    --height: calc(var(--#{$prefix}-input-height) * 2);
 
     padding-top: var(--#{$prefix}-spacing);
   }
@@ -92,7 +104,7 @@
     background-position: left var(--#{$prefix}-spacing) center;
 
     [dir="rtl"] & {
-      background-position: right var(--#{$prefix}-spacing) center;
+      background-position-x: calc(100% - var(--#{$prefix}-spacing));
     }
   }
 
@@ -104,29 +116,21 @@
 @mixin input-states {
   :is(input, textarea, select) {
     &[aria-invalid="true"] {
-      --border-color: var(--#{$prefix}-error);
-
-      &:focus {
-        --box-shadow: 0 0 0 1px var(--#{$prefix}-error) inset;
-        --border-color: var(--#{$prefix}-error);
-      }
+      --accent: var(--#{$prefix}-error);
+      --border-color: var(--accent);
     }
 
     &[aria-invalid="false"] {
-      --border-color: var(--#{$prefix}-success);
-
-      &:focus {
-        --box-shadow: 0 0 0 1px var(--#{$prefix}-success) inset;
-        --border-color: var(--#{$prefix}-success);
-      }
+      --accent: var(--#{$prefix}-success);
+      --border-color: var(--accent);
     }
   }
 
   // State icon at inline-end, text fields only: reserve room so text doesn't run under it;
   // select keeps its chevron there, checkbox/radio/range draw their own control
-  :is(input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"])), textarea) {
+  :is(input:not(:where(#{$_controls}, [type="color"])), textarea) {
     &:is([aria-invalid="true"], [aria-invalid="false"]) {
-      padding-inline-end: calc(var(--#{$prefix}-spacing) * 2 + var(--background-size));
+      padding-inline-end: var(--icon-room);
     }
 
     &[aria-invalid="true"] {

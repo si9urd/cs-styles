@@ -4,7 +4,7 @@
 [data-theme-toggle]::before {
   @include icon-mask(var(--#{$prefix}-icon-dark), var(--icon-size, var(--#{$prefix}-btn-icon-size)));
 
-  [data-theme="dark"] & {
+  @include in-dark {
     mask-image: var(--#{$prefix}-icon-light);
   }
 }

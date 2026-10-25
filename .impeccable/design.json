@@ -35,7 +35,7 @@
       { "name": "elevation-0", "value": "var(--cs-elevation-0)", "purpose": "Rest state of every in-flow element." },
       { "name": "elevation-1", "value": "var(--cs-elevation-1)", "purpose": "Button hover lift." },
       { "name": "elevation-2", "value": "var(--cs-elevation-2)", "purpose": "Menus and other floating layers." },
-      { "name": "elevation-3", "value": "var(--cs-elevation-3)", "purpose": "FAB focus/press." },
+      { "name": "elevation-3", "value": "var(--cs-elevation-3)", "purpose": "FAB at rest, focus, and press." },
       { "name": "elevation-4", "value": "var(--cs-elevation-4)", "purpose": "FAB hover." }
     ],
     "motion": [
@@ -127,7 +127,7 @@
       { "name": "The Flat-By-Default Rule", "body": "Nothing in the document flow carries a shadow at rest. A shadow means \"you're touching this\" or \"this is above the page\".", "section": "elevation" }
     ],
     "dos": [
-      "Do style from the element and its ARIA state: [aria-invalid], [aria-busy], [aria-disabled], :disabled, :focus-visible, plus data-hovered / data-focused / data-pressed for scripted states.",
+      "Do style from the element and its ARIA state: [aria-invalid], [aria-busy], [aria-disabled], :disabled, :focus-visible, [aria-pressed=\"true\"] on toggle buttons, plus data-hovered / data-focused for scripted states.",
       "Do express interaction states through the state layer (color-mix of ink into container at 14% / 20%) and the shared 12% / 38% disabled mixes.",
       "Do reference color only through --cs-* roles; add new values as !default tokens in settings/.",
       "Do keep everything flat at rest; use --cs-elevation-* only for hover, focus, press, or floating layers.",

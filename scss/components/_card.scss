@@ -5,8 +5,8 @@
     --card-gap: var(--#{$prefix}-spacing);
     --border-radius: var(--#{$prefix}-border-radius);
 
-    overflow: hidden;
     display: block;
+    overflow: hidden;
     border-radius: var(--border-radius);
 
     .card-body {

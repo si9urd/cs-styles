@@ -2,12 +2,18 @@
 @use "../tools" as *;
 
 @mixin loading {
-  [aria-busy="true"]:not(input, select, textarea, html) {
+  // Controls, inline text, and empty placeholders; a busy region (section, table, list) keeps its layout, cursor only
+  [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(input, select, textarea) {
     &::before {
       @include icon-mask(var(--#{$prefix}-icon-ring-spinner));
 
       display: inline-flex;
       vertical-align: -.125em;
+
+      // The SVG stops its own spin and dash sweep (full ring, still dots); a slow fade keeps "still working" without motion
+      @media (prefers-reduced-motion: reduce) {
+        animation: busy-pulse 2s ease-in-out infinite;
+      }
     }
 
     &:not(:empty) {
@@ -18,6 +24,12 @@
 
     &:empty {
       text-align: center;
+    }
+  }
+
+  @keyframes busy-pulse {
+    50% {
+      opacity: .4;
     }
   }
 }

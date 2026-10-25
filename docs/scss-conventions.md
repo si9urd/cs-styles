@@ -9,10 +9,11 @@ A deliberate hybrid, not one canonical method:
 
 - **Semantic-first / classless.** Style elements and ARIA attributes, not classes:
   `:is(button, [type="submit"], [role="button"])`, `[aria-disabled="true"]`.
-  A class appears only where semantics can't reach it (`.btn-outlined`, `.h-stack`, utilities).
+  A class appears only where semantics can't reach it (`.h-stack`, utilities); variants without an ARIA equivalent go on a `data-*` attribute (`data-btn="outlined"`).
   No BEM — no `block__element--modifier`; nesting follows the real DOM (`header > .content`).
 - **State on attributes.** `[aria-busy]`, `[aria-expanded]`, `[disabled]`, plus
-  `[data-hovered]`/`[data-focused]`/`[data-pressed]` for headless UI libs.
+  `[aria-pressed="true"]` (toggle buttons), and `[data-hovered]`/`[data-focused]` for headless UI libs
+  (no ARIA equivalent).
   `:is()`/`:not()` groups variants and keeps specificity flat.
 - **ITCSS + cascade layers.** One directory per layer; `scss/_index.scss` loads each into
   its `@layer` via `meta.load-css`, order declared in `_layers.scss`:
@@ -29,6 +30,12 @@ A deliberate hybrid, not one canonical method:
   `on-surface-container`, `outline-variant`), elevation 0–5, button types
   (filled / outlined / text / FAB / icon). Palettes are *generated*
   from `material-theme*.json` — `_themes_colors.scss` is an artifact, never hand-edited.
+- **State layers are tokens.** Hover/press/selected/disabled shares live in `settings/`
+  (`$state-*`), used in place by the components; they mix them with `color-mix`, never a
+  literal percentage.
+- **Motion vs. color transitions.** Movement (ripple, progress fill and sweep, spinners) runs
+  only under `prefers-reduced-motion: no-preference`. Color, border and shadow transitions
+  stay unwrapped: they are not motion (WCAG 2.3.3) and feedback shouldn't snap.
 - **Utilities are an opt-in thin layer**, not utility-first: Bootstrap's utilities API via
   `make-utilities()`, one file per group, toggled by `$enable-utilities: ("spacing": true, …)`.
   No `!important` (`$enable-important-utilities: false`): the utilities layer is last.
@@ -68,7 +75,7 @@ A deliberate hybrid, not one canonical method:
 
 ### Naming
 
-- Tokens are kebab-case with `!default` in `scss/settings/_index.scss`: `$btn-font-size`, `$z-index-modal`
+- Tokens are kebab-case with `!default` in `scss/settings/_index.scss`: `$btn-font-size`, `$z-index-sticky`
 - Runtime API is prefixed via `$prefix`: `var(--#{$prefix}-primary)`; component-local
   properties are unprefixed
 

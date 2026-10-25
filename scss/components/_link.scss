@@ -1,10 +1,11 @@
 @use "../settings" as *;
 @use "../tools" as *;
 
-/// Current, hovered, focused, or pressed link: a shade toward --cs-base
+/// Current, hovered, focused, or pressed link: a shade toward the text color.
+/// Not toward --cs-base: that is the page color and would drop contrast below the resting link
 @mixin link-active {
-  --link-color: color-mix(in lab, var(--#{$prefix}-primary) 90%, var(--#{$prefix}-base));
-  --link-underline-color: color-mix(in lab, var(--#{$prefix}-primary) 80%, var(--#{$prefix}-base));
+  --link-color: color-mix(in lab, var(--#{$prefix}-primary) 90%, var(--#{$prefix}-on-surface));
+  --link-underline-color: color-mix(in lab, var(--#{$prefix}-primary) 80%, var(--#{$prefix}-on-surface));
 }
 
 @mixin link {
@@ -29,7 +30,7 @@
       text-decoration-color var(--#{$prefix}-transition),
       box-shadow var(--#{$prefix}-transition);
 
-    &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], :active, [data-pressed]) {
+    &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], :active) {
       @include link-active;
     }
 
@@ -38,17 +39,24 @@
     }
 
     // Plain inline so long links wrap with the prose; flex only to line up an icon
-    &:has(> :is(i, img, svg)) {
+    &:has(> :is(#{$icon-elements})) {
       display: inline-flex;
     }
 
-    &:is(:focus-visible, [data-focused]) {
+    @include focus-visible {
       @include focus-ring;
     }
 
+    // Nav links are tap targets, not prose: 3rem hit area on touch
+    nav & {
+      position: relative;
+
+      @include touch-target;
+    }
+
     @include disabled {
-      --link-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
-      --link-underline-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
+      --link-color: #{$disabled-content};
+      --link-underline-color: var(--link-color);
 
       cursor: auto;
     }

@@ -2,7 +2,7 @@
 @use "../settings" as *;
 
 @mixin menu {
-  .menu {
+  [role="menu"] {
     --menu-width: #{$menu-width};
     --menu-item-height: #{$menu-item-height};
     --icon-size: #{$menu-icon-size};
@@ -19,6 +19,10 @@
     font-size: $menu-font-size;
 
     & > :is(li, div):not([role="separator"]) {
+      // Set per row: a nested submenu must not inherit its parent row's state
+      --layer: 0%;
+      --icon-color: var(--#{$prefix}-on-surface-variant);
+
       display: flex;
       align-items: center;
       width: 100%;
@@ -26,67 +30,74 @@
       min-height: var(--menu-item-height);
       padding: 0 var(--gap);
       gap: var(--gap);
+      background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) var(--layer), transparent);
       cursor: pointer;
 
-      &:is(:hover, [data-hovered]) {
-        background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 8%, transparent);
+      @include hover {
+        --layer: #{$state-hover-soft};
       }
 
-      :is(i, img, svg) {
+      // Roving focus: inset ring stays inside the panel, layer as on press
+      @include focus-visible {
+        --layer: #{$state-press-soft};
+
+        @include focus-ring(-$focus-ring-width);
+      }
+
+      :is(#{$icon-elements}) {
         width: var(--icon-size);
         height: var(--icon-size);
         vertical-align: bottom;
       }
 
       svg {
-        fill: var(--#{$prefix}-on-surface-variant);
+        fill: var(--icon-color);
       }
 
       // Selected/checked/current item: brand tint on the row, ink stays on-surface for contrast.
       // An image layer, so hover/press background-color still stacks under it
       &:is([aria-selected="true"], [aria-checked="true"], [aria-current]:not([aria-current="false"])) {
-        background-image: linear-gradient(color-mix(in srgb, var(--#{$prefix}-primary) 12%, transparent) 0 0);
+        --icon-color: var(--#{$prefix}-primary);
 
-        svg {
-          fill: var(--#{$prefix}-primary);
-        }
+        background-image: linear-gradient(color-mix(in srgb, var(--#{$prefix}-primary) #{$state-selected}, transparent) 0 0);
       }
 
-      // Same specificity as hover, so source order decides: pressed, then disabled on top
-      &:is(:active, [data-pressed]) {
-        background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 10%, transparent);
+      // Same specificity as hover and focus, so source order decides: pressed, then disabled on top
+      &:active {
+        --layer: #{$state-press-soft};
       }
 
       @include disabled {
-        background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 4%, transparent);
-        color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
-        cursor: not-allowed;
+        --layer: 4%;
+        --icon-color: #{$disabled-content};
 
-        svg {
-          fill: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
-        }
+        color: #{$disabled-content};
+        cursor: not-allowed;
       }
 
-      // Submenu trigger: aria-haspopup="menu" (or "true")
+      // Submenu trigger: aria-haspopup="menu" (or "true"), a right-pointing triangle
       &[aria-haspopup]:not([aria-haspopup="false"])::after {
+        width: 0;
+        height: 0;
         margin: .2em 0 0;
         margin-inline-start: auto;
+        border-width: calc($menu-arrow-size / 2) 0 calc($menu-arrow-size / 2) calc($menu-arrow-size * 2 / 3);
+        border-style: solid;
+        border-color: transparent transparent transparent var(--#{$prefix}-on-surface);
         content: "";
 
-        @include triangle($menu-arrow-size, var(--#{$prefix}-on-surface));
-      }
-
-      [dir="rtl"] &[aria-haspopup]:not([aria-haspopup="false"])::after {
-        scale: -1 1;
+        [dir="rtl"] & {
+          scale: -1 1;
+        }
       }
     }
 
     // Any item leads with an icon: labels line up in one column; with icons on every row it's a no-op
-    &:has(> :is(li, div) > :is(i, img, svg):first-child) {
+    &:has(> :is(li, div) > :is(#{$icon-elements}):first-child) {
       & > :is(li, div):not([role="separator"]) {
         padding-inline-start: calc(var(--icon-size) + var(--gap) * 2);
 
-        & > :is(i, img, svg):first-child {
+        & > :is(#{$icon-elements}):first-child {
           margin-inline-start: calc(-1 * (var(--icon-size) + var(--gap)));
         }
       }
@@ -94,7 +105,7 @@
 
     & > :is(hr, [role="separator"]) {
       width: 100%;
-      height: 1px;
+      height: $border-width;
       margin: $menu-divider-margin-y 0;
       padding: 0;
       border: none;
@@ -102,7 +113,7 @@
     }
   }
 
-  ul.menu {
+  ul[role="menu"] {
     margin: 0;
     list-style: none;
   }

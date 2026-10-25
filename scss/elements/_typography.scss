@@ -7,7 +7,6 @@
     margin: var(--#{$prefix}-spacing) 0;
     font-weight: var(--#{$prefix}-font-weight-medium);
     font-size: calc(var(--#{$prefix}-font-size-base) * var(--fs));
-    font-family: var(--#{$prefix}-font-family);
     line-height: 1.15;
     text-wrap: balance;
   }
@@ -54,7 +53,6 @@
   // Improved text wrapping and word breaking for body text elements
   :where(p, li, figcaption, blockquote) {
     text-wrap: pretty;
-    overflow-wrap: break-word;
   }
 }
 

@@ -18,13 +18,6 @@
     margin: 0;
   }
 
-  // Root element defaults: color scheme and text scaling
-  html {
-    color-scheme: light dark;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-  }
-
   // Ensure full viewport height
   body {
     min-block-size: 100svh;

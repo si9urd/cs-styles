@@ -6,24 +6,25 @@
 // region button-base
 
 %button-base {
-  --height: var(--#{$prefix}-btn-height);
+  --height: #{$btn-height};
   --padding-start: #{map.get($spacers, 4)};
   --padding-end: #{map.get($spacers, 4)};
-  --inner-gap: .5rem;
-  --font-weight: var(--#{$prefix}-font-weight-medium);
-  --line-height: var(--#{$prefix}-line-height-base);
+  --inner-gap: #{$btn-inner-gap};
   --border-radius: var(--#{$prefix}-border-radius);
   --font-family: var(--#{$prefix}-font-family);
-  --font-size: var(--#{$prefix}-btn-font-size);
-  --container-color: var(--#{$prefix}-surface-container);
-  --state-layer: 0%;
-  --state-color: var(--color);
-  --background-color: color-mix(in srgb, var(--container-color), var(--state-color) var(--state-layer));
-  --border-color: var(--background-color);
+  --font-size: #{$btn-font-size};
+  --font-weight: var(--#{$prefix}-font-weight-medium);
+  --line-height: var(--#{$prefix}-line-height-base);
   --color: var(--#{$prefix}-on-surface);
-  --opacity: 1;
+  --container-color: var(--#{$prefix}-surface-container);
+  --background-color: color-mix(in srgb, var(--color) var(--state-layer), var(--container-color));
+  --border-color: var(--background-color);
+  --state-layer: 0%;
+  --layer-hover: #{$state-hover};
+  --layer-press: #{$state-press};
+  --disabled-container: #{$disabled-container};
   --elevation: var(--#{$prefix}-elevation-0);
-  --disabled-container: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent);
+  --opacity: 1;
 
   display: inline-flex;
   position: relative;
@@ -32,12 +33,11 @@
   max-width: 100%;
   min-height: var(--height);
   padding-inline: var(--padding-start) var(--padding-end);
-  padding-block: .25rem;
+  padding-block: $btn-padding-y;
   gap: var(--inner-gap);
-  border: 1px solid var(--border-color);
+  border: $border-width solid var(--border-color);
   border-radius: var(--border-radius);
   outline: 0 solid transparent;
-  outline-offset: 1px;
   background-repeat: no-repeat;
   background-color: var(--background-color);
   box-shadow: var(--elevation);
@@ -55,7 +55,6 @@
   opacity: var(--opacity);
   touch-action: manipulation;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
   transition: background-color var(--#{$prefix}-transition),
     border-color var(--#{$prefix}-transition),
     box-shadow var(--#{$prefix}-transition),
@@ -66,24 +65,24 @@
   @include touch-target;
 
   // Leading icon: smaller start padding; :where keeps variants (text, fab) in charge
-  &:where(:has(> :is(i, img, svg):first-child)) {
+  &:where(:has(> :is(#{$icon-elements}):first-child)) {
     --padding-start: #{map.get($spacers, 3)};
   }
 
-  // State layer: --state-color over the container (M3 uses 8/10%, too faint on filled buttons)
-  @include hover(":disabled, [disabled], [aria-disabled=\"true\"]") {
-    --state-layer: 14%;
+  // State layer: the label color over the container
+  @include hover(":where(#{$disabled})") {
+    --state-layer: var(--layer-hover);
     --elevation: var(--#{$prefix}-elevation-1);
   }
 
-  &:is(:focus-visible, [data-focused]) {
-    --state-layer: 14%;
+  @include focus-visible {
+    --state-layer: var(--layer-hover);
 
-    outline: 2px solid var(--#{$prefix}-primary);
+    @include focus-ring(1px);
   }
 
-  &:is(:active, [data-pressed]):not(:disabled, [disabled], [aria-disabled="true"]) {
-    --state-layer: 20%;
+  &:is(:active, [aria-pressed="true"]):not(:where(#{$disabled})) {
+    --state-layer: var(--layer-press);
     --elevation: var(--#{$prefix}-elevation-0);
   }
 
@@ -91,7 +90,7 @@
   &[aria-busy="true"] {
     pointer-events: none;
 
-    --opacity: .9;
+    --opacity: #{$btn-busy-opacity};
   }
 }
 
@@ -100,24 +99,18 @@
     --state-layer: 0%;
     --background-color: var(--disabled-container);
     --border-color: var(--background-color);
-    --color: color-mix(in srgb, var(--#{$prefix}-on-surface) 38%, transparent);
+    --color: #{$disabled-content};
     --elevation: var(--#{$prefix}-elevation-0);
 
-    cursor: not-allowed;
-
-    // Forced colors flatten the 38% ink back to ButtonText; GrayText is the system's disabled color
-    @media (forced-colors: active) {
-      --border-color: GrayText;
-      --color: GrayText;
-    }
+    @include forced-disabled;
   }
 }
 
 %button-inner-icon {
-  :is(i, img, svg) {
+  :is(#{$icon-elements}) {
     display: inline-flex;
-    width: var(--#{$prefix}-btn-inner-icon-size);
-    height: var(--#{$prefix}-btn-inner-icon-size);
+    width: $btn-inner-icon-size;
+    height: $btn-inner-icon-size;
     line-height: inherit;
   }
 
@@ -134,38 +127,35 @@
 
 // endregion button-base
 
-// Filled: mixing the label color would wash the container toward it and drop contrast;
-// on-primary-container moves it away instead (darker in light, lighter in dark)
 %button-primary {
   --container-color: var(--#{$prefix}-primary);
   --color: var(--#{$prefix}-on-primary);
-  --state-color: var(--#{$prefix}-on-primary-container);
 }
 
 %button-outlined {
-  --color: var(--#{$prefix}-primary);
-  --state-color: var(--color);
-  --container-color: transparent;
   --border-color: var(--#{$prefix}-primary);
-  --disabled-container: transparent;
 
   @include disabled {
-    --border-color: color-mix(in srgb, var(--#{$prefix}-on-surface) 12%, transparent);
+    --border-color: #{$disabled-container};
   }
 }
 
 %button-icon {
-  --size: calc(var(--#{$prefix}-btn-height));
+  --size: #{$btn-height};
   --color: var(--#{$prefix}-on-surface-variant);
-  --state-color: var(--color);
   --container-color: transparent;
   --elevation: var(--#{$prefix}-elevation-0);
   --icon-size: var(--#{$prefix}-btn-icon-size);
   --disabled-container: transparent;
+  // Equal side padding: icon + padding + border add up to --size, wider content grows a rectangle
+  --padding-start: calc((var(--size) - var(--icon-size)) / 2 - #{$border-width});
+  --padding-end: var(--padding-start);
 
-  width: var(--size);
+  // Square: a flex parent can't squeeze it, min-width beats the base max-width
+  flex: none;
+  min-width: var(--size);
   height: var(--size);
-  padding: 0;
+  padding-block: 0;
   background-position: center;
   background-size: var(--#{$prefix}-btn-icon-size);
 
@@ -173,26 +163,37 @@
     --elevation: var(--#{$prefix}-elevation-0);
   }
 
-  :is(i, img, svg) {
+  :is(#{$icon-elements}) {
     width: var(--icon-size);
     height: var(--icon-size);
   }
 }
 
-%button-text {
+// Primary ink on a transparent container: outlined and text
+%button-ghost {
   --color: var(--#{$prefix}-primary);
-  --state-color: var(--color);
   --container-color: transparent;
-  --elevation: var(--#{$prefix}-elevation-0);
   --disabled-container: transparent;
+  // Ink over a transparent container reads stronger than a filled one: softer layer, full in dark
+  --layer-hover: #{$state-hover-soft};
+  --layer-press: #{$state-press-soft};
+
+  @include in-dark {
+    --layer-hover: #{$state-hover};
+    --layer-press: #{$state-press};
+  }
+}
+
+%button-text {
+  --elevation: var(--#{$prefix}-elevation-0);
   --padding-start: #{$spacing * .75};
   --padding-end: #{$spacing * .75};
 
-  &:where(:has(> :is(i, img, svg):first-child)) {
+  &:where(:has(> :is(#{$icon-elements}):first-child)) {
     --padding-start: #{map.get($spacers, 2)};
   }
 
-  &:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [data-pressed]) {
+  &:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [aria-pressed="true"]) {
     --elevation: var(--#{$prefix}-elevation-0);
   }
 }
@@ -206,18 +207,24 @@
   --border-radius: #{$fab-border-radius};
   --container-color: var(--#{$prefix}-primary-container);
   --color: var(--#{$prefix}-on-primary-container);
-  --state-color: var(--color);
   --padding-start: 0;
   --padding-end: 0;
-  --elevation: var(--#{$prefix}-elevation-0);
+  // Floats above the page: rests lifted, or the pale container melts into the surface
+  --elevation: var(--#{$prefix}-elevation-3);
 
   min-width: var(--height);
 
-  @include hover(":disabled, [disabled], [aria-disabled=\"true\"]") {
+  // Dark theme: the layer over primary-container reads too heavy
+  @include in-dark {
+    --layer-hover: #{$state-hover-soft};
+    --layer-press: #{$state-press-soft};
+  }
+
+  @include hover(":where(#{$disabled})") {
     --elevation: var(--#{$prefix}-elevation-4);
   }
 
-  &:is(:focus-visible, [data-focused], :active, [data-pressed]):not(:disabled, [disabled], [aria-disabled="true"]) {
+  &:is(:focus-visible, [data-focused], :active, [aria-pressed="true"]):not(:where(#{$disabled})) {
     --elevation: var(--#{$prefix}-elevation-3);
   }
 }
@@ -234,35 +241,42 @@
     @extend %button-inner-icon;
     @extend %button-disabled;
 
-    // ::before is the icon there
-    &:not([data-theme-toggle]) {
-      @include ripple;
+    @if $enable-ripple {
+      // ::before is the icon there
+      &:not([data-theme-toggle]) {
+        @include ripple;
+      }
     }
 
     // Set outlined button styles
-    &.btn-outlined,
-    &.btn-secondary {
+    &[data-btn~="outlined"],
+    &[data-btn~="secondary"] {
+      @extend %button-ghost;
       @extend %button-outlined;
     }
 
     // Set button-text styles
-    &.btn-text,
-    &.btn-tertiary {
+    &[data-btn~="text"],
+    &[data-btn~="tertiary"] {
+      @extend %button-ghost;
       @extend %button-text;
     }
 
     // Set pill button styles
-    &.btn-pill {
+    &[data-btn~="pill"] {
       @extend %button-pill;
     }
 
     // Set button-fab styles
-    &.btn-fab {
+    &[data-btn~="fab"] {
       @extend %button-fab;
     }
 
-    // Set button-icon styles
-    &.btn-icon {
+    // Set button-icon styles. Auto: a labelled button whose only children are icons.
+    // :has() can't see text nodes, so the accessible name stands in for "no visible text".
+    // :where keeps base specificity: any explicit data-btn variant wins
+    &[data-btn~="icon"],
+    &:where([aria-label], [aria-labelledby]):where(:empty, :has(> :is(#{$icon-elements})):not(:has(> :not(#{$icon-elements})))):where(:not([data-btn], [data-theme-toggle])) {
       @extend %button-icon;
     }
   }
@@ -273,7 +287,6 @@
     @extend %button-disabled;
 
     --container-color: var(--#{$prefix}-tertiary);
-    --state-color: var(--#{$prefix}-on-tertiary-container);
   }
 }
 

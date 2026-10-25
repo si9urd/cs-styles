@@ -57,7 +57,7 @@
 
 ## Что сохранить
 
-- Состояния через ARIA, `:disabled` и `data-hovered`/`data-focused`/`data-pressed`, без классов-модификаторов.
+- Состояния через ARIA, `:disabled`, `aria-pressed` и `data-hovered`/`data-focused`, без классов-модификаторов.
 - Единый state layer на `color-mix` вместо цветов на каждый вариант.
 - Видимый фокус: `outline` 2px primary, отступ 1px, контраст 3.59:1.
 - Ripple без JS, движение только при `prefers-reduced-motion: no-preference`.
@@ -68,6 +68,6 @@
 
 1. [x] **P1** `/impeccable colorize` — контраст `light-primary`, недостающие роли пресетов.
 2. [x] **P1** `/impeccable adapt` — `touch-target` на `::after`, переполнение при `nowrap`.
-3. [ ] **P2** `/impeccable harden` — `disabled="false"`, `aria-busy`, `%input` vs `[type=button|reset]`, state layer.
+3. [x] **P2** `/impeccable harden` — `disabled="false"`, `aria-busy`, `%input` vs `[type=button|reset]`, state layer.
 4. [x] **P3** `/impeccable polish` — `@media (hover: hover)`, обводка SVG, `on-surface-container`.
 5. [ ] Повторить `/impeccable audit components/_button.scss`.

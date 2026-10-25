@@ -2,7 +2,8 @@
 @use "../settings" as *;
 @use "../tools" as *;
 
-// Form controls can't host a mask, they keep colored background images
+// Form controls can't host a mask, they keep colored background images: the color is baked per theme
+// at build time, so runtime overrides of --cs-error / --cs-on-surface don't reach them (see README)
 $input-icons: (
   "search": "icon-color",
   "chevron": "icon-color",
@@ -28,11 +29,9 @@ $input-icons: (
       }
     }
 
-    &:not([data-theme="dark"]) {
-      @include input-icons("light");
-    }
+    @include input-icons("light");
 
-    &[data-theme="dark"] {
+    @include dark {
       @include input-icons("dark");
     }
   }

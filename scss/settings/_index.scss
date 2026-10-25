@@ -36,6 +36,10 @@ $enable-menu: true !default;
 // Enable fix input autofill
 $enable-autofill-fix: false !default;
 
+// Follow the OS dark scheme while the root has no `data-theme`;
+// `data-theme="light"` then pins light
+$enable-auto-dark: false !default;
+
 // Enable landmarks
 $enable-landmarks: true !default;
 
@@ -81,6 +85,16 @@ $theme-colors: map.merge($theme-colors, (
   "light-icon-success": map.get($theme-colors, "light-success"),
   "dark-icon-success": map.get($theme-colors, "dark-success"),
 ));
+// Range and progress track. A solid ≥ 3:1 track would merge with the primary fill (outline vs primary ≈ 1.4:1),
+// so the fill stays light (≥ 3:1 to primary) and a 1px stroke (≥ 3:1 to every surface) draws its edge.
+// Light uses on-surface-variant: outline sits at ~3:1 on white and drops under it on surface-container.
+// Keys already in $theme-colors win
+$theme-colors: map.merge((
+  "light-track": map.get($theme-colors, "light-secondary-container"),
+  "dark-track": map.get($theme-colors, "dark-secondary-container"),
+  "light-track-outline": map.get($theme-colors, "light-on-surface-variant"),
+  "dark-track-outline": map.get($theme-colors, "dark-outline"),
+), $theme-colors);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -104,9 +118,14 @@ $grid-breakpoints: (
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// Fonts family
+// Typography
 $font-family-base: system-ui, sans-serif !default;
 $font-family-monospace: ui-monospace, monospace !default;
+$font-size-base: 1rem !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 700 !default;
+$line-height-base: 1.5 !default;
 
 // Spacing
 $spacing: 1rem !default;
@@ -122,46 +141,76 @@ $spacers: (
 // Negative spacers
 $negative-spacers: null !default;
 
-// Spec
-$font-size-base: 1rem !default;
-$font-size-input: 1rem !default;
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
-$font-weight-medium: 500 !default;
-$btn-font-size: 1rem !default;
-$btn-height: 2.5rem !default;
-$touch-target-size: 3rem !default;
-$input-height: 3rem !default;
-$line-height-base: 1.5 !default;
-$sidebar-width: 20rem !default;
-$logo-height: 2.5rem !default;
-$logo-font-size: 2.375rem !default;
+// Shape
 $border-radius: .5rem !default;
 $border-radius-pill: 999px !default;
+
+// Strokes: hairline borders, dividers, and inset field rings; radio/checkbox/switch outlines
+$border-width: 1px !default;
+$control-border-width: 2px !default;
+$focus-ring-width: 2px !default;
+$focus-ring-offset: 2px !default;
+
+// Minimum hit area of a control
+$touch-target-size: 3rem !default;
+
+// State layers: share of the state color mixed over a container (M3 uses 8/10%, too faint on filled)
+$state-hover: 24% !default;
+$state-press: 36% !default;
+// Ink over a transparent container reads stronger: text and outlined buttons in light, FAB in dark, menu rows
+$state-hover-soft: 8% !default;
+$state-press-soft: 12% !default;
+$state-selected: 12% !default;
+// M3 disabled: container and content share of on-surface
+$state-disabled-container: 12% !default;
+$state-disabled-content: 38% !default;
+$disabled-container: color-mix(in srgb, var(--#{$prefix}-on-surface) #{$state-disabled-container}, transparent) !default;
+$disabled-content: color-mix(in srgb, var(--#{$prefix}-on-surface) #{$state-disabled-content}, transparent) !default;
+
+// Buttons
+$btn-height: 2.5rem !default;
+$btn-font-size: 1rem !default;
+$btn-padding-y: .25rem !default;
+$btn-inner-gap: .5rem !default;
 $btn-icon-size: 1.5rem !default;
-$btn-inner-icon-size: 1.125rem !default;$fab-size: 3.5rem !default;
+$btn-inner-icon-size: $btn-icon-size * .75 !default;
+$btn-busy-opacity: .9 !default;
+$fab-size: 3.5rem !default;
 $fab-border-radius: 1rem !default;
+$enable-ripple: false !default;
+
+// Inputs
+$input-height: 3rem !default;
+$font-size-input: 1rem !default;
+// A field's starting width in a [role="group"] row before it wraps or shrinks
+$group-field-basis: 8rem !default;
+
+// Radio, checkbox, switch
+$radio-size: 1.25rem !default;
+$checkbox-size: 1.125rem !default;
+$switch-size: 2rem !default;
+
+// Range and progress
+$range-track-height: .5rem !default;
+$range-thumb-size: 1.5rem !default;
+$progress-height: .5rem !default;
+
+// Menu
 $menu-width: 12rem !default;
 $menu-item-height: 3rem !default;
-$menu-icon-size: 1.5rem !default;
-$menu-gap: .75rem !default;
 $menu-padding-y: .5rem !default;
+$menu-gap: .75rem !default;
+$menu-icon-size: 1.5rem !default;
 $menu-font-size: .875rem !default;
 $menu-divider-margin-y: 7.5px !default;
 $menu-arrow-size: 8px !default;
-$progress-height: .5rem !default;
+
+// Logo
+$logo-height: 2.5rem !default;
+$logo-font-size: 2.375rem !default;
 
 // Transition
 $transition: .2s ease-in-out !default;
 
 // Z-index
-$z-index-dropdown: 1000 !default;
 $z-index-sticky: 1020 !default;
-$z-index-fixed: 1030 !default;
-$z-index-offcanvas-backdrop: 1040 !default;
-$z-index-offcanvas: 1045 !default;
-$z-index-modal-backdrop: 1050 !default;
-$z-index-modal: 1055 !default;
-$z-index-popover: 1070 !default;
-$z-index-tooltip: 1080 !default;
-$z-index-toast: 1090 !default;

@@ -4,18 +4,14 @@
   --#{$prefix}-font-family: #{$font-family-base};
   --#{$prefix}-font-family-mono: #{$font-family-monospace};
   --#{$prefix}-font-size-base: #{$font-size-base};
-  --#{$prefix}-font-size-input: #{$font-size-input};
   --#{$prefix}-font-weight-normal: #{$font-weight-normal};
   --#{$prefix}-font-weight-bold: #{$font-weight-bold};
   --#{$prefix}-font-weight-medium: #{$font-weight-medium};
   --#{$prefix}-line-height-base: #{$line-height-base};
-  --#{$prefix}-btn-height: #{$btn-height};
   --#{$prefix}-input-height: #{$input-height};
   --#{$prefix}-border-radius: #{$border-radius};
   --#{$prefix}-spacing: #{$spacing};
-  --#{$prefix}-btn-font-size: #{$btn-font-size};
   --#{$prefix}-btn-icon-size: #{$btn-icon-size};
-  --#{$prefix}-btn-inner-icon-size: #{$btn-inner-icon-size};
   --#{$prefix}-transition: #{$transition};
   --#{$prefix}-z-index-sticky: #{$z-index-sticky};
 }

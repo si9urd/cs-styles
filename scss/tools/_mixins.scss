@@ -37,7 +37,7 @@
     }
   }
 
-  &:active:not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"])::before {
+  &:active:not(:where(#{$disabled}), [aria-busy="true"])::before {
     background-size: 0 0;
     opacity: $opacity;
     transition: none;
@@ -64,19 +64,73 @@
   }
 }
 
-/// Keyboard focus indicator; forced-colors mode repaints the outline in a system color.
-@mixin focus-ring($offset: 2px) {
-  outline: 2px solid var(--#{$prefix}-primary);
-  outline-offset: $offset;
+/// Dark theme, used on :root: `data-theme="dark"`, or the OS preference with $enable-auto-dark
+/// while the root has no data-theme. Place after the light rules: same specificity, later wins.
+@mixin dark {
+  &[data-theme="dark"] {
+    @content;
+  }
+
+  @if $enable-auto-dark {
+    @media (prefers-color-scheme: dark) {
+      &:not([data-theme]) {
+        @content;
+      }
+    }
+  }
 }
 
-/// `disabled="false"` is ignored only where it isn't native: `disabled` is boolean on form controls.
-@mixin disabled {
-  &:is(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"]) {
+/// Rule scoped to a dark root, see `dark`.
+@mixin in-dark {
+  :root[data-theme="dark"] & {
+    @content;
+  }
+
+  @if $enable-auto-dark {
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) & {
+        @content;
+      }
+    }
+  }
+}
+
+/// Elements drawn as icons inside buttons, menu items and links, for `:is(#{$icon-elements})`.
+$icon-elements: "i, img, svg";
+
+/// Keyboard focus. [data-focused] is for headless UI libs, as in `hover`.
+@mixin focus-visible {
+  &:is(:focus-visible, [data-focused]) {
     @content;
   }
 }
 
+/// Keyboard focus indicator; forced-colors mode repaints the outline in a system color.
+@mixin focus-ring($offset: $focus-ring-offset) {
+  outline: $focus-ring-width solid var(--#{$prefix}-primary);
+  outline-offset: $offset;
+}
+
+/// Disabled states. `disabled="false"` is ignored only where it isn't native: `disabled` is boolean on form controls.
+/// Exclude with `:not(:where(#{$disabled}))`: :where keeps variant overrides in charge.
+$disabled: ":disabled, [disabled]:not([disabled=\"false\"]), [aria-disabled=\"true\"]";
+
+@mixin disabled {
+  &:is(#{$disabled}) {
+    @content;
+  }
+}
+
+/// Forced colors flatten disabled ink back to the default; GrayText is the system's disabled color.
+/// For controls painted from --color and --border-color.
+@mixin forced-disabled {
+  @media (forced-colors: active) {
+    --border-color: GrayText;
+    --color: GrayText;
+  }
+}
+
+/// Triangle helper. Need for accordion component.
 @mixin triangle($size, $color, $direction: 0deg) {
   width: 0;
   height: 0;

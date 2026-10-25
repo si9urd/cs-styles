@@ -1,4 +1,5 @@
 @use "../settings" as *;
+@use "../tools" as *;
 
 @mixin document {
   :root {
@@ -20,7 +21,7 @@
     accent-color: var(--#{$prefix}-primary);
     color-scheme: light;
 
-    &[data-theme="dark"] {
+    @include dark {
       color-scheme: dark;
     }
   }
@@ -32,12 +33,4 @@
   }
 }
 
-@mixin rtl {
-  // Change the direction of text
-  [dir="rtl"] {
-    direction: rtl;
-  }
-}
-
 @include document;
-@include rtl;

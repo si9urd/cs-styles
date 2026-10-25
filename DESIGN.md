@@ -110,144 +110,172 @@ components:
     padding: "0 0.75rem"
 ---
 
-# Design System: CS-Styles
+# Дизайн-система: CS-Styles
 
-## Overview
+## Обзор
 
-**Creative North Star: "Markup Made Visible"**
+**Творческий компас: «Разметка как визуал»**
 
-An element looks like what it is and the state it is in. A `<button>` is a filled primary button with no class; `aria-invalid="true"` turns a field's stroke red and adds an icon; `aria-busy="true"` turns a control into a spinner; `aria-disabled` and `:disabled` fade it to the shared 38% disabled ink. The visual system is the rendering of HTML semantics and ARIA state, and it should never show a state the accessibility tree doesn't have.
+Элемент выглядит так, каким он является, и отражает своё текущее состояние. `<button>` без классов — это закрашенная основная кнопка; `aria-invalid="true"` красит обводку поля в красный и добавляет иконку ошибки; `aria-busy="true"` превращает элемент управления в спиннер загрузки; `aria-disabled` и `:disabled` затемняют элемент до общего уровня 38%. Визуальная система — это отображение семантики HTML и состояний ARIA, и она никогда не показывает состояние, которого нет в дереве доступности.
 
-The mood is calm, precise, utilitarian. Surfaces are white or near-white, tinted toward the single brand hue. Ink is that same hue at low saturation, and one saturated accent marks what can be acted on. Expression goes into state feedback: a state layer mixed into the container, a centered CSS ripple on press, a 2px primary focus ring, a shadow that appears on hover. Density is app-like: 2.5rem buttons, 3rem fields and menu rows, a 1rem spacing unit.
+Общее настроение — спокойное, точное, утилитарное. Поверхности белые или почти белые, с лёгким оттенком единственного фирменного цвета. Текст выполнен в том же оттенке, но с низкой насыщенностью, а один насыщенный акцент выделяет то, с чем можно взаимодействовать. Вся выразительность сосредоточена в обратной связи состояний: слой состояния, смешанный с контейнером; центрированная CSS-волна при нажатии; 2px фокусное кольцо основного цвета; тень, появляющаяся при наведении. Плотность интерфейса прикладная: кнопки 2.5rem, поля и строки меню 3rem, базовый отступ 1rem.
 
-The palette is a role scheme, not a color. Presets (`mint`, `indigo`, `violet`, `navy`, `teal` in `settings/_palettes.scss`) and M3 Theme Builder JSON all fill the same roles. The hex values in this file are the current default build (`mint`, hue 165) and serve as examples of each role.
+Палитра — это схема ролей, а не набор цветов. Пресеты (`mint`, `indigo`, `violet`, `navy`, `teal` в `settings/_palettes.scss`) и JSON от M3 Theme Builder заполняют одни и те же роли. Шестнадцатеричные значения в этом файле соответствуют текущей сборке по умолчанию (`mint`, оттенок 165) и служат примерами каждой роли.
 
-**Key Characteristics:**
-- Semantics and ARIA select the styles; classes only for variants semantics can't express (`.btn-outlined`, `.btn-text`, `.btn-pill`, `.btn-fab`, `.btn-icon`, `.menu`, `.card`).
-- One hue per theme: neutrals, ink, and strokes are all tinted with the brand hue.
-- Flat at rest; shadow is a response to state or marks a floating layer.
-- State is shown by mixing color (`color-mix` state layer), not by swapping to new colors.
-- Runtime theming through `--cs-*` and `data-theme="dark"`; no JavaScript anywhere.
+**Ключевые характеристики:**
+- **Семантика и ARIA выбирают стили.** Классы используются только там, где семантика бессильна (`.card`); варианты кнопок задаёт `data-btn` (`outlined`, `text`, `pill`, `fab`, `icon`, можно сочетать через пробел); меню выбирается по `role="menu"`.
+- **Один оттенок на тему.** Нейтральные цвета, текст и обводки — всё окрашено фирменным оттенком.
+- **Плоский вид в покое.** Тень появляется как реакция на состояние или обозначает плавающий слой.
+- **Состояние через смешивание цветов.** Используется `color-mix` для слоя состояния, а не замена на новые цвета.
+- **Темизация в runtime.** Переменные `--cs-*` и атрибут `data-theme="dark"`; JavaScript нигде не требуется. Опциональная опция `$enable-auto-dark` следует за схемой ОС, когда у корневого элемента нет `data-theme`.
 
-## Colors
+---
 
-One brand hue carries the whole scheme. Each preset keeps the hue constant and steps saturation and brightness per role (HSB recipe in `THEME-DESIGN.md`).
+## Цвета
 
-### Primary
-- **Brand Accent** (`primary`; dark `dark-primary`): filled buttons, outlined/text button ink, focus rings, the focused input stroke, checked controls, links. The only saturated color on the screen. Text on it uses `on-primary`.
+Один фирменный оттенок пронизывает всю схему. Каждый пресет сохраняет оттенок постоянным и варьирует насыщенность и яркость для каждой роли (рецепт HSB описан в `THEME-DESIGN.md`).
 
-### Neutral
-- **Ink Strong** (`on-surface`): body text, headings, menu text, icon color. Brand hue at HSB saturation 40 / brightness 22 in light; pure white in dark.
-- **Ink Weak** (`on-surface-variant`): placeholders, icon buttons, unchecked radio/checkbox strokes, menu icons, secondary copy.
-- **Stroke Strong** (`outline`): input borders, meaningful dividers (the header nav separator at 70% opacity), borders that have to meet 3:1.
-- **Stroke Weak** (`outline-variant`): decorative hairlines. Exempt from the 3:1 target, so never the only signal of a state.
-- **Tinted Fill** (`surface-container`): default button container, menus, disabled fields. Brand hue at 2% saturation.
-- **Paper** (`surface` / `background`): page and header background, input fill (`surface-container-lowest`).
+### Первичный цвет
+- **Фирменный акцент** (`primary`; в тёмной теме `dark-primary`) — закрашенные кнопки, текст и обводка outlined/text-кнопок, фокусные кольца, обводка поля в фокусе, отмеченные элементы управления, ссылки. Единственный насыщенный цвет на экране. Текст поверх него использует роль `on-primary`.
 
-### Status
-- **Error** (`error`): `aria-invalid="true"` stroke, focus ring, and icon.
-- **Success** (`success`): `aria-invalid="false"` stroke, focus ring, and icon.
+### Нейтральные цвета
+- **Текст основной** (`on-surface`) — основной текст, заголовки, текст меню, цвет иконок. Фирменный оттенок с насыщенностью 40% и яркостью 22% в светлой теме; чистый белый в тёмной.
+- **Текст вторичный** (`on-surface-variant`) — плейсхолдеры, кнопки-иконки, обводка неотмеченных radio/checkbox, иконки меню, вторичный текст.
+- **Обводка основная** (`outline`) — границы полей ввода, значимые разделители (вертикальный разделитель навигации в шапке с прозрачностью 70%), границы, которым требуется контраст ≥ 3:1.
+- **Обводка декоративная** (`outline-variant`) — тонкие декоративные линии. Освобождена от требования контраста 3:1, поэтому никогда не является единственным сигналом состояния.
+- **Заливка с оттенком** (`surface-container`) — контейнер кнопки по умолчанию, меню, отключённые поля. Фирменный оттенок с насыщенностью 2%.
+- **Бумага** (`surface` / `background`) — фон страницы и шапки, заполнение полей ввода (`surface-container-lowest`).
 
-Secondary and tertiary M3 roles come from the generated palette and appear only in a few places (`secondary-container` for progress and range tracks, `tertiary` for the file-selector button). They are not a second accent in the system.
+### Статусные цвета
+- **Ошибка** (`error`) — обводка, фокусное кольцо и иконка при `aria-invalid="true"`.
+- **Успех** (`success`) — обводка, фокусное кольцо и иконка при `aria-invalid="false"`.
 
-### Named Rules
-**The One Hue Rule.** A theme is one hue. Every neutral, ink, and stroke is that hue at a fixed saturation/brightness step; a new preset changes the hue and keeps the steps.
+Роли `secondary` и `tertiary` из M3 берутся из сгенерированной палитры и встречаются лишь в нескольких местах: `secondary-container` как заливка дорожки прогресса и ползунка (`--cs-track`), обрамлённая 1px обводкой `--cs-track-outline` с контрастом ≥ 3:1 к любой поверхности; `tertiary` — для кнопки выбора файла. Они не являются вторым акцентом в системе.
 
-**The Roles-Only Rule.** Components reference `--cs-*` roles only. A hex literal in a component partial is a bug; a new visual value becomes a token in `settings/` first.
+### Именованные правила
 
-**The Contrast Floor Rule.** Ink roles hold ≥ 4.5:1 against Fill, `on-primary` holds ≥ 4.5:1 against Brand in rest, hover, and press, Brand and Stroke Strong hold ≥ 3:1. Stroke Weak is decorative and never carries a state alone.
+**Правило одного оттенка.** Тема — это один оттенок. Каждый нейтральный цвет, текст и обводка — это тот же оттенок с фиксированными шагами насыщенности и яркости. Новый пресет меняет оттенок, сохраняя шаги.
 
-## Typography
+**Правило только ролей.** Компоненты ссылаются только на роли `--cs-*`. Шестнадцатеричное значение в файле компонента — это ошибка. Любое новое визуальное значение сначала становится токеном в `settings/`.
 
-**Body Font:** system-ui (with sans-serif)
-**Mono Font:** ui-monospace (with monospace), for `code`, `kbd`, `samp`, `pre`
+**Правило порога контраста.** Роли текста имеют контраст ≥ 4.5:1 относительно заливки. `on-primary` сохраняет ≥ 4.5:1 относительно фирменного цвета в состояниях покоя, наведения и нажатия. Фирменный цвет и обводка основная держат ≥ 3:1. Обводка декоративная не несёт состояние самостоятельно.
 
-**Character:** The platform's own UI face, so the framework feels native to whichever OS renders it and costs zero bytes. Hierarchy comes from size and weight, never from a second family.
+---
 
-### Hierarchy
-- **Display** (700, 2.5rem, 1.15): `h1` only; bottom margin clamps 1–1.5rem with viewport.
-- **Headline** (500, 2rem / 1.75rem / 1.5rem, 1.15): `h2`–`h4`.
-- **Title** (500, 1.25rem / 1rem, 1.15): `h5`, `h6`. All headings use `text-wrap: balance`.
-- **Body** (400, 1rem, 1.5): paragraphs, lists, captions, quotes with `text-wrap: pretty` and `overflow-wrap: break-word`.
-- **Label** (500, 1rem): button text.
-- **Label Small** (500, 0.875rem): menu items.
+## Типографика
 
-### Named Rules
-**The Medium Weight Rule.** Interactive text and headings sit at 500; 700 is reserved for `h1` and `b`/`strong` (which use `bolder`, relative to the parent).
+**Основной шрифт:** `system-ui` (с фолбэком `sans-serif`)
+**Моноширинный шрифт:** `ui-monospace` (с фолбэком `monospace`), для `code`, `kbd`, `samp`, `pre`
 
-**The Multiplier Rule.** Heading sizes are `--fs` × `--cs-font-size-base`. Change the base, not individual sizes.
+**Характер:** Собственный шрифт интерфейса платформы, чтобы фреймворк ощущался нативным на любой ОС и не добавлял лишних байт. Иерархия строится через размер и начертание, а не через второй шрифт.
 
-## Layout
+### Иерархия
+- **Display** (700, 2.5rem, межстрочный 1.15) — только `h1`; нижний отступ масштабируется от 1 до 1.5rem в зависимости от ширины экрана.
+- **Headline** (500, 2rem / 1.75rem / 1.5rem, межстрочный 1.15) — `h2`–`h4`.
+- **Title** (500, 1.25rem / 1rem, межстрочный 1.15) — `h5`, `h6`. Все заголовки используют `text-wrap: balance`.
+- **Body** (400, 1rem, межстрочный 1.5) — абзацы, списки, подписи, цитаты с `text-wrap: pretty` и `overflow-wrap: break-word`.
+- **Label** (500, 1rem) — текст кнопок.
+- **Label Small** (500, 0.875rem) — элементы меню.
 
-A 1rem spacing unit (`--cs-spacing`) drives everything; the spacer scale is 0.25 / 0.5 / 1 / 1.5 / 3rem. Component paddings derive from it: buttons 1.5rem inline (1rem with a leading icon, 0.75rem for text buttons), fields 1rem, header gaps 2rem.
+### Именованные правила
 
-The grid is a trimmed Bootstrap grid with breakpoints sm 576px, md 768px, lg 992px, xl 1100px (default build; 1200px in settings), xxl 1400px, and containers 540–1320px. The header is a flex row, `space-between`, with an optional `.sticky` mode. Layout objects (`stack`, `layout`, `grid`) are undecorated.
+**Правило среднего начертания.** Интерактивный текст и заголовки используют начертание 500. Начертание 700 зарезервировано для `h1` и `b`/`strong` (которые используют `bolder`, относительно родительского элемента).
 
-Touch: controls stay at 2.5–3rem; the `touch-target` mixin expands the hit area to 3rem on coarse pointers.
+**Правило множителя.** Размеры заголовков вычисляются как `--fs` × `--cs-font-size-base`. Меняйте базовый размер, а не каждый размер по отдельности.
 
-## Elevation & Depth
+---
 
-Flat by default. Depth comes from tinted fills against white paper; shadows are a response to state or mark a layer that floats above the page. The shadow scale is Material-web's two-part shadow (key + ambient) on levels 0–5, exposed as `--cs-elevation-0` … `--cs-elevation-5`, black-based in light and white-based in dark.
+## Макет
 
-### Shadow Vocabulary
-- **Rest** (`--cs-elevation-0`): every button, field, and card at rest.
-- **Hover lift** (`--cs-elevation-1`): filled and outlined buttons on hover; drops back to 0 on press.
-- **Floating layer** (`--cs-elevation-2`): menus.
-- **FAB** (`--cs-elevation-3` focus/press, `--cs-elevation-4` hover).
+Базовый отступ 1rem (`--cs-spacing`) управляет всем. Шкала отступов: 0.25 / 0.5 / 1 / 1.5 / 3rem. Внутренние отступы компонентов выводятся из неё: кнопки — 1.5rem по горизонтали (1rem с ведущей иконкой, 0.75rem для text-кнопок), поля — 1rem, интервалы в шапке — 2rem.
 
-### Named Rules
-**The Flat-By-Default Rule.** Nothing in the document flow carries a shadow at rest. A shadow means "you're touching this" or "this is above the page".
+Сетка — упрощённая Bootstrap-сетка с точками останова: sm 576px, md 768px, lg 992px, xl 1100px (по умолчанию; 1200px в настройках), xxl 1400px. Контейнеры: от 540 до 1320px. Шапка — flex-строка с `space-between`, опционально с режимом `.sticky`. Объекты макета (`stack`, `layout`, `grid`) не имеют собственного оформления.
 
-## Shapes
+**Тактильный интерфейс:** элементы управления остаются на высоте 2.5–3rem. Миксин `touch-target` расширяет область клика до 3rem для неточных указателей.
 
-One gentle radius (0.5rem, `--cs-border-radius`) for buttons, fields, menus, and cards. Two exceptions: pills (999px) for `.btn-pill` and `input[type="search"]`, and 1rem for the FAB. Borders are 1px; radio and checkbox strokes are 2px. Strokes and fills share the brand hue, so edges read softly.
+---
 
-## Components
+## Высота и глубина
 
-### Buttons
-Calm, confident, state-rich. Any `button`, `[type=submit|reset|button]`, or `[role=button]` is a button with no class.
-- **Shape:** gentle radius (0.5rem), 2.5rem tall, 1px border matching the container.
-- **Primary (default):** Brand Accent container, `on-primary` text, label typography.
-- **Hover / Focus / Press:** a state layer mixed into the container (14% hover and focus, 20% press). Filled buttons mix `on-primary-container`, which pushes the container away from its label (darker in light, lighter in dark) so text on Brand keeps ≥ 4.5:1 in every state; transparent variants mix their own ink. Hover adds elevation 1, focus adds a 2px primary outline at 1px offset, press shows a CSS ripple from the center (motion only under `prefers-reduced-motion: no-preference`). All transitions are 0.2s ease-in-out.
-- **Outlined / Secondary** (`.btn-outlined`, `.btn-secondary`): transparent container, primary border and ink.
-- **Text / Tertiary** (`.btn-text`, `.btn-tertiary`): transparent, primary ink, 0.75rem padding, never elevated.
-- **Icon** (`.btn-icon`): 2.5rem square, Ink Weak, 1.5rem icon.
-- **FAB** (`.btn-fab`): 3.5rem, 1rem radius, `primary-container`.
-- **Disabled** (`:disabled`, `[disabled]`, `aria-disabled="true"`): container at 12% ink, label at 38% ink, no state layer, `not-allowed` cursor.
-- **Busy** (`aria-busy="true"`): no pointer events (keyboard still fires: pair with `disabled`/`aria-disabled` to block submit), 90% opacity, spinner instead of ripple.
+По умолчанию — плоский вид. Глубина достигается за счёт залитых с оттенком поверхностей на белой бумаге. Тени — реакция на состояние или обозначение слоя, парящего над страницей. Шкала теней основана на двухкомпонентной тени Material-web (ключевая + фоновая) на уровнях 0–5, доступна через переменные `--cs-elevation-0` … `--cs-elevation-5`: на чёрной основе в светлой теме и на белой — в тёмной.
 
-### Inputs / Fields
-- **Style:** 3rem tall, Paper fill, 1px Stroke Strong border, gentle radius, 1rem inline padding. `textarea` is double height.
-- **Focus:** border and a 1px inset ring switch to Brand Accent (no outer glow).
-- **Validation:** `aria-invalid="true"` turns the border and ring Error and adds the invalid icon; `aria-invalid="false"` does the same in Success.
-- **Disabled:** Tinted Fill background, Ink Weak text.
-- **Search:** pill shape with a leading search icon.
+### Словарь теней
+- **Покой** (`--cs-elevation-0`) — все кнопки, поля и карточки в состоянии покоя.
+- **Подъём при наведении** (`--cs-elevation-1`) — закрашенные и outlined-кнопки при наведении; при нажатии возвращается к 0.
+- **Плавающий слой** (`--cs-elevation-2`) — меню.
+- **FAB** (`--cs-elevation-3` в покое, фокусе и при нажатии; `--cs-elevation-4` при наведении) — кнопка парит над страницей, поэтому это единственный элемент, приподнятый в состоянии покоя.
+
+### Именованные правила
+
+**Правило плоского по умолчанию.** Ничто в потоке документа не имеет тени в состоянии покоя. Тень означает: «вы взаимодействуете с этим» или «это находится над страницей».
+
+---
+
+## Формы
+
+Единый мягкий радиус (0.5rem, `--cs-border-radius`) для кнопок, полей, меню и карточек. Два исключения: форма капсулы (999px) для `[data-btn="pill"]` и `input[type="search"]`, а также радиус 1rem для FAB. Границы — 1px; обводка radio и checkbox — 2px. Обводки и заливки используют фирменный оттенок, поэтому края воспринимаются мягко.
+
+---
+
+## Компоненты
+
+### Кнопки
+
+Спокойные, уверенные, насыщенные состояниями. Любой `button`, `[type=submit|reset|button]` или `[role=button]` становится кнопкой без дополнительных классов.
+
+- **Форма:** мягкий радиус (0.5rem), высота 2.5rem, граница 1px, совпадающая с контейнером.
+- **Основная (по умолчанию):** контейнер фирменного акцента, текст `on-primary`, типографика label.
+- **Наведение / Фокус / Нажатие:** слой состояния, смешанный с контейнером (14% при наведении и фокусе, 20% при нажатии). Закрашенные кнопки смешивают `on-primary-container`, что отдаляет контейнер от его текста (темнее в светлой теме, светлее в тёмной), сохраняя контраст ≥ 4.5:1 в каждом состоянии. Прозрачные варианты смешивают собственный цвет текста. Наведение добавляет тень уровня 1, фокус — 2px обводку основного цвета со смещением 1px, нажатие показывает CSS-волну из центра (анимация только при `prefers-reduced-motion: no-preference`). Все переходы длятся 0.2s ease-in-out.
+- **Outlined / Вторичная** (`[data-btn="outlined"]`, `[data-btn="secondary"]`): прозрачный контейнер, обводка и текст основного цвета.
+- **Text / Третичная** (`[data-btn="text"]`, `[data-btn="tertiary"]`): прозрачная, текст основного цвета, отступ 0.75rem, никогда не приподнимается.
+- **Иконка** (`[data-btn="icon"]`): ставится и сама — кнопка с `aria-label` без текста, только с `i`/`img`/`svg` или пустая; квадрат 2.5rem, цвет текста вторичный, иконка 1.5rem.
+- **FAB** (`[data-btn="fab"]`): размер 3.5rem, радиус 1rem, цвет `primary-container`.
+- **Отключена** (`:disabled`, `[disabled]`, `aria-disabled="true"`): контейнер с 12% непрозрачностью текста, текст с 38% непрозрачностью, без слоя состояния, курсор `not-allowed`.
+- **Занята** (`aria-busy="true"`): без событий указателя (клавиатура всё ещё работает — комбинируйте с `disabled`/`aria-disabled` для блокировки отправки), непрозрачность 90%, спиннер вместо волны. Спиннер рисуется только на элементах управления, ссылках, `span` и пустых элементах. Занятый регион с содержимым (section, table, list) сохраняет раскладку и получает только курсор загрузки. При `prefers-reduced-motion: reduce` кольцо полностью останавливается и медленно мерцает вместо вращения.
+
+### Поля ввода
+
+- **Стиль:** высота 3rem, заливка «бумага», граница 1px обводки основной, мягкий радиус, горизонтальный отступ 1rem. `textarea` имеет двойную высоту.
+- **Фокус:** граница и внутреннее кольцо 1px переключаются на фирменный акцент (без внешнего свечения).
+- **Валидация:** `aria-invalid="true"` красит границу и кольцо в цвет ошибки и добавляет иконку невалидности; `aria-invalid="false"` делает то же самое в цвете успеха.
+- **Отключено:** фон с оттенком, текст вторичного цвета.
+- **Поиск:** форма капсулы с ведущей иконкой поиска.
+- **Группа** (`[role="group"]` с дочерним элементом управления, `[role="search"]`): дочерние элементы объединяются в одну панель. На узком экране целые элементы управления переносятся на следующую строку, а подписи разрываются только между словами; поля делят строку начиная с базиса 8rem. Поиск остаётся в одной строке.
+- **Иконки полей встроены, а не динамические:** иконки поиска, стрелки, валидности и невалидности — это фоновые изображения (элемент формы не может использовать mask), поэтому их цвет фиксируется в SVG на этапе сборки, один раз на тему (`on-surface`, `success`, `error`). Атрибут `data-theme` переключает их; изменение `--cs-error` или `--cs-on-surface` в runtime не повлияет, и они игнорируют `currentColor` (стрелка отключённого поля остаётся полностью окрашенной). Перекрасьте через `$theme-colors` на этапе сборки или замените `--cs-input-icon-*` на свои URL. Иконки-маски (`--cs-icon-*`) динамические и следуют за цветом текста.
 
 ### Radio / Checkbox / Switch
-Native inputs with `appearance: none`, 1.25rem, 2px Ink Weak stroke; checked state uses the accent. Disabled uses on-surface at 38% opacity. Label wrapping via `label:has(...)`.
 
-### Navigation (Header)
-`header` is a flex row on Paper with 1rem block padding. Inside it, `nav ul` is a horizontal row with 0.5rem item padding, and an `hr` in a `nav` becomes a vertical hairline divider in Stroke Strong at 70%. `.brand` aligns the logo and name. `.sticky` pins the header to the top.
+Нативные элементы с `appearance: none`, размер 1.25rem, обводка 2px вторичного цвета; отмеченное состояние использует акцент. Бегунок переключателя окрашен во вторичный цвет, когда выключен (обводка основная не достигает 3:1 на дорожке). Отключённое состояние использует `on-surface` с непрозрачностью 38%. Обёртка подписи через `label:has(...)`.
 
-### Menu
-Tinted Fill panel, elevation 2, gentle radius, 12rem minimum width, 0.5rem block padding. Rows are 3rem with 0.75rem gaps and Label Small text. Hover is 8% ink, press 10%, disabled 4% fill with 38% ink. Expandable rows get an arrow.
+### Навигация (шапка)
 
-### Cards / Containers
-`.card` is structural only: gentle radius, clipped overflow, `.card-body` as a 1rem-gap column. No fill or shadow of its own; color comes from context.
+`header` — flex-строка на фоне «бумаги» с вертикальным отступом 1rem. Внутри него `nav ul` — горизонтальная строка с отступом элементов 0.5rem, а `hr` внутри `nav` становится вертикальным разделителем обводки основной с непрозрачностью 70%. Класс `.brand` выравнивает логотип и название. Класс `.sticky` фиксирует шапку вверху страницы.
 
-## Do's and Don'ts
+### Меню
 
-### Do:
-- **Do** style from the element and its ARIA state: `[aria-invalid]`, `[aria-busy]`, `[aria-disabled]`, `:disabled`, `:focus-visible`, plus `data-hovered` / `data-focused` / `data-pressed` for scripted states.
-- **Do** express interaction states through the state layer (`color-mix` into the container at 14% / 20%: the label ink on transparent variants, `on-primary-container` on filled ones) and the shared 12% / 38% disabled mixes.
-- **Do** reference color only through `--cs-*` roles; add new values as `!default` tokens in `settings/`.
-- **Do** keep everything flat at rest; use `--cs-elevation-*` only for hover, focus, press, or floating layers.
-- **Do** keep focus visible: a 2px primary outline on buttons, a primary stroke plus inset ring on fields.
-- **Do** gate motion behind `prefers-reduced-motion: no-preference`.
+Панель с заливкой «с оттенком», тень уровня 2, мягкий радиус, минимальная ширина 12rem, вертикальный отступ 0.5rem. Строки высотой 3rem с интервалом 0.75rem и текстом Label Small. Наведение — 8% цвета текста (только для указателей с поддержкой наведения), фокус с клавиатуры — 10% плюс внутреннее кольцо 2px основного цвета, нажатие — 10%, отключённое — 4% заливки с 38% текста. Разворачиваемые строки получают стрелку.
 
-### Don't:
-- **Don't** hardcode hex or rgb in components; the only literal colors live in palettes and the generated theme.
-- **Don't** add state modifier classes (`.is-active`, `.disabled`, `.error`); if HTML or ARIA can express the state, style that.
-- **Don't** introduce a second accent hue within a theme.
-- **Don't** let Stroke Weak (`outline-variant`) be the only signal of a state.
-- **Don't** add a second font family; hierarchy is size and weight.
+### Карточки и контейнеры
+
+`.card` — только структурный элемент: мягкий радиус, обрезка переполнения, `.card-body` как колонка с интервалом 1rem. Без собственной заливки или тени; цвет берётся из контекста.
+
+---
+
+## Рекомендации
+
+### ✅ Делайте
+
+- **Стилизируйте через элемент и его состояние ARIA:** `[aria-invalid]`, `[aria-busy]`, `[aria-disabled]`, `:disabled`, `:focus-visible`, `[aria-pressed="true"]` у кнопок-переключателей, а также `data-hovered` / `data-focused` для управляемых скриптами состояний.
+- **Выражайте состояния взаимодействия через слой состояния:** `color-mix` в контейнер с непрозрачностью 14% / 20% (цвет текста label на прозрачных вариантах, `on-primary-container` на закрашенных) и общие смеси 12% / 38% для отключённого состояния.
+- **Ссылайтесь на цвета только через роли `--cs-*`.** Добавляйте новые значения как токены `!default` в `settings/`.
+- **Держите всё плоским в состоянии покоя.** Используйте `--cs-elevation-*` только для наведения, фокуса, нажатия или плавающих слоёв.
+- **Сохраняйте фокус видимым:** 2px обводка основного цвета на кнопках, обводка основного цвета плюс внутреннее кольцо на полях.
+- **Ограничивайте анимацию** через `prefers-reduced-motion: no-preference`.
+
+### ❌ Не делайте
+
+- **Не прописывайте** hex или rgb значения напрямую в компонентах; единственные литеральные цвета живут в палитрах и сгенерированной теме.
+- **Не добавляйте** классы-модификаторы состояний (`.is-active`, `.disabled`, `.error`); если HTML или ARIA могут выразить состояние — стилизуйте его.
+- **Не вводите** второй акцентный оттенок внутри одной темы.
+- **Не позволяйте** обводке декоративной (`outline-variant`) быть единственным сигналом состояния.
+- **Не добавляйте** второй шрифт; иерархия строится через размер и начертание.
