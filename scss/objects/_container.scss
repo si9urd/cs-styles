@@ -1,0 +1,6 @@
+@use "../settings" as *;
+
+.container {
+  inline-size: min(100% - var(--#{$prefix}-spacing), 1320px);
+  margin-inline: auto;
+}

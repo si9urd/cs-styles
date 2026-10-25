@@ -12,13 +12,13 @@ Primarily the author (Oleh Obydonov) styling their own projects: SPAs mounted on
 
 ## Product Purpose
 
-A CSS framework for semantic HTML: well-formed HTML5 and ARIA markup gets a finished look without classes. Classes appear only where semantics cannot express the intent (utilities, theming, some components). Success: the author writes plain semantic markup in a new project and gets a consistent, themed, accessible UI with no extra styling work.
+A CSS framework for semantic HTML: well-formed HTML5 and ARIA markup gets a finished look without classes. Classes appear only where semantics cannot express the intent (layout objects, theming, some components). Success: the author writes plain semantic markup in a new project and gets a consistent, themed, accessible UI with no extra styling work.
 
 ## Positioning
 
 - **M3 theming:** palettes come from Material Theme Builder JSON (`material-theme*.json` → `m3theme-loader.js` / `m3theme-generator.js`) and surface as `--cs-*` custom properties with light/dark via `data-theme="dark"`.
 - **ARIA as API:** states and components are switched by ARIA attributes and roles (`aria-busy`, `aria-pressed`, `role`, …), not by modifier classes.
-- **SCSS configuration:** deep customization through `@use ... with (...)` over `!default` settings; ITCSS directories mapped to `@layer tokens, generic, elements, objects, components, utilities` so consumer overrides win without specificity fights.
+- **SCSS configuration:** deep customization through `@use ... with (...)` over `!default` settings; ITCSS directories mapped to `@layer tokens, generic, elements, objects, components` so consumer overrides win without specificity fights.
 
 ## Operating Context
 

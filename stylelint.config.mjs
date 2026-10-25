@@ -5,9 +5,8 @@ export default {
     'stylelint-scss'
   ],
   customSyntax: 'postcss-scss',
-  // Вендорный слой и генерируемый файл тем живут по своим правилам
+  // Генерируемый файл тем живёт по своим правилам
   ignoreFiles: [
-    'scss/vendor/**/*.scss',
     'scss/settings/_themes_colors.scss'
   ],
   rules: {

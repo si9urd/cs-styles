@@ -1,13 +1,15 @@
-@use "sass:map" as map;
 @use "../settings" as *;
-@use "stack";
 
 @mixin flex-landmarks {
   :where(#{$page-root}, .page) {
     .content-block {
-      @extend %v-stack;
-
       --gap: var(--#{$prefix}-spacing);
+
+      display: flex;
+      row-gap: var(--gap);
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-self: stretch;
     }
   }
 }
@@ -15,4 +17,3 @@
 @if $enable-landmarks {
   @include flex-landmarks;
 }
-

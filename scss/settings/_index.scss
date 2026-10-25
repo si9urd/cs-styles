@@ -24,9 +24,6 @@ $enable-icons: true !default;
 $icons: () !default;
 $icons: map.merge(builtin.$icon-set, $icons);
 
-// Enable grid
-$enable-grid: true !default;
-
 // Enable form`s controls
 $enable-forms: true !default;
 
@@ -42,24 +39,6 @@ $enable-auto-dark: false !default;
 
 // Enable landmarks
 $enable-landmarks: true !default;
-
-// Enable bootstrap utils
-$enable-utilities: (
-  "align": false,
-  "borders": false,
-  "display": false,
-  "elevation": true,
-  "sizing": false,
-  "spacing": false,
-  "text": false,
-  "gap": true
-) !default;
-
-// Enable negative margins in bootstrap utils
-$enable-negative-margins: false !default;
-
-// Enable responsive in bootstrap utils
-$enable-responsive-utilities: false !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -90,26 +69,6 @@ $theme-colors: map.merge((
 
 ////////////////////////////////////////////////////////////////////////////////
 
-$container-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1320px
-) !default;
-
-// Grid breakpoints
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-) !default;
-
-////////////////////////////////////////////////////////////////////////////////
-
 // Typography
 $font-family-base: system-ui, sans-serif !default;
 $font-family-monospace: ui-monospace, monospace !default;
@@ -129,9 +88,6 @@ $spacers: (
   4: $spacing * 1.5,
   5: $spacing * 3,
 ) !default;
-
-// Negative spacers
-$negative-spacers: null !default;
 
 // Shape
 $border-radius: .5rem !default;

@@ -23,7 +23,3 @@
 @layer components {
   @include meta.load-css("components");
 }
-
-@layer utilities {
-  @include meta.load-css("utilities");
-}

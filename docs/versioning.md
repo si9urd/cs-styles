@@ -14,7 +14,7 @@ Versions follow `MAJOR.MINOR.PATCH`.
 
 1. A release must reflect the impact on the public CSS API.
 2. Any change that breaks existing selectors, tokens, or entry points requires a `MAJOR` bump.
-3. Backward-compatible additions to components, utilities, themes, or docs require a `MINOR` bump.
+3. Backward-compatible additions to components, themes, or docs require a `MINOR` bump.
 4. Fixes that do not change the public contract require a `PATCH` bump.
 5. Experimental or internal changes stay in `Unreleased` until they are stable enough to ship.
 

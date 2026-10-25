@@ -1,12 +1,6 @@
 /// Accessibility
 
 @mixin accessibility {
-  // Change the cursor on control elements in all browsers (opinionated).
-  // Not on a combobox text field, which stays a text cursor; :where keeps it below the states that follow
-  [aria-controls]:where(:not(textarea, input[role="combobox"])) {
-    cursor: pointer;
-  }
-
   // Change the cursor on disabled, not-editable, or otherwise inoperable elements in all browsers (opinionated)
   [aria-disabled="true"],
   :disabled,

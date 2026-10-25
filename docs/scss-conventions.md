@@ -9,7 +9,7 @@ A deliberate hybrid, not one canonical method:
 
 - **Semantic-first / classless.** Style elements and ARIA attributes, not classes:
   `:is(button, [type="submit"], [role="button"])`, `[aria-disabled="true"]`.
-  A class appears only where semantics can't reach it (`.h-stack`, utilities); variants without an ARIA equivalent go on a `data-*` attribute (`data-btn="outlined"`).
+  A class appears only where semantics can't reach it (`.container`); variants without an ARIA equivalent go on a `data-*` attribute (`data-btn="outlined"`).
   No BEM — no `block__element--modifier`; nesting follows the real DOM (`header > .content`).
 - **State on attributes.** `[aria-busy]`, `[aria-expanded]`, `[disabled]`, plus
   `[aria-pressed="true"]` (toggle buttons), and `[data-hovered]`/`[data-focused]` for headless UI libs
@@ -17,7 +17,7 @@ A deliberate hybrid, not one canonical method:
   `:is()`/`:not()` groups variants and keeps specificity flat.
 - **ITCSS + cascade layers.** One directory per layer; `scss/_index.scss` loads each into
   its `@layer` via `meta.load-css`, order declared in `_layers.scss`:
-  `tokens → generic → elements → objects → components → utilities`.
+  `tokens → generic → elements → objects → components`.
   `settings/` and `tools/` emit nothing. Layer order beats specificity, so a later layer
   never needs `!important` to win; consumer CSS outside layers beats the whole framework.
   Tokens flow one way: `settings/` (`!default`) → layers → consumer override in the `with (...)` block.
@@ -36,13 +36,10 @@ A deliberate hybrid, not one canonical method:
 - **Motion vs. color transitions.** Movement (ripple, progress fill and sweep, spinners) runs
   only under `prefers-reduced-motion: no-preference`. Color, border and shadow transitions
   stay unwrapped: they are not motion (WCAG 2.3.3) and feedback shouldn't snap.
-- **Utilities are an opt-in thin layer**, not utility-first: Bootstrap's utilities API via
-  `make-utilities()`, one file per group, toggled by `$enable-utilities: ("spacing": true, …)`.
-  No `!important` (`$enable-important-utilities: false`): the utilities layer is last.
-- **Feature flags over a monolith:** `$enable-icons`, `$enable-grid`, `$enable-forms`,
-  `$enable-landmarks`, `$enable-responsive-utilities`.
-- **Vendor stays isolated.** `scss/vendor/bootstrap/` (grid, rfs, utilities API) is trimmed
-  third-party code, excluded from the linter.
+- **No utility classes.** Spacing, layout and depth come from element semantics and local custom
+  properties (`--gap`, `--cs-elevation-*`); replacements are listed in `DESIGN.md`.
+- **Feature flags over a monolith:** `$enable-icons`, `$enable-forms`,
+  `$enable-landmarks`.
 
 ## SCSS
 
@@ -55,8 +52,7 @@ A deliberate hybrid, not one canonical method:
   extension: `@use "../variables" as *`
 - Every directory has an `_index.scss` that `@use`s its members
 - A partial emits its own CSS (usually a mixin `@include`d at the bottom, behind its `$enable-*`
-  flag); the directory's `_index.scss` only `@use`s partials. Exception: `utilities/_index.scss`
-  checks the `$enable-utilities` groups
+  flag); the directory's `_index.scss` only `@use`s partials
 - New partial → the directory of its layer + that directory's `_index.scss`; never wrap a
   partial in `@layer` yourself
 - Reusable blocks are `%placeholder`s pulled in with `@extend`. Keep the placeholder in the same

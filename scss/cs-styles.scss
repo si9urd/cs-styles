@@ -3,30 +3,9 @@
   $prefix: "cs",
   $page-root: "#app",
   $enable-icons: true,
-  $enable-grid: true,
   $enable-forms: true,
   $enable-menu: true,
   $enable-autofill-fix: true,
   $enable-landmarks: true,
-  $enable-negative-margins: true,
-  $enable-responsive-utilities: true,
-  $enable-utilities: (
-    "align": false,
-    "borders": false,
-    "display": false,
-    "elevation": false,
-    "sizing": false,
-    "spacing": false,
-    "text": false,
-    "gap": true
-  ),
-  $grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1100px,
-        xxl: 1400px
-  ),
   $theme-colors: palettes.$mint,
 );

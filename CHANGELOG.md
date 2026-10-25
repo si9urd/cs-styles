@@ -26,8 +26,11 @@
 
 ### Changed
 
+- `[aria-controls]` больше не получает `cursor: pointer`: атрибут описывает связь, а не интерактивность. Курсор задают сами компоненты.
+- Элемент `<menu>` выстраивается в ряд: `display: flex`, перенос, `align-items: center`, `--gap` по умолчанию `--cs-spacing`, без маркеров и отступа списка. Замена `.h-stack` для рядов кнопок.
 - Варианты кнопок (`[data-btn~="outlined|text|pill|fab|icon"]`) объявлены без списка элементов: специфичность (0,1,0) вместо (0,2,0). Внутри `[role="group"]` высота и скругление группы теперь побеждают и у `pill` и `fab`.
-- Классы CSS-сетки `.g-col-*`, `.g-start-*` больше не требуют предка `.grid` и работают в любом grid-контейнере.
+- **Breaking.** Сетка `.grid` удалена вместе с классами колонок и брейкпоинтами. Миграция: свой CSS `display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); gap: var(--cs-spacing)`. `.container` — одно правило `inline-size: min(100% - var(--cs-spacing), 1320px)`.
+- Каталог `scss/vendor/` удалён.
 - Разметка встроенных SVG ужата (без `width`/`height`, лишних подпутей и `fill` у масок): data URI в `--cs-icon-*` и `--cs-input-icon-*` изменились, вид прежний.
 
 - FAB (`.btn-fab`) в покое на `--cs-elevation-3`, а не на `elevation-0`: бледный `primary-container` сливался с фоном.
@@ -85,6 +88,12 @@
 - **Breaking.** Синонимы вариантов кнопок `data-btn="secondary"` и `data-btn="tertiary"`. Миграция: `outlined` и `text`.
 - **Breaking.** `--cs-elevation-5` и утилита `.elevation-5`: библиотека использует уровни 0–4.
 - **Breaking.** Иконки `menu`, `add`, `minus`, `close`, `view-cards`, `view-cards-detailed`, `view-rows`, `edit`, `trash`, `github`, `dots-spinner` убраны из встроенного набора и не попадают в CSS. Маски `--cs-icon-search|valid|invalid|chevron` тоже: эти иконки выводятся только цветными `--cs-input-icon-*`. Миграция: `@use "settings/icons-extra"` и `$icons: icons-extra.$icon-set` (или нужные ключи) в `with (...)`.
+
+- **Breaking.** Классы сетки `.g-col{-bp}-N`, `.g-start{-bp}-N`, `.container-fluid`, `.container-{bp}`, токены `--cs-grid-rows`, `--cs-grid-columns`, `--cs-grid-gutter`, настройки `$enable-grid` и `$container-widths`. Миграция: `style="--span: N"` на элементе сетки, `--min` вместо брейкпоинтов, `--gap` вместо `--cs-grid-gutter`; фиксированная раскладка — свой `grid-template-columns` на `.grid`; `.container-fluid` — без класса.
+
+- **Breaking.** Классы `.h-stack`, `.v-stack`, утилиты `.gap-0…5` и `.elevation-0…4`, ключи `"gap"` и `"elevation"` в `$enable-utilities`. Миграция: ряд команд — `<menu>`, столбец — обычный поток блоков или свой flex, интервал — `--gap` на контейнере, тень — `box-shadow: var(--cs-elevation-N)`. Полная таблица замен — в `DESIGN.md`, раздел «Замены классов».
+
+- **Breaking.** Слой `utilities` целиком: классы `.align-*`, `.border*`, `.d-*`, `.w-*`, `.h-*`, `.mw-*`, `.mh-*`, `.vw-*`, `.vh-*`, `.min-vw-*`, `.min-vh-*`, `.m*-*`, `.p*-*`, `.gap-*`, `.row-gap-*`, `.column-gap-*`, `.text-*`, генератор `make-utilities`, функция `negativify-map`, токены `--cs-border-width`, `--cs-border-style`, `--cs-border-color` (выводились только с утилитами `borders`), настройки `$enable-utilities`, `$enable-negative-margins`, `$enable-responsive-utilities`, `$negative-spacers`, `$grid-breakpoints`. Слои каскада теперь `tokens, generic, elements, objects, components`. Миграция: таблица замен в `DESIGN.md`, раздел «Замены классов»; для своих утилит — свой CSS в слое после `components` или вне слоёв.
 
 ### Fixed
 
