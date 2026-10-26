@@ -16,7 +16,6 @@
     --cs-spacing: 1rem;
     --cs-btn-icon-size: 1.5rem;
     --cs-transition: .2s ease-in-out;
-    --cs-z-index-sticky: 1020;
     --cs-track: #daf2ec;
     --cs-track-outline: #5b756f;
     --cs-primary: #0c7a5f;
@@ -327,15 +326,6 @@
   .container {
     inline-size: min(100% - var(--cs-spacing), 1320px);
     margin-inline: auto;
-  }
-
-  :where(#app, .page) .content-block {
-    --gap: var(--cs-spacing);
-    row-gap: var(--gap);
-    flex-direction: column;
-    flex: auto;
-    align-self: stretch;
-    display: flex;
   }
 }
 
@@ -1560,112 +1550,6 @@
 
   input[type="range"]:active::-moz-range-thumb {
     transform: scale(1.25);
-  }
-
-  .card {
-    --card-gap: var(--cs-spacing);
-    --border-radius: var(--cs-border-radius);
-    border-radius: var(--border-radius);
-    display: block;
-    overflow: hidden;
-  }
-
-  .card .card-body {
-    gap: var(--card-gap);
-    flex-direction: column;
-    display: flex;
-  }
-
-  header > .container, header > .content {
-    justify-content: space-between;
-    align-items: center;
-    gap: calc(var(--cs-spacing) * 2);
-    flex-wrap: wrap;
-    display: flex;
-  }
-
-  header:not(:has( > .content,  > .container)) {
-    justify-content: space-between;
-    align-items: center;
-    gap: calc(var(--cs-spacing) * 2);
-    flex-wrap: wrap;
-    display: flex;
-  }
-
-  header {
-    margin-bottom: var(--cs-spacing);
-    padding: var(--cs-spacing) 0;
-    background-color: var(--cs-surface);
-  }
-
-  header h1, header h2, header h3, header h4, header h5, header h6 {
-    margin-block: 0;
-  }
-
-  header.sticky {
-    --top: 0;
-    z-index: var(--cs-z-index-sticky);
-    top: var(--top);
-    position: sticky;
-  }
-
-  header .brand:not(a), header .brand > a {
-    justify-content: start;
-    align-items: center;
-    gap: var(--cs-spacing);
-    text-decoration: none;
-    display: inline-flex;
-  }
-
-  header nav {
-    align-items: center;
-    display: flex;
-  }
-
-  header nav hr {
-    width: 1px;
-    height: calc(var(--cs-btn-icon-size) * .8);
-    margin: 0 var(--cs-spacing);
-    border: none;
-    border-inline-start: 1px solid var(--cs-outline);
-    opacity: .7;
-    display: block;
-  }
-
-  header nav ul {
-    column-gap: var(--cs-spacing);
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-
-  header nav ul li {
-    margin: 0;
-    padding: 0;
-    display: inline-flex;
-  }
-
-  .cs-logo {
-    width: auto;
-    height: 2.5rem;
-    color: var(--cs-primary);
-    font-weight: var(--cs-font-weight-bold);
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 2.375rem;
-    display: flex;
-  }
-
-  .cs-logo > a {
-    all: unset;
-    cursor: pointer;
-  }
-
-  .cs-logo > a:is(:focus-visible, [data-focused]) {
-    outline: 2px solid var(--cs-primary);
-    outline-offset: 2px;
   }
 
   [data-theme-toggle]:before {

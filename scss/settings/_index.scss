@@ -11,9 +11,6 @@
 // Prefix for CSS variables
 $prefix: "cs" !default;
 
-// Page root element
-$page-root: "body" !default;
-
 ////////////////////////////////////////////////////////////////////////////////
 
 // Enable svg icons
@@ -153,13 +150,5 @@ $menu-font-size: .875rem !default;
 $menu-divider-margin-y: 7.5px !default;
 $menu-arrow-size: 8px !default;
 
-// TODO: возможно стоит удалить эти переменные, они слишком зависимы от конкретного дизайна
-// Logo
-$logo-height: 2.5rem !default;
-$logo-font-size: 2.375rem !default;
-
 // Transition
 $transition: .2s ease-in-out !default;
-
-// Z-index
-$z-index-sticky: 1020 !default;

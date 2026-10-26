@@ -71,7 +71,7 @@ A deliberate hybrid, not one canonical method:
 
 ### Naming
 
-- Tokens are kebab-case with `!default` in `scss/settings/_index.scss`: `$btn-font-size`, `$z-index-sticky`
+- Tokens are kebab-case with `!default` in `scss/settings/_index.scss`: `$btn-font-size`, `$transition`
 - Runtime API is prefixed via `$prefix`: `var(--#{$prefix}-primary)`; component-local
   properties are unprefixed
 

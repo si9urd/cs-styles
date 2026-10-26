@@ -1,7 +1,6 @@
 @use "settings/palettes";
 @use "index" with (
   $prefix: "cs",
-  $page-root: "#app",
   $enable-icons: true,
   $enable-forms: true,
   $enable-menu: true,

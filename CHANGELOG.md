@@ -30,6 +30,7 @@
 - Элемент `<menu>` выстраивается в ряд: `display: flex`, перенос, `align-items: center`, `--gap` по умолчанию `--cs-spacing`, без маркеров и отступа списка. Замена `.h-stack` для рядов кнопок.
 - Варианты кнопок (`[data-btn~="outlined|text|pill|fab|icon"]`) объявлены без списка элементов: специфичность (0,1,0) вместо (0,2,0). Внутри `[role="group"]` высота и скругление группы теперь побеждают и у `pill` и `fab`.
 - **Breaking.** Сетка `.grid` удалена вместе с классами колонок и брейкпоинтами. Миграция: свой CSS `display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); gap: var(--cs-spacing)`. `.container` — одно правило `inline-size: min(100% - var(--cs-spacing), 1320px)`.
+- **Breaking.** Всё, что держится на классах, кроме `.container`, вынесено в отдельный пакет `cs-layouts`: `.page`/`.content-block`, `.card`/`.card-body`, шапка `header` (с `.sticky`, `.brand`, `header > .content`) и `.cs-logo`. Вместе с ними ушли настройки `$page-root`, `$logo-height`, `$logo-font-size`, `$z-index-sticky` и токен `--cs-z-index-sticky`. Миграция: подключите `cs-layouts.css` после `cs-styles.css`, правила попадут в те же слои `objects` и `components`.
 - Каталог `scss/vendor/` удалён.
 - Разметка встроенных SVG ужата (без `width`/`height`, лишних подпутей и `fill` у масок): data URI в `--cs-icon-*` и `--cs-input-icon-*` изменились, вид прежний.
 
