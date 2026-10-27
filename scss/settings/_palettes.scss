@@ -86,10 +86,40 @@ $indigo: (
   'dark-on-tertiary-fixed-variant': #672E73, // HSB 290 60 45
   'dark-surface-dim': #12131A,
   'dark-surface-bright': #363840, // HSB 230 15 25
-  'dark-surface-container-lowest': #0C0D12, // HSB 230 30 7
+  'dark-surface-container-lowest': #12131A, // Background, HSB 230 30 10
   'dark-surface-container-low': #17181F, // HSB 230 25 12
   'dark-surface-container-high': #282930, // HSB 230 18 19
-  'dark-surface-container-highest': #32333B, // HSB 230 15 23
+  'dark-surface-container-highest': #363840, // Stroke weak, HSB 230 15 25
+);
+
+// индиго, только роли, которые использует библиотека; остальное из сгенерированной палитры
+$indigo-simple: (
+  // light
+  'light-primary': #4C63D9, // Brand, HSB 230 65 85
+  'light-on-primary': #FFF,
+  'light-primary-container': #D4DBFA, // HSB 230 15 98
+  'light-on-primary-container': #17204D, // HSB 230 70 30
+  'light-on-surface': #1A203D, // Text strong, HSB 230 57 24
+  'light-on-surface-variant': #595F7A, // Text weak, HSB 230 27 48
+  'light-outline': #8086A6, // Stroke strong, HSB 230 23 65
+  'light-surface-variant': #E4E6F0, // Stroke weak, HSB 230 5 94
+  'light-surface-container-highest': #E4E6F0, // Stroke weak, HSB 230 5 94
+  'light-surface-container': #F5F6FA, // Fill, HSB 230 2 98
+  'light-surface': #FFF, // Background, HSB 0 0 100
+  'light-surface-container-lowest': #FFF,
+  // dark
+  'dark-primary': #97A8FC, // Brand, HSB 230 40 99
+  'dark-on-primary': #1A2040, // HSB 230 60 25
+  'dark-primary-container': #394373, // HSB 230 50 45
+  'dark-on-primary-container': #D4DBFA, // HSB 230 15 98
+  'dark-on-surface': #FFF, // Text strong, HSB 230 0 100
+  'dark-on-surface-variant': #CED0D9, // Text weak, HSB 230 5 85
+  'dark-outline': #9598A6, // Stroke strong, HSB 230 10 65
+  'dark-surface-variant': #363840, // Stroke weak, HSB 230 15 25
+  'dark-surface-container-highest': #363840, // Stroke weak, HSB 230 15 25
+  'dark-surface-container': #1F2026, // Fill, HSB 230 20 15
+  'dark-surface': #12131A, // Background, HSB 230 30 10
+  'dark-surface-container-lowest': #12131A, // Background, HSB 230 30 10
 );
 
 // фиолетовый, оттенок 256
