@@ -28,8 +28,8 @@
 
   // Container pair, not raw primary: holds AA for selected text in both themes
   ::selection {
-    background-color: var(--#{$prefix}-primary-container);
-    color: var(--#{$prefix}-on-primary-container);
+    background-color: var(--#{$prefix}-primary);
+    color: var(--#{$prefix}-on-primary);
   }
 }
 

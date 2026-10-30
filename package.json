@@ -12,9 +12,7 @@
     "build:banner": "node --input-type=commonjs -e \"const fs=require('fs'),b=fs.readFileSync('scss/_copyright.scss');for(const f of ['dist/cs-styles.css','dist/cs-styles.min.css'])fs.writeFileSync(f,b+fs.readFileSync(f,'utf8').replace(/\\s*--lightningcss-(light|dark):[^;}]*;?/g,''))\"",
     "dev": "npm run build:css -- --watch",
     "check:diff": "git diff --no-index --exit-code .baseline/cs-styles.css dist/cs-styles.css",
-    "lint":"postcss \"scss/**/*.scss\" --replace && stylelint --fix \"scss/**/*.scss\"",
-    "theme": "node m3theme-loader.js src=material-theme-default.json scss=scss/settings/_themes_colors.scss",
-    "generate-theme": "node m3theme-generator.js \"#6750A4\""
+    "lint": "postcss \"scss/**/*.scss\" --replace && stylelint --fix \"scss/**/*.scss\""
   },
   "repository": {
     "type": "git",
@@ -35,7 +33,6 @@
   "author": "Oleh Obydonov",
   "license": "MIT",
   "devDependencies": {
-    "@material/material-color-utilities": "^0.4.0",
     "css-declaration-sorter": "^7.2.0",
     "lightningcss-cli": "^1.33.0",
     "postcss": "^8.4.47",

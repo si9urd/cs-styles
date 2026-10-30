@@ -1,0 +1,9 @@
+@use "../settings" as *;
+
+// Light from the top, tinted with the text color rather than black.
+// Raised: small and sharp, lifts interactive elements off the page.
+// Overlay: large and soft, for elements floating above it (menus, dialogs, FAB).
+:root {
+  --#{$prefix}-shadow-raised: 0 1px 3px color-mix(in srgb, var(--#{$prefix}-on-surface) 20%, transparent);
+  --#{$prefix}-shadow-overlay: 0 8px 24px color-mix(in srgb, var(--#{$prefix}-on-surface) 16%, transparent);
+}

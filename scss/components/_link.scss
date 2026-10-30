@@ -2,7 +2,7 @@
 @use "../tools" as *;
 
 /// Current, hovered, focused, or pressed link: a shade toward the text color.
-/// Not toward --cs-base: that is the page color and would drop contrast below the resting link
+/// Not toward --cs-surface: that is the page color and would drop contrast below the resting link
 @mixin link-active {
   --link-color: color-mix(in lab, var(--#{$prefix}-primary) 90%, var(--#{$prefix}-on-surface));
   --link-underline-color: color-mix(in lab, var(--#{$prefix}-primary) 80%, var(--#{$prefix}-on-surface));

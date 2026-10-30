@@ -13,7 +13,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   // Focus ring and border; validation states swap it
   --accent: var(--#{$prefix}-primary);
   --font-size: #{$font-size-input};
-  --background: var(--#{$prefix}-surface-container-lowest);
+  --background: var(--#{$prefix}-surface);
   --background-size: #{$btn-inner-icon-size};
   // Inline-end padding that keeps text clear of a state icon or the select chevron
   --icon-room: calc(var(--#{$prefix}-spacing) * 2 + var(--background-size));

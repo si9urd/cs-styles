@@ -1,4 +1,3 @@
-@use "settings/palettes";
 @use "index" with (
   $prefix: "cs",
   $enable-icons: true,
@@ -6,5 +5,4 @@
   $enable-menu: true,
   $enable-autofill-fix: true,
   $enable-landmarks: true,
-  $theme-colors: palettes.$mint,
 );

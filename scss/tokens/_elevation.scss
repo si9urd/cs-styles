@@ -1,9 +1,0 @@
-@use "../tools" as *;
-
-:root {
-  @include make-elevation(#000000);
-
-  @include dark {
-    @include make-elevation(#FFFFFF);
-  }
-}

@@ -13,7 +13,7 @@
     padding: $menu-padding-y 0;
     border-radius: var(--#{$prefix}-border-radius);
     background-color: var(--#{$prefix}-surface-container);
-    box-shadow: var(--#{$prefix}-elevation-2);
+    box-shadow: var(--#{$prefix}-shadow-overlay);
     color: var(--#{$prefix}-on-surface);
     font-weight: var(--#{$prefix}-font-weight-medium);
     font-size: $menu-font-size;
@@ -109,7 +109,7 @@
       margin: $menu-divider-margin-y 0;
       padding: 0;
       border: none;
-      background-color: var(--#{$prefix}-surface-variant);
+      background-color: var(--#{$prefix}-outline-variant);
     }
   }
 

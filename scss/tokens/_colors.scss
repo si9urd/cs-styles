@@ -1,25 +1,10 @@
-@use "sass:list";
 @use "sass:map";
-@use "sass:string";
 @use "../settings" as *;
-@use "../settings/themes_colors" as generated;
 @use "../tools" as *;
 
-// Palette roles the library reads; the rest of a generated M3 palette stays out of the CSS.
-// Keys a consumer adds to $theme-colors on top of the palette are always emitted.
-$roles: primary on-primary primary-container on-primary-container tertiary error success surface on-surface
-  surface-variant on-surface-variant outline surface-bright surface-container-lowest surface-container
-  surface-container-highest;
-
 @mixin theme-colors($theme) {
-  @each $name, $value in $theme-colors {
-    @if string.index($name, "#{$theme}-") == 1 {
-      $role: string.slice($name, string.length($theme) + 2);
-
-      @if list.index($roles, $role) or not map.has-key(generated.$theme-palette, $name) {
-        --#{$prefix}-#{$role}: #{$value};
-      }
-    }
+  @each $role, $value in map.get($theme-colors, $theme) {
+    --#{$prefix}-#{$role}: #{$value};
   }
 }
 

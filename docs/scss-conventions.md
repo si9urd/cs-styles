@@ -26,10 +26,10 @@ A deliberate hybrid, not one canonical method:
 - **Custom properties are the component API.** Unprefixed local knobs
   (`--height`, `--container-color`, `--elevation`) declared once and re-pointed by state;
   prefixed `--cs-*` is the public surface. Theming is `data-theme="dark"` + `color-scheme`.
-- **Material Design 3 is the design language.** Color roles (`surface-container`,
-  `on-surface-container`, `outline-variant`), elevation 0–4, button types
-  (filled / outlined / text / FAB / icon). Palettes are *generated*
-  from `material-theme*.json` — `_themes_colors.scss` is an artifact, never hand-edited.
+- **Material Design 3 is the design language.** Color role names (`primary`/`on-primary`,
+  `surface`/`on-surface`, `on-surface-variant`, `outline`, `outline-variant`, `surface-container`,
+  `error`, `warning`, `success`; one purpose each, see `THEME-DESIGN.md`), two shadows (`--cs-shadow-raised`, `--cs-shadow-overlay`), button types
+  (filled / outlined / text / FAB / icon). The palette is the hand-written `$theme-colors` map in `settings/`.
 - **State layers are tokens.** Hover/press/selected/disabled shares live in `settings/`
   (`$state-*`), used in place by the components; they mix them with `color-mix`, never a
   literal percentage.

@@ -23,7 +23,7 @@
   --layer-hover: #{$state-hover};
   --layer-press: #{$state-press};
   --disabled-container: #{$disabled-container};
-  --elevation: var(--#{$prefix}-elevation-0);
+  --elevation: none;
   --opacity: 1;
 
   display: inline-flex;
@@ -68,7 +68,7 @@
   // State layer: the label color over the container
   @include hover(":where(#{$disabled})") {
     --state-layer: var(--layer-hover);
-    --elevation: var(--#{$prefix}-elevation-1);
+    --elevation: var(--#{$prefix}-shadow-raised);
   }
 
   @include focus-visible {
@@ -79,7 +79,7 @@
 
   &:is(:active, [aria-pressed="true"]):not(:where(#{$disabled})) {
     --state-layer: var(--layer-press);
-    --elevation: var(--#{$prefix}-elevation-0);
+    --elevation: none;
   }
 
   // Blocks pointer only: Enter/Space still fire, pair with disabled or aria-disabled to block submit
@@ -96,7 +96,7 @@
     --background-color: var(--disabled-container);
     --border-color: var(--background-color);
     --color: #{$disabled-content};
-    --elevation: var(--#{$prefix}-elevation-0);
+    --elevation: none;
 
     @include forced-disabled;
   }
@@ -140,7 +140,7 @@
   --size: #{$btn-height};
   --color: var(--#{$prefix}-on-surface-variant);
   --container-color: transparent;
-  --elevation: var(--#{$prefix}-elevation-0);
+  --elevation: none;
   --icon-size: var(--#{$prefix}-btn-icon-size);
   --disabled-container: transparent;
   // Equal side padding: icon + padding + border add up to --size, wider content grows a rectangle
@@ -156,7 +156,7 @@
   background-size: var(--#{$prefix}-btn-icon-size);
 
   &:is(:hover, [data-hovered]) {
-    --elevation: var(--#{$prefix}-elevation-0);
+    --elevation: none;
   }
 
   :is(#{$icon-elements}) {
@@ -181,7 +181,7 @@
 }
 
 %button-text {
-  --elevation: var(--#{$prefix}-elevation-0);
+  --elevation: none;
   --padding-start: #{$spacing * .75};
   --padding-end: #{$spacing * .75};
 
@@ -190,7 +190,7 @@
   }
 
   &:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [aria-pressed="true"]) {
-    --elevation: var(--#{$prefix}-elevation-0);
+    --elevation: none;
   }
 }
 
@@ -201,27 +201,17 @@
 %button-fab {
   --height: #{$fab-size};
   --border-radius: #{$fab-border-radius};
-  --container-color: var(--#{$prefix}-primary-container);
-  --color: var(--#{$prefix}-on-primary-container);
+  --container-color: var(--#{$prefix}-primary);
+  --color: var(--#{$prefix}-on-primary);
   --padding-start: 0;
   --padding-end: 0;
-  // Floats above the page: rests lifted, or the pale container melts into the surface
-  --elevation: var(--#{$prefix}-elevation-3);
+  // Floats above the page: overlay in every state, the base hover/press shadows don't apply
+  --elevation: var(--#{$prefix}-shadow-overlay);
 
   min-width: var(--height);
 
-  // Dark theme: the layer over primary-container reads too heavy
-  @include in-dark {
-    --layer-hover: #{$state-hover-soft};
-    --layer-press: #{$state-press-soft};
-  }
-
-  @include hover(":where(#{$disabled})") {
-    --elevation: var(--#{$prefix}-elevation-4);
-  }
-
-  &:is(:focus-visible, [data-focused], :active, [aria-pressed="true"]):not(:where(#{$disabled})) {
-    --elevation: var(--#{$prefix}-elevation-3);
+  &:is(:hover, [data-hovered], :active, [aria-pressed="true"]):not(:where(#{$disabled})) {
+    --elevation: var(--#{$prefix}-shadow-overlay);
   }
 }
 
@@ -280,8 +270,6 @@
     @extend %button-base;
     @extend %button-primary;
     @extend %button-disabled;
-
-    --container-color: var(--#{$prefix}-tertiary);
   }
 }
 

@@ -110,7 +110,7 @@
   ],
   "narrative": {
     "northStar": "Markup Made Visible",
-    "overview": "An element looks like what it is and the state it is in. A <button> is a filled primary button with no class; aria-invalid=\"true\" turns a field's stroke red and adds an icon; aria-busy=\"true\" turns a control into a spinner; aria-disabled and :disabled fade it to the shared 38% disabled ink. The visual system is the rendering of HTML semantics and ARIA state, and it should never show a state the accessibility tree doesn't have.\n\nThe mood is calm, precise, utilitarian. Surfaces are white or near-white, tinted toward the single brand hue. Ink is that same hue at low saturation, and one saturated accent marks what can be acted on. Expression goes into state feedback: a state layer mixed into the container, a centered CSS ripple on press, a 2px primary focus ring, a shadow that appears on hover. Density is app-like: 2.5rem buttons, 3rem fields and menu rows, a 1rem spacing unit.\n\nThe palette is a role scheme, not a color. Presets (mint, indigo, violet, navy, teal in settings/_palettes.scss) and M3 Theme Builder JSON all fill the same roles. The hex values in this file are the current default build (mint, hue 165) and serve as examples of each role.",
+    "overview": "An element looks like what it is and the state it is in. A <button> is a filled primary button with no class; aria-invalid=\"true\" turns a field's stroke red and adds an icon; aria-busy=\"true\" turns a control into a spinner; aria-disabled and :disabled fade it to the shared 38% disabled ink. The visual system is the rendering of HTML semantics and ARIA state, and it should never show a state the accessibility tree doesn't have.\n\nThe mood is calm, precise, utilitarian. Surfaces are white or near-white, tinted toward the single brand hue. Ink is that same hue at low saturation, and one saturated accent marks what can be acted on. Expression goes into state feedback: a state layer mixed into the container, a centered CSS ripple on press, a 2px primary focus ring, a shadow that appears on hover. Density is app-like: 2.5rem buttons, 3rem fields and menu rows, a 1rem spacing unit.\n\nThe palette is a role scheme, not a color: 11 M3-named roles in $theme-colors (settings/_index.scss), the default build is indigo, hue 230 (see THEME-DESIGN.md). The hex values in this file come from the earlier mint build (hue 165) and serve only as examples of each role.",
     "keyCharacteristics": [
       "Semantics and ARIA select the styles; classes only for variants semantics can't express (.btn-outlined, .btn-text, .btn-pill, .btn-fab, .btn-icon, .menu, .card).",
       "One hue per theme: neutrals, ink, and strokes are all tinted with the brand hue.",
@@ -135,7 +135,7 @@
       "Do gate motion behind prefers-reduced-motion: no-preference."
     ],
     "donts": [
-      "Don't hardcode hex or rgb in components; the only literal colors live in palettes and the generated theme.",
+      "Don't hardcode hex or rgb in components; the only literal colors live in the $theme-colors palette.",
       "Don't add state modifier classes (.is-active, .disabled, .error); if HTML or ARIA can express the state, style that.",
       "Don't introduce a second accent hue within a theme.",
       "Don't let Stroke Weak (outline-variant) be the only signal of a state.",

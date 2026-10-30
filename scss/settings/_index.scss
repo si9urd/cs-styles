@@ -1,7 +1,4 @@
 @use "sass:map" as map;
-@use "sass:meta" as meta;
-@use "themes_colors" as palette;
-@use "palettes";
 @use "icons" as builtin;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -39,29 +36,36 @@ $enable-landmarks: true !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// Color set on top of the generated palette:
-// a name from `_palettes.scss` ("indigo", "violet") or a map of its shape
-$palette: null !default;
+// Theme colors, emitted as --cs-<role> per theme. User entries add to or replace the defaults.
+// Text and strokes keep their contrast on both surface and surface-container. HSB in comments.
 $theme-colors: () !default;
-
-@if meta.type-of($palette) == "string" {
-  @if not map.has-key(meta.module-variables("palettes"), $palette) {
-    @error "Unknown $palette `#{$palette}`, expected one of: #{map.keys(meta.module-variables("palettes"))}";
-  }
-  $palette: map.get(meta.module-variables("palettes"), $palette);
-}
-
-// Generated palette < $palette < user overrides
-$theme-colors: map.merge(map.merge(palette.$theme-palette, $palette or ()), $theme-colors);
-// Range and progress track. A solid ≥ 3:1 track would merge with the primary fill (outline vs primary ≈ 1.4:1),
-// so the fill stays light (≥ 3:1 to primary) and a 1px stroke (≥ 3:1 to every surface) draws its edge.
-// Light uses on-surface-variant: outline sits at ~3:1 on white and drops under it on surface-container.
-// Keys already in $theme-colors win
-$theme-colors: map.merge((
-  "light-track": map.get($theme-colors, "light-secondary-container"),
-  "dark-track": map.get($theme-colors, "dark-secondary-container"),
-  "light-track-outline": map.get($theme-colors, "light-on-surface-variant"),
-  "dark-track-outline": map.get($theme-colors, "dark-outline"),
+$theme-colors: map.deep-merge((
+  light: (
+    primary: #4C63D9, // 230 65 85: links, buttons, checked controls, focus
+    on-primary: #FFF,
+    surface: #FFF, // page and field background
+    on-surface: #1A203D, // 230 57 24: primary text, ≥ 4.5:1
+    on-surface-variant: #595F7A, // 230 27 48: supporting text and icons, ≥ 4.5:1
+    outline: #8086A6, // 230 23 65: control borders, ≥ 3:1
+    outline-variant: #E4E6F0, // 230 5 94: decorative dividers
+    surface-container: #F5F6FA, // 230 2 98: secondary background of buttons, menus, tracks
+    error: #C73A3A, // 0 71 78
+    warning: #8F6C1A, // 42 82 56
+    success: #067A58, // 162 95 48
+  ),
+  dark: (
+    primary: #97A8FC, // 230 40 99
+    on-primary: #12131A,
+    surface: #12131A, // 230 30 10
+    on-surface: #FFF,
+    on-surface-variant: #CED0D9, // 230 5 85
+    outline: #9598A6, // 230 10 65
+    outline-variant: #363840, // 230 15 25
+    surface-container: #1F2026, // 230 20 15
+    error: #FF9C9C, // 0 39 100
+    warning: #E0BF70, // 42 50 88
+    success: #77C7AF, // 162 40 78
+  ),
 ), $theme-colors);
 
 ////////////////////////////////////////////////////////////////////////////////

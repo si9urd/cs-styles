@@ -16,7 +16,7 @@ $input-icons: (
     $svg: map.get($icons, $name);
 
     @if $svg {
-      --#{$prefix}-input-icon-#{$name}: #{svg-url($svg, map.get($theme-colors, "#{$theme}-#{$color}"))};
+      --#{$prefix}-input-icon-#{$name}: #{svg-url($svg, map.get($theme-colors, $theme, $color))};
     }
   }
 }

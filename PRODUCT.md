@@ -16,7 +16,7 @@ A CSS framework for semantic HTML: well-formed HTML5 and ARIA markup gets a fini
 
 ## Positioning
 
-- **M3 theming:** palettes come from Material Theme Builder JSON (`material-theme*.json` → `m3theme-loader.js` / `m3theme-generator.js`) and surface as `--cs-*` custom properties with light/dark via `data-theme="dark"`.
+- **Theming:** a small palette of M3-named roles (`$theme-colors`, see `THEME-DESIGN.md`) surfaces as `--cs-*` custom properties with light/dark via `data-theme="dark"`.
 - **ARIA as API:** states and components are switched by ARIA attributes and roles (`aria-busy`, `aria-pressed`, `role`, …), not by modifier classes.
 - **SCSS configuration:** deep customization through `@use ... with (...)` over `!default` settings; ITCSS directories mapped to `@layer tokens, generic, elements, objects, components` so consumer overrides win without specificity fights.
 
@@ -30,7 +30,6 @@ Consumed either as the prebuilt `dist/cs-styles.min.css` or as the SCSS entry `s
 - **Lightweight bundle.** `dist` size is a tracked concern; new features must justify their bytes.
 - **Stable public API.** Classes, `--cs-*` properties, `data-theme`, and the element/ARIA hooks change only via a SemVer major with migration notes in `CHANGELOG.md`.
 - **WCAG AA.** Text contrast ≥ 4.5:1, UI/stroke ≥ 3:1 (see `THEME-DESIGN.md`), visible focus, respect for `prefers-reduced-motion`.
-- Theme palette `_themes_colors.scss` is generated; never hand-edit.
 - Undecided: `package.json` publishing fields (`exports`, `files`, `style`, `sideEffects`) — see `tasks.md`.
 
 ## Brand Commitments
