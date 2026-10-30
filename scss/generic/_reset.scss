@@ -95,12 +95,6 @@
     letter-spacing: inherit;
   }
 
-  // Remove default background and border from buttons
-  :where(button, [type="button"], [type="reset"], [type="submit"]) {
-    border-style: none;
-    background-color: transparent;
-  }
-
   // Remove inner border and padding in Firefox
   ::-moz-focus-inner {
     padding: 0;

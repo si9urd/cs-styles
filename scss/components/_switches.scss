@@ -17,13 +17,11 @@
     --size: #{$radio-size};
     --border-color: var(--#{$prefix}-on-surface-variant);
     --border-width: #{$control-border-width};
-    --background-color: transparent;
 
     appearance: none;
     position: relative;
     width: var(--size);
     height: var(--size);
-    margin: 0;
     margin-inline-end: calc(var(--#{$prefix}-spacing) * .5);
     border: var(--border-width) solid var(--border-color);
     vertical-align: middle;
@@ -111,7 +109,6 @@
 
     display: inline-flex;
     width: calc(var(--size) * 1.8);
-    border: $control-border-width solid var(--border-color);
     border-radius: var(--size);
     background-color: var(--background-color);
 

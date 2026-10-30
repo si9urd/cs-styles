@@ -129,13 +129,3 @@ $disabled: ":disabled, [disabled]:not([disabled=\"false\"]), [aria-disabled=\"tr
     --color: GrayText;
   }
 }
-
-/// Triangle helper. Need for accordion component.
-@mixin triangle($size, $color, $direction: 0deg) {
-  width: 0;
-  height: 0;
-  transform: rotate($direction);
-  border-width: calc($size / 2) 0 calc($size / 2) calc($size * 2 / 3);
-  border-style: solid;
-  border-color: transparent transparent transparent $color;
-}

@@ -5,5 +5,5 @@
 // Overlay: large and soft, for elements floating above it (menus, dialogs, FAB).
 :root {
   --#{$prefix}-shadow-raised: 0 1px 3px color-mix(in srgb, var(--#{$prefix}-on-surface) 20%, transparent);
-  --#{$prefix}-shadow-overlay: 0 8px 24px color-mix(in srgb, var(--#{$prefix}-on-surface) 16%, transparent);
+  --#{$prefix}-shadow-overlay: 0 8px 1rem color-mix(in srgb, var(--#{$prefix}-on-surface) 16%, transparent);
 }

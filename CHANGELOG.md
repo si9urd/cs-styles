@@ -16,7 +16,8 @@
 ### Added
 
 - Начато оформление журнала изменений.
-- Кнопка-иконка определяется сама: кнопка с `aria-label`/`aria-labelledby`, у которой нет детей или все дети — `i`, `img`, `svg`, получает вид `data-btn="icon"`. Явный `data-btn` (например, `fab`) отключает автоопределение; `[data-theme-toggle]` не затронут.
+- Вертикальный разделитель: `<hr aria-orientation="vertical">`, а также любой `<hr>` внутри `header nav` (кроме вложенного в `<menu>`), по высоте flex/grid-строки, но не выше стандартной кнопки (`$btn-height`), по центру; между строчным содержимым — высотой в строку.
+- Кнопка-иконка определяется сама: кнопка с `aria-label`/`aria-labelledby`, у которой нет детей или все дети — `i`, `img`, `svg`, получает вид `data-btn="icon"`. Явный `data-btn` (например, `fab`) отключает автоопределение; `[data-theme-toggle]` всегда получает вид кнопки-иконки.
 - Кнопка-иконка остаётся квадратной во flex-контейнере (не сжимается), а под содержимое шире иконки растягивается в прямоугольник с равными боковыми отступами вместо того, чтобы обрезать его.
 - Баннер с лицензией теперь и в `dist/cs-styles.css` (раньше только в `.min.css`).
 - Настройка `$enable-auto-dark` (по умолчанию `false`): без `data-theme` на корне тема следует за `prefers-color-scheme`, `data-theme="light"` закрепляет светлую. Сборка по умолчанию не меняется.
@@ -26,6 +27,12 @@
 
 ### Changed
 
+- Кнопка `input[type="file"]` (`::file-selector-button`) больше не наследует все правила обычной кнопки через `@extend`: у неё своё короткое правило (заливка `primary`, слой hover/press, вид disabled). Состояния `aria-pressed`, `aria-busy`, `data-focused` и тень при hover у неё больше не работают; фокус показывает само поле. `dist/cs-styles.min.css` уменьшился на ~3 КБ.
+- **Breaking.** Удалены переменные ссылки `--link-font-size` и `--link-background-color` (значения совпадали с умолчаниями браузера), ключи `0`, `1`, `5` из `$spacers` (не использовались) и mixin `triangle` из `tools/`. `$btn-inner-icon-size` переименован в `$input-icon-size` (размер иконки состояния в поле).
+- `svg` с атрибутом `fill` (например, `fill="none"` у контурных иконок) внутри кнопки больше не перекрашивается в `currentColor`.
+
+- Кнопка-иконка (`data-btn="icon"`, автоопределение, `[data-theme-toggle]`) круглая и в 1.25 раза больше обычной кнопки: `3.125rem` вместо `2.5rem`; под содержимое шире иконки растягивается в пилюлю.
+- Рамка outlined-кнопки — `primary` с прозрачностью 80% (stroke strong) вместо сплошного `primary`.
 - **Breaking.** Цветовая схема упрощена до 11 ролей с одним назначением у каждой (палитра индиго, `THEME-DESIGN.md`): `primary`/`on-primary`, `surface`/`on-surface`, `on-surface-variant`, `outline`, `outline-variant`, `surface-container`, `error`, `warning` (новая), `success`. Поменялись значения всех ролей, по умолчанию палитра индиго вместо мятной. `$theme-colors` теперь задаётся по темам: `(light: (primary: …), dark: (…))` вместо ключей `light-*`/`dark-*`. Удалены токены и что использовать вместо них: `--cs-primary-container`/`--cs-on-primary-container` → `--cs-primary`/`--cs-on-primary` (FAB и `::selection` теперь на них), `--cs-tertiary` → `--cs-primary` (кнопка `input[type="file"]` стала обычной primary), `--cs-surface-variant` → `--cs-outline-variant`, `--cs-surface-container-lowest` и `--cs-surface-bright` → `--cs-surface`, `--cs-surface-container-highest` и `--cs-track` → `--cs-surface-container`, `--cs-track-outline` → `--cs-outline`. Убраны настройка `$palette`, пресеты `_palettes.scss`, M3-генератор (`npm run theme`, `npm run generate-theme`, `material-theme*.json`, `_themes_colors.scss`) и зависимость `@material/material-color-utilities`.
 - **Breaking.** Уровни `--cs-elevation-0…4` заменены двумя тенями цвета `on-surface` со светом сверху: `--cs-shadow-raised` (маленькая и резкая) и `--cs-shadow-overlay` (большая и мягкая). Кнопка при hover поднимается на `raised`, меню и FAB — на `overlay` (FAB больше не поднимается при hover). Миграция: `elevation-0` → `none`, `elevation-1` → `--cs-shadow-raised`, `elevation-2…4` → `--cs-shadow-overlay`. Удалены mixin'ы `elevation` и `make-elevation` из `tools/`.
 - `[aria-controls]` больше не получает `cursor: pointer`: атрибут описывает связь, а не интерактивность. Курсор задают сами компоненты.

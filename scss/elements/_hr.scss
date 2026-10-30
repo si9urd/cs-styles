@@ -3,12 +3,21 @@
 @mixin breakdown {
   // Reset horizontal rule borders and sizing
   :where(hr) {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
     border: 0;
     border-top: $border-width solid;
     color: inherit;
+  }
+
+  // Vertical rule (explicit, or in a header nav outside a menu): as tall as its flex/grid row, but no taller
+  // than a button, centered; one line tall between inline content
+  :where(hr[aria-orientation="vertical"], header nav hr) {
+    display: inline-block;
+    align-self: center;
+    vertical-align: middle;
+    border-top: 0;
+    width: 1px;
+    height: $btn-icon-size;
+    background-color: currentcolor;
   }
 }
 

@@ -15,8 +15,8 @@
   --font-size: #{$btn-font-size};
   --font-weight: var(--#{$prefix}-font-weight-medium);
   --line-height: var(--#{$prefix}-line-height-base);
-  --color: var(--#{$prefix}-on-surface);
-  --container-color: var(--#{$prefix}-surface-container);
+  --color: var(--#{$prefix}-on-primary);
+  --container-color: var(--#{$prefix}-primary);
   --background-color: color-mix(in srgb, var(--color) var(--state-layer), var(--container-color));
   --border-color: var(--background-color);
   --state-layer: 0%;
@@ -38,14 +38,13 @@
   border: $border-width solid var(--border-color);
   border-radius: var(--border-radius);
   outline: 0 solid transparent;
-  background-repeat: no-repeat;
   background-color: var(--background-color);
   box-shadow: var(--elevation);
   color: var(--color);
   font-weight: var(--font-weight);
   font-size: var(--font-size);
   line-height: var(--line-height);
-  font-family: var(--font-family), sans-serif;
+  font-family: var(--font-family);
   text-align: center;
   text-decoration: none;
   text-wrap: balance;
@@ -53,10 +52,10 @@
   // Lets an unbroken label (URL, long compound word) shrink to max-width instead of overflowing
   overflow-wrap: anywhere;
   opacity: var(--opacity);
-  touch-action: manipulation;
   transition: var(--#{$prefix}-transition);
   transition-property: background-color, border-color, box-shadow, color, outline-color, opacity;
   user-select: none;
+  cursor: pointer;
 
   @include touch-target;
 
@@ -88,9 +87,7 @@
 
     --opacity: #{$btn-busy-opacity};
   }
-}
 
-%button-disabled {
   @include disabled {
     --state-layer: 0%;
     --background-color: var(--disabled-container);
@@ -98,38 +95,23 @@
     --color: #{$disabled-content};
     --elevation: none;
 
+    cursor: not-allowed;
+
     @include forced-disabled;
   }
-}
 
-%button-inner-icon {
   :is(#{$icon-elements}) {
     display: inline-flex;
-    width: $btn-inner-icon-size;
-    height: $btn-inner-icon-size;
+    width: $btn-icon-size;
+    height: $btn-icon-size;
     line-height: inherit;
-  }
-
-  i {
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  // Icons paint with the label color; fill attributes on paths still win
-  svg {
-    fill: currentcolor;
   }
 }
 
 // endregion button-base
 
-%button-primary {
-  --container-color: var(--#{$prefix}-primary);
-  --color: var(--#{$prefix}-on-primary);
-}
-
 %button-outlined {
-  --border-color: var(--#{$prefix}-primary);
+  --border-color: color-mix(in srgb, var(--#{$prefix}-primary) 80%, transparent);
 
   @include disabled {
     --border-color: #{$disabled-container};
@@ -137,10 +119,10 @@
 }
 
 %button-icon {
-  --size: #{$btn-height};
+  --size: #{$btn-height * 1.25};
+  --border-radius: #{$border-radius-pill};
   --color: var(--#{$prefix}-on-surface-variant);
   --container-color: transparent;
-  --elevation: none;
   --icon-size: var(--#{$prefix}-btn-icon-size);
   --disabled-container: transparent;
   // Equal side padding: icon + padding + border add up to --size, wider content grows a rectangle
@@ -152,8 +134,6 @@
   min-width: var(--size);
   height: var(--size);
   padding-block: 0;
-  background-position: center;
-  background-size: var(--#{$prefix}-btn-icon-size);
 
   &:is(:hover, [data-hovered]) {
     --elevation: none;
@@ -181,7 +161,6 @@
 }
 
 %button-text {
-  --elevation: none;
   --padding-start: #{$spacing * .75};
   --padding-end: #{$spacing * .75};
 
@@ -201,8 +180,6 @@
 %button-fab {
   --height: #{$fab-size};
   --border-radius: #{$fab-border-radius};
-  --container-color: var(--#{$prefix}-primary);
-  --color: var(--#{$prefix}-on-primary);
   --padding-start: 0;
   --padding-end: 0;
   // Floats above the page: overlay in every state, the base hover/press shadows don't apply
@@ -223,9 +200,6 @@
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     // Set base styles
     @extend %button-base;
-    @extend %button-primary;
-    @extend %button-inner-icon;
-    @extend %button-disabled;
 
     @if $enable-ripple {
       // ::before is the icon there
@@ -237,7 +211,7 @@
     // Auto icon button: a labelled button whose only children are icons.
     // :has() can't see text nodes, so the accessible name stands in for "no visible text".
     // :where keeps base specificity: any explicit data-btn variant wins
-    &:where([aria-label], [aria-labelledby]):where(:empty, :has(> :is(#{$icon-elements})):not(:has(> :not(#{$icon-elements})))):where(:not([data-btn], [data-theme-toggle])) {
+    &:where([aria-label], [aria-labelledby]):where(:empty, :has(> :is(#{$icon-elements})):not(:has(> :not(#{$icon-elements})))):where(:not([data-btn])) {
       @extend %button-icon;
     }
   }
@@ -262,14 +236,41 @@
     @extend %button-fab;
   }
 
-  [data-btn~="icon"] {
+  [data-btn~="icon"],
+  [data-theme-toggle] {
     @extend %button-icon;
   }
 
+  // Own rule, no @extend: a pseudo-element can't join the button list, every base rule would be duplicated
   [type="file"]::file-selector-button {
-    @extend %button-base;
-    @extend %button-primary;
-    @extend %button-disabled;
+    min-height: $btn-height;
+    margin-inline-end: $btn-inner-gap;
+    padding: $btn-padding-y map.get($spacers, 4);
+    border: 0;
+    border-radius: var(--#{$prefix}-border-radius);
+    background-color: color-mix(in srgb, var(--#{$prefix}-on-primary) var(--state-layer, 0%), var(--#{$prefix}-primary));
+    color: var(--#{$prefix}-on-primary);
+    font-weight: var(--#{$prefix}-font-weight-medium);
+    cursor: pointer;
+    transition: background-color var(--#{$prefix}-transition);
+  }
+
+  [type="file"] {
+    @include hover(":where(#{$disabled})") {
+      --state-layer: #{$state-hover};
+    }
+
+    &:active:not(:where(#{$disabled})) {
+      --state-layer: #{$state-press};
+    }
+
+    @include disabled {
+      &::file-selector-button {
+        background-color: $disabled-container;
+        color: $disabled-content;
+        cursor: not-allowed;
+      }
+    }
   }
 }
 

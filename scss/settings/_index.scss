@@ -82,12 +82,9 @@ $line-height-base: 1.5 !default;
 // Spacing
 $spacing: 1rem !default;
 $spacers: (
-  0: 0,
-  1: $spacing * .25,
   2: $spacing * .5,
   3: $spacing,
   4: $spacing * 1.5,
-  5: $spacing * 3,
 ) !default;
 
 // Shape
@@ -122,7 +119,6 @@ $btn-font-size: 1rem !default;
 $btn-padding-y: .25rem !default;
 $btn-inner-gap: .5rem !default;
 $btn-icon-size: 1.5rem !default;
-$btn-inner-icon-size: $btn-icon-size * .75 !default;
 $btn-busy-opacity: .9 !default;
 $fab-size: 3.5rem !default;
 $fab-border-radius: 1rem !default;
@@ -131,6 +127,7 @@ $enable-ripple: false !default;
 // Inputs
 $input-height: 3rem !default;
 $font-size-input: 1rem !default;
+$input-icon-size: $btn-icon-size * .75 !default;
 // A field's starting width in a [role="group"] row before it wraps or shrinks
 $group-field-basis: 8rem !default;
 

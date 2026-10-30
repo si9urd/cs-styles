@@ -11,21 +11,17 @@
 @mixin link {
   a:not([role="button"]),
   [role="link"] {
-    --link-font-size: inherit;
     --link-color: var(--#{$prefix}-primary);
-    --link-background-color: transparent;
     --link-underline-color: var(--link-color);
 
-    background-color: var(--link-background-color);
     color: var(--link-color);
-    font-size: var(--link-font-size);
     text-decoration: underline;
     text-decoration-color: var(--link-underline-color);
     text-decoration-thickness: .1em;
     text-underline-offset: .15em;
     cursor: pointer;
     transition: var(--#{$prefix}-transition);
-    transition-property: background-color, color, text-decoration-color, box-shadow;
+    transition-property: color, text-decoration-color;
 
     &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], :active) {
       @include link-active;
