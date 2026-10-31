@@ -3,7 +3,7 @@
 
 @mixin loading {
   // Controls, inline text, and empty placeholders; a busy region (section, table, list) keeps its layout, cursor only
-  [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(input, select, textarea) {
+  :is(#{$busy}):is(button, [role="button"], a, [role="link"], span, :empty):not(input, select, textarea) {
     &::before {
       @include icon-mask(var(--#{$prefix}-icon-ring-spinner));
 

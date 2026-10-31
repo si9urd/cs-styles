@@ -21,9 +21,9 @@
 }
 
 /// Press ripple, pure CSS: grows from the center (pointer position needs JS).
-/// The element must be positioned; uses ::before, skipped while aria-busy (spinner).
+/// The element must be positioned; uses ::before, skipped while busy (spinner).
 @mixin ripple($color: currentColor, $opacity: .24, $duration: .6s) {
-  &:not([aria-busy="true"])::before {
+  &:not(#{$busy})::before {
     position: absolute;
     inset: 0;
     border-radius: inherit;
@@ -37,7 +37,7 @@
     }
   }
 
-  &:active:not(:where(#{$disabled}), [aria-busy="true"])::before {
+  &:active:not(:where(#{$disabled}), #{$busy})::before {
     background-size: 0 0;
     opacity: $opacity;
     transition: none;
@@ -114,6 +114,9 @@ $icon-elements: "i, img, svg";
 /// Disabled states. `disabled="false"` is ignored only where it isn't native: `disabled` is boolean on form controls.
 /// Exclude with `:not(:where(#{$disabled}))`: :where keeps variant overrides in charge.
 $disabled: ":disabled, [disabled]:not([disabled=\"false\"]), [aria-disabled=\"true\"]";
+
+/// Busy states: ARIA plus [data-pending] (headless UI libs).
+$busy: "[aria-busy=\"true\"], [data-pending]";
 
 @mixin disabled {
   &:is(#{$disabled}) {

@@ -8,7 +8,7 @@
   }
 
   // Change the cursor on busy elements in all browsers (opinionated)
-  [aria-busy="true"] {
+  #{$busy} {
     cursor: progress;
   }
 }

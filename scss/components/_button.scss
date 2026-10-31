@@ -88,7 +88,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   }
 
   // Blocks pointer only: Enter/Space still fire, pair with disabled or aria-disabled to block submit
-  &[aria-busy="true"] {
+  &:is(#{$busy}) {
     pointer-events: none;
 
     --opacity: #{$btn-busy-opacity};

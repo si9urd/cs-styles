@@ -256,7 +256,7 @@
     cursor: not-allowed;
   }
 
-  [aria-busy="true"] {
+  [aria-busy="true"], [data-pending] {
     cursor: progress;
   }
 
@@ -387,7 +387,7 @@
     --elevation: none;
   }
 
-  [aria-busy="true"]:is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  :is([aria-busy="true"], [data-pending]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     pointer-events: none;
     --opacity: .9;
   }
@@ -686,7 +686,7 @@
     cursor: auto;
   }
 
-  [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
+  :is([aria-busy="true"], [data-pending]):is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
     content: "";
     width: 1em;
     height: 1em;
@@ -696,27 +696,27 @@
   }
 
   @media (forced-colors: active) {
-    [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
+    :is([aria-busy="true"], [data-pending]):is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
       forced-color-adjust: none;
     }
   }
 
-  [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
+  :is([aria-busy="true"], [data-pending]):is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
     vertical-align: -.125em;
     display: inline-flex;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
+    :is([aria-busy="true"], [data-pending]):is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):before {
       animation: 2s ease-in-out infinite busy-pulse;
     }
   }
 
-  [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):not(:empty):before {
+  :is([aria-busy="true"], [data-pending]):is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):not(:empty):before {
     margin-inline-end: calc(var(--cs-spacing) * .5);
   }
 
-  [aria-busy="true"]:is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):empty {
+  :is([aria-busy="true"], [data-pending]):is(button, [role="button"], a, [role="link"], span, :empty):not(:is(input, select, textarea)):empty {
     text-align: center;
   }
 
