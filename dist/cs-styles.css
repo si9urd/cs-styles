@@ -212,8 +212,7 @@
   }
 
   h1 {
-    --gap: var(--cs-spacing);
-    margin: 0 0 clamp(var(--gap), 2vw, var(--gap) * 1.5);
+    margin: 0 0 clamp(var(--cs-spacing), 2vw, var(--cs-spacing) * 1.5);
     font-weight: var(--cs-font-weight-bold);
   }
 
@@ -270,7 +269,7 @@
   }
 
   :where(hr) {
-    color: inherit;
+    color: var(--cs-outline-variant);
     border: 0;
     border-top: 1px solid;
   }
@@ -286,9 +285,8 @@
   }
 
   menu {
-    --gap: var(--cs-spacing);
     align-items: center;
-    gap: var(--gap);
+    gap: var(--cs-spacing);
     flex-wrap: wrap;
     padding: 0;
     list-style: none;
@@ -308,12 +306,7 @@
     --height: 2.5rem;
     --padding-start: 1.5rem;
     --padding-end: 1.5rem;
-    --inner-gap: .5rem;
     --border-radius: var(--cs-border-radius);
-    --font-family: var(--cs-font-family);
-    --font-size: 1rem;
-    --font-weight: var(--cs-font-weight-medium);
-    --line-height: var(--cs-line-height-base);
     --color: var(--cs-on-primary);
     --container-color: var(--cs-primary);
     --background-color: color-mix(in srgb, var(--color) var(--state-layer), var(--container-color));
@@ -327,18 +320,14 @@
     max-width: 100%;
     min-height: var(--height);
     padding-inline: var(--padding-start) var(--padding-end);
-    justify-content: center;
-    align-items: center;
-    gap: var(--inner-gap);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     background-color: var(--background-color);
     box-shadow: var(--elevation);
     color: var(--color);
-    font-weight: var(--font-weight);
-    font-size: var(--font-size);
-    line-height: var(--line-height);
-    font-family: var(--font-family);
+    font-weight: var(--cs-font-weight-medium);
+    font-size: 1rem;
+    line-height: var(--cs-line-height-base);
     text-align: center;
     text-wrap: balance;
     vertical-align: middle;
@@ -349,6 +338,9 @@
     user-select: none;
     cursor: pointer;
     outline: 0 solid #0000;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
     padding-block: .25rem;
     text-decoration: none;
     transition-property: background-color, border-color, box-shadow, color, outline-color, opacity;
@@ -379,18 +371,18 @@
     }
   }
 
-  [data-hovered]:not(:where(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  :is([data-hovered], [data-hover]):not(:where(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --state-layer: var(--layer-hover);
     --elevation: var(--cs-shadow-raised);
   }
 
-  :is(:focus-visible, [data-focused]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  :is(:focus-visible, [data-focused], [data-focus]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --state-layer: var(--layer-hover);
     outline: 2px solid var(--cs-primary);
     outline-offset: 1px;
   }
 
-  :is(:active, [aria-pressed="true"]):not(:where(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
+  :is(:active, [data-pressed], [data-active], [aria-pressed="true"]):not(:where(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"])):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]) {
     --state-layer: var(--layer-press);
     --elevation: none;
   }
@@ -461,15 +453,15 @@
     padding-block: 0;
   }
 
-  [data-btn~="icon"]:is(:hover, [data-hovered]) {
+  [data-btn~="icon"]:is(:hover, [data-hovered], [data-hover]) {
     --elevation: none;
   }
 
-  [data-theme-toggle]:is(:hover, [data-hovered]) {
+  [data-theme-toggle]:is(:hover, [data-hovered], [data-hover]) {
     --elevation: none;
   }
 
-  :is(:hover, [data-hovered]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):where([aria-label], [aria-labelledby]):where(:empty, :has( > :is(i, img, svg)):not(:has( > :not(:is(i, img, svg))))):where(:not([data-btn])) {
+  :is(:hover, [data-hovered], [data-hover]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):where([aria-label], [aria-labelledby]):where(:empty, :has( > :is(i, img, svg)):not(:has( > :not(:is(i, img, svg))))):where(:not([data-btn])) {
     --elevation: none;
   }
 
@@ -510,7 +502,7 @@
     --padding-start: .5rem;
   }
 
-  [data-btn~="text"]:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [aria-pressed="true"]) {
+  [data-btn~="text"]:is(:hover, [data-hovered], [data-hover], :focus-visible, [data-focused], [data-focus], :active, [data-pressed], [data-active], [aria-pressed="true"]) {
     --elevation: none;
   }
 
@@ -527,7 +519,7 @@
     min-width: var(--height);
   }
 
-  [data-btn~="fab"]:is(:hover, [data-hovered], :active, [aria-pressed="true"]):not(:where(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"])) {
+  [data-btn~="fab"]:is(:hover, [data-hovered], [data-hover], :active, [data-pressed], [data-active], [aria-pressed="true"]):not(:where(:disabled, [disabled]:not([disabled="false"]), [aria-disabled="true"])) {
     --elevation: var(--cs-shadow-overlay);
   }
 
@@ -565,10 +557,9 @@
   }
 
   :is([role="group"]:where(:has( > :is(button, select, [role="button"], input:not(:is([type="checkbox"], [type="radio"]))))), [role="search"]) {
-    --group-height: var(--cs-input-height);
     --group-border-radius: var(--cs-border-radius);
     max-width: 100%;
-    min-height: var(--group-height);
+    min-height: var(--cs-input-height);
     border-radius: var(--group-border-radius);
     flex-wrap: wrap;
     padding: 0;
@@ -577,7 +568,7 @@
   }
 
   :is([role="group"]:where(:has( > :is(button, select, [role="button"], input:not(:is([type="checkbox"], [type="radio"]))))), [role="search"]) > * {
-    --height: var(--group-height);
+    --height: var(--cs-input-height);
     --border-radius: 0;
     overflow-wrap: break-word;
   }
@@ -810,31 +801,26 @@
   textarea, select {
     --height: var(--cs-input-height);
     --padding: 0 var(--cs-spacing);
-    --line-height: var(--cs-line-height-base);
     --border-radius: var(--cs-border-radius);
     --border-color: var(--cs-outline);
     --accent: var(--cs-primary);
-    --font-size: 1rem;
     --background: var(--cs-surface);
-    --background-size: 1.125rem;
-    --icon-room: calc(var(--cs-spacing) * 2 + var(--background-size));
     --color: var(--cs-on-surface);
-    --placeholder-color: var(--cs-on-surface-variant);
     --box-shadow: none;
     width: 100%;
     height: var(--height);
     padding: var(--padding);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    background-position: right var(--cs-spacing) top calc((var(--cs-input-height) - var(--background-size)) / 2);
-    background-size: var(--background-size);
+    background-position: right var(--cs-spacing) top calc((var(--cs-input-height) - 1.125rem) / 2);
     background-repeat: no-repeat;
+    background-size: 1.125rem;
     background-color: var(--background);
     box-shadow: var(--box-shadow);
     color: var(--color);
     caret-color: var(--cs-primary);
-    font-size: var(--font-size);
-    line-height: var(--line-height);
+    font-size: 1rem;
+    line-height: var(--cs-line-height-base);
     transition: var(--cs-transition);
     outline: 0 solid #0000;
     transition-property: background-color, border-color, color, box-shadow;
@@ -844,31 +830,26 @@
   input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"])) {
     --height: var(--cs-input-height);
     --padding: 0 var(--cs-spacing);
-    --line-height: var(--cs-line-height-base);
     --border-radius: var(--cs-border-radius);
     --border-color: var(--cs-outline);
     --accent: var(--cs-primary);
-    --font-size: 1rem;
     --background: var(--cs-surface);
-    --background-size: 1.125rem;
-    --icon-room: calc(var(--cs-spacing) * 2 + var(--background-size));
     --color: var(--cs-on-surface);
-    --placeholder-color: var(--cs-on-surface-variant);
     --box-shadow: none;
     width: 100%;
     height: var(--height);
     padding: var(--padding);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    background-position: right var(--cs-spacing) top calc((var(--cs-input-height) - var(--background-size)) / 2);
-    background-size: var(--background-size);
+    background-position: right var(--cs-spacing) top calc((var(--cs-input-height) - 1.125rem) / 2);
     background-repeat: no-repeat;
+    background-size: 1.125rem;
     background-color: var(--background);
     box-shadow: var(--box-shadow);
     color: var(--color);
     caret-color: var(--cs-primary);
-    font-size: var(--font-size);
-    line-height: var(--line-height);
+    font-size: 1rem;
+    line-height: var(--cs-line-height-base);
     transition: var(--cs-transition);
     outline: 0 solid #0000;
     transition-property: background-color, border-color, color, box-shadow;
@@ -969,7 +950,7 @@
   }
 
   :where(input, textarea)::placeholder {
-    color: var(--placeholder-color);
+    color: var(--cs-on-surface-variant);
   }
 
   input[type="search"] {
@@ -998,7 +979,7 @@
   }
 
   :is(input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="color"])), textarea):is([aria-invalid="true"], [aria-invalid="false"]) {
-    padding-inline-end: var(--icon-room);
+    padding-inline-end: calc(var(--cs-spacing) * 2 + 1.125rem);
   }
 
   :is(input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="color"])), textarea)[aria-invalid="true"] {
@@ -1025,7 +1006,7 @@
   }
 
   select:not([multiple]) {
-    padding-inline-end: var(--icon-room);
+    padding-inline-end: calc(var(--cs-spacing) * 2 + 1.125rem);
   }
 
   select[multiple] {
@@ -1035,13 +1016,9 @@
   }
 
   [role="menu"] {
-    --menu-width: 12rem;
-    --menu-item-height: 3rem;
-    --icon-size: 1.5rem;
-    --gap: .75rem;
-    min-width: var(--menu-width);
     border-radius: var(--cs-border-radius);
     background-color: var(--cs-surface-container);
+    min-width: 12rem;
     box-shadow: var(--cs-shadow-overlay);
     color: var(--cs-on-surface);
     font-weight: var(--cs-font-weight-medium);
@@ -1053,13 +1030,13 @@
   [role="menu"] > :is(li, div):not([role="separator"]) {
     --layer: 0%;
     --icon-color: var(--cs-on-surface-variant);
-    width: 100%;
-    min-height: var(--menu-item-height);
-    padding: 0 var(--gap);
-    align-items: center;
-    gap: var(--gap);
     background-color: color-mix(in srgb, var(--cs-on-surface) var(--layer), transparent);
     cursor: pointer;
+    align-items: center;
+    gap: .75rem;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0 .75rem;
     display: flex;
   }
 
@@ -1080,9 +1057,9 @@
   }
 
   [role="menu"] > :is(li, div):not([role="separator"]) :is(i, img, svg) {
-    width: var(--icon-size);
-    height: var(--icon-size);
     vertical-align: bottom;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   [role="menu"] > :is(li, div):not([role="separator"]) svg {
@@ -1121,11 +1098,11 @@
   }
 
   [role="menu"]:has( > :is(li, div) > :is(i, img, svg):first-child) > :is(li, div):not([role="separator"]) {
-    padding-inline-start: calc(var(--icon-size) + var(--gap) * 2);
+    padding-inline-start: 3rem;
   }
 
   [role="menu"]:has( > :is(li, div) > :is(i, img, svg):first-child) > :is(li, div):not([role="separator"]) > :is(i, img, svg):first-child {
-    margin-inline-start: calc(-1 * (var(--icon-size) + var(--gap)));
+    margin-inline-start: -2.25rem;
   }
 
   [role="menu"] > :is(hr, [role="separator"]) {
@@ -1155,11 +1132,10 @@
   input[type="radio"] {
     --size: 1.25rem;
     --border-color: var(--cs-on-surface-variant);
-    --border-width: 2px;
     appearance: none;
     width: var(--size);
     height: var(--size);
-    border: var(--border-width) solid var(--border-color);
+    border: 2px solid var(--border-color);
     vertical-align: middle;
     cursor: pointer;
     margin-inline-end: calc(var(--cs-spacing) * .5);
@@ -1169,11 +1145,10 @@
   input[type="checkbox"] {
     --size: 1.25rem;
     --border-color: var(--cs-on-surface-variant);
-    --border-width: 2px;
     appearance: none;
     width: var(--size);
     height: var(--size);
-    border: var(--border-width) solid var(--border-color);
+    border: 2px solid var(--border-color);
     vertical-align: middle;
     cursor: pointer;
     margin-inline-end: calc(var(--cs-spacing) * .5);
@@ -1245,20 +1220,17 @@
   }
 
   input[type="radio"] {
-    --radio-additional: 1px;
-    --radio-point: 30%;
     border-radius: 50%;
   }
 
   input[type="radio"]:checked {
     --border-color: var(--cs-primary);
-    background-image: radial-gradient(circle, var(--border-color) var(--radio-point), transparent calc(var(--radio-point) + var(--radio-additional)));
+    background-image: radial-gradient(circle, var(--border-color) 30%, transparent calc(30% + 1px));
   }
 
   input[type="checkbox"] {
     --size: 1.125rem;
     --indicator-color: var(--cs-on-primary);
-    --indicator-width: 2px;
   }
 
   input[type="checkbox"]:checked {
@@ -1273,8 +1245,8 @@
     width: calc(var(--size) * .3);
     height: calc(var(--size) * .7);
     border: solid var(--indicator-color);
-    border-width: 0 var(--indicator-width) var(--indicator-width) 0;
     content: "";
+    border-width: 0 2px 2px 0;
     position: absolute;
     transform: rotate(45deg);
   }
@@ -1328,57 +1300,55 @@
   }
 
   input[type="range"] {
-    --track-height: .5rem;
     --track-color: var(--cs-surface-container);
-    --thumb-height: 1.5rem;
     --thumb-color: var(--cs-primary);
     --cursor: pointer;
     appearance: none;
-    width: 100%;
-    height: var(--thumb-height);
     background: none;
+    width: 100%;
+    height: 1.5rem;
   }
 
   @media (pointer: coarse) {
     input[type="range"] {
-      height: max(var(--thumb-height), 3rem);
+      height: 3rem;
     }
   }
 
   input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: var(--track-height);
-    border-radius: var(--track-height);
     background-color: var(--track-color);
+    width: 100%;
+    height: .5rem;
     box-shadow: inset 0 0 0 1px var(--cs-outline);
+    border-radius: .5rem;
   }
 
   input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: var(--track-height);
-    border-radius: var(--track-height);
     background-color: var(--track-color);
+    width: 100%;
+    height: .5rem;
     box-shadow: inset 0 0 0 1px var(--cs-outline);
+    border-radius: .5rem;
   }
 
   input[type="range"]::-webkit-slider-thumb {
     appearance: none;
-    width: var(--thumb-height);
-    height: var(--thumb-height);
-    margin-top: calc(var(--track-height) * .5 - var(--thumb-height) * .5);
-    border-radius: var(--thumb-height);
     background-color: var(--thumb-color);
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: var(--cursor);
+    border-radius: 1.5rem;
+    margin-top: -.5rem;
   }
 
   input[type="range"]::-moz-range-thumb {
     appearance: none;
-    width: var(--thumb-height);
-    height: var(--thumb-height);
-    margin-top: calc(var(--track-height) * .5 - var(--thumb-height) * .5);
-    border-radius: var(--thumb-height);
     background-color: var(--thumb-color);
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: var(--cursor);
+    border-radius: 1.5rem;
+    margin-top: -.5rem;
   }
 
   input[type="range"]:is(:focus-visible, [data-focused]) {

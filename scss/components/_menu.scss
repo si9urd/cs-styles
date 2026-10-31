@@ -3,13 +3,8 @@
 
 @mixin menu {
   [role="menu"] {
-    --menu-width: #{$menu-width};
-    --menu-item-height: #{$menu-item-height};
-    --icon-size: #{$menu-icon-size};
-    --gap: #{$menu-gap};
-
     display: inline-block;
-    min-width: var(--menu-width);
+    min-width: $menu-width;
     padding: $menu-padding-y 0;
     border-radius: var(--#{$prefix}-border-radius);
     background-color: var(--#{$prefix}-surface-container);
@@ -27,9 +22,9 @@
       align-items: center;
       width: 100%;
       // min-height: long or translated labels wrap instead of spilling out of the row
-      min-height: var(--menu-item-height);
-      padding: 0 var(--gap);
-      gap: var(--gap);
+      min-height: $menu-item-height;
+      padding: 0 $menu-gap;
+      gap: $menu-gap;
       background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) var(--layer), transparent);
       cursor: pointer;
 
@@ -45,8 +40,8 @@
       }
 
       :is(#{$icon-elements}) {
-        width: var(--icon-size);
-        height: var(--icon-size);
+        width: $menu-icon-size;
+        height: $menu-icon-size;
         vertical-align: bottom;
       }
 
@@ -95,10 +90,10 @@
     // Any item leads with an icon: labels line up in one column; with icons on every row it's a no-op
     &:has(> :is(li, div) > :is(#{$icon-elements}):first-child) {
       & > :is(li, div):not([role="separator"]) {
-        padding-inline-start: calc(var(--icon-size) + var(--gap) * 2);
+        padding-inline-start: $menu-icon-size + $menu-gap * 2;
 
         & > :is(#{$icon-elements}):first-child {
-          margin-inline-start: calc(-1 * (var(--icon-size) + var(--gap)));
+          margin-inline-start: -($menu-icon-size + $menu-gap);
         }
       }
     }

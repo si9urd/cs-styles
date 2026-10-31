@@ -12,9 +12,7 @@
   }
 
   h1 {
-    --gap: var(--#{$prefix}-spacing);
-
-    margin: 0 0 clamp(var(--gap), 2vw, var(--gap) * 1.5);
+    margin: 0 0 clamp(var(--#{$prefix}-spacing), 2vw, var(--#{$prefix}-spacing) * 1.5);
     font-weight: var(--#{$prefix}-font-weight-bold);
   }
 

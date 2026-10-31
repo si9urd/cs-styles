@@ -3,13 +3,11 @@
 @mixin toolbar {
   // <menu> is a list of commands: lay it out as a row, in place of a horizontal stack
   menu {
-    --gap: var(--#{$prefix}-spacing);
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     padding: 0;
-    gap: var(--gap);
+    gap: var(--#{$prefix}-spacing);
     list-style: none;
   }
 }

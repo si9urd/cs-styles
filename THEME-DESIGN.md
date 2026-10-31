@@ -11,9 +11,9 @@
 | `primary` | Brand | интерактив: ссылки, кнопки, отмеченные контролы, фокус, `accent-color`, выделение текста | ≥ 4.5:1 с `surface-container` |
 | `on-primary` | Background | текст и иконки на `primary` | ≥ 4.5:1 с `primary` |
 | `on-surface` | Text strong | основной текст: заголовки, тело, подписи полей | ≥ 4.5:1 |
-| `on-surface-variant` | Text weak | вспомогательный текст, placeholder, иконки, рамка radio/checkbox, бегунок switch | ≥ 4.5:1 |
+| `on-surface-variant` | Text weak | вспомогательный текст, placeholder, иконки и иконочные кнопки, рамка radio/checkbox, бегунок switch | ≥ 4.5:1 |
 | `outline` | Stroke strong | значимые рамки: поля, switch, обводка трека range/progress | ≥ 3:1 |
-| `outline-variant` | Stroke weak | декоративные разделители | декоративный |
+| `outline-variant` | Stroke weak | декоративные разделители: `hr`, разделитель в меню | декоративный |
 | `surface-container` | Fill | вторичный фон: кнопка по умолчанию, меню, выключенное поле, треки | — |
 | `surface` | Background | фон страницы и полей | — |
 | `error` | Red | `aria-invalid="true"` | ≥ 4.5:1 с `surface` |
@@ -59,7 +59,7 @@
 | Токен | Вид | Где |
 |---|---|---|
 | `--cs-shadow-raised` | маленькая и резкая, `0 1px 3px` | слегка приподнимает интерактивный элемент: кнопка при hover |
-| `--cs-shadow-overlay` | большая и мягкая, `0 8px 24px` | элементы, парящие над страницей: меню, диалоги, FAB |
+| `--cs-shadow-overlay` | большая и мягкая, `0 8px 1rem` | элементы, парящие над страницей: меню, диалоги, FAB |
 
 ## Своя палитра
 

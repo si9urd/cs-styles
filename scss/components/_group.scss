@@ -4,7 +4,6 @@
   // Only a group of controls joins into one bar; checkbox groups, tree and menu groups keep their layout.
   // :where keeps the specificity of a bare [role="group"]
   :is([role="group"]:where(:has(> :is(button, select, [role="button"], input:not([type="checkbox"], [type="radio"])))), [role="search"]) {
-    --group-height: var(--#{$prefix}-input-height);
     --group-border-radius: var(--#{$prefix}-border-radius);
 
     display: inline-flex;
@@ -13,12 +12,12 @@
     flex-wrap: wrap;
     max-width: 100%;
     // min-height: a wrapped or zoomed label grows the row instead of clipping
-    min-height: var(--group-height);
+    min-height: var(--#{$prefix}-input-height);
     padding: 0;
     border-radius: var(--group-border-radius);
 
     & > * {
-      --height: var(--group-height);
+      --height: var(--#{$prefix}-input-height);
       --border-radius: 0;
 
       // Break labels between words: `anywhere` (buttons) lets a label shrink to one letter per line before the row wraps

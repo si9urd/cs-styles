@@ -5,7 +5,7 @@
   :where(hr) {
     border: 0;
     border-top: $border-width solid;
-    color: inherit;
+    color: var(--#{$prefix}-outline-variant);
   }
 
   // Vertical rule (explicit, or in a header nav outside a menu): as tall as its flex/grid row, but no taller

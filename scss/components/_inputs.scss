@@ -7,18 +7,12 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 %input {
   --height: var(--#{$prefix}-input-height);
   --padding: 0 var(--#{$prefix}-spacing);
-  --line-height: var(--#{$prefix}-line-height-base);
   --border-radius: var(--#{$prefix}-border-radius);
   --border-color: var(--#{$prefix}-outline);
   // Focus ring and border; validation states swap it
   --accent: var(--#{$prefix}-primary);
-  --font-size: #{$font-size-input};
   --background: var(--#{$prefix}-surface);
-  --background-size: #{$input-icon-size};
-  // Inline-end padding that keeps text clear of a state icon or the select chevron
-  --icon-room: calc(var(--#{$prefix}-spacing) * 2 + var(--background-size));
   --color: var(--#{$prefix}-on-surface);
-  --placeholder-color: var(--#{$prefix}-on-surface-variant);
   --box-shadow: none;
 
   display: inline-flex;
@@ -28,15 +22,15 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   border: $border-width solid var(--border-color);
   border-radius: var(--border-radius);
   outline: 0 solid transparent;
-  background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - var(--background-size)) / 2);
-  background-size: var(--background-size);
+  background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - #{$input-icon-size}) / 2);
+  background-size: $input-icon-size;
   background-repeat: no-repeat;
   background-color: var(--background);
   box-shadow: var(--box-shadow);
   color: var(--color);
   caret-color: var(--#{$prefix}-primary);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
+  font-size: $font-size-input;
+  line-height: var(--#{$prefix}-line-height-base);
   transition: var(--#{$prefix}-transition);
   transition-property: background-color, border-color, color, box-shadow;
 
@@ -88,7 +82,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   }
 
   :where(input, textarea)::placeholder {
-    color: var(--placeholder-color);
+    color: var(--#{$prefix}-on-surface-variant);
   }
 }
 
@@ -127,7 +121,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   // select keeps its chevron there, checkbox/radio/range draw their own control
   :is(input:not(:where(#{$_controls}, [type="color"])), textarea) {
     &:is([aria-invalid="true"], [aria-invalid="false"]) {
-      padding-inline-end: var(--icon-room);
+      padding-inline-end: calc(var(--#{$prefix}-spacing) * 2 + #{$input-icon-size});
     }
 
     &[aria-invalid="true"] {

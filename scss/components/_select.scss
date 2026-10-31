@@ -7,7 +7,7 @@
 
     // Reserve room for the chevron so long options don't run under it
     &:not([multiple]) {
-      padding-inline-end: var(--icon-room);
+      padding-inline-end: calc(var(--#{$prefix}-spacing) * 2 + #{$input-icon-size});
     }
 
     &[multiple] {

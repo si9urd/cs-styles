@@ -3,18 +3,18 @@
 @use "../settings" as *;
 @use "../tools" as *;
 
+// Headless UI states
+$hovered: "[data-hovered], [data-hover]";
+$focused: "[data-focused], [data-focus]";
+$pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
+
 // region button-base
 
 %button-base {
   --height: #{$btn-height};
   --padding-start: #{map.get($spacers, 4)};
   --padding-end: #{map.get($spacers, 4)};
-  --inner-gap: #{$btn-inner-gap};
   --border-radius: var(--#{$prefix}-border-radius);
-  --font-family: var(--#{$prefix}-font-family);
-  --font-size: #{$btn-font-size};
-  --font-weight: var(--#{$prefix}-font-weight-medium);
-  --line-height: var(--#{$prefix}-line-height-base);
   --color: var(--#{$prefix}-on-primary);
   --container-color: var(--#{$prefix}-primary);
   --background-color: color-mix(in srgb, var(--color) var(--state-layer), var(--container-color));
@@ -34,17 +34,16 @@
   min-height: var(--height);
   padding-inline: var(--padding-start) var(--padding-end);
   padding-block: $btn-padding-y;
-  gap: var(--inner-gap);
+  gap: $btn-inner-gap;
   border: $border-width solid var(--border-color);
   border-radius: var(--border-radius);
   outline: 0 solid transparent;
   background-color: var(--background-color);
   box-shadow: var(--elevation);
   color: var(--color);
-  font-weight: var(--font-weight);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-  font-family: var(--font-family);
+  font-weight: var(--#{$prefix}-font-weight-medium);
+  font-size: $btn-font-size;
+  line-height: var(--#{$prefix}-line-height-base);
   text-align: center;
   text-decoration: none;
   text-wrap: balance;
@@ -65,18 +64,25 @@
   }
 
   // State layer: the label color over the container
-  @include hover(":where(#{$disabled})") {
+  @media (hover: hover) {
+    &:hover:not(:where(#{$disabled})) {
+      --state-layer: var(--layer-hover);
+      --elevation: var(--#{$prefix}-shadow-raised);
+    }
+  }
+
+  &:is(#{$hovered}):not(:where(#{$disabled})) {
     --state-layer: var(--layer-hover);
     --elevation: var(--#{$prefix}-shadow-raised);
   }
 
-  @include focus-visible {
+  &:is(:focus-visible, #{$focused}) {
     --state-layer: var(--layer-hover);
 
     @include focus-ring(1px);
   }
 
-  &:is(:active, [aria-pressed="true"]):not(:where(#{$disabled})) {
+  &:is(#{$pressed}):not(:where(#{$disabled})) {
     --state-layer: var(--layer-press);
     --elevation: none;
   }
@@ -135,7 +141,7 @@
   height: var(--size);
   padding-block: 0;
 
-  &:is(:hover, [data-hovered]) {
+  &:is(:hover, #{$hovered}) {
     --elevation: none;
   }
 
@@ -168,7 +174,7 @@
     --padding-start: #{map.get($spacers, 2)};
   }
 
-  &:is(:hover, [data-hovered], :focus-visible, [data-focused], :active, [aria-pressed="true"]) {
+  &:is(:hover, #{$hovered}, :focus-visible, #{$focused}, #{$pressed}) {
     --elevation: none;
   }
 }
@@ -187,7 +193,7 @@
 
   min-width: var(--height);
 
-  &:is(:hover, [data-hovered], :active, [aria-pressed="true"]):not(:where(#{$disabled})) {
+  &:is(:hover, #{$hovered}, #{$pressed}):not(:where(#{$disabled})) {
     --elevation: var(--#{$prefix}-shadow-overlay);
   }
 }
