@@ -20,16 +20,16 @@
   </main>
   <script>
     // Every --cs-icon-* custom property holding an SVG url, read from the built CSS
-    const root = getComputedStyle(document.documentElement);
-    const names = [...root].filter((p) => p.startsWith("--cs-icon-") && root.getPropertyValue(p).trim().startsWith("url("));
+    const root = getComputedStyle(document.documentElement)
+    const names = [...root].filter((p) => p.startsWith('--cs-icon-') && root.getPropertyValue(p).trim().startsWith('url('))
 
-    document.getElementById("icons").innerHTML = names.sort().map((p) =>
-      `<li><i style="--icon: var(${p}); color: red"></i><code>${p}</code></li>`).join("");
+    document.getElementById('icons').innerHTML = names.sort().map((p) =>
+      `<li><i style="--icon: var(${p}); color: red"></i><code>${p}</code></li>`).join('')
 
-    document.getElementById("theme").onclick = () => {
-      const html = document.documentElement;
-      html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-    };
+    document.getElementById('theme').onclick = () => {
+      const html = document.documentElement
+      html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'
+    }
   </script>
 </body>
 </html>

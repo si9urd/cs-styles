@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS-Styles · Buttons</title>
+  <link rel="stylesheet" href="../dist/cs-styles.css">
+  <style>
+    /* Only test-page layout, not library styles */
+    .row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-block: 1rem; }
+    body {
+      padding-bottom: 5rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Buttons</h1>
+    <button data-theme-toggle aria-label="Переключить тему"></button>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <h2>Variants</h2>
+    <div class="row">
+      <button>Filled</button>
+      <button data-btn="outlined">Outlined</button>
+      <button data-btn="text">Text</button>
+      <button data-btn="pill">Pill</button>
+      <button data-btn="outlined pill">Outlined pill</button>
+      <button data-btn="fab" aria-label="Добавить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+      <button data-btn="icon" aria-label="Добавить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Leading icon</h2>
+    <div class="row">
+      <button><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>Filled</button>
+      <button data-btn="outlined"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>Outlined</button>
+      <button data-btn="text"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>Text</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Auto icon button (aria-label + only icons)</h2>
+    <div class="row">
+      <button aria-label="Добавить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+      <button aria-label="Пустая"></button>
+      <button aria-label="С текстом"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg><span>не icon</span></button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Elements</h2>
+    <div class="row">
+      <input type="submit" value="input submit">
+      <input type="reset" value="input reset">
+      <input type="button" value="input button">
+      <a href="#" role="button">a role=button</a>
+      <div role="button" tabindex="0">div role=button</div>
+      <input type="file">
+      <input type="file" disabled>
+    </div>
+  </section>
+
+  <section>
+    <h2>Forced states (headless attrs)</h2>
+    <p>Строки: filled · outlined · text · icon</p>
+    <div class="row">
+      <button>rest</button>
+      <button data-hovered>data-hovered</button>
+      <button data-focused>data-focused</button>
+      <button data-pressed>data-pressed</button>
+      <button aria-pressed="true">aria-pressed</button>
+      <button aria-busy="true">aria-busy</button>
+      <button disabled>disabled</button>
+      <button aria-disabled="true">aria-disabled</button>
+    </div>
+    <div class="row">
+      <button data-btn="outlined">rest</button>
+      <button data-btn="outlined" data-hovered>data-hovered</button>
+      <button data-btn="outlined" data-focused>data-focused</button>
+      <button data-btn="outlined" data-pressed>data-pressed</button>
+      <button data-btn="outlined" aria-pressed="true">aria-pressed</button>
+      <button data-btn="outlined" aria-busy="true">aria-busy</button>
+      <button data-btn="outlined" disabled>disabled</button>
+      <button data-btn="outlined" aria-disabled="true">aria-disabled</button>
+    </div>
+    <div class="row">
+      <button data-btn="text">rest</button>
+      <button data-btn="text" data-hovered>data-hovered</button>
+      <button data-btn="text" data-focused>data-focused</button>
+      <button data-btn="text" data-pressed>data-pressed</button>
+      <button data-btn="text" aria-pressed="true">aria-pressed</button>
+      <button data-btn="text" aria-busy="true">aria-busy</button>
+      <button data-btn="text" disabled>disabled</button>
+      <button data-btn="text" aria-disabled="true">aria-disabled</button>
+    </div>
+    <div class="row">
+      <button aria-label="rest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+      <button aria-label="hovered" data-hovered><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+      <button aria-label="focused" data-focused><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+      <button aria-label="pressed" data-pressed><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+      <button aria-label="disabled" disabled><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Overflow</h2>
+    <div class="row" style="width: 12rem">
+      <button>Очень длинная подпись кнопки, которая не помещается</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Theme switch for testing: toggles data-theme on <html>
+  document.querySelector('[data-theme-toggle]').addEventListener('click', () => {
+    const root = document.documentElement
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches)
+    root.dataset.theme = dark ? 'light' : 'dark'
+  })
+</script>
+</body>
+</html>

@@ -24,6 +24,7 @@
 - Токены трека `--cs-track` (заливка, по умолчанию `secondary-container`) и `--cs-track-outline` (обводка 1px: `on-surface-variant` в светлой теме, `outline` в тёмной) для `progress` и `input[type="range"]`. Переопределяются ключами `light-track`, `dark-track`, `light-track-outline`, `dark-track-outline` в `$theme-colors`.
 - Размеры, раньше зашитые в компоненты, вынесены в настройки (все `!default`, CSS по умолчанию не изменился): `$border-width` (1px: рамки кнопок и полей, внутреннее кольцо фокуса поля, `hr`, разделители шапки и меню, обводка трека, `--cs-border-width`), `$control-border-width` (2px: radio, checkbox, switch, галочка), `$focus-ring-width` и `$focus-ring-offset` (2px), `$radio-size` (1.25rem), `$checkbox-size` (1.125rem), `$switch-size` (2rem), `$range-track-height` (.5rem), `$range-thumb-size` (1.5rem), `$group-field-basis` (8rem).
 - Пункты `.menu` получили видимый фокус клавиатуры: слой 12% (`$state-press-soft`) и внутреннее кольцо 2px `primary`.
+- `data-pending` (headless UI-библиотеки, например React Aria) работает наравне с `aria-busy="true"`: `cursor: progress`, спиннер, блокировка указателя и приглушение у кнопки, без ripple.
 
 ### Changed
 

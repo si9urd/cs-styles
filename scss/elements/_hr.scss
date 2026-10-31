@@ -13,11 +13,11 @@
   :where(hr[aria-orientation="vertical"], header nav hr) {
     display: inline-block;
     align-self: center;
-    vertical-align: middle;
-    border-top: 0;
     width: 1px;
     height: $btn-icon-size;
+    border-top: 0;
     background-color: currentcolor;
+    vertical-align: middle;
   }
 }
 

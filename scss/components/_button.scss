@@ -26,6 +26,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   --elevation: none;
   --opacity: 1;
 
+  overflow: hidden;
   display: inline-flex;
   position: relative;
   align-items: center;
@@ -46,15 +47,13 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   line-height: var(--#{$prefix}-line-height-base);
   text-align: center;
   text-decoration: none;
-  text-wrap: balance;
+  text-wrap: nowrap;
   vertical-align: middle;
-  // Lets an unbroken label (URL, long compound word) shrink to max-width instead of overflowing
-  overflow-wrap: anywhere;
+  cursor: pointer;
   opacity: var(--opacity);
   transition: var(--#{$prefix}-transition);
   transition-property: background-color, border-color, box-shadow, color, outline-color, opacity;
   user-select: none;
-  cursor: pointer;
 
   @include touch-target;
 
@@ -77,8 +76,6 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   }
 
   &:is(:focus-visible, #{$focused}) {
-    --state-layer: var(--layer-hover);
-
     @include focus-ring(1px);
   }
 
@@ -97,7 +94,6 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   @include disabled {
     --state-layer: 0%;
     --background-color: var(--disabled-container);
-    --border-color: var(--background-color);
     --color: #{$disabled-content};
     --elevation: none;
 
