@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Prefix for CSS variables
-$prefix: "cs" !default;
+$prefix: "cs-" !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -110,8 +110,8 @@ $state-selected: 12% !default;
 // M3 disabled: container and content share of on-surface
 $state-disabled-container: 12% !default;
 $state-disabled-content: 38% !default;
-$disabled-container: color-mix(in srgb, var(--#{$prefix}-on-surface) #{$state-disabled-container}, transparent) !default;
-$disabled-content: color-mix(in srgb, var(--#{$prefix}-on-surface) #{$state-disabled-content}, transparent) !default;
+$disabled-container: color-mix(in srgb, var(--#{$prefix}on-surface) #{$state-disabled-container}, transparent) !default;
+$disabled-content: color-mix(in srgb, var(--#{$prefix}on-surface) #{$state-disabled-content}, transparent) !default;
 
 // Buttons
 $btn-height: 2.5rem !default;

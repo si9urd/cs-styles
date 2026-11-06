@@ -1,16 +1,18 @@
+@use "sass:map";
 @use "../settings" as *;
 
 :root {
-  --#{$prefix}-font-family: #{$font-family-base};
-  --#{$prefix}-font-family-mono: #{$font-family-monospace};
-  --#{$prefix}-font-size-base: #{$font-size-base};
-  --#{$prefix}-font-weight-normal: #{$font-weight-normal};
-  --#{$prefix}-font-weight-bold: #{$font-weight-bold};
-  --#{$prefix}-font-weight-medium: #{$font-weight-medium};
-  --#{$prefix}-line-height-base: #{$line-height-base};
-  --#{$prefix}-input-height: #{$input-height};
-  --#{$prefix}-border-radius: #{$border-radius};
-  --#{$prefix}-spacing: #{$spacing};
-  --#{$prefix}-btn-icon-size: #{$btn-icon-size};
-  --#{$prefix}-transition: #{$transition};
+  --#{$prefix}font-family: #{$font-family-base};
+  --#{$prefix}font-family-mono: #{$font-family-monospace};
+  --#{$prefix}font-size-base: #{$font-size-base};
+  --#{$prefix}font-weight-normal: #{$font-weight-normal};
+  --#{$prefix}font-weight-bold: #{$font-weight-bold};
+  --#{$prefix}font-weight-medium: #{$font-weight-medium};
+  --#{$prefix}line-height-base: #{$line-height-base};
+  --#{$prefix}input-height: #{$input-height};
+  --#{$prefix}border-radius: #{$border-radius};
+  --#{$prefix}spacing: #{$spacing};
+  --#{$prefix}btn-icon-size: #{$btn-icon-size};
+  --#{$prefix}transition: #{$transition};
+  --#{$prefix}gap: #{map.get($spacers, 3)};
 }

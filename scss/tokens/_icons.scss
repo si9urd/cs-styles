@@ -16,7 +16,7 @@ $input-icons: (
     $svg: map.get($icons, $name);
 
     @if $svg {
-      --#{$prefix}-input-icon-#{$name}: #{svg-url($svg, map.get($theme-colors, $theme, $color))};
+      --#{$prefix}input-icon-#{$name}: #{svg-url($svg, map.get($theme-colors, $theme, $color))};
     }
   }
 }
@@ -26,7 +26,7 @@ $input-icons: (
     // Field icons only ship as their colored --cs-input-icon-* variant
     @each $name, $svg in $icons {
       @if $svg and not map.has-key($input-icons, $name) {
-        --#{$prefix}-icon-#{$name}: #{svg-url($svg)};
+        --#{$prefix}icon-#{$name}: #{svg-url($svg)};
       }
     }
 

@@ -2,9 +2,9 @@
 @use "../tools" as *;
 
 [data-theme-toggle]::before {
-  @include icon-mask(var(--#{$prefix}-icon-dark), var(--icon-size));
+  @include icon-mask(var(--#{$prefix}icon-dark), var(--icon-size));
 
   @include in-dark {
-    mask-image: var(--#{$prefix}-icon-light);
+    mask-image: var(--#{$prefix}icon-light);
   }
 }

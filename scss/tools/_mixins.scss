@@ -107,7 +107,7 @@ $icon-elements: "i, img, svg";
 
 /// Keyboard focus indicator; forced-colors mode repaints the outline in a system color.
 @mixin focus-ring($offset: $focus-ring-offset) {
-  outline: $focus-ring-width solid var(--#{$prefix}-primary);
+  outline: $focus-ring-width solid var(--#{$prefix}primary);
   outline-offset: $offset;
 }
 

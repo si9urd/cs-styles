@@ -6,13 +6,13 @@
     appearance: none;
     width: 100%;
     height: $progress-height;
-    margin-bottom: calc(var(--#{$prefix}-spacing) * 0.5);
+    margin-bottom: calc(var(--#{$prefix}spacing) * 0.5);
     overflow: hidden;
     border: 0;
     border-radius: $border-radius-pill;
-    background-color: var(--#{$prefix}-surface-container);
+    background-color: var(--#{$prefix}surface-container);
     // The fill paints over the ring, so the edge shows only on the empty part of the track
-    box-shadow: inset 0 0 0 $border-width var(--#{$prefix}-outline);
+    box-shadow: inset 0 0 0 $border-width var(--#{$prefix}outline);
     vertical-align: baseline;
 
     &::-webkit-progress-bar {
@@ -21,11 +21,11 @@
     }
 
     &[value]::-webkit-progress-value {
-      background-color: var(--#{$prefix}-primary);
+      background-color: var(--#{$prefix}primary);
     }
 
     &::-moz-progress-bar {
-      background-color: var(--#{$prefix}-primary);
+      background-color: var(--#{$prefix}primary);
     }
 
     // Indeterminate fill is drawn on the track, Gecko's own bar stays hidden
@@ -42,7 +42,7 @@
 
       // Indeterminate: a half-width segment sweeps the track, accelerating in and braking out
       &:indeterminate {
-        background-image: linear-gradient(var(--#{$prefix}-primary) 0 0);
+        background-image: linear-gradient(var(--#{$prefix}primary) 0 0);
         background-size: 50% 100%;
         background-repeat: no-repeat;
         animation: progress-indeterminate 1.5s cubic-bezier(.65, 0, .35, 1) infinite;
@@ -52,7 +52,7 @@
     // Without motion: static stripes, so "working" doesn't read as 0%
     @media (prefers-reduced-motion: reduce) {
       &:indeterminate {
-        background-image: repeating-linear-gradient(-45deg, var(--#{$prefix}-primary) 0 .5rem, transparent 0 1rem);
+        background-image: repeating-linear-gradient(-45deg, var(--#{$prefix}primary) 0 .5rem, transparent 0 1rem);
       }
     }
   }

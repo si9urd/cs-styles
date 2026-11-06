@@ -24,7 +24,7 @@
   @return url("data:image/svg+xml,#{$svg}");
 }
 
-// Icon painted with the current text color, `$icon` is a `--#{$prefix}-icon-*` value
+// Icon painted with the current text color, `$icon` is a `--#{$prefix}icon-*` value
 @mixin icon-mask($icon, $size: 1em) {
   width: $size;
   height: $size;
