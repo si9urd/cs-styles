@@ -5,14 +5,14 @@
 $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"]';
 
 %input {
-  --height: var(--#{$prefix}-input-height);
-  --padding: 0 var(--#{$prefix}-spacing);
-  --border-radius: var(--#{$prefix}-border-radius);
-  --border-color: var(--#{$prefix}-outline);
+  --height: var(--#{$prefix}input-height);
+  --padding: 0 var(--#{$prefix}spacing);
+  --border-radius: var(--#{$prefix}border-radius);
+  --border-color: var(--#{$prefix}outline);
   // Focus ring and border; validation states swap it
-  --accent: var(--#{$prefix}-primary);
-  --background: var(--#{$prefix}-surface);
-  --color: var(--#{$prefix}-on-surface);
+  --accent: var(--#{$prefix}primary);
+  --background: var(--#{$prefix}surface);
+  --color: var(--#{$prefix}on-surface);
   --box-shadow: none;
 
   display: inline-flex;
@@ -22,27 +22,27 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   border: $border-width solid var(--border-color);
   border-radius: var(--border-radius);
   outline: 0 solid transparent;
-  background-position: right var(--#{$prefix}-spacing) top calc((var(--#{$prefix}-input-height) - #{$input-icon-size}) / 2);
+  background-position: right var(--#{$prefix}spacing) top calc((var(--#{$prefix}input-height) - #{$input-icon-size}) / 2);
   background-size: $input-icon-size;
   background-repeat: no-repeat;
   background-color: var(--background);
   box-shadow: var(--box-shadow);
   color: var(--color);
-  caret-color: var(--#{$prefix}-primary);
+  caret-color: var(--#{$prefix}primary);
   font-size: $font-size-input;
-  line-height: var(--#{$prefix}-line-height-base);
-  transition: var(--#{$prefix}-transition);
+  line-height: var(--#{$prefix}line-height-base);
+  transition: var(--#{$prefix}transition);
   transition-property: background-color, border-color, color, box-shadow;
 
   // No logical keywords for background-position: mirror the state icon by hand
   [dir="rtl"] & {
-    background-position-x: var(--#{$prefix}-spacing);
+    background-position-x: var(--#{$prefix}spacing);
   }
 
   // aria-disabled only looks disabled: the field stays editable, pair with readonly to block input
   @include disabled {
-    --background: var(--#{$prefix}-surface-container);
-    --color: var(--#{$prefix}-on-surface-variant);
+    --background: var(--#{$prefix}surface-container);
+    --color: var(--#{$prefix}on-surface-variant);
 
     // Native :disabled already turns GrayText here, aria-disabled doesn't
     @include forced-disabled;
@@ -53,7 +53,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 
     &::-webkit-calendar-picker-indicator {
       position: absolute;
-      inset-inline-end: var(--#{$prefix}-spacing);
+      inset-inline-end: var(--#{$prefix}spacing);
       opacity: .5;
     }
   }
@@ -76,13 +76,13 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   }
 
   textarea {
-    --height: calc(var(--#{$prefix}-input-height) * 2);
+    --height: calc(var(--#{$prefix}input-height) * 2);
 
-    padding-top: var(--#{$prefix}-spacing);
+    padding-top: var(--#{$prefix}spacing);
   }
 
   :where(input, textarea)::placeholder {
-    color: var(--#{$prefix}-on-surface-variant);
+    color: var(--#{$prefix}on-surface-variant);
   }
 }
 
@@ -90,29 +90,29 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   input[type="search"] {
     --border-radius: #{$border-radius-pill};
 
-    padding-inline-start: calc(var(--#{$prefix}-spacing) * 3);
-    background-image: var(--#{$prefix}-input-icon-search);
-    background-position: left var(--#{$prefix}-spacing) center;
+    padding-inline-start: calc(var(--#{$prefix}spacing) * 3);
+    background-image: var(--#{$prefix}input-icon-search);
+    background-position: left var(--#{$prefix}spacing) center;
 
     [dir="rtl"] & {
-      background-position-x: calc(100% - var(--#{$prefix}-spacing));
+      background-position-x: calc(100% - var(--#{$prefix}spacing));
     }
   }
 
   input[type="color"] {
-    --padding: calc(var(--#{$prefix}-spacing) / 2) var(--#{$prefix}-spacing);
+    --padding: calc(var(--#{$prefix}spacing) / 2) var(--#{$prefix}spacing);
   }
 }
 
 @mixin input-states {
   :is(input, textarea, select) {
     &[aria-invalid="true"] {
-      --accent: var(--#{$prefix}-error);
+      --accent: var(--#{$prefix}error);
       --border-color: var(--accent);
     }
 
     &[aria-invalid="false"] {
-      --accent: var(--#{$prefix}-success);
+      --accent: var(--#{$prefix}success);
       --border-color: var(--accent);
     }
   }
@@ -121,15 +121,15 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   // select keeps its chevron there, checkbox/radio/range draw their own control
   :is(input:not(:where(#{$_controls}, [type="color"])), textarea) {
     &:is([aria-invalid="true"], [aria-invalid="false"]) {
-      padding-inline-end: calc(var(--#{$prefix}-spacing) * 2 + #{$input-icon-size});
+      padding-inline-end: calc(var(--#{$prefix}spacing) * 2 + #{$input-icon-size});
     }
 
     &[aria-invalid="true"] {
-      background-image: var(--#{$prefix}-input-icon-invalid);
+      background-image: var(--#{$prefix}input-icon-invalid);
     }
 
     &[aria-invalid="false"] {
-      background-image: var(--#{$prefix}-input-icon-valid);
+      background-image: var(--#{$prefix}input-icon-valid);
     }
   }
 }

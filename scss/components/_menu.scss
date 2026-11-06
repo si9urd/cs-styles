@@ -6,17 +6,17 @@
     display: inline-block;
     min-width: $menu-width;
     padding: $menu-padding-y 0;
-    border-radius: var(--#{$prefix}-border-radius);
-    background-color: var(--#{$prefix}-surface-container);
-    box-shadow: var(--#{$prefix}-shadow-overlay);
-    color: var(--#{$prefix}-on-surface);
-    font-weight: var(--#{$prefix}-font-weight-medium);
+    border-radius: var(--#{$prefix}border-radius);
+    background-color: var(--#{$prefix}surface-container);
+    box-shadow: var(--#{$prefix}shadow-overlay);
+    color: var(--#{$prefix}on-surface);
+    font-weight: var(--#{$prefix}font-weight-medium);
     font-size: $menu-font-size;
 
     & > :is(li, div):not([role="separator"]) {
       // Set per row: a nested submenu must not inherit its parent row's state
       --layer: 0%;
-      --icon-color: var(--#{$prefix}-on-surface-variant);
+      --icon-color: var(--#{$prefix}on-surface-variant);
 
       display: flex;
       align-items: center;
@@ -25,7 +25,7 @@
       min-height: $menu-item-height;
       padding: 0 $menu-gap;
       gap: $menu-gap;
-      background-color: color-mix(in srgb, var(--#{$prefix}-on-surface) var(--layer), transparent);
+      background-color: color-mix(in srgb, var(--#{$prefix}on-surface) var(--layer), transparent);
       cursor: pointer;
 
       @include hover {
@@ -52,9 +52,9 @@
       // Selected/checked/current item: brand tint on the row, ink stays on-surface for contrast.
       // An image layer, so hover/press background-color still stacks under it
       &:is([aria-selected="true"], [aria-checked="true"], [aria-current]:not([aria-current="false"])) {
-        --icon-color: var(--#{$prefix}-primary);
+        --icon-color: var(--#{$prefix}primary);
 
-        background-image: linear-gradient(color-mix(in srgb, var(--#{$prefix}-primary) #{$state-selected}, transparent) 0 0);
+        background-image: linear-gradient(color-mix(in srgb, var(--#{$prefix}primary) #{$state-selected}, transparent) 0 0);
       }
 
       // Same specificity as hover and focus, so source order decides: pressed, then disabled on top
@@ -78,7 +78,7 @@
         margin-inline-start: auto;
         border-width: calc($menu-arrow-size / 2) 0 calc($menu-arrow-size / 2) calc($menu-arrow-size * 2 / 3);
         border-style: solid;
-        border-color: transparent transparent transparent var(--#{$prefix}-on-surface);
+        border-color: transparent transparent transparent var(--#{$prefix}on-surface);
         content: "";
 
         [dir="rtl"] & {
@@ -104,7 +104,7 @@
       margin: $menu-divider-margin-y 0;
       padding: 0;
       border: none;
-      background-color: var(--#{$prefix}-outline-variant);
+      background-color: var(--#{$prefix}outline-variant);
     }
   }
 

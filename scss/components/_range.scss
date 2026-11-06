@@ -24,8 +24,8 @@
 
 @mixin range {
   input[type="range"] {
-    --track-color: var(--#{$prefix}-surface-container);
-    --thumb-color: var(--#{$prefix}-primary);
+    --track-color: var(--#{$prefix}surface-container);
+    --thumb-color: var(--#{$prefix}primary);
     --cursor: pointer;
 
     appearance: none;
@@ -43,7 +43,7 @@
       height: $range-track-height;
       border-radius: $range-track-height;
       background-color: var(--track-color);
-      box-shadow: inset 0 0 0 $border-width var(--#{$prefix}-outline);
+      box-shadow: inset 0 0 0 $border-width var(--#{$prefix}outline);
     }
 
     @include thumb {
@@ -72,7 +72,7 @@
     }
 
     @include disabled {
-      --track-color: var(--#{$prefix}-on-surface);
+      --track-color: var(--#{$prefix}on-surface);
       --cursor: not-allowed;
 
       opacity: #{$state-disabled-content};

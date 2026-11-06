@@ -3,15 +3,15 @@
 @mixin select {
   select {
     appearance: none;
-    background-image: var(--#{$prefix}-input-icon-chevron);
+    background-image: var(--#{$prefix}input-icon-chevron);
 
     // Reserve room for the chevron so long options don't run under it
     &:not([multiple]) {
-      padding-inline-end: calc(var(--#{$prefix}-spacing) * 2 + #{$input-icon-size});
+      padding-inline-end: calc(var(--#{$prefix}spacing) * 2 + #{$input-icon-size});
     }
 
     &[multiple] {
-      --padding: var(--#{$prefix}-spacing);
+      --padding: var(--#{$prefix}spacing);
 
       height: auto;
       background-image: none;

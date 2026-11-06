@@ -14,9 +14,9 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   --height: #{$btn-height};
   --padding-start: #{map.get($spacers, 4)};
   --padding-end: #{map.get($spacers, 4)};
-  --border-radius: var(--#{$prefix}-border-radius);
-  --color: var(--#{$prefix}-on-primary);
-  --container-color: var(--#{$prefix}-primary);
+  --border-radius: var(--#{$prefix}border-radius);
+  --color: var(--#{$prefix}on-primary);
+  --container-color: var(--#{$prefix}primary);
   --background-color: color-mix(in srgb, var(--color) var(--state-layer), var(--container-color));
   --border-color: var(--background-color);
   --state-layer: 0%;
@@ -42,16 +42,16 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   background-color: var(--background-color);
   box-shadow: var(--elevation);
   color: var(--color);
-  font-weight: var(--#{$prefix}-font-weight-medium);
+  font-weight: var(--#{$prefix}font-weight-medium);
   font-size: $btn-font-size;
-  line-height: var(--#{$prefix}-line-height-base);
+  line-height: var(--#{$prefix}line-height-base);
   text-align: center;
   text-decoration: none;
   text-wrap: nowrap;
   vertical-align: middle;
   cursor: pointer;
   opacity: var(--opacity);
-  transition: var(--#{$prefix}-transition);
+  transition: var(--#{$prefix}transition);
   transition-property: background-color, border-color, box-shadow, color, outline-color, opacity;
   user-select: none;
 
@@ -66,13 +66,13 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   @media (hover: hover) {
     &:hover:not(:where(#{$disabled})) {
       --state-layer: var(--layer-hover);
-      --elevation: var(--#{$prefix}-shadow-raised);
+      --elevation: var(--#{$prefix}shadow-raised);
     }
   }
 
   &:is(#{$hovered}):not(:where(#{$disabled})) {
     --state-layer: var(--layer-hover);
-    --elevation: var(--#{$prefix}-shadow-raised);
+    --elevation: var(--#{$prefix}shadow-raised);
   }
 
   &:is(:focus-visible, #{$focused}) {
@@ -113,7 +113,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
 // endregion button-base
 
 %button-outlined {
-  --border-color: color-mix(in srgb, var(--#{$prefix}-primary) 80%, transparent);
+  --border-color: color-mix(in srgb, var(--#{$prefix}primary) 80%, transparent);
 
   @include disabled {
     --border-color: #{$disabled-container};
@@ -123,9 +123,9 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
 %button-icon {
   --size: #{$btn-height * 1.25};
   --border-radius: #{$border-radius-pill};
-  --color: var(--#{$prefix}-on-surface-variant);
+  --color: var(--#{$prefix}on-surface-variant);
   --container-color: transparent;
-  --icon-size: var(--#{$prefix}-btn-icon-size);
+  --icon-size: var(--#{$prefix}btn-icon-size);
   --disabled-container: transparent;
   // Equal side padding: icon + padding + border add up to --size, wider content grows a rectangle
   --padding-start: calc((var(--size) - var(--icon-size)) / 2 - #{$border-width});
@@ -149,7 +149,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
 
 // Primary ink on a transparent container: outlined and text
 %button-ghost {
-  --color: var(--#{$prefix}-primary);
+  --color: var(--#{$prefix}primary);
   --container-color: transparent;
   --disabled-container: transparent;
   // Ink over a transparent container reads stronger than a filled one: softer layer, full in dark
@@ -185,12 +185,12 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   --padding-start: 0;
   --padding-end: 0;
   // Floats above the page: overlay in every state, the base hover/press shadows don't apply
-  --elevation: var(--#{$prefix}-shadow-overlay);
+  --elevation: var(--#{$prefix}shadow-overlay);
 
   min-width: var(--height);
 
   &:is(:hover, #{$hovered}, #{$pressed}):not(:where(#{$disabled})) {
-    --elevation: var(--#{$prefix}-shadow-overlay);
+    --elevation: var(--#{$prefix}shadow-overlay);
   }
 }
 
@@ -249,12 +249,12 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
     margin-inline-end: $btn-inner-gap;
     padding: $btn-padding-y map.get($spacers, 4);
     border: 0;
-    border-radius: var(--#{$prefix}-border-radius);
-    background-color: color-mix(in srgb, var(--#{$prefix}-on-primary) var(--state-layer, 0%), var(--#{$prefix}-primary));
-    color: var(--#{$prefix}-on-primary);
-    font-weight: var(--#{$prefix}-font-weight-medium);
+    border-radius: var(--#{$prefix}border-radius);
+    background-color: color-mix(in srgb, var(--#{$prefix}on-primary) var(--state-layer, 0%), var(--#{$prefix}primary));
+    color: var(--#{$prefix}on-primary);
+    font-weight: var(--#{$prefix}font-weight-medium);
     cursor: pointer;
-    transition: background-color var(--#{$prefix}-transition);
+    transition: background-color var(--#{$prefix}transition);
   }
 
   [type="file"] {

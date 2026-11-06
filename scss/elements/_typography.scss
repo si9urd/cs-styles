@@ -4,16 +4,16 @@
   h1, h2, h3, h4, h5, h6 {
     --fs: 2.5;
 
-    margin: var(--#{$prefix}-spacing) 0;
-    font-weight: var(--#{$prefix}-font-weight-medium);
-    font-size: calc(var(--#{$prefix}-font-size-base) * var(--fs));
+    margin: var(--#{$prefix}spacing) 0;
+    font-weight: var(--#{$prefix}font-weight-medium);
+    font-size: calc(var(--#{$prefix}font-size-base) * var(--fs));
     line-height: 1.15;
     text-wrap: balance;
   }
 
   h1 {
-    margin: 0 0 clamp(var(--#{$prefix}-spacing), 2vw, var(--#{$prefix}-spacing) * 1.5);
-    font-weight: var(--#{$prefix}-font-weight-bold);
+    margin: 0 0 clamp(var(--#{$prefix}spacing), 2vw, var(--#{$prefix}spacing) * 1.5);
+    font-weight: var(--#{$prefix}font-weight-bold);
   }
 
   h2 {
@@ -40,7 +40,7 @@
   kbd,
   samp,
   pre {
-    font-family: var(--#{$prefix}-font-family-mono);
+    font-family: var(--#{$prefix}font-family-mono);
   }
 
   b,

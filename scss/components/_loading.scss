@@ -5,7 +5,7 @@
   // Controls, inline text, and empty placeholders; a busy region (section, table, list) keeps its layout, cursor only
   :is(#{$busy}):is(button, [role="button"], a, [role="link"], span, :empty):not(input, select, textarea) {
     &::before {
-      @include icon-mask(var(--#{$prefix}-icon-ring-spinner));
+      @include icon-mask(var(--#{$prefix}icon-ring-spinner));
 
       display: inline-flex;
       vertical-align: -.125em;
@@ -18,7 +18,7 @@
 
     &:not(:empty) {
       &::before {
-        margin-inline-end: calc(var(--#{$prefix}-spacing) * 0.5);
+        margin-inline-end: calc(var(--#{$prefix}spacing) * 0.5);
       }
     }
 

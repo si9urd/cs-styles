@@ -4,14 +4,14 @@
 /// Current, hovered, focused, or pressed link: a shade toward the text color.
 /// Not toward --cs-surface: that is the page color and would drop contrast below the resting link
 @mixin link-active {
-  --link-color: color-mix(in lab, var(--#{$prefix}-primary) 90%, var(--#{$prefix}-on-surface));
-  --link-underline-color: color-mix(in lab, var(--#{$prefix}-primary) 80%, var(--#{$prefix}-on-surface));
+  --link-color: color-mix(in lab, var(--#{$prefix}primary) 90%, var(--#{$prefix}on-surface));
+  --link-underline-color: color-mix(in lab, var(--#{$prefix}primary) 80%, var(--#{$prefix}on-surface));
 }
 
 @mixin link {
   a:not([role="button"]),
   [role="link"] {
-    --link-color: var(--#{$prefix}-primary);
+    --link-color: var(--#{$prefix}primary);
     --link-underline-color: var(--link-color);
 
     color: var(--link-color);
@@ -20,7 +20,7 @@
     text-decoration-thickness: .1em;
     text-underline-offset: .15em;
     cursor: pointer;
-    transition: var(--#{$prefix}-transition);
+    transition: var(--#{$prefix}transition);
     transition-property: color, text-decoration-color;
 
     &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], :active) {
