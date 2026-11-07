@@ -15,8 +15,8 @@
 
     & > :is(li, div):not([role="separator"]) {
       // Set per row: a nested submenu must not inherit its parent row's state
-      --layer: 0%;
-      --icon-color: var(--#{$prefix}on-surface-variant);
+      --mnu-layer: 0%;
+      --mnu-icon-color: var(--#{$prefix}on-surface-variant);
 
       display: flex;
       align-items: center;
@@ -25,16 +25,16 @@
       min-height: $menu-item-height;
       padding: 0 $menu-gap;
       gap: $menu-gap;
-      background-color: color-mix(in srgb, var(--#{$prefix}on-surface) var(--layer), transparent);
+      background-color: color-mix(in srgb, var(--#{$prefix}on-surface) var(--mnu-layer), transparent);
       cursor: pointer;
 
       @include hover {
-        --layer: #{$state-hover-soft};
+        --mnu-layer: #{$state-hover-soft};
       }
 
       // Roving focus: inset ring stays inside the panel, layer as on press
       @include focus-visible {
-        --layer: #{$state-press-soft};
+        --mnu-layer: #{$state-press-soft};
 
         @include focus-ring(-$focus-ring-width);
       }
@@ -46,25 +46,25 @@
       }
 
       svg {
-        fill: var(--icon-color);
+        fill: var(--mnu-icon-color);
       }
 
       // Selected/checked/current item: brand tint on the row, ink stays on-surface for contrast.
       // An image layer, so hover/press background-color still stacks under it
       &:is([aria-selected="true"], [aria-checked="true"], [aria-current]:not([aria-current="false"])) {
-        --icon-color: var(--#{$prefix}primary);
+        --mnu-icon-color: var(--#{$prefix}primary);
 
         background-image: linear-gradient(color-mix(in srgb, var(--#{$prefix}primary) #{$state-selected}, transparent) 0 0);
       }
 
       // Same specificity as hover and focus, so source order decides: pressed, then disabled on top
       &:active {
-        --layer: #{$state-press-soft};
+        --mnu-layer: #{$state-press-soft};
       }
 
       @include disabled {
-        --layer: 4%;
-        --icon-color: #{$disabled-content};
+        --mnu-layer: 4%;
+        --mnu-icon-color: #{$disabled-content};
 
         color: #{$disabled-content};
         cursor: not-allowed;

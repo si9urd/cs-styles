@@ -17,8 +17,10 @@
     border-radius: var(--group-border-radius);
 
     & > * {
-      --height: var(--#{$prefix}input-height);
-      --border-radius: 0;
+      --inp-height: var(--#{$prefix}input-height);
+      --btn-height: var(--#{$prefix}input-height);
+      --btn-border-radius: 0;
+      --inp-border-radius: 0;
 
       // Break labels between words: `anywhere` (buttons) lets a label shrink to one letter per line before the row wraps
       overflow-wrap: break-word;

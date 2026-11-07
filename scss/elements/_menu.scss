@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 0;
-    gap: var(--#{$prefix}spacing);
+    gap: var(--#{$prefix}gap);
     list-style: none;
   }
 }

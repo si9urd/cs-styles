@@ -18,7 +18,7 @@
 
     &:not(:empty) {
       &::before {
-        margin-inline-end: calc(var(--#{$prefix}spacing) * 0.5);
+        margin-inline-end: calc(var(--#{$prefix}gap) * 0.5);
       }
     }
 

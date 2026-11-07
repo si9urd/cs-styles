@@ -9,26 +9,26 @@
     cursor: pointer;
 
     input {
-      margin-inline-end: var(--#{$prefix}spacing);
+      margin-inline-end: var(--#{$prefix}gap);
     }
   }
 
   input[type="radio"], input[type="checkbox"] {
-    --size: #{$radio-size};
-    --border-color: var(--#{$prefix}on-surface-variant);
+    --sw-size: #{$radio-size};
+    --sw-border-color: var(--#{$prefix}on-surface-variant);
 
     appearance: none;
     position: relative;
-    width: var(--size);
-    height: var(--size);
-    margin-inline-end: calc(var(--#{$prefix}spacing) * .5);
-    border: $control-border-width solid var(--border-color);
+    width: var(--sw-size);
+    height: var(--sw-size);
+    margin-inline-end: calc(var(--#{$prefix}gap) * .5);
+    border: $control-border-width solid var(--sw-border-color);
     vertical-align: middle;
     cursor: pointer;
 
     & + label {
       display: inline-flex;
-      margin-inline-end: var(--#{$prefix}spacing);
+      margin-inline-end: var(--#{$prefix}gap);
       cursor: default;
 
       &:last-child {
@@ -44,8 +44,8 @@
     }
 
     @include disabled {
-      --border-color: var(--#{$prefix}on-surface);
-      --background-color: var(--#{$prefix}on-surface);
+      --sw-border-color: var(--#{$prefix}on-surface);
+      --sw-background-color: var(--#{$prefix}on-surface);
 
       opacity: #{$state-disabled-content};
     }
@@ -55,31 +55,31 @@
     border-radius: 50%;
 
     &:checked {
-      --border-color: var(--#{$prefix}primary);
+      --sw-border-color: var(--#{$prefix}primary);
 
-      background-image: radial-gradient(circle, var(--border-color) 30%, transparent calc(30% + 1px));
+      background-image: radial-gradient(circle, var(--sw-border-color) 30%, transparent calc(30% + 1px));
     }
   }
 
   input[type="checkbox"] {
-    --size: #{$checkbox-size};
-    --indicator-color: var(--#{$prefix}on-primary);
+    --sw-size: #{$checkbox-size};
+    --sw-indicator-color: var(--#{$prefix}on-primary);
 
     &:checked {
-      --border-color: var(--#{$prefix}primary);
-      --background-color: var(--#{$prefix}primary);
+      --sw-border-color: var(--#{$prefix}primary);
+      --sw-background-color: var(--#{$prefix}primary);
 
-      background-color: var(--background-color);
+      background-color: var(--sw-background-color);
 
       // Switch draws its thumb on ::before instead
       &:not([role="switch"])::before {
         position: absolute;
-        top: calc(var(--size) * .01);
-        left: calc(var(--size) * .25);
-        width: calc(var(--size) * .3);
-        height: calc(var(--size) * .7);
+        top: calc(var(--sw-size) * .01);
+        left: calc(var(--sw-size) * .25);
+        width: calc(var(--sw-size) * .3);
+        height: calc(var(--sw-size) * .7);
         transform: rotate(45deg);
-        border: solid var(--indicator-color);
+        border: solid var(--sw-indicator-color);
         border-width: 0 $control-border-width $control-border-width 0;
         content: "";
       }
@@ -88,7 +88,7 @@
     // Forced colors drop author backgrounds: repaint the checked fill in system colors
     @media (forced-colors: active) {
       &:checked {
-        --indicator-color: HighlightText;
+        --sw-indicator-color: HighlightText;
 
         background-color: Highlight;
       }
@@ -96,30 +96,30 @@
   }
 
   input[type="checkbox"][role="switch"] {
-    --size: #{$switch-size};
-    --background-color: var(--#{$prefix}surface-container);
+    --sw-size: #{$switch-size};
+    --sw-background-color: var(--#{$prefix}surface-container);
     // Thumb position is the state: on-surface-variant holds ≥ 3:1 on the track
-    --indicator-color: var(--#{$prefix}on-surface-variant);
-    --border-color: var(--#{$prefix}outline);
+    --sw-indicator-color: var(--#{$prefix}on-surface-variant);
+    --sw-border-color: var(--#{$prefix}outline);
 
     display: inline-flex;
-    width: calc(var(--size) * 1.8);
-    border-radius: var(--size);
-    background-color: var(--background-color);
+    width: calc(var(--sw-size) * 1.8);
+    border-radius: var(--sw-size);
+    background-color: var(--sw-background-color);
 
     &::before {
       display: block;
       aspect-ratio: 1;
       height: 100%;
       border-radius: 50%;
-      background-color: var(--indicator-color);
+      background-color: var(--sw-indicator-color);
       content: "";
     }
 
     &:checked {
-      --border-color: var(--#{$prefix}primary);
-      --background-color: var(--#{$prefix}primary);
-      --indicator-color: var(--#{$prefix}on-primary);
+      --sw-border-color: var(--#{$prefix}primary);
+      --sw-background-color: var(--#{$prefix}primary);
+      --sw-indicator-color: var(--#{$prefix}on-primary);
 
       &::before {
         margin-inline-start: auto;
@@ -127,11 +127,11 @@
     }
 
     @media (forced-colors: active) {
-      --indicator-color: CanvasText;
+      --sw-indicator-color: CanvasText;
 
       &:checked {
-        --background-color: Highlight;
-        --indicator-color: HighlightText;
+        --sw-background-color: Highlight;
+        --sw-indicator-color: HighlightText;
       }
     }
   }

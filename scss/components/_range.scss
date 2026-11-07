@@ -24,9 +24,9 @@
 
 @mixin range {
   input[type="range"] {
-    --track-color: var(--#{$prefix}surface-container);
-    --thumb-color: var(--#{$prefix}primary);
-    --cursor: pointer;
+    --rng-track-color: var(--#{$prefix}surface-container);
+    --rng-thumb-color: var(--#{$prefix}primary);
+    --rng-cursor: pointer;
 
     appearance: none;
     width: 100%;
@@ -42,7 +42,7 @@
       width: 100%;
       height: $range-track-height;
       border-radius: $range-track-height;
-      background-color: var(--track-color);
+      background-color: var(--rng-track-color);
       box-shadow: inset 0 0 0 $border-width var(--#{$prefix}outline);
     }
 
@@ -52,8 +52,8 @@
       height: $range-thumb-size;
       margin-top: ($range-track-height - $range-thumb-size) * .5;
       border-radius: $range-thumb-size;
-      background-color: var(--thumb-color);
-      cursor: var(--cursor);
+      background-color: var(--rng-thumb-color);
+      cursor: var(--rng-cursor);
     }
 
     // The thumb is the visible control, so it carries the ring
@@ -67,13 +67,13 @@
 
     // Forced colors drop author backgrounds: track and thumb would vanish
     @media (forced-colors: active) {
-      --track-color: GrayText;
-      --thumb-color: CanvasText;
+      --rng-track-color: GrayText;
+      --rng-thumb-color: CanvasText;
     }
 
     @include disabled {
-      --track-color: var(--#{$prefix}on-surface);
-      --cursor: not-allowed;
+      --rng-track-color: var(--#{$prefix}on-surface);
+      --rng-cursor: not-allowed;
 
       opacity: #{$state-disabled-content};
     }

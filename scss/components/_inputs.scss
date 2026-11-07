@@ -5,29 +5,29 @@
 $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"]';
 
 %input {
-  --height: var(--#{$prefix}input-height);
-  --padding: 0 var(--#{$prefix}spacing);
-  --border-radius: var(--#{$prefix}border-radius);
-  --border-color: var(--#{$prefix}outline);
+  --inp-height: var(--#{$prefix}input-height);
+  --inp-padding: 0 var(--#{$prefix}gap);
+  --inp-border-radius: var(--#{$prefix}border-radius);
+  --inp-border-color: var(--#{$prefix}outline);
   // Focus ring and border; validation states swap it
-  --accent: var(--#{$prefix}primary);
-  --background: var(--#{$prefix}surface);
-  --color: var(--#{$prefix}on-surface);
-  --box-shadow: none;
+  --inp-accent: var(--#{$prefix}primary);
+  --inp-background: var(--#{$prefix}surface);
+  --inp-color: var(--#{$prefix}on-surface);
+  --inp-box-shadow: none;
 
   display: inline-flex;
   width: 100%;
-  height: var(--height);
-  padding: var(--padding);
-  border: $border-width solid var(--border-color);
-  border-radius: var(--border-radius);
+  height: var(--inp-height);
+  padding: var(--inp-padding);
+  border: $border-width solid var(--inp-border-color);
+  border-radius: var(--inp-border-radius);
   outline: 0 solid transparent;
-  background-position: right var(--#{$prefix}spacing) top calc((var(--#{$prefix}input-height) - #{$input-icon-size}) / 2);
+  background-position: right var(--#{$prefix}gap) top calc((var(--#{$prefix}input-height) - #{$input-icon-size}) / 2);
   background-size: $input-icon-size;
   background-repeat: no-repeat;
-  background-color: var(--background);
-  box-shadow: var(--box-shadow);
-  color: var(--color);
+  background-color: var(--inp-background);
+  box-shadow: var(--inp-box-shadow);
+  color: var(--inp-color);
   caret-color: var(--#{$prefix}primary);
   font-size: $font-size-input;
   line-height: var(--#{$prefix}line-height-base);
@@ -36,16 +36,16 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 
   // No logical keywords for background-position: mirror the state icon by hand
   [dir="rtl"] & {
-    background-position-x: var(--#{$prefix}spacing);
+    background-position-x: var(--#{$prefix}gap);
   }
 
   // aria-disabled only looks disabled: the field stays editable, pair with readonly to block input
   @include disabled {
-    --background: var(--#{$prefix}surface-container);
-    --color: var(--#{$prefix}on-surface-variant);
+    --inp-background: var(--#{$prefix}surface-container);
+    --inp-color: var(--#{$prefix}on-surface-variant);
 
     // Native :disabled already turns GrayText here, aria-disabled doesn't
-    @include forced-disabled;
+    @include forced-disabled("inp-");
   }
 
   &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
@@ -53,14 +53,14 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 
     &::-webkit-calendar-picker-indicator {
       position: absolute;
-      inset-inline-end: var(--#{$prefix}spacing);
+      inset-inline-end: var(--#{$prefix}gap);
       opacity: .5;
     }
   }
 
   &:focus {
-    --box-shadow: 0 0 0 #{$border-width} var(--accent) inset;
-    --border-color: var(--accent);
+    --inp-box-shadow: 0 0 0 #{$border-width} var(--inp-accent) inset;
+    --inp-border-color: var(--inp-accent);
 
     // Invisible normally; forced colors remove the box-shadow ring and repaint this instead
     outline: $focus-ring-width solid transparent;
@@ -76,9 +76,9 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   }
 
   textarea {
-    --height: calc(var(--#{$prefix}input-height) * 2);
+    --inp-height: calc(var(--#{$prefix}input-height) * 2);
 
-    padding-top: var(--#{$prefix}spacing);
+    padding-top: var(--#{$prefix}gap);
   }
 
   :where(input, textarea)::placeholder {
@@ -88,32 +88,32 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 
 @mixin input-other {
   input[type="search"] {
-    --border-radius: #{$border-radius-pill};
+    --inp-border-radius: #{$border-radius-pill};
 
-    padding-inline-start: calc(var(--#{$prefix}spacing) * 3);
+    padding-inline-start: calc(var(--#{$prefix}gap) * 3);
     background-image: var(--#{$prefix}input-icon-search);
-    background-position: left var(--#{$prefix}spacing) center;
+    background-position: left var(--#{$prefix}gap) center;
 
     [dir="rtl"] & {
-      background-position-x: calc(100% - var(--#{$prefix}spacing));
+      background-position-x: calc(100% - var(--#{$prefix}gap));
     }
   }
 
   input[type="color"] {
-    --padding: calc(var(--#{$prefix}spacing) / 2) var(--#{$prefix}spacing);
+    --inp-padding: calc(var(--#{$prefix}gap) / 2) var(--#{$prefix}gap);
   }
 }
 
 @mixin input-states {
   :is(input, textarea, select) {
     &[aria-invalid="true"] {
-      --accent: var(--#{$prefix}error);
-      --border-color: var(--accent);
+      --inp-accent: var(--#{$prefix}error);
+      --inp-border-color: var(--inp-accent);
     }
 
     &[aria-invalid="false"] {
-      --accent: var(--#{$prefix}success);
-      --border-color: var(--accent);
+      --inp-accent: var(--#{$prefix}success);
+      --inp-border-color: var(--inp-accent);
     }
   }
 
@@ -121,7 +121,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   // select keeps its chevron there, checkbox/radio/range draw their own control
   :is(input:not(:where(#{$_controls}, [type="color"])), textarea) {
     &:is([aria-invalid="true"], [aria-invalid="false"]) {
-      padding-inline-end: calc(var(--#{$prefix}spacing) * 2 + #{$input-icon-size});
+      padding-inline-end: calc(var(--#{$prefix}gap) * 2 + #{$input-icon-size});
     }
 
     &[aria-invalid="true"] {
@@ -136,8 +136,8 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 
 @mixin input-autofill {
   :is(input, textarea, select):is(:autofill, :-webkit-autofill) {
-    -webkit-text-fill-color: var(--color) !important;
-    box-shadow: 0 0 0 1000px var(--background) inset !important;
+    -webkit-text-fill-color: var(--inp-color) !important;
+    box-shadow: 0 0 0 1000px var(--inp-background) inset !important;
   }
 }
 

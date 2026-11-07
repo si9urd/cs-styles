@@ -6,7 +6,7 @@
     appearance: none;
     width: 100%;
     height: $progress-height;
-    margin-bottom: calc(var(--#{$prefix}spacing) * 0.5);
+    margin-bottom: calc(var(--#{$prefix}gap) * 0.5);
     overflow: hidden;
     border: 0;
     border-radius: $border-radius-pill;

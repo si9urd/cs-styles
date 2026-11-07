@@ -126,9 +126,9 @@ $busy: "[aria-busy=\"true\"], [data-pending]";
 
 /// Forced colors flatten disabled ink back to the default; GrayText is the system's disabled color.
 /// For controls painted from --color and --border-color.
-@mixin forced-disabled {
+@mixin forced-disabled($var-prefix: "") {
   @media (forced-colors: active) {
-    --border-color: GrayText;
-    --color: GrayText;
+    --#{$var-prefix}border-color: GrayText;
+    --#{$var-prefix}color: GrayText;
   }
 }
