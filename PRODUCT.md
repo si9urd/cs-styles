@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Primarily the author (Oleh Obydonov) styling their own projects: SPAs mounted on `#app`/`#root`, admin panels, and web interfaces of devices (e.g. the Heltec theme). The public npm package (`@oleh-ob/cs-styles`) is a by-product, not the main audience; external consumers are served but not designed for first.
+Personal projects (SPAs mounted on `#app`/`#root`, admin panels, web interfaces of devices, e.g. the Heltec theme) and anyone who wants to style semantic HTML without classes, via the public npm package `@oleh-ob/cs-styles`.
 
 ## Product Purpose
 
