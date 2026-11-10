@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Personal projects (SPAs mounted on `#app`/`#root`, admin panels, web interfaces of devices, e.g. the Heltec theme) and anyone who wants to style semantic HTML without classes, via the public npm package `@oleh-ob/cs-styles`.
+Personal projects (SPAs mounted on `#app`/`#root`, admin panels, web interfaces of devices) and anyone who wants to style semantic HTML without classes, via the public npm package `@oleh-ob/cs-styles`.
 
 ## Product Purpose
 
