@@ -39,7 +39,7 @@ npm i @oleh-ob/cs-styles
 - `dist/cs-styles.min.css` — основной production-артефакт
 - `dist/cs-styles.css` — читаемая не минифицированная сборка
 - `scss/cs-styles.scss` — исходная SCSS-точка входа для сборки в собственных пайплайнах
-- CSS-переменные вида `--cs-*` — токены темы, размеров и состояния; цвета — 11 ролей палитры (`primary`/`on-primary`, `surface`/`on-surface`, `on-surface-variant`, `outline`, `outline-variant`, `surface-container`, `error`, `warning`, `success`), назначение и значения описаны в [THEME-DESIGN.md](THEME-DESIGN.md); переопределяются через `$theme-colors: (light: (...), dark: (...))`
+- CSS-переменные вида `--cs-*` — токены темы, размеров и состояния; цвета — 11 ролей палитры (`primary`/`on-primary`, `surface`/`on-surface`, `on-surface-variant`, `outline`, `outline-variant`, `surface-container`, `error`, `warning`, `success`), назначение и значения описаны в [THEME-DESIGN.md](THEME-DESIGN.md); вся палитра выводится в OKLCH из одного `$brand-color`, отдельные роли переопределяются через `$theme-colors: (light: (...), dark: (...))`
 - `data-theme="dark"` — публичный механизм переключения темы; с `$enable-auto-dark: true` без `data-theme` тема следует за ОС (`prefers-color-scheme`), а `data-theme="light"` закрепляет светлую
 - семантические элементы HTML и ARIA-атрибуты — основной способ активации стилей
 
@@ -53,7 +53,7 @@ npm i @oleh-ob/cs-styles
 
 Как поменять цвет:
 
-- при сборке — задать роли `on-surface`, `error`, `success` в `$theme-colors` (`light: (...)` и `dark: (...)`), иконки пересоберутся с ними;
+- при сборке — сменить `$brand-color` или задать роли `on-surface`, `error`, `success` в `$theme-colors` (`light: (...)` и `dark: (...)`), иконки пересоберутся с ними;
 - в рантайме — подставить свою картинку: `--cs-input-icon-invalid: url("data:image/svg+xml,…")`.
 
 Остальные иконки (`--cs-icon-*`: спиннер `aria-busy`, переключатель темы) красятся маской и берут цвет текста, ограничение их не касается. Дополнительный набор (`menu`, `close`, `edit`, `github` и др.) в CSS не входит: подключите `settings/_icons-extra.scss` через `$icons` в `with (...)`.

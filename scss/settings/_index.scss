@@ -1,4 +1,6 @@
+@use "sass:color";
 @use "sass:map" as map;
+@use "sass:math";
 @use "icons" as builtin;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -36,35 +38,54 @@ $enable-landmarks: true !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// Brand color: the one input of the palette. Every role takes its OKLCH hue and a share of its chroma,
+// lightness is fixed per role so contrast holds for any brand.
+$brand-color: #4C63D9 !default;
+
+// OKLCH color mapped into sRGB, channels rounded for a short output
+@function -tone($l, $c, $h) {
+  $color: color.to-gamut(oklch($l $c $h), $space: rgb, $method: local-minde);
+
+  @return color.change(
+    $color,
+    $lightness: math.round(color.channel($color, "lightness")),
+    $chroma: math.div(math.round(color.channel($color, "chroma") * 1000), 1000),
+    $hue: math.round(color.channel($color, "hue"))
+  );
+}
+
+$-c: color.channel($brand-color, "chroma", $space: oklch);
+$-h: color.channel($brand-color, "hue", $space: oklch);
+
 // Theme colors, emitted as --cs-<role> per theme. User entries add to or replace the defaults.
-// Text and strokes keep their contrast on both surface and surface-container. HSB in comments.
+// Text and strokes keep their contrast on both surface and surface-container.
 $theme-colors: () !default;
 $theme-colors: map.deep-merge((
   light: (
-    primary: #4C63D9, // 230 65 85: links, buttons, checked controls, focus
+    primary: -tone(52%, $-c, $-h), // links, buttons, checked controls, focus
     on-primary: #FFF,
     surface: #FFF, // page and field background
-    on-surface: #1A203D, // 230 57 24: primary text, ≥ 4.5:1
-    on-surface-variant: #595F7A, // 230 27 48: supporting text and icons, ≥ 4.5:1
-    outline: #8086A6, // 230 23 65: control borders, ≥ 3:1
-    outline-variant: #E4E6F0, // 230 5 94: decorative dividers
-    surface-container: #F5F6FA, // 230 2 98: secondary background of buttons, menus, tracks
-    error: #C73A3A, // 0 71 78
-    warning: #8F6C1A, // 42 82 56
-    success: #067A58, // 162 95 48
+    on-surface: -tone(25%, $-c * .3, $-h), // primary text, ≥ 4.5:1
+    on-surface-variant: -tone(49%, $-c * .25, $-h), // supporting text and icons, ≥ 4.5:1
+    outline: -tone(63%, $-c * .27, $-h), // control borders, ≥ 3:1
+    outline-variant: -tone(93%, $-c * .07, $-h), // decorative dividers
+    surface-container: -tone(97%, $-c * .03, $-h), // secondary background of buttons, menus, tracks
+    error: -tone(52%, .15, 25),
+    warning: -tone(57%, .16, 60),
+    success: -tone(52%, .15, 165),
   ),
   dark: (
-    primary: #97A8FC, // 230 40 99
-    on-primary: #12131A,
-    surface: #12131A, // 230 30 10
+    primary: -tone(75%, $-c * .67, $-h),
+    on-primary: -tone(19%, $-c * .08, $-h),
+    surface: -tone(19%, $-c * .08, $-h),
     on-surface: #FFF,
-    on-surface-variant: #CED0D9, // 230 5 85
-    outline: #9598A6, // 230 10 65
-    outline-variant: #363840, // 230 15 25
-    surface-container: #1F2026, // 230 20 15
-    error: #FF9C9C, // 0 39 100
-    warning: #E0BF70, // 42 50 88
-    success: #77C7AF, // 162 40 78
+    on-surface-variant: -tone(86%, $-c * .07, $-h),
+    outline: -tone(68%, $-c * .11, $-h),
+    outline-variant: -tone(34%, $-c * .08, $-h),
+    surface-container: -tone(25%, $-c * .06, $-h),
+    error: -tone(80%, .11, 25),
+    warning: -tone(75%, .14, 75),
+    success: -tone(80%, .11, 165),
   ),
 ), $theme-colors);
 

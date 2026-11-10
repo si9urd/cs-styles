@@ -1,6 +1,6 @@
 # Theme design
 
-Палитра — 5 оттенков бренд-цвета (hue 230), сам бренд и 3 системных цвета. Имена ролей взяты из M3, у каждой роли одно назначение. Пары цвет/фон задаются через `on-`: текст `on-X` кладётся на фон `X`, `on-surface` подходит и для `surface`, и для `surface-container`.
+Палитра строится в OKLCH из одного цвета `$brand-color` (по умолчанию `#4C63D9`): 5 оттенков бренда, сам бренд и 3 системных цвета. Имена ролей взяты из M3, у каждой роли одно назначение. Пары цвет/фон задаются через `on-`: текст `on-X` кладётся на фон `X`, `on-surface` подходит и для `surface`, и для `surface-container`.
 
 Значения лежат в `$theme-colors` (`scss/settings/_index.scss`) и выводятся как `--cs-<роль>` на `:root`, тёмная тема включается через `[data-theme="dark"]`.
 
@@ -20,37 +20,25 @@
 | `warning` | Amber | предупреждения (компоненты пока не используют) | ≥ 4.5:1 с `surface` |
 | `success` | Green | `aria-invalid="false"` | ≥ 4.5:1 с `surface` |
 
-## Light
+## Шкала
 
-| Роль | HSB | Цвет |
-|---|---|---|
-| `primary` | 230 65 85 | ![#4C63D9](https://img.shields.io/badge/-%234C63D9-4C63D9.svg?style=flat-square) |
-| `on-primary` | 0 0 100 | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF.svg?style=flat-square) |
-| `on-surface` | 230 57 24 | ![#1A203D](https://img.shields.io/badge/-%231A203D-1A203D.svg?style=flat-square) |
-| `on-surface-variant` | 230 27 48 | ![#595F7A](https://img.shields.io/badge/-%23595F7A-595F7A.svg?style=flat-square) |
-| `outline` | 230 23 65 | ![#8086A6](https://img.shields.io/badge/-%238086A6-8086A6.svg?style=flat-square) |
-| `outline-variant` | 230 5 94 | ![#E4E6F0](https://img.shields.io/badge/-%23E4E6F0-E4E6F0.svg?style=flat-square) |
-| `surface-container` | 230 2 98 | ![#F5F6FA](https://img.shields.io/badge/-%23F5F6FA-F5F6FA.svg?style=flat-square) |
-| `surface` | 0 0 100 | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF.svg?style=flat-square) |
-| `error` | 0 71 78 | ![#C73A3A](https://img.shields.io/badge/-%23C73A3A-C73A3A.svg?style=flat-square) |
-| `warning` | 42 82 56 | ![#8F6C1A](https://img.shields.io/badge/-%238F6C1A-8F6C1A.svg?style=flat-square) |
-| `success` | 162 95 48 | ![#067A58](https://img.shields.io/badge/-%23067A58-067A58.svg?style=flat-square) |
+Роль задаётся светлотой L и долей хромы бренда `c`, оттенок `h` берётся у бренда. Светлота у каждой роли фиксирована, поэтому контраст выдерживается при любом бренде. Цвет вне sRGB сжимается в гамму (`color.to-gamut`), каналы округляются. У статусных цветов свой оттенок и фиксированная хрома, так что серый бренд их не обесцвечивает.
 
-## Dark
+| Роль | Light: L / C | Dark: L / C | По умолчанию, light | По умолчанию, dark |
+|---|---|---|---|---|
+| `primary` | 52% / c | 75% / c·.67 | `oklch(52% .182 271)` | `oklch(75% .122 271)` |
+| `on-primary` | `#FFF` | = `surface` | `#FFF` | `oklch(19% .015 271)` |
+| `surface` | `#FFF` | 19% / c·.08 | `#FFF` | `oklch(19% .015 271)` |
+| `on-surface` | 25% / c·.3 | `#FFF` | `oklch(25% .055 271)` | `#FFF` |
+| `on-surface-variant` | 49% / c·.25 | 86% / c·.07 | `oklch(49% .045 271)` | `oklch(86% .013 271)` |
+| `outline` | 63% / c·.27 | 68% / c·.11 | `oklch(63% .049 271)` | `oklch(68% .02 271)` |
+| `outline-variant` | 93% / c·.07 | 34% / c·.08 | `oklch(93% .013 271)` | `oklch(34% .015 271)` |
+| `surface-container` | 97% / c·.03 | 25% / c·.06 | `oklch(97% .005 271)` | `oklch(25% .011 271)` |
+| `error` | 52% / .15, h 25 | 80% / .11 | `oklch(52% .15 25)` | `oklch(80% .11 25)` |
+| `warning` | 57% / .16, h 60 | 75% / .14, h 75 | `oklch(57% .144 54)` | `oklch(75% .14 75)` |
+| `success` | 52% / .15, h 165 | 80% / .11 | `oklch(53% .117 161)` | `oklch(80% .11 165)` |
 
-| Роль | HSB | Цвет |
-|---|---|---|
-| `primary` | 230 40 99 | ![#97A8FC](https://img.shields.io/badge/-%2397A8FC-97A8FC.svg?style=flat-square) |
-| `on-primary` | 230 30 10 | ![#12131A](https://img.shields.io/badge/-%2312131A-12131A.svg?style=flat-square) |
-| `on-surface` | 230 0 100 | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF.svg?style=flat-square) |
-| `on-surface-variant` | 230 5 85 | ![#CED0D9](https://img.shields.io/badge/-%23CED0D9-CED0D9.svg?style=flat-square) |
-| `outline` | 230 10 65 | ![#9598A6](https://img.shields.io/badge/-%239598A6-9598A6.svg?style=flat-square) |
-| `outline-variant` | 230 15 25 | ![#363840](https://img.shields.io/badge/-%23363840-363840.svg?style=flat-square) |
-| `surface-container` | 230 20 15 | ![#1F2026](https://img.shields.io/badge/-%231F2026-1F2026.svg?style=flat-square) |
-| `surface` | 230 30 10 | ![#12131A](https://img.shields.io/badge/-%2312131A-12131A.svg?style=flat-square) |
-| `error` | 0 39 100 | ![#FF9C9C](https://img.shields.io/badge/-%23FF9C9C-FF9C9C.svg?style=flat-square) |
-| `warning` | 42 50 88 | ![#E0BF70](https://img.shields.io/badge/-%23E0BF70-E0BF70.svg?style=flat-square) |
-| `success` | 162 40 78 | ![#77C7AF](https://img.shields.io/badge/-%2377C7AF-77C7AF.svg?style=flat-square) |
+Контраст из таблицы ролей проверен для брендов `#4C63D9`, `#FFD600`, `#0C7A5F`, `#888`, `#E91E63`, `#00BCD4`.
 
 ## Тени
 
@@ -63,7 +51,13 @@
 
 ## Своя палитра
 
-Переопределите нужные роли в `with (...)`, остальные останутся по умолчанию:
+Задайте цвет бренда, вся палитра пересчитается вместе с иконками полей:
+
+```scss
+@use "cs-styles/scss" with ($brand-color: #0C7A5F);
+```
+
+Отдельные роли переопределяются в `$theme-colors`, остальные останутся вычисленными:
 
 ```scss
 @use "cs-styles/scss" with (

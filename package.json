@@ -28,7 +28,7 @@
     "node": ">=18.17.0"
   },
   "browserslist": [
-    "defaults"
+    "defaults and supports css-lch-lab"
   ],
   "author": "Oleh Obydonov",
   "license": "MIT",
