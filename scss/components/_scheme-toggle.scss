@@ -8,3 +8,46 @@
     mask-image: var(--#{$prefix}icon-light);
   }
 }
+
+// Sun and moon on a pill track, the thumb sits under the current theme's icon
+$-thumb: $btn-height;
+$-icon: $btn-icon-size * .75;
+$-icon-inset: ($-thumb - $-icon) * .5;
+
+[data-theme-switcher] {
+  // Active icon in on-surface, the other in the button's on-surface-variant
+  --toggle-start: var(--#{$prefix}on-surface);
+  --toggle-end: currentcolor;
+  --btn-container-color: var(--#{$prefix}surface-container);
+
+  min-width: $-thumb * 2;
+  height: $-thumb;
+  background-image: radial-gradient(closest-side, var(--#{$prefix}surface) calc(100% - #{$control-border-width}), var(--#{$prefix}outline-variant) 0 calc(100% - 1px), transparent);
+  background-position: 0;
+  background-size: $-thumb 100%;
+  background-repeat: no-repeat;
+  transition-property: background-color, background-position, outline-color;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--toggle-start) 50%, var(--toggle-end) 0);
+    content: "";
+    mask:
+      var(--#{$prefix}icon-light) left $-icon-inset center / $-icon no-repeat,
+      var(--#{$prefix}icon-dark) right $-icon-inset center / $-icon no-repeat;
+
+    // Forced colors drop the gradient: both icons in ButtonText
+    @media (forced-colors: active) {
+      background: ButtonText;
+      forced-color-adjust: none;
+    }
+  }
+
+  @include in-dark {
+    --toggle-start: currentcolor;
+    --toggle-end: var(--#{$prefix}on-surface);
+
+    background-position: 100%;
+  }
+}

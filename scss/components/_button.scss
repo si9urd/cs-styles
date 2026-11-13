@@ -42,7 +42,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   background-color: var(--btn-background-color);
   box-shadow: var(--btn-elevation);
   color: var(--btn-color);
-  font-weight: var(--#{$prefix}font-weight-medium);
+  font-weight: $btn-font-weight;
   font-size: $btn-font-size;
   line-height: var(--#{$prefix}line-height-base);
   text-align: center;
@@ -206,7 +206,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
 
     @if $enable-ripple {
       // ::before is the icon there
-      &:not([data-theme-toggle]) {
+      &:not([data-theme-toggle], [data-theme-switcher]) {
         @include ripple;
       }
     }
@@ -240,7 +240,8 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   }
 
   [data-btn~="icon"],
-  [data-theme-toggle] {
+  [data-theme-toggle],
+  [data-theme-switcher] {
     @extend %button-icon;
   }
 
@@ -253,7 +254,6 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
     border-radius: var(--#{$prefix}border-radius);
     background-color: color-mix(in srgb, var(--#{$prefix}on-primary) var(--btn-state-layer, 0%), var(--#{$prefix}primary));
     color: var(--#{$prefix}on-primary);
-    font-weight: var(--#{$prefix}font-weight-medium);
     cursor: pointer;
     transition: background-color var(--#{$prefix}transition);
   }

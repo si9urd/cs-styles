@@ -137,6 +137,7 @@ $disabled-content: color-mix(in srgb, var(--#{$prefix}on-surface) #{$state-disab
 // Buttons
 $btn-height: 2.5rem !default;
 $btn-font-size: 1rem !default;
+$btn-font-weight: 500 !default;
 $btn-padding-y: .25rem !default;
 $btn-inner-gap: .5rem !default;
 $btn-icon-size: 1.5rem !default;
