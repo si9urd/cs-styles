@@ -1,6 +1,7 @@
 @use "../settings" as *;
 
 .container {
-  inline-size: min(100% - var(--#{$prefix}gap), 1320px);
+  // TODO: отступы в зависимости от размера экрана
+  inline-size: min(100% - var(--#{$prefix}gap), $container-max-width);
   margin-inline: auto;
 }
