@@ -7,7 +7,12 @@
 
     // Reserve room for the chevron so long options don't run under it
     &:not([multiple]) {
-      padding-inline-end: calc(var(--#{$prefix}gap) * 2 + #{$input-icon-size});
+      padding-inline-end: $spacing + $input-icon-size;
+      background-position-x: right $spacing * .5;
+
+      [dir="rtl"] & {
+        background-position-x: $spacing * .5;
+      }
     }
 
     &[multiple] {

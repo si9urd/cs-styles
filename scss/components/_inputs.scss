@@ -6,7 +6,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 
 %input {
   --inp-height: var(--#{$prefix}input-height);
-  --inp-padding: 0 var(--#{$prefix}gap);
+  --inp-padding: 0 #{$spacing * .5};
   --inp-border-radius: var(--#{$prefix}border-radius);
   --inp-border-color: var(--#{$prefix}outline);
   // Focus ring and border; validation states swap it

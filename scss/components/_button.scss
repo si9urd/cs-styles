@@ -127,6 +127,9 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   --btn-color: var(--#{$prefix}on-surface-variant);
   --btn-container-color: transparent;
   --btn-disabled-container: transparent;
+  // Transparent container: softer layer in both themes
+  --btn-layer-hover: #{$state-hover-soft};
+  --btn-layer-press: #{$state-press-soft};
   --btn-inner-icon-size: #{$btn-icon-size};
   // Equal side padding: icon + padding + border add up to the button size, wider content grows a rectangle
   --btn-padding-start: calc((#{$btn-height * 1.25} - var(--btn-inner-icon-size)) / 2 - #{$border-width});

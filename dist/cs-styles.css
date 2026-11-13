@@ -325,8 +325,8 @@
     background-color: var(--btn-background-color);
     box-shadow: var(--btn-elevation);
     color: var(--btn-color);
-    font-weight: var(--font-weight-medium);
     font-size: 1rem;
+    font-weight: 500;
     line-height: var(--line-height-base);
     text-align: center;
     text-wrap: nowrap;
@@ -422,12 +422,15 @@
     --btn-border-color: color-mix(in srgb, var(--on-surface) 12%, transparent);
   }
 
-  [data-btn~="icon"], [data-theme-toggle] {
+  [data-btn~="icon"], [data-theme-toggle], [data-theme-switcher] {
     --btn-border-radius: 999px;
     --btn-color: var(--on-surface-variant);
     --btn-container-color: transparent;
     --btn-disabled-container: transparent;
-    --btn-padding-start: calc((3.125rem - 1.5rem) / 2 - 1px);
+    --btn-layer-hover: 8%;
+    --btn-layer-press: 12%;
+    --btn-inner-icon-size: 1.5rem;
+    --btn-padding-start: calc((3.125rem - var(--btn-inner-icon-size)) / 2 - 1px);
     --btn-padding-end: var(--btn-padding-start);
     flex: none;
     min-width: 3.125rem;
@@ -440,7 +443,10 @@
     --btn-color: var(--on-surface-variant);
     --btn-container-color: transparent;
     --btn-disabled-container: transparent;
-    --btn-padding-start: calc((3.125rem - 1.5rem) / 2 - 1px);
+    --btn-layer-hover: 8%;
+    --btn-layer-press: 12%;
+    --btn-inner-icon-size: 1.5rem;
+    --btn-padding-start: calc((3.125rem - var(--btn-inner-icon-size)) / 2 - 1px);
     --btn-padding-end: var(--btn-padding-start);
     flex: none;
     min-width: 3.125rem;
@@ -456,23 +462,32 @@
     --btn-elevation: none;
   }
 
+  [data-theme-switcher]:is(:hover, [data-hovered], [data-hover]) {
+    --btn-elevation: none;
+  }
+
   :is(:hover, [data-hovered], [data-hover]):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):where([aria-label], [aria-labelledby]):where(:empty, :has( > :is(i, img, svg)):not(:has( > :not(:is(i, img, svg))))):where(:not([data-btn])) {
     --btn-elevation: none;
   }
 
   [data-btn~="icon"] :is(i, img, svg) {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: var(--btn-inner-icon-size);
+    height: var(--btn-inner-icon-size);
   }
 
   [data-theme-toggle] :is(i, img, svg) {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: var(--btn-inner-icon-size);
+    height: var(--btn-inner-icon-size);
+  }
+
+  [data-theme-switcher] :is(i, img, svg) {
+    width: var(--btn-inner-icon-size);
+    height: var(--btn-inner-icon-size);
   }
 
   :is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):where([aria-label], [aria-labelledby]):where(:empty, :has( > :is(i, img, svg)):not(:has( > :not(:is(i, img, svg))))):where(:not([data-btn])) :is(i, img, svg) {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: var(--btn-inner-icon-size);
+    height: var(--btn-inner-icon-size);
   }
 
   [data-btn~="text"], [data-btn~="outlined"] {
@@ -523,7 +538,6 @@
     background-color: color-mix(in srgb, var(--on-primary) var(--btn-state-layer, 0%), var(--primary));
     min-height: 2.5rem;
     color: var(--on-primary);
-    font-weight: var(--font-weight-medium);
     cursor: pointer;
     transition: background-color var(--transition);
     border: 0;
@@ -797,7 +811,7 @@
 
   textarea, select {
     --inp-height: var(--input-height);
-    --inp-padding: 0 var(--gap);
+    --inp-padding: 0 .5rem;
     --inp-border-radius: var(--border-radius);
     --inp-border-color: var(--outline);
     --inp-accent: var(--primary);
@@ -826,7 +840,7 @@
 
   input:not(:where([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="submit"], [type="button"], [type="reset"])) {
     --inp-height: var(--input-height);
-    --inp-padding: 0 var(--gap);
+    --inp-padding: 0 .5rem;
     --inp-border-radius: var(--border-radius);
     --inp-border-color: var(--outline);
     --inp-accent: var(--primary);
@@ -1003,7 +1017,12 @@
   }
 
   select:not([multiple]) {
-    padding-inline-end: calc(var(--gap) * 2 + 1.125rem);
+    background-position-x: right .5rem;
+    padding-inline-end: 2.125rem;
+  }
+
+  [dir="rtl"] select:not([multiple]) {
+    background-position-x: .5rem;
   }
 
   select[multiple] {
@@ -1401,5 +1420,103 @@
   :root[data-theme="dark"] [data-theme-toggle]:before {
     -webkit-mask-image: var(--icon-light);
     mask-image: var(--icon-light);
+  }
+
+  [data-theme-switcher] {
+    --toggle-start: var(--on-surface);
+    --toggle-end: currentcolor;
+    --btn-container-color: var(--surface-container);
+    background-image: radial-gradient(closest-side, var(--surface) calc(100% - 2px), var(--outline-variant) 0 calc(100% - 1px), transparent);
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: 2.5rem 100%;
+    min-width: 5rem;
+    height: 2.5rem;
+    transition-property: background-color, background-position, outline-color;
+  }
+
+  [data-theme-switcher]:before {
+    background: linear-gradient(to right, var(--toggle-start) 50%, var(--toggle-end) 0);
+    content: "";
+    -webkit-mask: var(--icon-light) left .6875rem center/1.125rem no-repeat, var(--icon-dark) right .6875rem center/1.125rem no-repeat;
+    mask: var(--icon-light) left .6875rem center/1.125rem no-repeat, var(--icon-dark) right .6875rem center/1.125rem no-repeat;
+    position: absolute;
+    inset: 0;
+  }
+
+  @media (forced-colors: active) {
+    [data-theme-switcher]:before {
+      forced-color-adjust: none;
+      background: buttontext;
+    }
+  }
+
+  :root[data-theme="dark"] [data-theme-switcher] {
+    --toggle-start: currentcolor;
+    --toggle-end: var(--on-surface);
+    background-position: 100%;
+  }
+
+  [role="toolbar"] {
+    --toolbar-height: calc(2.5rem + 1);
+    --gap: 0;
+    height: var(--toolbar-height);
+    border: 1px solid var(--outline-variant);
+    border-radius: .5rem;
+    width: fit-content;
+    display: inline-flex;
+  }
+
+  [role="toolbar"][aria-orientation="vertical"] {
+    flex-direction: column;
+    height: auto;
+  }
+
+  [role="toolbar"] > * {
+    border-color: #0000;
+    border-radius: 0;
+  }
+
+  [role="toolbar"] > :first-child, [role="toolbar"] > li:first-child > * {
+    border-start-start-radius: .5rem;
+  }
+
+  [role="toolbar"] > :last-child, [role="toolbar"] > li:last-child > * {
+    border-end-end-radius: .5rem;
+  }
+
+  [role="toolbar"]:not([aria-orientation="vertical"]) > :first-child, [role="toolbar"]:not([aria-orientation="vertical"]) > li:first-child > *, [role="toolbar"][aria-orientation="vertical"] > :last-child, [role="toolbar"][aria-orientation="vertical"] > li:last-child > * {
+    border-end-start-radius: .5rem;
+  }
+
+  [role="toolbar"]:not([aria-orientation="vertical"]) > :last-child, [role="toolbar"]:not([aria-orientation="vertical"]) > li:last-child > *, [role="toolbar"][aria-orientation="vertical"] > :first-child, [role="toolbar"][aria-orientation="vertical"] > li:first-child > * {
+    border-start-end-radius: .5rem;
+  }
+
+  [role="toolbar"] :is(input, select):not(:is([data-btn], button, [role="button"])) {
+    width: auto;
+  }
+
+  @media (pointer: coarse) {
+    [role="toolbar"] {
+      --toolbar-height: 4rem;
+    }
+  }
+
+  [role="toolbar"] * {
+    height: var(--toolbar-height);
+    border-radius: 0;
+  }
+
+  [role="toolbar"] [data-btn~="icon"] {
+    --btn-inner-icon-size: calc(1.5rem / 1.2);
+    --btn-padding-start: calc((var(--toolbar-height) - var(--btn-inner-icon-size)) / 2 - 1px);
+    max-width: var(--toolbar-height);
+  }
+
+  @media (pointer: coarse) {
+    [role="toolbar"] [data-btn~="icon"] {
+      --btn-inner-icon-size: 1.5rem;
+    }
   }
 }

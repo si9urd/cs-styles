@@ -2,9 +2,55 @@
 
 // Square toolbar: no rounded corners on its controls; after button/inputs so the tie in specificity is won by order
 [role="toolbar"] {
-  --toolbar-height: #{$btn-height};
+  --toolbar-height: calc(#{$btn-height} + 1);
+  --gap: 0;
 
+  display: inline-flex;
   height: var(--toolbar-height);
+  width: fit-content;
+  border-radius: $border-radius;
+  border: $border-width solid var(--#{$prefix}outline-variant);
+
+  &[aria-orientation="vertical"] {
+    flex-direction: column;
+    height: auto;
+  }
+
+  > * {
+    border-radius: 0;
+    border-color: transparent;
+  }
+
+  // Outer corners on the end items (in <menu> on the control inside <li>): the shared corner always,
+  // the other one by orientation
+  > :first-child,
+  > li:first-child > * {
+    border-start-start-radius: $border-radius;
+  }
+
+  > :last-child,
+  > li:last-child > * {
+    border-end-end-radius: $border-radius;
+  }
+
+  &:not([aria-orientation="vertical"]) > :first-child,
+  &:not([aria-orientation="vertical"]) > li:first-child > *,
+  &[aria-orientation="vertical"] > :last-child,
+  &[aria-orientation="vertical"] > li:last-child > * {
+    border-end-start-radius: $border-radius;
+  }
+
+  &:not([aria-orientation="vertical"]) > :last-child,
+  &:not([aria-orientation="vertical"]) > li:last-child > *,
+  &[aria-orientation="vertical"] > :first-child,
+  &[aria-orientation="vertical"] > li:first-child > * {
+    border-start-end-radius: $border-radius;
+  }
+
+  // Fields keep their own width instead of the global 100%, which would squeeze the buttons
+  :is(input, select):not(:is([data-btn], button, [role="button"])) {
+    width: auto;
+  }
 
   // Touch screens: 64px
   @media (pointer: coarse) {
@@ -22,7 +68,7 @@
     // Equal side padding: icon + padding + border add up to the button size, wider content grows a rectangle
     --btn-padding-start: calc((var(--toolbar-height) - var(--btn-inner-icon-size)) / 2 - #{$border-width});
 
-    min-width: var(--toolbar-height);
+    max-width: var(--toolbar-height);
 
     @media (pointer: coarse) {
       --btn-inner-icon-size: #{$btn-icon-size};

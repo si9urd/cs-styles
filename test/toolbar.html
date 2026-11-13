@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS-Styles · Toolbar</title>
+  <link rel="stylesheet" href="../dist/cs-styles.css">
+  <style>
+    /* Only test-page layout, not library styles */
+    /*.row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem; margin-block: 1rem; }*/
+    body {
+      padding-bottom: 5rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Toolbar</h1>
+    <button data-theme-toggle aria-label="Переключить тему"></button>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <h2>Horizontal: icon buttons</h2>
+    <div class="row">
+      <div role="toolbar" aria-label="Форматирование">
+        <button data-btn="icon text" aria-label="Жирный"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42M10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/></svg></button>
+        <button data-btn="icon text" aria-label="Курсив" aria-pressed="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/></svg></button>
+        <button data-btn="icon text" aria-label="Подчёркнутый"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6m-7 2v2h14v-2z"/></svg></button>
+        <button data-btn="icon text" aria-label="Отключено" disabled><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Horizontal: mixed controls</h2>
+    <div class="row">
+      <div role="toolbar" aria-label="Документ">
+        <button data-btn="text">Отменить</button>
+        <button data-btn="icon text" aria-label="Добавить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+        <select aria-label="Шрифт">
+          <option>Sans</option>
+          <option>Serif</option>
+          <option>Mono</option>
+        </select>
+        <input type="number" value="14" aria-label="Размер" style="width: 5rem">
+        <button>Сохранить</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Horizontal: &lt;menu role=toolbar&gt;</h2>
+    <div class="row">
+      <menu role="toolbar" aria-label="Действия">
+        <li><button data-btn="text">Копировать</button></li>
+        <li><button data-btn="text">Вставить</button></li>
+        <li><button data-btn="icon text" aria-label="Удалить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg></button></li>
+      </menu>
+    </div>
+  </section>
+
+  <section>
+    <h2>Vertical: aria-orientation="vertical"</h2>
+    <div class="row">
+      <div role="toolbar" aria-orientation="vertical" aria-label="Инструменты">
+        <button data-btn="icon text" aria-label="Добавить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+        <button data-btn="icon text" aria-label="Курсив" aria-pressed="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/></svg></button>
+        <button data-btn="icon text" aria-label="Удалить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg></button>
+      </div>
+
+      <div role="toolbar" aria-orientation="vertical" aria-label="Действия">
+        <button data-btn="text">Копировать</button>
+        <button data-btn="text">Вставить</button>
+        <button data-btn="text" disabled>Удалить</button>
+      </div>
+
+      <menu role="toolbar" aria-orientation="vertical" aria-label="Меню">
+        <li><button data-btn="text">Первый</button></li>
+        <li><button data-btn="text">Второй</button></li>
+        <li><button data-btn="icon text" aria-label="Добавить"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button></li>
+      </menu>
+    </div>
+  </section>
+
+  <section>
+    <h2>Overflow</h2>
+    <div class="row" style="width: 14rem">
+      <div role="toolbar" aria-label="Узкий">
+        <button data-btn="text">Первый</button>
+        <button data-btn="text">Второй</button>
+        <button data-btn="text">Третий</button>
+        <button data-btn="text">Четвёртый</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Theme switch for testing: toggles data-theme on <html>
+  document.querySelector('[data-theme-toggle]').addEventListener('click', () => {
+    const root = document.documentElement
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches)
+    root.dataset.theme = dark ? 'light' : 'dark'
+  })
+</script>
+</body>
+</html>
