@@ -1,0 +1,31 @@
+@use "../settings" as *;
+
+// Square toolbar: no rounded corners on its controls; after button/inputs so the tie in specificity is won by order
+[role="toolbar"] {
+  --toolbar-height: #{$btn-height};
+
+  height: var(--toolbar-height);
+
+  // Touch screens: 64px
+  @media (pointer: coarse) {
+    --toolbar-height: 4rem;
+  }
+
+  * {
+    height: var(--toolbar-height);
+    border-radius: 0;
+  }
+
+  // Icon buttons are square at the toolbar height
+  [data-btn~="icon"] {
+    --btn-inner-icon-size: calc(#{$btn-icon-size} / 1.2);
+    // Equal side padding: icon + padding + border add up to the button size, wider content grows a rectangle
+    --btn-padding-start: calc((var(--toolbar-height) - var(--btn-inner-icon-size)) / 2 - #{$border-width});
+
+    min-width: var(--toolbar-height);
+
+    @media (pointer: coarse) {
+      --btn-inner-icon-size: #{$btn-icon-size};
+    }
+  }
+}

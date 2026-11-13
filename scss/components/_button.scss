@@ -127,8 +127,9 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   --btn-color: var(--#{$prefix}on-surface-variant);
   --btn-container-color: transparent;
   --btn-disabled-container: transparent;
+  --btn-inner-icon-size: #{$btn-icon-size};
   // Equal side padding: icon + padding + border add up to the button size, wider content grows a rectangle
-  --btn-padding-start: calc((#{$btn-height * 1.25} - #{$btn-icon-size}) / 2 - #{$border-width});
+  --btn-padding-start: calc((#{$btn-height * 1.25} - var(--btn-inner-icon-size)) / 2 - #{$border-width});
   --btn-padding-end: var(--btn-padding-start);
 
   // Square: a flex parent can't squeeze it, min-width beats the base max-width
@@ -142,8 +143,8 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   }
 
   :is(#{$icon-elements}) {
-    width: $btn-icon-size;
-    height: $btn-icon-size;
+    width: var(--btn-inner-icon-size);
+    height: var(--btn-inner-icon-size);
   }
 }
 
