@@ -10,7 +10,7 @@
     background-color: var(--#{$prefix}surface-container);
     box-shadow: var(--#{$prefix}shadow-overlay);
     color: var(--#{$prefix}on-surface);
-    font-weight: var(--#{$prefix}font-weight-medium);
+    font-weight: $font-weight-normal;
     font-size: $menu-font-size;
 
     & > :is(li, div):not([role="separator"]) {
@@ -110,6 +110,34 @@
 
   ul[role="menu"] {
     list-style: none;
+  }
+
+  // Menu button (APG): a wrapper of a trigger followed by its menu, no class.
+  // <button aria-haspopup="menu" aria-expanded aria-controls> + <ul role="menu" aria-labelledby>
+  :has(> button[aria-haspopup] + [role="menu"]) {
+    display: inline-block;
+    position: relative;
+  }
+
+  button[aria-haspopup] + [role="menu"] {
+    z-index: 10;
+    position: absolute;
+    inset-block-start: calc(100% + .25rem);
+    inset-inline-start: 0;
+
+    // Headless UI placement (Radix, Base UI): data-side / data-align on the menu
+    &[data-side="top"] {
+      inset-block: auto calc(100% + .25rem);
+    }
+
+    &[data-align="end"] {
+      inset-inline: auto 0;
+    }
+  }
+
+  // Closed: the trigger's aria-expanded is the single source of truth
+  button[aria-haspopup]:not([aria-expanded="true"]) + [role="menu"] {
+    display: none;
   }
 }
 

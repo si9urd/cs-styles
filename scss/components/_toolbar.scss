@@ -6,10 +6,10 @@
   --#{$prefix}gap: 0;
 
   display: inline-flex;
-  height: var(--toolbar-height);
   width: fit-content;
-  border-radius: $border-radius;
+  height: var(--toolbar-height);
   border: $border-width solid var(--#{$prefix}outline-variant);
+  border-radius: $border-radius;
 
   &[aria-orientation="vertical"] {
     flex-direction: column;
@@ -56,7 +56,8 @@
     --toolbar-height: 4rem;
   }
 
-  * {
+  // A popup menu inside keeps its own size and corners
+  :not([role="menu"], [role="menu"] *) {
     height: var(--toolbar-height);
     border-radius: 0;
   }

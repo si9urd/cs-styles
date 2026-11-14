@@ -26,7 +26,6 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   --btn-elevation: none;
   --btn-opacity: 1;
 
-  overflow: hidden;
   display: inline-flex;
   position: relative;
   align-items: center;
@@ -35,6 +34,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   min-height: var(--btn-height);
   padding-inline: var(--btn-padding-start) var(--btn-padding-end);
   padding-block: $btn-padding-y;
+  overflow: hidden;
   gap: $btn-inner-gap;
   border: $border-width solid var(--btn-border-color);
   border-radius: var(--btn-border-radius);

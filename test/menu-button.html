@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS-Styles · Menu button</title>
+  <link rel="stylesheet" href="../dist/cs-styles.css">
+  <style>
+    /* Only test-page layout, not library styles */
+    body { padding-bottom: 5rem; }
+    .row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem; margin-block: 1rem; }
+    .spread { justify-content: space-between; min-height: 12rem; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Menu button</h1>
+    <button data-theme-toggle aria-label="Переключить тему"></button>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <h2>Базовое</h2>
+    <div class="row" style="min-height: 14rem">
+      <div>
+        <button id="b1" aria-haspopup="menu" aria-expanded="false" aria-controls="m1">Действия</button>
+        <ul role="menu" id="m1" aria-labelledby="b1">
+          <li role="menuitem" tabindex="-1">Копировать</li>
+          <li role="menuitem" tabindex="-1">Вставить</li>
+          <li role="separator"></li>
+          <li role="menuitem" tabindex="-1" aria-disabled="true">Удалить (aria-disabled)</li>
+        </ul>
+      </div>
+
+      <div>
+        <button id="b2" data-btn="outlined" aria-haspopup="menu" aria-expanded="true" aria-controls="m2">Открыто сразу</button>
+        <ul role="menu" id="m2" aria-labelledby="b2">
+          <li role="menuitem" tabindex="-1">Один</li>
+          <li role="menuitem" tabindex="-1">Два</li>
+        </ul>
+      </div>
+
+      <div>
+        <button id="b3" data-btn="text" aria-haspopup="menu" aria-expanded="false" aria-controls="m3">Text</button>
+        <ul role="menu" id="m3" aria-labelledby="b3">
+          <li role="menuitem" tabindex="-1">Один</li>
+          <li role="menuitem" tabindex="-1">Два</li>
+        </ul>
+      </div>
+
+      <div>
+        <button id="b4" aria-haspopup="menu" aria-expanded="false" aria-controls="m4" disabled>Disabled</button>
+        <ul role="menu" id="m4" aria-labelledby="b4">
+          <li role="menuitem" tabindex="-1">Недоступно</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Иконки: кнопка-иконка и пункты с иконками</h2>
+    <div class="row" style="min-height: 14rem">
+      <div>
+        <button id="b5" data-btn="icon" aria-label="Ещё" aria-haspopup="menu" aria-expanded="false" aria-controls="m5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2m0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2"/></svg></button>
+        <ul role="menu" id="m5" aria-labelledby="b5">
+          <li role="menuitem" tabindex="-1"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75z"/></svg>Изменить</li>
+          <li role="menuitem" tabindex="-1"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>Удалить</li>
+        </ul>
+      </div>
+
+      <div>
+        <button id="b6" aria-haspopup="menu" aria-expanded="false" aria-controls="m6">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>
+          Создать
+        </button>
+        <ul role="menu" id="m6" aria-labelledby="b6">
+          <li role="menuitem" tabindex="-1">Файл</li>
+          <li role="menuitem" tabindex="-1">Папка</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Выбор: aria-checked, aria-selected (menuitemradio / checkbox)</h2>
+    <div class="row" style="min-height: 14rem">
+      <div>
+        <button id="b7" data-btn="outlined" aria-haspopup="menu" aria-expanded="false" aria-controls="m7">Вид</button>
+        <ul role="menu" id="m7" aria-labelledby="b7">
+          <li role="menuitemradio" aria-checked="true" tabindex="-1">Список</li>
+          <li role="menuitemradio" aria-checked="false" tabindex="-1">Сетка</li>
+          <li role="separator"></li>
+          <li role="menuitemcheckbox" aria-checked="true" tabindex="-1">Показать скрытые</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Размещение: data-side / data-align (Radix, Base UI)</h2>
+    <div class="row spread" style="align-items: flex-end">
+      <div>
+        <button id="b8" aria-haspopup="menu" aria-expanded="true" aria-controls="m8">Сверху, start</button>
+        <ul role="menu" id="m8" aria-labelledby="b8" data-side="top">
+          <li role="menuitem" tabindex="-1">Один</li>
+          <li role="menuitem" tabindex="-1">Два</li>
+        </ul>
+      </div>
+      <div>
+        <button id="b9" aria-haspopup="menu" aria-expanded="false" aria-controls="m9">Снизу, end</button>
+        <ul role="menu" id="m9" aria-labelledby="b9" data-align="end">
+          <li role="menuitem" tabindex="-1">Один</li>
+          <li role="menuitem" tabindex="-1">Два</li>
+        </ul>
+      </div>
+      <div>
+        <button id="b10" aria-haspopup="menu" aria-expanded="false" aria-controls="m10">Сверху, end</button>
+        <ul role="menu" id="m10" aria-labelledby="b10" data-side="top" data-align="end">
+          <li role="menuitem" tabindex="-1">Один</li>
+          <li role="menuitem" tabindex="-1">Два</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>В toolbar</h2>
+    <div class="row" style="min-height: 12rem">
+      <div role="toolbar" aria-label="Документ">
+        <button data-btn="text">Отменить</button>
+        <div>
+          <button id="b11" data-btn="text" aria-haspopup="menu" aria-expanded="false" aria-controls="m11">Файл</button>
+          <ul role="menu" id="m11" aria-labelledby="b11">
+            <li role="menuitem" tabindex="-1">Открыть</li>
+            <li role="menuitem" tabindex="-1">Сохранить</li>
+          </ul>
+        </div>
+        <button>Готово</button>
+      </div>
+    </div>
+  </section>
+
+  <section dir="rtl">
+    <h2>RTL</h2>
+    <div class="row" style="min-height: 10rem">
+      <div>
+        <button id="b12" aria-haspopup="menu" aria-expanded="true" aria-controls="m12">إجراءات</button>
+        <ul role="menu" id="m12" aria-labelledby="b12">
+          <li role="menuitem" tabindex="-1">نسخ</li>
+          <li role="menuitem" tabindex="-1">لصق</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Скрипт только для демо: в продукте это делает headless-библиотека -->
+<script>
+  const triggers = [...document.querySelectorAll('button[aria-haspopup]')];
+  const menuOf = (b) => document.getElementById(b.getAttribute('aria-controls'));
+  const items = (m) => [...m.querySelectorAll('[role^="menuitem"]:not([aria-disabled="true"])')];
+
+  function setOpen(b, open, focus) {
+    b.setAttribute('aria-expanded', open);
+    if (open && focus) items(menuOf(b))[focus === 'last' ? items(menuOf(b)).length - 1 : 0]?.focus();
+    if (!open && focus) b.focus();
+  }
+
+  triggers.forEach((b) => {
+    b.addEventListener('click', () => setOpen(b, b.getAttribute('aria-expanded') !== 'true', true));
+    b.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setOpen(b, true, 'first'); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); setOpen(b, true, 'last'); }
+    });
+
+    menuOf(b).addEventListener('keydown', (e) => {
+      const list = items(menuOf(b)), i = list.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); list[(i + 1) % list.length].focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); list[(i - 1 + list.length) % list.length].focus(); }
+      if (e.key === 'Home') { e.preventDefault(); list[0].focus(); }
+      if (e.key === 'End') { e.preventDefault(); list.at(-1).focus(); }
+      if (e.key === 'Escape' || e.key === 'Tab') setOpen(b, false, e.key === 'Escape');
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.activeElement.click(); }
+    });
+
+    menuOf(b).addEventListener('click', (e) => {
+      const it = e.target.closest('[role^="menuitem"]');
+      if (!it || it.getAttribute('aria-disabled') === 'true') return;
+      if (it.getAttribute('role') === 'menuitemradio') {
+        menuOf(b).querySelectorAll('[role="menuitemradio"]').forEach((r) => r.setAttribute('aria-checked', r === it));
+      } else if (it.getAttribute('role') === 'menuitemcheckbox') {
+        it.setAttribute('aria-checked', it.getAttribute('aria-checked') !== 'true');
+        return; // checkbox keeps the menu open
+      }
+      setOpen(b, false, true);
+    });
+  });
+
+  document.addEventListener('click', (e) => triggers.forEach((b) => {
+    if (!b.parentElement.contains(e.target)) setOpen(b, false);
+  }));
+</script>
+</body>
+</html>

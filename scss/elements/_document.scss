@@ -5,7 +5,7 @@
   :root {
     background-color: var(--#{$prefix}surface);
     color: var(--#{$prefix}on-surface);
-    font-weight: var(--#{$prefix}font-weight-normal);
+    font-weight: $font-weight-normal;
     font-size: var(--#{$prefix}font-size-base);
     line-height: var(--#{$prefix}line-height-base);
     font-family: var(--#{$prefix}font-family);

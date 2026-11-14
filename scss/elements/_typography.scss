@@ -5,7 +5,7 @@
     --fs: 2.5;
 
     margin: var(--#{$prefix}gap) 0;
-    font-weight: var(--#{$prefix}font-weight-medium);
+    font-weight: $font-weight-medium;
     font-size: calc(var(--#{$prefix}font-size-base) * var(--fs));
     line-height: 1.15;
     text-wrap: balance;
@@ -13,7 +13,7 @@
 
   h1 {
     margin: 0 0 clamp(var(--#{$prefix}gap), 2vw, var(--#{$prefix}gap) * 1.5);
-    font-weight: var(--#{$prefix}font-weight-bold);
+    font-weight: $font-weight-bold;
   }
 
   h2 {
