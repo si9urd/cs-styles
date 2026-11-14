@@ -23,13 +23,9 @@
     min-block-size: 100svh;
   }
 
-  // Ensure hidden elements and unopened dialogs remain hidden
+  // Ensure hidden elements remain hidden
   :where([hidden]) {
     display: none !important;
-  }
-
-  :where(template, dialog:not([open])) {
-    display: none;
   }
 }
 

@@ -39,25 +39,6 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
     background-position-x: var(--#{$prefix}gap);
   }
 
-  // aria-disabled only looks disabled: the field stays editable, pair with readonly to block input
-  @include disabled {
-    --inp-background: var(--#{$prefix}surface-container);
-    --inp-color: var(--#{$prefix}on-surface-variant);
-
-    // Native :disabled already turns GrayText here, aria-disabled doesn't
-    @include forced-disabled("inp-");
-  }
-
-  &:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
-    position: relative;
-
-    &::-webkit-calendar-picker-indicator {
-      position: absolute;
-      inset-inline-end: var(--#{$prefix}gap);
-      opacity: .5;
-    }
-  }
-
   &:focus {
     --inp-box-shadow: 0 0 0 #{$border-width} var(--inp-accent) inset;
     --inp-border-color: var(--inp-accent);
@@ -73,6 +54,28 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
   textarea,
   select {
     @extend %input;
+  }
+
+  // Only --inp-* here: the other inputs don't read them
+  // aria-disabled only looks disabled: the field stays editable, pair with readonly to block input
+  :is(input, textarea, select) {
+    @include disabled {
+      --inp-background: var(--#{$prefix}surface-container);
+      --inp-color: var(--#{$prefix}on-surface-variant);
+
+      // Native :disabled already turns GrayText here, aria-disabled doesn't
+      @include forced-disabled("inp-");
+    }
+  }
+
+  input:is([type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"]) {
+    position: relative;
+
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      inset-inline-end: var(--#{$prefix}gap);
+      opacity: .5;
+    }
   }
 
   textarea {
@@ -135,7 +138,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
 }
 
 @mixin input-autofill {
-  :is(input, textarea, select):is(:autofill, :-webkit-autofill) {
+  :is(input, textarea, select):autofill {
     -webkit-text-fill-color: var(--inp-color) !important;
     box-shadow: 0 0 0 1000px var(--inp-background) inset !important;
   }

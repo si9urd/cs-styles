@@ -174,7 +174,8 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
     --btn-padding-start: #{map.get($spacers, 2)};
   }
 
-  &:is(:hover, #{$hovered}, :focus-visible, #{$focused}, #{$pressed}) {
+  // Focus and press never raise it
+  &:is(:hover, #{$hovered}) {
     --btn-elevation: none;
   }
 }

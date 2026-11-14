@@ -5,10 +5,11 @@
   // Controls, inline text, and empty placeholders; a busy region (section, table, list) keeps its layout, cursor only
   :is(#{$busy}):is(button, [role="button"], a, [role="link"], span, :empty):not(input, select, textarea) {
     &::before {
-      @include icon-mask(var(--#{$prefix}icon-ring-spinner));
-
+      // Before the mixin: its @media would split the rule
       display: inline-flex;
       vertical-align: -.125em;
+
+      @include icon-mask(var(--#{$prefix}icon-ring-spinner));
 
       // The SVG stops its own spin and dash sweep (full ring, still dots); a slow fade keeps "still working" without motion
       @media (prefers-reduced-motion: reduce) {

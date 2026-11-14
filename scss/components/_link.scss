@@ -23,12 +23,15 @@
     transition: var(--#{$prefix}transition);
     transition-property: color, text-decoration-color;
 
-    &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], :active) {
+    // [data-hovered] joins here instead of the `hover` mixin: one rule fewer
+    &:is([aria-current]:not([aria-current="false"]), :focus, [data-focused], [data-hovered], :active) {
       @include link-active;
     }
 
-    @include hover {
-      @include link-active;
+    @media (hover: hover) {
+      &:hover {
+        @include link-active;
+      }
     }
 
     // Plain inline so long links wrap with the prose; flex only to line up an icon

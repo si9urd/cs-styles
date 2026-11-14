@@ -1,3 +1,5 @@
+@use "sass:color";
+@use "sass:meta";
 @use "sass:string" as string;
 
 @function str-replace($string, $search, $replace) {
@@ -13,6 +15,11 @@
 // SVG markup to a data URI; `$color` replaces `currentColor`
 @function svg-url($svg, $color: null) {
   @if $color {
+    // Hex is the shortest form: #AARRGGBB without the alpha
+    @if meta.type-of($color) == color {
+      $color: "#" + string.slice(color.ie-hex-str($color), 4);
+    }
+
     $svg: str-replace($svg, "currentColor", "#{$color}");
   }
 
