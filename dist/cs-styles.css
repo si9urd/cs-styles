@@ -1303,6 +1303,7 @@
   }
 
   [role="toolbar"] :is(input, select):not(:is([data-btn], button, [role="button"])) {
+    background-position-y: center;
     width: auto;
   }
 

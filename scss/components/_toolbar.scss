@@ -50,9 +50,11 @@
     border-start-end-radius: $border-radius;
   }
 
-  // Fields keep their own width instead of the global 100%, which would squeeze the buttons
+  // Fields keep their own width instead of the global 100%, which would squeeze the buttons;
+  // the icon offset is computed for the global input height, so center it at the toolbar height
   :is(input, select):not(:is([data-btn], button, [role="button"])) {
     width: auto;
+    background-position-y: center;
   }
 
   // Touch screens: 64px
