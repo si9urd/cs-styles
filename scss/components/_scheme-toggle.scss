@@ -34,8 +34,9 @@ $-icon-inset: ($-thumb - $-icon) * .5;
     background: linear-gradient(to right, var(--toggle-start) 50%, var(--toggle-end) 0);
     content: "";
     mask:
-      var(--#{$prefix}icon-light) left $-icon-inset center / $-icon no-repeat,
-      var(--#{$prefix}icon-dark) right $-icon-inset center / $-icon no-repeat;
+      // No 3-value positions: Firefox rejects them in mask-position
+      var(--#{$prefix}icon-light) $-icon-inset center / $-icon no-repeat,
+      var(--#{$prefix}icon-dark) right $-icon-inset top 50% / #{$-icon} no-repeat;
 
     // Forced colors drop the gradient: both icons in ButtonText
     @media (forced-colors: active) {

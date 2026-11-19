@@ -7,17 +7,21 @@
 
   display: inline-flex;
   width: fit-content;
-  height: var(--toolbar-height);
   border: $border-width solid var(--#{$prefix}outline-variant);
   border-radius: $border-radius;
 
   &[aria-orientation="vertical"] {
     flex-direction: column;
-    height: auto;
   }
 
   > * {
     border-color: transparent;
+  }
+
+  // A popup menu inside keeps its own size and corners; before the corner rules, which win the tie by order
+  :not([role="menu"], [role="menu"] *) {
+    height: var(--toolbar-height);
+    border-radius: 0;
   }
 
   // Outer corners on the end items (in <menu> on the control inside <li>): the shared corner always,
@@ -54,12 +58,6 @@
   // Touch screens: 64px
   @media (pointer: coarse) {
     --toolbar-height: 4rem;
-  }
-
-  // A popup menu inside keeps its own size and corners
-  :not([role="menu"], [role="menu"] *) {
-    height: var(--toolbar-height);
-    border-radius: 0;
   }
 
   // Icon buttons are square at the toolbar height
