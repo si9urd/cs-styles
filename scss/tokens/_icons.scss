@@ -16,14 +16,14 @@ $input-icons: (
     $svg: map.get($icons, $name);
 
     @if $svg {
-      --#{$prefix}input-icon-#{$name}: #{svg-url($svg, map.get($theme-colors, $theme, $color))};
+      --#{$prefix}icon-#{$name}: #{svg-url($svg, map.get($theme-colors, $theme, $color))};
     }
   }
 }
 
 @if $enable-icons {
   :root {
-    // Field icons only ship as their colored --cs-input-icon-* variant
+    // Field icons only ship as their colored --cs-icon-* variant
     @each $name, $svg in $icons {
       @if $svg and not map.has-key($input-icons, $name) {
         --#{$prefix}icon-#{$name}: #{svg-url($svg)};

@@ -3,7 +3,6 @@
 // `$icons: icons-extra.$icon-set` (or a map.merge of the ones you need) to the library.
 // Masks only: no fill, so for a colored variant add `fill='currentColor'` to the markup.
 $icon-set: (
-  "menu": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'><path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z'/></svg>",
   "add": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'><path d='M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z'/></svg>",
   "minus": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'><path d='M200-440v-80h560v80H200Z'/></svg>",
   "close": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'><path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z'/></svg>",

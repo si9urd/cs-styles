@@ -134,6 +134,7 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   // Equal side padding: icon + padding + border add up to the button size, wider content grows a rectangle
   --btn-padding-start: calc((#{$btn-height * 1.25} - var(--btn-inner-icon-size)) / 2 - #{$border-width});
   --btn-padding-end: var(--btn-padding-start);
+  --icon: var(--btn-icon, empty); // var is not exists, value set in html or css
 
   // Square: a flex parent can't squeeze it, min-width beats the base max-width
   flex: none;
@@ -148,6 +149,14 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
   :is(#{$icon-elements}) {
     width: var(--btn-inner-icon-size);
     height: var(--btn-inner-icon-size);
+  }
+
+  // if set --icon apply it
+  @container not style(--icon: empty) {
+    i {
+      background-color: currentcolor;
+      mask: var(--icon) center / contain no-repeat;
+    }
   }
 }
 

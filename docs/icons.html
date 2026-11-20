@@ -15,8 +15,8 @@
 <body>
   <main>
     <h1>Icons</h1>
-    <p><button type="button" id="theme">Toggle theme</button></p>
-    <ul id="icons"></ul>
+    <p><button data-theme-switcher=""></button></p>
+    <ul id="icons" style="margin-top: 2rem"></ul>
   </main>
   <script>
     // Every --cs-icon-* custom property holding an SVG url, read from the built CSS
@@ -26,7 +26,7 @@
     document.getElementById('icons').innerHTML = names.sort().map((p) =>
       `<li><i style="--icon: var(${p}); color: red"></i><code>${p}</code></li>`).join('')
 
-    document.getElementById('theme').onclick = () => {
+    document.querySelector('[data-theme-switcher]').onclick = () => {
       const html = document.documentElement
       html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'
     }

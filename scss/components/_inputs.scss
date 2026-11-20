@@ -94,7 +94,7 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
     --inp-border-radius: #{$border-radius-pill};
 
     padding-inline-start: calc(var(--#{$prefix}gap) * 3);
-    background-image: var(--#{$prefix}input-icon-search);
+    background-image: var(--#{$prefix}icon-search);
     background-position: left var(--#{$prefix}gap) center;
 
     [dir="rtl"] & {
@@ -128,11 +128,11 @@ $_controls: '[type="checkbox"], [type="radio"], [type="range"], [type="file"], [
     }
 
     &[aria-invalid="true"] {
-      background-image: var(--#{$prefix}input-icon-invalid);
+      background-image: var(--#{$prefix}icon-invalid);
     }
 
     &[aria-invalid="false"] {
-      background-image: var(--#{$prefix}input-icon-valid);
+      background-image: var(--#{$prefix}icon-valid);
     }
   }
 }

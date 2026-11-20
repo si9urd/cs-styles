@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS-Styles · Test</title>
+    <link rel="stylesheet" href="../dist/cs-styles.css">
+    <script>
+      // Инициализация темы, до загрузки страницы
+      document.documentElement.dataset.theme =
+        localStorage.getItem('theme') ??
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    </script>
+</head>
+<body>
+<header>
+    <nav>
+        <button data-theme-toggle=""></button>
+        <hr>
+        <button data-theme-switcher=""></button>
+    </nav>
+</header>
+<main></main>
+<footer></footer>
+<script>
+  const toggles = document.querySelectorAll('[data-theme-toggle], [data-theme-switcher]')
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', toggleTheme)
+  })
+
+  // переключение темы
+  function toggleTheme () {
+    const newTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.dataset.theme = newTheme
+    localStorage.setItem('theme', newTheme)
+  }
+</script>
+</body>
+</html>

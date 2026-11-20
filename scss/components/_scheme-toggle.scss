@@ -20,7 +20,7 @@ $-icon-inset: ($-thumb - $-icon) * .5;
   --toggle-end: currentcolor;
   --btn-container-color: var(--#{$prefix}surface-container);
 
-  min-width: $-thumb * 2;
+  width: $-thumb * 2;
   height: $-thumb;
   background-image: radial-gradient(closest-side, var(--#{$prefix}surface) calc(100% - #{$control-border-width}), var(--#{$prefix}outline-variant) 0 calc(100% - 1px), transparent);
   background-position: 0;
