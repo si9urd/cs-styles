@@ -158,7 +158,8 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
       mask: var(--icon) center / contain no-repeat;
     }
 
-    &:not(:has(i)) {
+    // Theme toggles draw their own ::before: WebKit can misjudge the query on first render
+    &:not(:has(#{$icon-elements}), [data-theme-toggle], [data-theme-switcher]) {
       &::before {
         content: "";
         display: inline-flex;
@@ -228,18 +229,15 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
     // Set base styles
     @extend %button-base;
 
+    &:where([aria-label], [aria-labelledby]):where(:empty, :has(> :is(#{$icon-elements}))) {
+      @extend %button-icon;
+    }
+
     @if $enable-ripple {
       // ::before is the icon there
       &:not([data-theme-toggle], [data-theme-switcher]) {
         @include ripple;
       }
-    }
-
-    // Auto icon button: a labelled button whose only children are icons.
-    // :has() can't see text nodes, so the accessible name stands in for "no visible text".
-    // :where keeps base specificity: any explicit data-btn variant wins
-    &:where([aria-label], [aria-labelledby]):where(:empty, :has(> :is(#{$icon-elements})):not(:has(> :not(#{$icon-elements})))):where(:not([data-btn])) {
-      @extend %button-icon;
     }
   }
 
@@ -263,9 +261,9 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
     @extend %button-fab;
   }
 
-  [data-btn~="icon"],
   [data-theme-toggle],
-  [data-theme-switcher] {
+  [data-theme-switcher],
+  [data-btn~="icon"] {
     @extend %button-icon;
   }
 

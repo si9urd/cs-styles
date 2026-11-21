@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS-Styles · Theme switcher</title>
+  <link rel="stylesheet" href="../dist/cs-styles.css">
+  <script src="../js/theme.js"></script>
+  <script>setDefaultTheme()</script>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Theme switcher</h1>
+    <button data-theme-switcher aria-label="Переключить тему"></button>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <h2>Состояния</h2>
+    <p>Тема переключается на <code>:root</code>, поэтому все кнопки показывают текущую тему.</p>
+    <p>
+      <button data-theme-switcher aria-label="Обычная"></button>
+      <button data-theme-switcher data-hovered aria-label="data-hovered"></button>
+      <button data-theme-switcher data-focused aria-label="data-focused"></button>
+      <button data-theme-switcher data-pressed aria-label="data-pressed"></button>
+      <button data-theme-switcher disabled aria-label="disabled"></button>
+    </p>
+  </section>
+
+  <section>
+    <h2>Рядом с data-theme-toggle</h2>
+    <nav>
+      <button data-theme-toggle aria-label="Переключить тему"></button>
+      <hr>
+      <button data-theme-switcher aria-label="Переключить тему"></button>
+    </nav>
+  </section>
+
+  <section>
+    <h2>В toolbar</h2>
+    <div role="toolbar" aria-label="Тема">
+      <button data-btn="icon text" aria-label="Жирный"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42M10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5"/></svg></button>
+      <button data-theme-switcher aria-label="Переключить тему"></button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Без data-theme (auto-dark)</h2>
+    <p><button id="reset">Сбросить data-theme</button> — тема берётся из <code>prefers-color-scheme</code>.</p>
+  </section>
+</main>
+
+<script>
+  document.querySelectorAll('[data-theme-switcher]:not([disabled]), [data-theme-toggle]').forEach(btn => {
+    btn.addEventListener('click', toggleTheme)
+  })
+  document.getElementById('reset').addEventListener('click', () => {
+    delete document.documentElement.dataset.theme
+    localStorage.removeItem('theme')
+  })
+</script>
+</body>
+</html>
