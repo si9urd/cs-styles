@@ -157,6 +157,17 @@ $pressed: ":active, [data-pressed], [data-active], [aria-pressed=\"true\"]";
       background-color: currentcolor;
       mask: var(--icon) center / contain no-repeat;
     }
+
+    &:not(:has(i)) {
+      &::before {
+        content: "";
+        display: inline-flex;
+        width: var(--btn-inner-icon-size);
+        height: var(--btn-inner-icon-size);
+        background-color: currentcolor;
+        mask: var(--icon) center / contain no-repeat;
+      }
+    }
   }
 }
 

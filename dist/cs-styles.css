@@ -433,6 +433,46 @@
       mask: var(--icon) center/contain no-repeat;
       background-color: currentColor;
     }
+
+    [data-btn~="icon"]:not(:has(i)):before {
+      content: "";
+      width: var(--btn-inner-icon-size);
+      height: var(--btn-inner-icon-size);
+      -webkit-mask: var(--icon) center/contain no-repeat;
+      mask: var(--icon) center/contain no-repeat;
+      background-color: currentColor;
+      display: inline-flex;
+    }
+
+    [data-theme-toggle]:not(:has(i)):before {
+      content: "";
+      width: var(--btn-inner-icon-size);
+      height: var(--btn-inner-icon-size);
+      -webkit-mask: var(--icon) center/contain no-repeat;
+      mask: var(--icon) center/contain no-repeat;
+      background-color: currentColor;
+      display: inline-flex;
+    }
+
+    [data-theme-switcher]:not(:has(i)):before {
+      content: "";
+      width: var(--btn-inner-icon-size);
+      height: var(--btn-inner-icon-size);
+      -webkit-mask: var(--icon) center/contain no-repeat;
+      mask: var(--icon) center/contain no-repeat;
+      background-color: currentColor;
+      display: inline-flex;
+    }
+
+    :not(:has(i)):is(button, [type="submit"], [type="reset"], [type="button"], [role="button"]):where([aria-label], [aria-labelledby]):where(:empty, :has( > :is(i, img, svg)):not(:has( > :not(i, img, svg)))):where(:not([data-btn])):before {
+      content: "";
+      width: var(--btn-inner-icon-size);
+      height: var(--btn-inner-icon-size);
+      -webkit-mask: var(--icon) center/contain no-repeat;
+      mask: var(--icon) center/contain no-repeat;
+      background-color: currentColor;
+      display: inline-flex;
+    }
   }
 
   [data-btn~="text"], [data-btn~="outlined"] {
